@@ -50,22 +50,10 @@
                                         enctype="multipart/form-data">
                                         @csrf
                                         <!-- fieldsets -->
-                                        @if(!in_array('education',$step))
                                         @include('step-form/education')
-                                        @endif
-
-                                        @if(!in_array('experience',$step))
                                         @include('step-form/experience')
-                                        @endif
-
-                                        @if(!in_array('preference',$step))
                                         @include('step-form/work-preference')
-                                        @endif
-
-                                        @if(!in_array('upload',$step))
                                         @include('step-form/upload')
-                                        @endif
-
                                     </form>
                                 </div>
                             </div>
@@ -81,9 +69,47 @@
         <!-- page-body-wrapper ends -->
     </div>
 
+
+    <div class="modal fade" id="DeleteEducation" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+        
+        <div class="modal-body p-0">
+            
+        
+            <div class="card">
+                <!-- <div class="card-header">Delete user
+                <button type="button" class="btn-close float-right" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> -->
+                <div class="card-body">
+                        <p>Are you sure you want to delete?</p> 
+                        <button type="button" class="btn btn-secondary btn-sm Banner_delete" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger btn-sm Banner_delete">Delete</button>
+                </div>
+            </div>
+
+
+        
+        </div>
+        </div>
+    </div>
+</div>
 </body>
 <script>
 let token = '{{csrf_token()}}'
+let step = '{{$step}}'
+let experience = '{{$experience}}'
+let preference = '{{$preference}}'
 let education_data = '{{$size}}'
+$('.delete-mem-btn').on('click',function(){
+    let id=$(this).data('delete-link')
+    console.log(id)
+    //  $.ajax({
+    //     type: "GET",
+    //     url: base_url+'delete/Education/'+id,
+    // }).done(()=>{
+
+    // })
+})
 </script>
 @include('includes/footer')

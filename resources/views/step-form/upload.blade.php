@@ -28,6 +28,6 @@
             </div>
         </div>
     </div>
-    <!-- <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> -->
+    <input type="button" name="previous" id="Preference_previous" class="previous action-button-previous" value="Previous" />
     <input type="submit" class="next action-button" value="Upload" />
 </fieldset>

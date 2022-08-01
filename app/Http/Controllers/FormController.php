@@ -16,22 +16,22 @@ class FormController extends Controller
         $education=Education::where('user_id',Auth::user()->id)->where('status','1')->get();
         $experience=Experience::where('user_id',Auth::user()->id)->get();
         $preference=Preference::where('user_id',Auth::user()->id)->get();
-        $education_details=[];
-        $step=[];
+        $education_details=Education::where('user_id',Auth::user()->id)->get();
+        $step='';
         if(sizeOf($education)){
-            $step[]='education';
+            $step='experience';
         }
         else{
-            $education_details=Education::where('user_id',Auth::user()->id)->get();
-            return view('step-form/index',compact('step','education_details'));
+            $step='education';
+            return view('step-form/index',compact('step','education_details','experience','preference'));
         }
         if(sizeOf($experience)){
-            $step[]='experience';
+            $step='preference';
         }
         if(sizeOf($preference)){
-            $step[]='preference';
+            $step='upload';
         }
-        return view('step-form/index',compact('step','education_details'));
+        return view('step-form/index',compact('step','education_details','experience','preference'));
     }
 
     public function submit(Request $request){
@@ -86,47 +86,93 @@ class FormController extends Controller
         }
         else{
             Education::where('id',$exist[0]->id)->update([
-                'subject'=>$request->subject.','.$exist[0]->subject
+                'super_specialization'=>$request->super_specialization.','.$exist[0]->super_specialization
             ]);
         }
         // dd($request);
         
-        return 'success';
+        return ['status'=>'success'];
     }
 
     public function experience(Request $request){
-        Experience::create([
-            'user_id'=>Auth::user()->id,
-            "isworking"=>$request->isworking,
-            "designation"=>$request->designation,
-            "serving"=>$request->serving,
-            "type"=>$request->type,
-            "year"=>$request->year,
-            "specify"=>$request->specify,
-            "org_type"=>$request->org_type,
-            "org_name"=>$request->org_name,
-            "org_year"=>$request->org_year
-        ]);
-        return 'success';
+        $exist=Experience::where('user_id',Auth::user()->id)->get();
+        if(!sizeOf($exist)){
+            Experience::create([
+                'user_id'=>Auth::user()->id,
+                "isworking"=>$request->isworking,
+                "designation"=>$request->designation,
+                "serving"=>$request->serving,
+                "type"=>$request->type,
+                "year"=>$request->year,
+                "specify"=>$request->specify,
+                "org_type"=>$request->org_type,
+                "org_name"=>$request->org_name,
+                "org_year"=>$request->org_year
+            ]);
+        }
+        else{
+            Experience::where('user_id',Auth::user()->id)->update([
+                "isworking"=>$request->isworking,
+                "designation"=>$request->designation,
+                "serving"=>$request->serving,
+                "type"=>$request->type,
+                "year"=>$request->year,
+                "specify"=>$request->specify,
+                "org_type"=>$request->org_type,
+                "org_name"=>$request->org_name,
+                "org_year"=>$request->org_year
+            ]);
+        }
+        return ['status'=>'success'];
     }
     
     public function preference(Request $request){
-        Preference::create([
-            'user_id'=>Auth::user()->id,
-            "paper_setter"=>$request->paper_setter,
-            "interview"=>$request->interview,
-            "line_1"=>$request->line_1,
-            "line_2"=>$request->line_2,
-            "pincode"=>$request->pin_code,
-            "brief"=>$request->brief,
-            "enquiry"=>$request->enquiry,
-        ]);
-        return 'success';
+        $exist=Preference::where('user_id',Auth::user()->id)->get();
+        if(!sizeOf($exist)){
+            Preference::create([
+                'user_id'=>Auth::user()->id,
+                "paper_setter"=>$request->paper_setter,
+                "interview"=>$request->interview,
+                "line_1"=>$request->line_1,
+                "line_2"=>$request->line_2,
+                "pincode"=>$request->pin_code,
+                "brief"=>$request->brief,
+                "enquiry"=>$request->enquiry,
+            ]);
+        }
+        else{
+            Preference::where('user_id',Auth::user()->id)->update([
+                "paper_setter"=>$request->paper_setter,
+                "interview"=>$request->interview,
+                "line_1"=>$request->line_1,
+                "line_2"=>$request->line_2,
+                "pincode"=>$request->pin_code,
+                "brief"=>$request->brief,
+                "enquiry"=>$request->enquiry,
+            ]);
+        }
+        return ['status'=>'success'];
     }
 
     public function finalEducation(){
         Education::where('user_id',Auth::user()->id)->update([
             'status'=>1
         ]);
+    }
+
+    public function getExperienceData(){
+        $experience=Experience::where('user_id',Auth::user()->id)->get();
+        return $experience;
+    }
+
+    public function getPreferenceData(){
+        $preference=Preference::where('user_id',Auth::user()->id)->get();
+        return $preference;
+    }
+
+    public function deleteEducation($id){
+        $id=decode5t($id);
+        Education::where('id',$id)->delete();
+        return ['status'=>'success'];
     }
 }

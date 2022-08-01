@@ -28,6 +28,9 @@ Route::group(["middleware" => ["islogin"]], function(){
     Route::post('submit', 'App\Http\Controllers\FormController@submit')->name('submit');
     Route::post('education', 'App\Http\Controllers\FormController@education')->name('education');
     Route::get('final-save/education', 'App\Http\Controllers\FormController@finalEducation')->name('final-education');
+    Route::get('getExperienceData', 'App\Http\Controllers\FormController@getExperienceData');
+    Route::get('getPreferenceData', 'App\Http\Controllers\FormController@getPreferenceData');
+    Route::get('deleteEducation/{id}', 'App\Http\Controllers\FormController@deleteEducation');
     Route::post('experience', 'App\Http\Controllers\FormController@experience')->name('experience');
     Route::post('preference', 'App\Http\Controllers\FormController@preference')->name('preference');
 });

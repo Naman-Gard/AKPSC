@@ -28,6 +28,7 @@
                 <label for="exampleInputEmail3">Deegre Type</label>
                 <select class="form-select mb-2" id="degree">
                     <option value="">Select</option>
+                    <option value="Graduation">Graduation</option>
                 </select>
                 <span class="text-danger" id="valid_degree"></span>
             </div>
@@ -62,8 +63,7 @@
 
 
     </div>
-    @if(sizeOf($education_details))
-    <div>
+    <div id="education_list">
         <table class="table">
             <thead>
                 <tr>
@@ -74,6 +74,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Subject</th>
                     <th scope="col">Passing Year</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,12 +87,14 @@
                     <td>{{$details->name}}</td>
                     <td>{{$details->subject}}</td>
                     <td>{{$details->passing_year}}</td>
+                    <td>
+                        <input type="button" class="btn btn-danger btn-sm Education_delete" data-delete-link="{{url('delete/education/'.$details->id)}}" data-bs-toggle="modal" data-bs-target="#DeleteEducation" value="Delete">
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-    @endif
     <input type="button" name="add" id="add-details" class="action-button" value="Add" />
     <input type="button" name="next" id="education" class="next action-button" value="Save & Next" />
 </fieldset>

@@ -103,6 +103,6 @@
             </div>
         </div>
     </div>
-    <!-- <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> -->
+    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
     <input type="button" name="next" id="experience" class="next action-button" value="Save & Next" />
 </fieldset>

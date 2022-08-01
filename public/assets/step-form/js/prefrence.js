@@ -1,9 +1,10 @@
-$('input[name=enquiry]').click((e)=>{
+$('input[name=enquiry]').change((e)=>{
     if(e.target.value==='yes'){
         $('#brief').parent().removeClass('d-none')
     }
     else{
         $('#brief').parent().addClass('d-none')
+        $('#brief').val('')
     }
 })
 
@@ -40,6 +41,7 @@ function preferenceValidation(){
     if($('input[name=enquiry]:checked').length !== 0){
         $('#valid_enquiry').html('')
         flag.push(true)
+        console.log($('input[name=enquiry]').val())
         data['enquiry']=$('input[name=enquiry]').val()
     }
     else{
@@ -49,7 +51,7 @@ function preferenceValidation(){
         return false
     }
 
-    $("#work_preference_fieldset .prefrence_input").each(function(key,value){
+    $("#preference_fieldset .prefrence_input").each(function(key,value){
 
         if($(this).attr('id')==='brief'){
             if($('#brief').parent().hasClass('d-none')){

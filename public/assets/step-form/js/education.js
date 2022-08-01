@@ -10,17 +10,17 @@ $('#specialization').change((e)=>{
     }
 })
 
-$('#super_specialization').change((e)=>{
-    if(e.target.value===''){
-        $('#degree').empty()
-        $('#degree').append(`<option value="">Select</option>`)
-    }
-    else{
-        $('#degree').empty()
-        $('#degree').append(`<option value="">Select</option>`)
-        $('#degree').append(`<option value="Graduation">Graduation</option>`)
-    }
-})
+// $('#super_specialization').change((e)=>{
+//     if(e.target.value===''){
+//         $('#degree').empty()
+//         $('#degree').append(`<option value="">Select</option>`)
+//     }
+//     else{
+//         $('#degree').empty()
+//         $('#degree').append(`<option value="">Select</option>`)
+//         $('#degree').append(`<option value="Graduation">Graduation</option>`)
+//     }
+// })
 
 $('#degree').change((e)=>{
     if(e.target.value===''){
@@ -75,20 +75,24 @@ function educationValidation(){
             dataType: "json",
             data:JSON.stringify(data),
             url: base_url+'education',
-        }).success(()=>{
-            console.log('done')
-            location.reload()
+            success:function(){
+                $('#education_list').load(location.href+" #education_list>*","")
+                $("#education_fieldset select").each(function(key,value){
+                    $('#'+$(this).attr('id')).val('')
+                })
+            }
         })
         return true
     }
     // return flag.includes(false)?false:true
 }
 
-$('#add-details').click(()=>{
+$('#add-details').click(async ()=>{
     educationValidation()
 })
 
 function finalEduactionValidation(){
+    // return true
     if(education_data!=='0'){
         $.ajax({
             type: "GET",
