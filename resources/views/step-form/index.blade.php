@@ -20,7 +20,7 @@
                                 <span class="availability-status online"></span>
                             </div> -->
                             <div class="nav-profile-text">
-                                <p class="mb-1 text-black">{{Auth::user()->name}}</p>
+                                <p class="mb-1 text-white fw-bold">{{Auth::user()->name}}</p>
                             </div>
                         </a>
                         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -40,8 +40,8 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-12 grid-margin stretch-card">
+                    <div class="row justify-content-center">
+                        <div class="col-10 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
                                     <?php $size=sizeOf($education_details); ?>
