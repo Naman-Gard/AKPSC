@@ -12,6 +12,8 @@ class Preference extends Model
         'user_id',
         'paper_setter',
         'interview',
+        'language',
+        'proficiency',
         'line_1',
         'line_2',
         'pincode',

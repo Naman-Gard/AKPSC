@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('experiences', function (Blueprint $table) {
+        Schema::create('is_workings', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('type');
-            $table->string('year');
-            $table->string('specify')->nullable();
+            $table->string('isworking');
+            $table->string('designation')->nullable();
+            $table->string('serving')->nullable();
             $table->string('status');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('experiences');
+        Schema::dropIfExists('is_workings');
     }
 };

@@ -48,9 +48,9 @@
                                             <button class="next_button">Submit</button>
                                         </div>
                                     </form>
-                                    <p style="font-size:14px; color:#fff; text-align:left;margin:20px 0 0 0">
+                                    <!-- <p style="font-size:14px; color:#fff; text-align:left;margin:20px 0 0 0">
                                         <a>Forgot Password? (पासवर्ड भूल गए?)</a>
-                                    </p>
+                                    </p> -->
                                     <p style="font-size:14px; color:#fff;text-align:left; margin:20px 0 0 0">
                                         Don't have a UKPSC ID? (यूकेपीएससी आईडी नहीं है?)<br>
                                         <!-- <a id="register-here">Register Here! (यहां रजिस्टर करें!)</a> -->

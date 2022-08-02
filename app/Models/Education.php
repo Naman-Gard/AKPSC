@@ -10,9 +10,7 @@ class Education extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'specialization',
-        'super_specialization',
-        'type',
+        'degree',
         'name',
         'subject',
         'passing_year',

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('paper_setter');
             $table->string('interview');
+            $table->string('language');
+            $table->string('proficiency');
             $table->string('line_1');
             $table->string('line_2');
             $table->string('pincode');

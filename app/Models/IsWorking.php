@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Experience extends Model
+class IsWorking extends Model
 {
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'type',
-        'year',
-        'specify',
+        'isworking',
+        'designation',
+        'serving',
         'status'
     ];
 }

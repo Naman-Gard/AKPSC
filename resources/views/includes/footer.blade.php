@@ -3,6 +3,10 @@
 <script src="{{asset('assets/step-form/vendors/js/vendor.bundle.base.js')}}"></script>
 <script>
 let base_url = "http://localhost:8000/"
+let educationDataStatus = 0,
+    SpecializationStatus = 0,
+    experienceDataStatus = 0,
+    organizationDataStatus = 0;
 </script>
 <script src="{{asset('assets/step-form/js/form.js')}}"></script>
 <script src="{{asset('assets/step-form/js/education.js')}}"></script>

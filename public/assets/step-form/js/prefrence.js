@@ -17,7 +17,7 @@ function preferenceValidation(){
     if($('input[name=paper_setter]:checked').length !== 0){
         $('#valid_paper_setter').html('')
         flag.push(true)
-        data['paper_setter']=$('input[name=paper_setter]').val()
+        data['paper_setter']=$('input[name=paper_setter]:checked').val()
     }
     else{
         $('#valid_paper_setter').html('This field is required')
@@ -29,7 +29,7 @@ function preferenceValidation(){
     if($('input[name=interview]:checked').length !== 0){
         $('#valid_interview').html('')
         flag.push(true)
-        data['interview']=$('input[name=interview]').val()
+        data['interview']=$('input[name=interview]:checked').val()
     }
     else{
         $('#valid_interview').html('This field is required')
@@ -38,15 +38,15 @@ function preferenceValidation(){
         return false
     }
 
-    if($('input[name=enquiry]:checked').length !== 0){
-        $('#valid_enquiry').html('')
+    if($('input[name=language]:checked').length !== 0){
+        $('#valid_language').html('')
         flag.push(true)
-        console.log($('input[name=enquiry]').val())
-        data['enquiry']=$('input[name=enquiry]').val()
+        console.log($('input[name=language]:checked').val())
+        data['language']=$('input[name=language]:checked').val()
     }
     else{
-        $('#valid_enquiry').html('This field is required')
-        $('input[name=enquiry]').focus()
+        $('#valid_language').html('This field is required')
+        $('input[name=language]').focus()
         flag.push(false)
         return false
     }
@@ -83,6 +83,19 @@ function preferenceValidation(){
         data[$(this).attr('id')]=$(this).val()
     });
 
+    if($('input[name=enquiry]:checked').length !== 0){
+        $('#valid_enquiry').html('')
+        flag.push(true)
+        console.log($('input[name=enquiry]').val())
+        data['enquiry']=$('input[name=enquiry]').val()
+    }
+    else{
+        $('#valid_enquiry').html('This field is required')
+        $('input[name=enquiry]').focus()
+        flag.push(false)
+        return false
+    }
+
     if(flag.includes(false)){
         return false
     }
@@ -98,4 +111,8 @@ function preferenceValidation(){
         })
         return true
     }
+}
+
+function languageValidation(){
+    
 }

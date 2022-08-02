@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('experiences', function (Blueprint $table) {
+        Schema::create('organizations', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('type');
-            $table->string('year');
-            $table->string('specify')->nullable();
+            $table->string('org_type');
+            $table->string('org_name');
+            $table->string('org_year');
             $table->string('status');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('experiences');
+        Schema::dropIfExists('organizations');
     }
 };

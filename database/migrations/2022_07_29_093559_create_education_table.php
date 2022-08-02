@@ -16,9 +16,7 @@ return new class extends Migration
         Schema::create('education', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('specialization');
-            $table->string('super_specialization');
-            $table->string('type');
+            $table->string('degree');
             $table->string('name');
             $table->string('subject');
             $table->string('passing_year');

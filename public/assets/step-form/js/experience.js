@@ -7,23 +7,25 @@ $('#type').change((e)=>{
     }
 })
 
+$('input[name=isworking]').change((e)=>{
+    if(e.target.value==='service'){
+        $('#designation_row').removeClass('d-none')
+    }
+    else{
+        if(!$('#designation_row').hasClass('d-none')){
+            $('#designation_row').addClass('d-none')
+            $('#designation').val('')
+            $('#serving').val('')
+        }
+    }
+})
+
 function experienceValidation(){
     let flag=[]
     let data={
         "_token":token
     }
-    if($('input[name=isworking]:checked').length !== 0){
-        $('#valid_isworking').html('')
-        flag.push(true)
-        data['isworking']=$('input[name=isworking]').val()
-    }
-    else{
-        $('#valid_isworking').html('This field is required')
-        $('input[name=isworking]').focus()
-        flag.push(false)
-        return false
-    }
-
+    
     $("#experience_fieldset .experience_input").each(function(key,value){
         if($(this).attr('id')==='specify'){
             if($('#specify').parent().hasClass('d-none')){
@@ -44,7 +46,6 @@ function experienceValidation(){
         else{
             if($(this).val()===''){
                 flag.push(false)
-                console.log($(this).attr('id'))
                 $('#'+$(this).attr('id')).focus()
                 $('#valid_'+$(this).attr('id')).html('This field is required')
                 return false
@@ -65,10 +66,191 @@ function experienceValidation(){
             contentType: "application/json",
             dataType: "json",
             data:JSON.stringify(data),
-            url: base_url+'experience',
-        }).done((response)=>{
-            // console.log('done')
+            url: base_url+'add/experience',
+            success:function(response){
+
+                $("#experience_fieldset .experience_input").each(function(key,value){
+                    $('#'+$(this).attr('id')).val('')
+                })
+                let innerhtml=''
+                response.forEach((item,index)=>{
+                    if(item.error){
+                        $('#experience_error').html('This experience type is already exist.')
+                        return false
+                    }
+                    $('#experience_error').html('')
+                    innerhtml+=`<tr>
+                            <th scope="row">${index+1}</th>
+                            <td>${item.type}</td>
+                            <td>${item.year}</td>
+                            <td>${item.specify}</td>
+                            <td>
+                                <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="experience" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                            </td>
+                        </tr>`
+                })
+                if(!response[0].error){
+                    $('#experience_list').html(innerhtml)
+                    if(response.length){
+                        experienceDataStatus=1
+                    }
+                    else{
+                        experienceDataStatus=0
+                    }
+                }
+            }
         })
-        return true
     }
 }
+
+$('#add-experience').click(()=>{
+    experienceValidation()
+})
+
+function organizationValidation(){
+    let flag=[]
+    let data={
+        "_token":token
+    }
+    
+    $("#experience_fieldset .org_input").each(function(key,value){
+        if($(this).val()===''){
+            flag.push(false)
+            $('#'+$(this).attr('id')).focus()
+            $('#valid_'+$(this).attr('id')).html('This field is required')
+            return false
+        }
+        else{
+            $('#valid_'+$(this).attr('id')).html('')
+        }
+        data[$(this).attr('id')]=$(this).val()
+    });
+
+    if(flag.includes(false)){
+        return false
+    }
+    else{
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data:JSON.stringify(data),
+            url: base_url+'add/organization',
+            success:function(response){
+
+                $("#experience_fieldset .org_input").each(function(key,value){
+                    $('#'+$(this).attr('id')).val('')
+                })
+                let innerhtml=''
+                response.forEach((item,index)=>{
+                    if(item.error){
+                        $('#organization_error').html('This organization is already exist.')
+                        return false
+                    }
+                    $('#organization_error').html('')
+                    innerhtml+=`<tr>
+                            <th scope="row">${index+1}</th>
+                            <td>${item.org_type}</td>
+                            <td>${item.org_name}</td>
+                            <td>${item.org_year}</td>
+                            <td>
+                                <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="organization" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                            </td>
+                        </tr>`
+                })
+                if(!response[0].error){
+                    $('#organization_list').html(innerhtml)
+                    if(response.length){
+                        organizationDataStatus=1
+                    }
+                    else{
+                        organizationDataStatus=0
+                    }
+                }
+            }
+        })
+    }
+}
+
+$('#add-organization').click(()=>{
+    organizationValidation()
+})
+
+
+function isWorkingValidation(){
+    let flag=[]
+    let data={
+        "_token":token
+    }
+    if($('input[name=isworking]:checked').length !== 0){
+        $('#valid_isworking').html('')
+        flag.push(true)
+        data['isworking']=$('input[name=isworking]:checked').val()
+    }
+    else{
+        $('#valid_isworking').html('This field is required')
+        $('input[name=isworking]').focus()
+        flag.push(false)
+        return false
+    }
+
+    $("#experience_fieldset .serving_input").each(function(key,value){
+        if(!$('#designation_row').hasClass('d-none')){
+            if($(this).val()===''){
+                flag.push(false)
+                $('#'+$(this).attr('id')).focus()
+                $('#valid_'+$(this).attr('id')).html('This field is required')
+                return false
+            }
+            else{
+                $('#valid_'+$(this).attr('id')).html('')
+            }
+            data[$(this).attr('id')]=$(this).val()
+        }
+        else{
+            $('#valid_'+$(this).attr('id')).html('')
+        }
+        
+        
+    });
+
+    if(flag.includes(false)){
+        return false
+    }
+    else{
+        return data
+    }
+}
+
+function finalExperienceValidation(){
+    let data=isWorkingValidation()
+    if(data && experienceDataStatus && organizationDataStatus){
+         $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data:JSON.stringify(data),
+            url: base_url+'add/finalExperience',
+            success:function(response){
+
+            }
+         })
+        return true
+    }
+    else{
+        if(experienceDataStatus){
+            $('#experience_error').html('')
+        }
+        else{
+            $('#experience_error').html('Please add your experience details')
+        }
+        if(organizationDataStatus){
+            $('#organization_error').html('')
+        }
+        else{
+            $('#organization_error').html('Please add your organization details')
+        }
+        return false
+    }
+}
+

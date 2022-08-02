@@ -24,7 +24,7 @@ $(document).ready(function(){
             isValidated=finalEduactionValidation()
         }
         else if(current_id==='experience'){
-            isValidated=experienceValidation()
+            isValidated=finalExperienceValidation()
         }
         else if(current_id==='work_preference'){
             isValidated=preferenceValidation()
@@ -57,21 +57,21 @@ $(document).ready(function(){
         
         current_fs = $(this).parent();
         previous_fs = $(this).parent().prev();
-        const previous_id=$(this).attr('id')
+        // const previous_id=$(this).attr('id')
         //Remove class active
         $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
 
-        if(previous_id!==undefined){
-            $.ajax({
-                type: "GET",
-                url: base_url+'get'+previous_id.split('_')[0]+'Data',
-            }).done((response)=>{
-                if(response.length){
-                    previous_data=response[0]
-                    setSaveData(previous_id.split('_')[0])
-                }
-            })
-        }
+        // if(previous_id!==undefined){
+        //     $.ajax({
+        //         type: "GET",
+        //         url: base_url+'get'+previous_id.split('_')[0]+'Data',
+        //     }).done((response)=>{
+        //         if(response.length){
+        //             previous_data=response[0]
+        //             setSaveData(previous_id.split('_')[0])
+        //         }
+        //     })
+        // }
         
         //show the previous fieldset
         previous_fs.show();
@@ -130,6 +130,185 @@ $(document).ready(function(){
                 $('#brief').val('')
             }
         }
+    }
+
+    function setFormData(){
+        $.ajax({
+                type: "GET",
+                url: base_url+'getFormData',
+                success:function(response){
+                    Object.keys(response).forEach((key)=>{
+                        if(key==='specialization'){
+                            createSpecializationRows(response[key])
+                        }
+                        if(key==='education'){
+                            createEducationRows(response[key])
+                        }
+                        if(key==='experience'){
+                            createExperienceRows(response[key])
+                        }
+                        if(key==='organization'){
+                            createOrganizationRows(response[key])
+                        }
+                        if(key==='isworking'){
+                            if(response[key].length){
+                                $('input[name=isworking][value="'+response[key][0].isworking+'"]').attr('checked',true).change()
+                                if(response[key][0].isworking==='retired'){
+                                    if(!$('#designation_row').hasClass('d-none')){
+                                        $('#designation_row').addClass('d-none')
+                                    }
+                                }
+                                else{
+                                    $('#designation option[value="'+response[key][0].designation+'"]').prop("selected",true).change()
+                                    $('#serving option[value="'+response[key][0].serving+'"]').prop("selected",true).change()
+                                    $('#designation_row').removeClass('d-none')
+                                }
+                            }
+                        }
+                    })
+                }
+            })
+    }
+
+    setFormData()
+
+    let delete_id=0,heading='';
+    $('.delete-mem-btn').on('click',function(){
+        if(delete_id && heading!==''){
+            if(heading==='specialization'){
+                $.ajax({
+                type: "GET",
+                url: base_url+'delete/Specialization/'+btoa(delete_id),
+                success:function(response){
+                    createSpecializationRows(response)
+                }
+                })
+            }
+
+            if(heading==='education'){
+                $.ajax({
+                type: "GET",
+                url: base_url+'delete/Education/'+btoa(delete_id),
+                success:function(response){
+                    createEducationRows(response)
+                }
+                })
+            }
+
+            if(heading==='experience'){
+                $.ajax({
+                type: "GET",
+                url: base_url+'delete/Experience/'+btoa(delete_id),
+                success:function(response){
+                    createExperienceRows(response)
+                }
+                })
+            }
+
+            if(heading==='organization'){
+                $.ajax({
+                type: "GET",
+                url: base_url+'delete/Organization/'+btoa(delete_id),
+                success:function(response){
+                    createOrganizationRows(response)
+                }
+                })
+            }
+            
+        }
+    })
+
+    $('#DeleteModal').on('show.bs.modal', function(e) {
+        delete_id = $(e.relatedTarget).data('id');
+        heading = $(e.relatedTarget).data('heading');
+    });
+
+    function createSpecializationRows(data){
+        let innerhtml=''
+        data.forEach((item,index)=>{
+            innerhtml+=`<tr>
+                    <th scope="row">${index+1}</th>
+                    <td>${item.specialization}</td>
+                    <td>${item.super_specialization}</td>
+                    <td>
+                        <input type="button" class="btn btn-danger btn-sm Education_delete" data-id="${item.id}" data-heading="specialization" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                    </td>
+                </tr>`
+        })
+        if(data.length){
+            SpecializationStatus=1
+        }
+        else{
+            SpecializationStatus=0
+        }
+        $('#specialization_list').html(innerhtml)
+    }
+
+    function createEducationRows(data){
+        let innerhtml=''
+        data.forEach((item,index)=>{
+            innerhtml+=`<tr>
+                    <th scope="row">${index+1}</th>
+                    <td>${item.degree}</td>
+                    <td>${item.name}</td>
+                    <td>${item.subject}</td>
+                    <td>${item.passing_year}</td>
+                    <td>
+                        <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="education" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                    </td>
+                </tr>`
+        })
+        if(data.length){
+            educationDataStatus=1
+        }
+        else{
+            educationDataStatus=0
+        }
+        $('#education_list').html(innerhtml)
+    }
+
+    function createExperienceRows(data){
+        let innerhtml=''
+        data.forEach((item,index)=>{
+            innerhtml+=`<tr>
+                            <th scope="row">${index+1}</th>
+                            <td>${item.type}</td>
+                            <td>${item.year}</td>
+                            <td>${item.specify}</td>
+                            <td>
+                                <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="experience" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                            </td>
+                        </tr>`
+        })
+        if(data.length){
+            experienceDataStatus=1
+        }
+        else{
+            experienceDataStatus=0
+        }
+        $('#experience_list').html(innerhtml)
+    }
+
+    function createOrganizationRows(data){
+        let innerhtml=''
+        data.forEach((item,index)=>{
+            innerhtml+=`<tr>
+                            <th scope="row">${index+1}</th>
+                            <td>${item.org_type}</td>
+                            <td>${item.org_name}</td>
+                            <td>${item.org_year}</td>
+                            <td>
+                                <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="organization" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                            </td>
+                        </tr>`
+        })
+        if(data.length){
+            organizationDataStatus=1
+        }
+        else{
+            organizationDataStatus=0
+        }
+        $('#organization_list').html(innerhtml)
     }
         
 });

@@ -24,13 +24,29 @@ Route::group(["middleware" => ["islogout"]], function(){
 
 Route::group(["middleware" => ["islogin"]], function(){
     Route::get('/fill-details', 'App\Http\Controllers\FormController@index')->name('fill-details');
+    Route::get('/success', 'App\Http\Controllers\FormController@success')->name('success');
     Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
     Route::post('submit', 'App\Http\Controllers\FormController@submit')->name('submit');
-    Route::post('education', 'App\Http\Controllers\FormController@education')->name('education');
-    Route::get('final-save/education', 'App\Http\Controllers\FormController@finalEducation')->name('final-education');
+
+    //Education Routes//
+    Route::post('add/specialization', 'App\Http\Controllers\EducationController@addSpecialization');
+    Route::post('add/Education', 'App\Http\Controllers\EducationController@addEducation');
+    Route::get('delete/Specialization/{id}', 'App\Http\Controllers\EducationController@deleteSpecialization');
+    Route::get('delete/Education/{id}', 'App\Http\Controllers\EducationController@deleteEducation');
+    Route::get('final-save/education', 'App\Http\Controllers\EducationController@finalEducation');
+
+    //Get Form Data Routes
     Route::get('getExperienceData', 'App\Http\Controllers\FormController@getExperienceData');
     Route::get('getPreferenceData', 'App\Http\Controllers\FormController@getPreferenceData');
-    Route::get('deleteEducation/{id}', 'App\Http\Controllers\FormController@deleteEducation');
-    Route::post('experience', 'App\Http\Controllers\FormController@experience')->name('experience');
+    Route::get('getFormData', 'App\Http\Controllers\FormController@getFormData');
+    
+    //Experience Routes
+    Route::post('add/experience', 'App\Http\Controllers\ExperienceController@addExperience');
+    Route::post('add/organization', 'App\Http\Controllers\ExperienceController@addOrganization');
+    Route::post('add/finalExperience', 'App\Http\Controllers\ExperienceController@addFinalExperience');
+    Route::get('delete/Experience/{id}', 'App\Http\Controllers\ExperienceController@deleteExperience');
+    Route::get('delete/Organization/{id}', 'App\Http\Controllers\ExperienceController@deleteOrganization');
+
+
     Route::post('preference', 'App\Http\Controllers\FormController@preference')->name('preference');
 });
