@@ -81,4 +81,8 @@ class EducationController extends Controller
             'status'=>'1'
         ]);
     }
+
+    public function getSubjects(){
+        $subjects=
+    }
 }

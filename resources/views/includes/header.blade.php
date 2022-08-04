@@ -8,6 +8,7 @@
     <title>Purple Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('assets/step-form/vendors/mdi/css/materialdesignicons.min.css')}}">
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{asset('assets/step-form/vendors/css/vendor.bundle.base.css')}}"> -->
     <!-- endinject -->
     <!-- Plugin css for this page -->
@@ -15,8 +16,10 @@
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="{{asset('assets/step-form/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/preview/css/style.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('assets/step-form/css/style.css')}}"> -->
     <link rel="stylesheet" href="{{asset('assets/step-form/css/form.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/step-form/images/favicon.ico')}}" />
+
 </head>

@@ -17,14 +17,16 @@ Route::group(["middleware" => ["islogout"]], function(){
     Route::get('/', function () {
         return view('auth/login');
     })->name('/');
-    
+
+    Route::get('check/isEmailRegistered/{email}', 'App\Http\Controllers\AuthController@isEmailRegistered');
+    Route::get('send/otp/{email}/{otp}', 'App\Http\Controllers\AuthController@sendOtp');
     Route::post('register', 'App\Http\Controllers\AuthController@register')->name('register');
     Route::post('login', 'App\Http\Controllers\AuthController@login')->name('login');
 });
 
 Route::group(["middleware" => ["islogin"]], function(){
     Route::get('/fill-details', 'App\Http\Controllers\FormController@index')->name('fill-details');
-    Route::get('/success', 'App\Http\Controllers\FormController@success')->name('success');
+    Route::get('/preview', 'App\Http\Controllers\FormController@preview')->name('preview');
     Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
     Route::post('submit', 'App\Http\Controllers\FormController@submit')->name('submit');
 
@@ -34,6 +36,7 @@ Route::group(["middleware" => ["islogin"]], function(){
     Route::get('delete/Specialization/{id}', 'App\Http\Controllers\EducationController@deleteSpecialization');
     Route::get('delete/Education/{id}', 'App\Http\Controllers\EducationController@deleteEducation');
     Route::get('final-save/education', 'App\Http\Controllers\EducationController@finalEducation');
+    Route::get('getSubjects', 'App\Http\Controllers\EducationController@getSubjects');
 
     //Get Form Data Routes
     Route::get('getExperienceData', 'App\Http\Controllers\FormController@getExperienceData');
@@ -47,6 +50,8 @@ Route::group(["middleware" => ["islogin"]], function(){
     Route::get('delete/Experience/{id}', 'App\Http\Controllers\ExperienceController@deleteExperience');
     Route::get('delete/Organization/{id}', 'App\Http\Controllers\ExperienceController@deleteOrganization');
 
-
-    Route::post('preference', 'App\Http\Controllers\FormController@preference')->name('preference');
+    //Preference & other Routes
+    Route::post('add/LanguageDetails', 'App\Http\Controllers\PreferenceController@addLanguageDetails');
+    Route::get('delete/Language/{id}', 'App\Http\Controllers\PreferenceController@deleteLanguage');
+    Route::post('add/Preference', 'App\Http\Controllers\PreferenceController@addPreference');
 });

@@ -1,11 +1,13 @@
 <!-- container-scroller -->
 <!-- plugins:js -->
+<!-- <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script> -->
 <script src="{{asset('assets/step-form/vendors/js/vendor.bundle.base.js')}}"></script>
 <script>
-let base_url = "http://localhost:8000/"
+let base_url = "http://localhost:8000/";
 let educationDataStatus = 0,
     SpecializationStatus = 0,
     experienceDataStatus = 0,
+    languageDataStatus = 0,
     organizationDataStatus = 0;
 </script>
 <script src="{{asset('assets/step-form/js/form.js')}}"></script>

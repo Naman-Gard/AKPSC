@@ -40,18 +40,19 @@
 
         <div class="container border mb-3 p-3">
             <h4 class="mb-4">Language Proficiency</h4>
+            <span class="text-danger" id="language_error"></span>
             <div class="row">
                 <div class="col-md-6 d-flex">
                     <div class="form-check form-group d-flex col-md-4">
-                        <input type="radio" name="language" value="hindi" />
+                        <input type="radio" name="language" value="Hindi" />
                         <label>Hindi</label>
                     </div>
                     <div class="form-check form-group d-flex col-md-4">
-                        <input type="radio" name="language" value="english" />
+                        <input type="radio" name="language" value="English" />
                         <label>English</label>
                     </div>
                     <div class="form-check form-group d-flex col-md-4">
-                        <input type="radio" name="language" value="sanskrit" />
+                        <input type="radio" name="language" value="Sanskrit" />
                         <label>Sanskrit</label>
                     </div>
                     <span class="text-danger" id="valid_language"></span>
@@ -69,6 +70,21 @@
                 <div class="mb-3">
                     <input type="button" name="add-language" id="add-language" class="action-button" value="Add" />
                 </div>
+
+                <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">S.no</th>
+                            <th scope="col">Language</th>
+                            <th scope="col">Proficiency Level</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="language_list">
+                    </tbody>
+                </table>
+            </div>
             </div>
         </div>
 
@@ -93,6 +109,24 @@
                     <input type="text" class="prefrence_input mb-2" id="pin_code" name="pin_code"
                         placeholder="Pin code" />
                     <span class="text-danger" id="valid_pin_code"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>State</label>
+                    <select class="prefrence_input form-select" name="state" id="state">
+                        <option value="">Select</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    </select>
+                    <span class="text-danger" id="valid_state"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>District</label>
+                    <select class="prefrence_input form-select" name="district" id="district">
+                        <option value="">Select</option>
+                        <option value="Ghaziabad">Ghaziabad</option>
+                    </select>
+                    <span class="text-danger" id="valid_district"></span>
                 </div>
             </div>
         </div>

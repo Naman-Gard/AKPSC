@@ -11,6 +11,7 @@ use App\Models\Specialization;
 use App\Models\Organization;
 use App\Models\IsWorking;
 use App\Models\Upload;
+use App\Models\LanguageDetails;
 use Auth;
 
 class FormController extends Controller
@@ -22,16 +23,15 @@ class FormController extends Controller
         $experience=Experience::where('user_id',Auth::user()->id)->where('status','1')->get();
         $organization=Organization::where('user_id',Auth::user()->id)->where('status','1')->get();
         $isworking=IsWorking::where('user_id',Auth::user()->id)->where('status','1')->get();
-        $preference=Preference::where('user_id',Auth::user()->id)->get();
-        $education_details=Education::where('user_id',Auth::user()->id)->get();
-        $upload=Upload::where('user_id',Auth::user()->id)->get();
+        $preference=Preference::where('user_id',Auth::user()->id)->where('status','1')->get();
+        $upload=Upload::where('user_id',Auth::user()->id)->where('status','1')->get();
         $step='';
         if(sizeOf($education) && sizeOf($specialization)){
             $step='experience';
         }
         else{
             $step='education';
-            return view('step-form/index',compact('step','preference'));
+            return view('step-form/index',compact('step'));
         }
         if(sizeOf($experience) && sizeOf($organization) && sizeOf($isworking)){
             $step='preference';
@@ -40,9 +40,9 @@ class FormController extends Controller
             $step='upload';
         }
         if(sizeOf($upload)){
-            return redirect()->route('success');
+            return redirect()->route('preview');
         }
-        return view('step-form/index',compact('step','preference'));
+        return view('step-form/index',compact('step'));
     }
 
     public function submit(Request $request){
@@ -76,50 +76,20 @@ class FormController extends Controller
             'image'=>$image_name,
             'signature'=>$signature_name,
             'cv'=>$cv_name,
+            'status'=>'1'
         ]);
         
-        return redirect()->route('success');
+        return redirect()->route('preview');
     }
-    
-    public function preference(Request $request){
-        $exist=Preference::where('user_id',Auth::user()->id)->get();
-        if(!sizeOf($exist)){
-            Preference::create([
-                'user_id'=>Auth::user()->id,
-                "paper_setter"=>$request->paper_setter,
-                "interview"=>$request->interview,
-                'language'=>$request->language,
-                'proficiency'=>$request->proficiency,
-                "line_1"=>$request->line_1,
-                "line_2"=>$request->line_2,
-                "pincode"=>$request->pin_code,
-                "brief"=>$request->brief,
-                "enquiry"=>$request->enquiry,
-            ]);
+
+    public function preview(){
+        $upload=Upload::where('user_id',Auth::user()->id)->where('status','1')->get();
+        if(!sizeOf($upload)){
+            return redirect()->route('fill-details');
         }
         else{
-            Preference::where('user_id',Auth::user()->id)->update([
-                "paper_setter"=>$request->paper_setter,
-                "interview"=>$request->interview,
-                'language'=>$request->language,
-                'proficiency'=>$request->proficiency,
-                "line_1"=>$request->line_1,
-                "line_2"=>$request->line_2,
-                "pincode"=>$request->pin_code,
-                "brief"=>$request->brief,
-                "enquiry"=>$request->enquiry,
-            ]);
+            return view('step-form/preview/index');
         }
-        return ['status'=>'success'];
-    }
-
-    public function getPreferenceData(){
-        $preference=Preference::where('user_id',Auth::user()->id)->get();
-        return $preference;
-    }
-
-    public function success(){
-        return view('step-form/success/success');
     }
 
     public function getFormData(){
@@ -128,12 +98,16 @@ class FormController extends Controller
         $experience_data=Experience::where('user_id',Auth::user()->id)->get();
         $organization_data=Organization::where('user_id',Auth::user()->id)->get();
         $isworking_data=IsWorking::where('user_id',Auth::user()->id)->get();
+        $language_data=LanguageDetails::where('user_id',Auth::user()->id)->get();
+        $preference_data=Preference::where('user_id',Auth::user()->id)->get();
         $data=[
             'specialization'=>$specialization_data,
             'education'=>$education_data,
             'experience'=>$experience_data,
             'organization'=>$organization_data,
-            'isworking'=>$isworking_data
+            'isworking'=>$isworking_data,
+            'language'=>$language_data,
+            'preference'=>$preference_data
         ];
         return $data;
     }

@@ -34,7 +34,7 @@
                                     <form method="POST" action="{{route('login')}}" id="login-form">
                                         @csrf
                                         <div class="input-div">
-                                            <label for="email" class="form-label">Institute ID / Email ID (संस्थान आईडी
+                                            <label for="email" class="form-label">User ID / Email ID (यूज़र आईडी
                                                 / ईमेल आईडी)</label>
                                             <input type="email" name="email" required autocomplete="off">
                                             <!-- <span>Institute ID / Email ID (संस्थान आईडी / ईमेल आईडी)</span> -->
@@ -59,72 +59,6 @@
                                         </a>
                                     </p>
                                     
-                                </div>
-
-                                <div class="input-text d-none" id="register">
-                                    <form action="{{route('register')}}" id="register-form" method="POST">
-                                        @csrf
-                                        <div class="input-div">
-                                            <input type="text" name="name" required autocomplete="off" />
-                                            <span>Name (नाम)</span>
-                                            <p class="text-danger" id="valid_name"></p>
-                                        </div>
-                                        <div class="input-div">
-                                            <input type="text" name="father_name" required autocomplete="off" />
-                                            <span>Father Name (पिता का नाम)</span>
-                                            <p class="text-danger" id="valid_father_name"></p>
-                                        </div>
-                                        <div class="">
-                                            <!-- <label>Date of Birth (जन्म की तारीख)</label> -->
-                                            <input type="date" name="dob" required autocomplete="off" />
-                                            <p class="text-danger" id="valid_dob"></p>
-                                        </div>
-                                        <div class="input-div row">
-                                            <div class="form-check col-md-6">
-                                                <input class="form-check-input" type="radio" name="gender" value="male"
-                                                    id="male" />
-                                                <label class="form-check-label" for="flexRadioDefault1">Male </label>
-                                            </div>
-                                            <div class="form-check col-md-6">
-                                                <input class="form-check-input" type="radio" name="gender"
-                                                    value="female" id="female" />
-                                                <label class="form-check-label" for="flexRadioDefault1"> Female </label>
-                                            </div>
-                                            <!-- <span>Gender (लिंग)</span> -->
-                                            <p class="text-danger" id="valid_gender"></p>
-                                        </div>
-                                        <div class="input-div">
-                                            <input type="text" name="category" required autocomplete="off" />
-                                            <span>Category (श्रेणी)</span>
-                                            <p class="text-danger" id="valid_category"></p>
-                                        </div>
-                                        <div class="input-div">
-                                            <input type="text" name="mobile" required autocomplete="off" />
-                                            <span>Mobile No. (मोबाइल नंबर)</span>
-                                            <p class="text-danger" id="valid_mobile"></p>
-                                        </div>
-                                        <div class="input-div">
-                                            <input type="email" name="reg_email" required autocomplete="off" />
-                                            <span>Email ID (ईमेल आईडी)</span>
-                                            <p class="text-danger" id="valid_email"></p>
-                                        </div>
-                                        <div class="input-div">
-                                            <input type="password" name="pass" required autocomplete="off" />
-                                            <p class="text-danger" id="valid_pass"></p>
-                                            <span>Password (पासवर्ड)</span>
-                                        </div>
-                                        <div class="input-div">
-                                            <input type="password" name="cnfrm_pass" required autocomplete="off" />
-                                            <span>Confirm Password (पासवर्ड पुष्टि करें)</span>
-                                        </div>
-                                        <div class="buttons">
-                                            <button class="next_button">Register</button>
-                                        </div>
-                                    </form>
-                                    <p style="font-size:14px; color:#fff;text-align:left; margin:20px 0 0 0">
-                                        Already have a UKPSC ID? (पहले से यूकेपीएससी आईडी है?)<br>
-                                        <a id="login-here">Login Here! (यहां लॉग इन करें!)</a>
-                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -168,19 +102,27 @@
                     <p class="text-danger" id="valid_dob"></p>
                 </div>
                 <div class="input-div">
+                    <label>Gender</label>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="gender" value="male"
                                     id="male" />
                                 <label class="form-check-label" for="flexRadioDefault1">Male </label>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="gender"
                                     value="female" id="female" />
                                 <label class="form-check-label" for="flexRadioDefault1"> Female </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender"
+                                    value="other" id="other" />
+                                <label class="form-check-label" for="flexRadioDefault1"> Other </label>
                             </div>
                         </div>
                     </div>
@@ -189,7 +131,14 @@
                 </div>
                 <div class="input-div">
                     <label for="category" class="form-label">Category (श्रेणी) <span class="red-feild">*</span></label>
-                    <input type="text" name="category" required autocomplete="off" />
+                    <select required name="category" id="category">
+                        <option value="">Select</option>
+                        <option value="General">General</option>
+                        <option value="OBC">OBC</option>
+                        <option value="SC">SC</option>
+                        <option value="ST">ST</option>
+                    </select>
+                    <!-- <input type="text" name="category" required autocomplete="off" /> -->
                     <!-- <span>Category (श्रेणी)</span> -->
                     <p class="text-danger" id="valid_category"></p>
                 </div>
@@ -216,8 +165,19 @@
                     <input type="password" name="cnfrm_pass" required autocomplete="off" />
                     <!-- <span>Confirm Password (पासवर्ड पुष्टि करें)</span> -->
                 </div>
+
+                <div class="d-none" id="otp_input">
+                    <label class="form-label">OTP</label>
+                    <input type="text" name="otp" id="otp">
+                    <div id="ten-countdown"></div>
+                    <div class="d-none" id="resend-otp">
+                        <input class=" btn next_button" type="button" id="resend-otp-btn" value="Resend OTP"/>
+                    </div>
+                </div>
+
                 <div class="buttons mt-4">
-                    <button class="next_button">Register</button>
+                    <input class=" btn next_button" type="button" id="get_OTP" value="Get OTP"/>
+                    <button class="next_button d-none" id="register-btn">Register</button>
                 </div>
             </form>
         </div>
@@ -228,15 +188,7 @@
 
 @include('auth.includes.footer')
 <script>
-    $('#register-here').click(() => {
-        $('#login').addClass('d-none')
-        $('#register').removeClass('d-none')
-    })
-    $('#login-here').click(() => {
-        $('#login').removeClass('d-none')
-        $('#register').addClass('d-none')
-    })
-
+    let otp=0;
     $('#login-form').on('submit', function (e) {
 
         e.preventDefault();
@@ -274,7 +226,19 @@
         let flag = [];
 
         if ($('input[name=reg_email]').val() !== '') {
-            flag.push(emailValidation())
+            $('#valid_email').html("");
+        }
+        else{
+            flag.push(false)
+            $('#valid_email').html("Please enter valid email");
+        }
+
+        if ($('input[name=otp]').val() !== '') {
+            flag.push(otpValidation())
+        }
+        else{
+            flag.push(false)
+            $('#valid_otp').html("Please enter valid otp");
         }
 
         if ($('input[name=pass]').val() !== '') {
@@ -292,6 +256,7 @@
             flag.push(true)
         } else {
             $('#valid_gender').html("Gender Field is Required");
+            $('input[name=gender]').focus()
             flag.push(false)
         }
 
@@ -307,9 +272,10 @@
     })
 
     $('input[name=mobile]').keydown((e) => {
-        if (e.currentTarget.value.length == 11)
-            return false;
         var keyCode = (e.keyCode ? e.keyCode : e.which);
+        if (e.currentTarget.value.length == 10 && keyCode!==8)
+            return false;
+        
         if ((keyCode > 64 && keyCode < 91) || (keyCode > 96 && keyCode < 123)) {
             e.preventDefault();
         }
@@ -323,18 +289,114 @@
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         if (email.toLowerCase().match(valid)) {
-            $('#valid_email').html("");
-            // $.ajax({
-            //     type: "GET",
-            //     headers: {
-            //         'Access-Control-Allow-Origin': '*'
-            //     },
-            //     url: base_url + 'check/isEmailRegistered'-,
-            // })
-            return true
+            
+            $.ajax({
+                type: "GET",
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                },
+                url: base_url + 'check/isEmailRegistered/'+email,
+                success:function(response){
+                    if(response.status==='Already Exist'){
+                        $('#valid_email').html("This Email is already registered");
+                        $('input[name=reg_email]').attr('disabled',false)
+                        if(!$('#register-btn').hasClass('d-none')){
+                            $('#register-btn').addClass('d-none')
+                        }
+                    }
+                    else{
+                        $('#valid_email').html("");
+                        $('input[name=reg_email]').attr('disabled',true)
+                        $('#get_OTP').addClass('d-none')
+                        $('#register-btn').removeClass('d-none')
+                        $('#otp_input').removeClass('d-none')
+                        otpCreation(email)
+                    }
+                }
+            })
         } else {
             $('#valid_email').html("Please enter valid email");
+        }
+    }
+
+    $('#get_OTP').click(()=>{
+        emailValidation()
+    })
+
+    function otpCreation(email){
+        let string = '0123456789';
+        let len = string.length;
+        let OTP = ""
+
+        for (let i = 0; i < 4; i++ ) {
+            OTP += string[Math.floor(Math.random() * len)];
+        }
+
+        $.ajax({
+            type: "GET",
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            url: base_url + 'send/otp/'+btoa(email)+'/'+btoa(OTP),
+        })
+        otp=OTP
+        console.log(otp)
+        countdown( "ten-countdown", 1, 0 );
+    }
+
+    function countdown( elementName, minutes, seconds )
+    {
+        let element, endTime, hours, mins, msLeft, time;
+
+        function twoDigits( n )
+        {
+            return (n <= 9 ? "0" + n : n);
+        }
+
+        function updateTimer()
+        {
+            msLeft = endTime - (+new Date);
+            if ( msLeft < 1000 ) {
+                element.innerHTML="";
+                $('#resend-otp').removeClass('d-none')
+                $('input[name=reg_email]').attr('disabled',false)
+                if(!$('#register-btn').hasClass('d-none')){
+                    $('#register-btn').addClass('d-none')
+                }
+                otp=0
+            } else {
+                time = new Date( msLeft );
+                hours = time.getUTCHours();
+                mins = time.getUTCMinutes();
+                element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
+                setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+            }
+        }
+
+        element = document.getElementById( elementName );
+        endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+        updateTimer();
+    }
+
+    $('#resend-otp-btn').click(()=>{
+        $('#resend-otp').addClass('d-none')
+        emailValidation()
+    })
+
+    function otpValidation(){
+        const generatedOTP=$('#otp').val()
+        if(generatedOTP.length===4){
+            if(generatedOTP===otp){
+                return true
+            }
+            else{
+                return false
+            }
+        }
+        else{
             return false
         }
     }
+
+
 </script>

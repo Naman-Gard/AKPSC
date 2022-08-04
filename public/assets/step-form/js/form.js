@@ -2,17 +2,19 @@ $(document).ready(function(){
     
     let current_fs, next_fs, previous_fs; //fieldsets
     let opacity,previous_data;
-
-    $("#"+step+'_fieldset').css({
-        'display': 'block',
-        'position': 'relative'
-    })
-    if(step!=='education'){
-        $("#education_fieldset").css({
-            'display': 'none',
+    if(step!==''){
+        $("#"+step+'_fieldset').css({
+            'display': 'block',
             'position': 'relative'
         })
+        if(step!=='education'){
+            $("#education_fieldset").css({
+                'display': 'none',
+                'position': 'relative'
+            })
+        }
     }
+    
     
     $(".next").click(function(){
         let isValidated=false
@@ -165,6 +167,21 @@ $(document).ready(function(){
                                 }
                             }
                         }
+                        if(key==='language'){
+                            createLanguageRows(response[key])
+                        }
+                        if(key==='preference'){
+                            if(response[key].length){
+                                $('input[name=paper_setter][value="'+response[key][0].paper_setter+'"]').attr('checked',true).change()
+                                $('input[name=interview][value="'+response[key][0].interview+'"]').attr('checked',true).change()
+                                $('input[name=enquiry][value="'+response[key][0].enquiry+'"]').attr('checked',true).change()
+                                $('#line_1').val(response[key][0].line_1)
+                                $('#line_2').val(response[key][0].line_2)
+                                $('#pin_code').val(response[key][0].pincode)
+                                $('#state option[value="'+response[key][0].state+'"]').prop("selected",true).change()
+                                $('#district option[value="'+response[key][0].district+'"]').prop("selected",true).change()
+                            }
+                        }
                     })
                 }
             })
@@ -211,6 +228,16 @@ $(document).ready(function(){
                 url: base_url+'delete/Organization/'+btoa(delete_id),
                 success:function(response){
                     createOrganizationRows(response)
+                }
+                })
+            }
+
+            if(heading==='language'){
+                $.ajax({
+                type: "GET",
+                url: base_url+'delete/Language/'+btoa(delete_id),
+                success:function(response){
+                    createLanguageRows(response)
                 }
                 })
             }
@@ -309,6 +336,27 @@ $(document).ready(function(){
             organizationDataStatus=0
         }
         $('#organization_list').html(innerhtml)
+    }
+
+    function createLanguageRows(data){
+        let innerhtml=''
+        data.forEach((item,index)=>{
+            innerhtml+=`<tr>
+                        <th scope="row">${index+1}</th>
+                        <td>${item.language}</td>
+                        <td>${item.proficiency}</td>
+                        <td>
+                            <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="language" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                        </td>
+                    </tr>`
+        })
+        if(data.length){
+            languageDataStatus=1
+        }
+        else{
+            languageDataStatus=0
+        }
+        $('#language_list').html(innerhtml)
     }
         
 });

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('signature');
             $table->string('cv');
+            $table->string('status');
             $table->timestamps();
         });
     }

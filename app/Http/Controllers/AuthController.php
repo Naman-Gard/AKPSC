@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OtpMail;
 use Hash;
 use Auth;
 
@@ -42,5 +45,29 @@ class AuthController extends Controller
     public function logout(){
         Auth::logout();
         return redirect()->route('/')->with('success','Logout Sucessfully');
+    }
+
+    public function isEmailRegistered($email){
+        $status=User::where('email',$email)->get();
+        if(sizeOf($status)){
+            return ['status'=>'Already Exist'];
+        }
+        else{
+            return ['status'=>'Not Registered'];
+        }
+    }
+
+    public function sendOtp($email,$otp){
+        $otp=base64_decode($otp);
+        $email=base64_decode($email);
+        
+        Mail::to($email)->send(new OtpMail($otp));
+
+        if(Mail::failures($email)){
+            return response(0);
+        }
+        else{
+            return response(1);
+        }
     }
 }

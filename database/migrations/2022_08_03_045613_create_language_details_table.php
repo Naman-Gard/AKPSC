@@ -13,18 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('preferences', function (Blueprint $table) {
+        Schema::create('language_details', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('paper_setter');
-            $table->string('interview');
-            $table->string('line_1');
-            $table->string('line_2');
-            $table->string('pincode');
-            $table->string('state');
-            $table->string('district');
-            $table->string('brief')->nullable();
-            $table->string('enquiry');
+            $table->string('language');
+            $table->string('proficiency');
             $table->string('status');
             $table->timestamps();
         });
@@ -37,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('preferences');
+        Schema::dropIfExists('language_details');
     }
 };

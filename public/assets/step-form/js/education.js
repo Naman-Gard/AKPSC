@@ -194,3 +194,13 @@ function finalEduactionValidation(){
         }
     }
 }
+
+function getSubjects(){
+    $.ajax({
+        type: "GET",
+        url: base_url+'getSubjects',
+        success:function(response){
+            console.log(response)
+        }
+    })
+}

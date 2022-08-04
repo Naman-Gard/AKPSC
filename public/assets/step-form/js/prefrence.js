@@ -8,6 +8,83 @@ $('input[name=enquiry]').change((e)=>{
     }
 })
 
+$('input[name=pin_code]').keydown((e) => {
+    var keyCode = (e.keyCode ? e.keyCode : e.which);
+    if (e.currentTarget.value.length === 6 && keyCode!==8)
+    {
+        return false;
+    }
+    if ((keyCode > 64 && keyCode < 91) || (keyCode > 96 && keyCode < 123)) {
+        e.preventDefault();
+    }
+})
+
+function languageValidation(){
+    let data={
+        "_token":token
+    }
+    if($('input[name=language]:checked').length !== 0){
+        $('#valid_language').html('')
+        data['language']=$('input[name=language]:checked').val()
+    }
+    else{
+        $('#valid_language').html('This field is required')
+        $('input[name=language]').focus()
+        return false
+    }
+
+    if($('#proficiency').val()!==''){
+        $('#valid_proficiency').html('')
+        data['proficiency']=$('#proficiency').val()
+    }
+    else{
+        $('#proficiency').focus()
+        $('#valid_proficiency').html('This field is required')
+        return false
+    }
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        dataType: "json",
+        data:JSON.stringify(data),
+        url: base_url+'add/LanguageDetails',
+        success:function(response){
+            $('input[name="language"]').val([])
+            $('#proficiency').val('')
+            let innerhtml=''
+            response.forEach((item,index)=>{
+                if(item.error){
+                    $('#language_error').html('This language proficiency is already exist.')
+                    return false
+                }
+                $('#language_error').html('')
+                innerhtml+=`<tr>
+                        <th scope="row">${index+1}</th>
+                        <td>${item.language}</td>
+                        <td>${item.proficiency}</td>
+                        <td>
+                            <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="language" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                        </td>
+                    </tr>`
+            })
+            if(!response[0].error){
+                $('#language_list').html(innerhtml)
+                if(response.length){
+                    languageDataStatus=1
+                }
+                else{
+                    languageDataStatus=0
+                }
+            }
+        }
+    })
+}
+
+$('#add-language').click(()=>{
+    languageValidation()
+})
+
 function preferenceValidation(){
     let flag=[]
     let data={
@@ -38,19 +115,6 @@ function preferenceValidation(){
         return false
     }
 
-    if($('input[name=language]:checked').length !== 0){
-        $('#valid_language').html('')
-        flag.push(true)
-        console.log($('input[name=language]:checked').val())
-        data['language']=$('input[name=language]:checked').val()
-    }
-    else{
-        $('#valid_language').html('This field is required')
-        $('input[name=language]').focus()
-        flag.push(false)
-        return false
-    }
-
     $("#preference_fieldset .prefrence_input").each(function(key,value){
 
         if($(this).attr('id')==='brief'){
@@ -71,7 +135,6 @@ function preferenceValidation(){
         else{
             if($(this).val()===''){
                 flag.push(false)
-                console.log($(this).attr('id'))
                 $('#'+$(this).attr('id')).focus()
                 $('#valid_'+$(this).attr('id')).html('This field is required')
                 return false
@@ -86,8 +149,7 @@ function preferenceValidation(){
     if($('input[name=enquiry]:checked').length !== 0){
         $('#valid_enquiry').html('')
         flag.push(true)
-        console.log($('input[name=enquiry]').val())
-        data['enquiry']=$('input[name=enquiry]').val()
+        data['enquiry']=$('input[name=enquiry]:checked').val()
     }
     else{
         $('#valid_enquiry').html('This field is required')
@@ -100,19 +162,23 @@ function preferenceValidation(){
         return false
     }
     else{
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            dataType: "json",
-            data:JSON.stringify(data),
-            url: base_url+'preference',
-        }).done((response)=>{
-            
-        })
-        return true
-    }
-}
+        if(languageDataStatus){
+            $('#language_error').html('')
+             $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data:JSON.stringify(data),
+                url: base_url+'add/Preference',
+                success:function(response){
 
-function languageValidation(){
-    
+                }
+            })
+            return true
+        }
+        else{
+            $('#language_error').html('Please add the language proficience details')
+            return false
+        }
+    }
 }
