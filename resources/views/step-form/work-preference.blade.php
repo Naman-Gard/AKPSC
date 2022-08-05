@@ -5,7 +5,7 @@
         </h2>
         <div class="form-group container border mb-3 p-3">
             <label for="exampleInputCity1">Are you willing to be appointed as</label>
-            <div class="input-div row">
+            <div class="input-div row align-items-center">
                 <div class="col-md-8">
                     <label for="exampleInputCity1">a. Question paper setter/ Objective Item writer/ Moderator/ Examiner/
                         Evaluator/
@@ -14,13 +14,13 @@
 
                 <div class="form-check d-flex col-md-2">
                     <input type="radio" name="paper_setter" value="yes" />
-                    <label class="" for="flexRadioDefault1">Yes </label>
+                    <label class="ms-2" for="flexRadioDefault1">Yes </label>
                 </div>
                 <div class="form-check d-flex col-md-2">
                     <input type="radio" name="paper_setter" value="no" />
-                    <label class="" for="flexRadioDefault1"> No </label>
+                    <label class="ms-2" for="flexRadioDefault1"> No </label>
                 </div>
-                <span class="text-danger" id="valid_paper_setter"></span>
+                <span class="text-danger mb-3" id="valid_paper_setter"></span>
             </div>
             <div class="input-div row">
                 <div class="col-md-8">
@@ -28,11 +28,11 @@
                 </div>
                 <div class="form-check d-flex col-md-2">
                     <input class="" type="radio" name="interview" value="yes" />
-                    <label class="" for="flexRadioDefault1">Yes </label>
+                    <label class="ms-2" for="flexRadioDefault1">Yes </label>
                 </div>
                 <div class="form-check d-flex col-md-2">
                     <input class="" type="radio" name="interview" value="no" />
-                    <label class="" for="flexRadioDefault1"> No </label>
+                    <label class="ms-2" for="flexRadioDefault1"> No </label>
                 </div>
                 <span class="text-danger" id="valid_interview"></span>
             </div>
@@ -42,20 +42,25 @@
             <h4 class="mb-4">Language Proficiency</h4>
             <span class="text-danger" id="language_error"></span>
             <div class="row">
-                <div class="col-md-6 d-flex">
-                    <div class="form-check form-group d-flex col-md-4">
-                        <input type="radio" name="language" value="Hindi" />
-                        <label>Hindi</label>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="form-check form-group d-flex col-md-4">
+                            <input type="radio" name="language" value="Hindi" />
+                            <label class="ms-2">Hindi</label>
+                        </div>
+                        <div class="form-check form-group d-flex col-md-4">
+                            <input type="radio" name="language" value="English" />
+                            <label class="ms-2">English</label>
+                        </div>
+                        <div class="form-check form-group d-flex col-md-4">
+                            <input type="radio" name="language" value="Sanskrit" />
+                            <label class="ms-2">Sanskrit</label>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="text-danger" id="valid_language"></span>
+                        </div>
+
                     </div>
-                    <div class="form-check form-group d-flex col-md-4">
-                        <input type="radio" name="language" value="English" />
-                        <label>English</label>
-                    </div>
-                    <div class="form-check form-group d-flex col-md-4">
-                        <input type="radio" name="language" value="Sanskrit" />
-                        <label>Sanskrit</label>
-                    </div>
-                    <span class="text-danger" id="valid_language"></span>
                 </div>
                 <div class="form-group col-md-6">
                     <label>Proficiency Level</label>
@@ -91,7 +96,7 @@
         <div class="container border mb-3 p-3">
             <div class="row">
                 <h4 class="mb-4">Address</h4>
-                <div class="form-group">
+                <div class="form-group mb-4">
                     <label for="exampleInputEmail3">Line 1</label>
                     <input type="text" class="prefrence_input mb-2" id="line_1" name="line_1" placeholder="Line 1" />
                     <span class="text-danger" id="valid_line_1"></span>
@@ -99,12 +104,12 @@
 
             </div>
             <div class="row">
-                <div class="form-group col-md-8">
+                <div class="form-group mb-4 col-md-8">
                     <label for="exampleInputEmail3">Line 2</label>
                     <input type="text" class="prefrence_input mb-2" id="line_2" name="line_2" placeholder="Line 2" />
                     <span class="text-danger" id="valid_line_2"></span>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group mb-4 col-md-4">
                     <label for="exampleInputEmail3">Pin Code</label>
                     <input type="text" class="prefrence_input mb-2" id="pin_code" name="pin_code"
                         placeholder="Pin code" />
@@ -112,7 +117,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group mb-4 col-md-6">
                     <label>State</label>
                     <select class="prefrence_input form-select" name="state" id="state">
                         <option value="">Select</option>
@@ -120,7 +125,7 @@
                     </select>
                     <span class="text-danger" id="valid_state"></span>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group mb-4 col-md-6">
                     <label>District</label>
                     <select class="prefrence_input form-select" name="district" id="district">
                         <option value="">Select</option>
@@ -132,7 +137,7 @@
         </div>
 
         <div class="container border mb-3 p-3">
-            <div class="input-div form-group row">
+            <div class="input-div form-group row align-items-center">
                 <div class="col-md-8">
                     <label for="exampleInputCity1" class="c-text">Have you ever faced any vigilance Enquiry or were
                         debarred
@@ -143,11 +148,11 @@
                 </div>
                 <div class="form-check d-flex col-md-2">
                     <input type="radio" name="enquiry" value="yes" />
-                    <label class="" for="flexRadioDefault1">Yes </label>
+                    <label class="ms-2" for="flexRadioDefault1">Yes </label>
                 </div>
                 <div class="form-check d-flex col-md-2">
                     <input type="radio" name="enquiry" value="no" />
-                    <label class="" for="flexRadioDefault1"> No </label>
+                    <label class="ms-2" for="flexRadioDefault1"> No </label>
                 </div>
                 <span class="text-danger" id="valid_enquiry"></span>
             </div>

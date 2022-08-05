@@ -83,6 +83,6 @@ class EducationController extends Controller
     }
 
     public function getSubjects(){
-        $subjects=
+        // $subjects=
     }
 }
