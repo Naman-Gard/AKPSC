@@ -21,14 +21,14 @@
                                 
                                 <tbody>
                                     <tr>
-                                        <td scope="col" colspan="2" class="text-center"><img src="{{asset('assets/preview/images/user-80.png')}}" width="120" height="120" alt="photo"></td>
-                                        <td scope="col" class="text-center"><img src="{{asset('assets/preview/images/signature-50.png')}}" alt="signature" width="60" height="60"></td>
+                                        <td scope="col" colspan="2" class="text-center"><img src="{{asset('assets/uploads/images/'.$data['upload']['image'])}}" width="120" height="120" alt="photo"></td>
+                                        <td scope="col" class="text-center"><img src="{{asset('assets/uploads/signature/'.$data['upload']['signature'])}}" alt="signature" width="60" height="60"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">1.</th>
                                         <td>Name :</td>
                                         <td>
-
+                                            {{$data['personal_data']['name']}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -37,7 +37,7 @@
                                             Father's Name :
                                         </td>
                                         <td>
-
+                                            {{$data['personal_data']['father_name']}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -46,7 +46,7 @@
                                             Date of Birth :
                                         </td>
                                         <td>
-
+                                            {{$data['personal_data']['dob']}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -55,7 +55,7 @@
                                             Gender :
                                         </td>
                                         <td>
-
+                                            {{$data['personal_data']['gender']}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -64,7 +64,7 @@
                                             Category :
                                         </td>
                                         <td>
-
+                                            {{$data['personal_data']['category']}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -73,7 +73,7 @@
                                             Mobile Number :
                                         </td>
                                         <td>
-
+                                            {{$data['personal_data']['mobile']}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -82,7 +82,7 @@
                                             Email Id :
                                         </td>
                                         <td>
-
+                                            {{$data['personal_data']['email']}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -138,7 +138,7 @@
 
                                         </td>
                                         <td>
-
+                                            {{$data['experience_data']['isworking']['isworking']}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -147,7 +147,7 @@
                                             Designation if Serving :
                                         </td>
                                         <td>
-
+                                            {{$data['experience_data']['isworking']['designation']}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -156,7 +156,7 @@
                                             Serving Under :
                                         </td>
                                         <td>
-
+                                            {{$data['experience_data']['isworking']['serving']}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -229,7 +229,10 @@
                                             </ol>
                                         </td>
                                         <td>
-
+                                            <ol>
+                                                <li>{{$data['preference_data']['preference']['paper_setter']}}</li>
+                                                <li>{{$data['preference_data']['preference']['interview']}}</li>
+                                            </ol>
                                         </td>
                                     </tr>
                                     <tr>
@@ -238,7 +241,8 @@
                                             Address :
                                         </td>
                                         <td>
-
+                                            <div>{{$data['preference_data']['preference']['line_1']}}{{$data['preference_data']['preference']['line_2']}} , {{$data['preference_data']['preference']['district']}} , {{$data['preference_data']['preference']['state']}}</div>
+                                            <div>Pincode: {{$data['preference_data']['preference']['pincode']}}</div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -249,7 +253,8 @@
                                             please indicate in brief :
                                         </td>
                                         <td>
-
+                                            <div>{{$data['preference_data']['preference']['enquiry']}}</div>
+                                            <div>{{$data['preference_data']['preference']['brief']}}</div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -260,17 +265,17 @@
                             </h6>
                             <div class="d-flex">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="declaration">
                                   </div>
                                   <p>I hereby certify that the information furnished in this form is true to best of my knowledge.</p>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end mt-3">
-                            <img src="{{asset('assets/preview/images/signature-50.png')}}" class="me-4" alt="signature" width="60" height="60">
+                            <img src="{{asset('assets/uploads/signature/'.$data['upload']['signature'])}}" class="me-4" alt="signature" width="60" height="60">
                         </div>
-                        <div class="btn-sec d-flex justify-content-center mt-5">
-                            <button type="submit" class="btn btn-custom mx-2">Final Submit <img src="{{asset('assets/preview/images/tick-box.gif')}}" height="24" alt=""></button>
-                            <button type="submit" class="btn btn-custom mx-2">Edit Form <img src="{{asset('assets/preview/images/edit.svg')}}" height="24" alt=""></button>
+                        <div class="btn-sec mb-5 d-flex justify-content-center mt-5">
+                            <button type="submit" class="btn btn-custom mx-2" id="final-submit">Final Submit <img src="{{asset('assets/preview/images/tick-box.gif')}}" height="24" alt=""></button>
+                            <button type="submit" class="btn btn-custom mx-2" id="edit-form">Edit Form <img src="{{asset('assets/preview/images/edit.svg')}}" height="24" alt=""></button>
                         </div>
                     </div>
                 </div>
@@ -279,4 +284,5 @@
     </section>
     </body>
 </html>
-<script src="{{asset('assets/step-form/js/preview.js')}}"></script>
+
+@include('includes/footer')

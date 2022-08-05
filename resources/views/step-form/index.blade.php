@@ -61,6 +61,31 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="NotifyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body p-0">
+
+
+                <div class="card">
+                    <!-- <div class="card-header">Delete user
+                <button type="button" class="btn-close float-right" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> -->
+                    <div class="card-body">
+                        <p id="notify-message"></p>
+                        <button type="button" class="btn btn-secondary btn-sm Banner_delete"
+                            data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <script>
 let token = '{{csrf_token()}}'

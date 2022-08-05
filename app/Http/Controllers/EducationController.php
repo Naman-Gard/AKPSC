@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Specialization;
 use App\Models\Education;
 use Auth;
+use DB;
 
 class EducationController extends Controller
 {
@@ -83,6 +84,12 @@ class EducationController extends Controller
     }
 
     public function getSubjects(){
-        $subjects=
+        $subjects=DB::table('subject_master')->orderBy('subject_list')->get();
+        return $subjects;
+    }
+
+    public function getQualifications(){
+        $qualification=DB::table('qualification_master')->get()->groupBy(['qual_name','qual_deg']);
+        return $qualification;
     }
 }

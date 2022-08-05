@@ -55,10 +55,13 @@ function languageValidation(){
             let innerhtml=''
             response.forEach((item,index)=>{
                 if(item.error){
-                    $('#language_error').html('This language proficiency is already exist.')
+                    // $('#language_error').html('This language proficiency is already exist.')
+                    $('#notify-message').html('This language proficiency is already exist.')
+                    $('#NotifyModal').modal('show')
                     return false
                 }
-                $('#language_error').html('')
+                // $('#language_error').html('')
+                $('#notify-message').html('')
                 innerhtml+=`<tr>
                         <th scope="row">${index+1}</th>
                         <td>${item.language}</td>
@@ -163,7 +166,7 @@ function preferenceValidation(){
     }
     else{
         if(languageDataStatus){
-            $('#language_error').html('')
+            $('#notify-message').html('')
              $.ajax({
                 type: "POST",
                 contentType: "application/json",
@@ -177,7 +180,9 @@ function preferenceValidation(){
             return true
         }
         else{
-            $('#language_error').html('Please add the language proficience details')
+            // $('#language_error').html('Please add the language proficience details')
+            $('#notify-message').html('Please add the language proficience details')
+            $('#NotifyModal').modal('show')
             return false
         }
     }

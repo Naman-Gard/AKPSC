@@ -1,16 +1,22 @@
-$('#specialization').change((e)=>{
-    if(e.target.value===''){
-        $('#super_specialization').empty()
-        $('#super_specialization').append(`<option value="">Select</option>`)
-    }
-    else{
-        $('#super_specialization').empty()
-        $('#super_specialization').append(`<option value="">Select</option>`)
-        $('#super_specialization').append(`<option value="Chem">Chem</option>`)
-    }
-})
-
+// $('#specialization').change((e)=>{
+//     if(e.target.value===''){
+//         $('#super_specialization').empty()
+//         $('#super_specialization').append(`<option value="">Select</option>`)
+//     }
+//     else{
+//         $('#super_specialization').empty()
+//         $('#super_specialization').append(`<option value="">Select</option>`)
+//         $('#super_specialization').append(`<option value="Chem">Chem</option>`)
+//     }
+// })
+let qualificationDetails;
 $('#degree').change((e)=>{
+    $('#subject').empty()
+    $('#subject').append(`<option value="">Select</option>`)
+    $('#sub1').empty()
+    $('#sub1').append(`<option value="">Select</option>`)
+    $('#sub2').empty()
+    $('#sub2').append(`<option value="">Select</option>`)
     if(e.target.value===''){
         $('#name').empty()
         $('#name').append(`<option value="">Select</option>`)
@@ -18,7 +24,9 @@ $('#degree').change((e)=>{
     else{
         $('#name').empty()
         $('#name').append(`<option value="">Select</option>`)
-        $('#name').append(`<option value="B.Tech">B.Tech</option>`)
+        Object.keys(qualificationDetails[e.target.value]).forEach((name)=>{
+            $('#name').append(`<option value="${name}">${name}</option>`)
+        })
     }
 })
 
@@ -26,11 +34,62 @@ $('#name').change((e)=>{
     if(e.target.value===''){
         $('#subject').empty()
         $('#subject').append(`<option value="">Select</option>`)
+        $('#sub1').empty()
+        $('#sub1').append(`<option value="">Select</option>`)
+        $('#sub2').empty()
+        $('#sub2').append(`<option value="">Select</option>`)
     }
     else{
         $('#subject').empty()
         $('#subject').append(`<option value="">Select</option>`)
-        $('#subject').append(`<option value="CSE">CSE</option>`)
+        $('#sub1').empty()
+        $('#sub1').append(`<option value="">Select</option>`)
+        $('#sub2').empty()
+        $('#sub2').append(`<option value="">Select</option>`)
+        qualificationDetails[$('#degree').val()][e.target.value].forEach((subject)=>{
+            $('#subject').append(`<option value="${subject.qual_sub}">${subject.qual_sub}</option>`)
+            $('#sub1').append(`<option value="${subject.qual_sub}">${subject.qual_sub}</option>`)
+            $('#sub2').append(`<option value="${subject.qual_sub}">${subject.qual_sub}</option>`)
+        })
+    }
+})
+
+$('#sub1').change((e)=>{
+    if(e.target.value!==''){
+        $('#subject option[class="d-none sub1"]').removeClass('d-none sub1')
+        $('#sub2 option[class="d-none sub1"]').removeClass('d-none sub1')
+        $('#subject option[value="'+e.target.value+'"]').addClass('d-none sub1')
+        $('#sub2 option[value="'+e.target.value+'"]').addClass('d-none sub1')
+    }
+    else{
+        $('#subject option[class="d-none sub1"]').removeClass('d-none sub1')
+        $('#sub2 option[class="d-none sub1"]').removeClass('d-none sub1')
+    }
+})
+
+$('#sub2').change((e)=>{
+    if(e.target.value!==''){
+        $('#subject option[class="d-none sub2"]').removeClass('d-none sub2')
+        $('#sub1 option[class="d-none sub2"]').removeClass('d-none sub2')
+        $('#subject option[value="'+e.target.value+'"]').addClass('d-none sub2')
+        $('#sub1 option[value="'+e.target.value+'"]').addClass('d-none sub2')
+    }
+    else{
+        $('#subject option[class="d-none sub2"]').removeClass('d-none sub2')
+        $('#sub1 option[class="d-none sub2"]').removeClass('d-none sub2')
+    }
+})
+
+$('#subject').change((e)=>{
+    if(e.target.value!==''){
+        $('#sub1 option[class="d-none subject"]').removeClass('d-none subject')
+        $('#sub2 option[class="d-none subject"]').removeClass('d-none subject')
+        $('#sub1 option[value="'+e.target.value+'"]').addClass('d-none subject')
+        $('#sub2 option[value="'+e.target.value+'"]').addClass('d-none subject')
+    }
+    else{
+        $('#sub1 option[class="d-none subject"]').removeClass('d-none subject')
+        $('#sub2 option[class="d-none subject"]').removeClass('d-none subject')
     }
 })
 
@@ -42,7 +101,6 @@ function educationValidation(){
     $("#education_fieldset .secondList_input").each(function(key,value){
         if($(this).val()===''){
             flag.push(false)
-            console.log($(this).attr('id'))
             $('#'+$(this).attr('id')).focus()
             $('#valid_'+$(this).attr('id')).html('This field is required')
             return false
@@ -52,6 +110,19 @@ function educationValidation(){
         }
         data[$(this).attr('id')]=$(this).val()
     });
+
+    if($('#sub1').val()!=='' || $('#sub2').val()!=='')
+    {
+        if($('#subject').val()===$('#sub1').val() || $('#subject').val()===$('#sub2').val() || $('#sub1').val()===$('#sub2').val())
+        {
+            flag.push(false)
+            $('#valid_subject').html('Please choose different Subjects')
+        }
+        else{
+            $('#valid_subject').html('')
+        }
+    }
+    
 
     if(flag.includes(false)){
         return false
@@ -74,10 +145,12 @@ function educationValidation(){
                 let innerhtml=''
                 response.forEach((item,index)=>{
                     if(item.error){
-                        $('#education_error').html('This degree is already exist.')
+                        // $('#education_error').html('This degree is already exist.')
+                        $('#notify-message').html('This degree is already exist.')
+                        $('#NotifyModal').modal('show')
                         return false
                     }
-                    $('#education_error').html('')
+                    $('#notify-message').html('')
                     innerhtml+=`<tr>
                             <th scope="row">${index+1}</th>
                             <td>${item.degree}</td>
@@ -109,7 +182,7 @@ $('#add-details').click(async ()=>{
 })
 
 $('#add-specialization').click(async ()=>{
-    $('#specialization_error').html('')
+    // $('#specialization_error').html('')
     specializationValidation()
 })
 
@@ -151,6 +224,7 @@ function specializationValidation(){
                 response.forEach((item,index)=>{
                     innerhtml+=`<tr>
                             <th scope="row">${index+1}</th>
+                            <td>${item.subject}</td>
                             <td>${item.specialization}</td>
                             <td>${item.super_specialization}</td>
                             <td>
@@ -181,26 +255,48 @@ function finalEduactionValidation(){
     }
     else{
         if(SpecializationStatus){
-            $('#specialization_error').html('')
+            $('#notify-message').html('')
         }
         else{
-            $('#specialization_error').html('Please add your specialization details')
+            $('#notify-message').html('Please add your Specialization details')
+            $('#NotifyModal').modal('show')
+            return false
         }
         if(educationDataStatus){
-            $('#education_error').html('')
+            $('#notify-message').html('')
         }
         else{
-            $('#education_error').html('Please add your education details')
+            $('#notify-message').html('Please add your Qualification details')
+            $('#NotifyModal').modal('show')
+            return false
         }
     }
 }
 
-function getSubjects(){
+function getEducationDetails(){
     $.ajax({
         type: "GET",
         url: base_url+'getSubjects',
         success:function(response){
-            console.log(response)
+            response.forEach((subject)=>{
+                $('#super_specialization').append(`<option value="${subject.subject_list}">${subject.subject_list}</option>`)
+                $('#specialization').append(`<option value="${subject.subject_list}">${subject.subject_list}</option>`)
+                $('#specialization_subject').append(`<option value="${subject.subject_list}">${subject.subject_list}</option>`)
+            })
         }
     })
+    $.ajax({
+        type: "GET",
+        url: base_url+'getQualifications',
+        success:function(response){
+            qualificationDetails=response
+            Object.keys(response).forEach((degree)=>{
+                $('#degree').append(`<option value="${degree}">${degree}</option>`)
+            })
+        }
+    })
+}
+
+if(typeof step!=='undefined'){
+    getEducationDetails()
 }

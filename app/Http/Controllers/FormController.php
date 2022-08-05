@@ -11,7 +11,9 @@ use App\Models\Specialization;
 use App\Models\Organization;
 use App\Models\IsWorking;
 use App\Models\Upload;
+use App\Models\User;
 use App\Models\LanguageDetails;
+use App\Models\FinalStatus;
 use Auth;
 
 class FormController extends Controller
@@ -26,6 +28,7 @@ class FormController extends Controller
         $preference=Preference::where('user_id',Auth::user()->id)->where('status','1')->get();
         $upload=Upload::where('user_id',Auth::user()->id)->where('status','1')->get();
         $step='';
+
         if(sizeOf($education) && sizeOf($specialization)){
             $step='experience';
         }
@@ -46,39 +49,101 @@ class FormController extends Controller
     }
 
     public function submit(Request $request){
-        // dd($request);
-        $validator = Validator::make($request->all(),[
-            'image'=>'required|mimes:jpeg,jpg,png,svg,JPEG,JPG,PNG,SVG|max:500',
-            'signature'=>'required|mimes:jpeg,jpg,png,svg,JPEG,JPG,PNG,SVG|max:500',
-            'cv'=>'required|mimes:pdf|max:500'
-        ]);
+        $exist=Upload::where('user_id',Auth::user()->id)->get();
 
-        if ($validator->fails()) {
-            return redirect()->route('fill-details')
-                    ->withErrors($validator)
-                    ->withInput();
+        if(sizeOf($exist)){
+            if($request->file('image') || $request->file('cv') || $request->file('signature')){
+
+                $validator = Validator::make($request->all(),[
+                    'image'=>'mimes:jpeg,jpg,png,svg,JPEG,JPG,PNG,SVG|max:500',
+                    'signature'=>'mimes:jpeg,jpg,png,svg,JPEG,JPG,PNG,SVG|max:500',
+                    'cv'=>'mimes:pdf|max:500'
+                ]);
+
+                if ($validator->fails()) {
+                    return redirect()->route('fill-details')
+                            ->withErrors($validator)
+                            ->withInput();
+                }
+
+                if($request->file('image'))
+                {
+                    $image=$request->file('image');
+                    $image_name=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+                    $image->move(public_path('assets/uploads/images'),$image_name);
+                }
+                else{
+                    $image_name=$exist[0]->image;
+                }
+                
+                if($request->file('signature'))
+                {
+                    $image=$request->file('signature');
+                    $signature_name=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+                    $image->move(public_path('assets/uploads/signature'),$signature_name);
+                }else{
+                    $signature_name=$exist[0]->signature;
+                }
+                
+                if($request->file('cv')){
+                    $image=$request->file('cv');
+                    $cv_name=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+                    $image->move(public_path('assets/uploads/cv'),$cv_name);
+                }
+                else{
+                    $cv_name=$exist[0]->cv;
+                }
+                
+
+                Upload::where('user_id',Auth::user()->id)->update([
+                    'image'=>$image_name,
+                    'signature'=>$signature_name,
+                    'cv'=>$cv_name,
+                    'status'=>'1'
+                ]);
+
+            }
+            else{
+                Upload::where('user_id',Auth::user()->id)->update([
+                    'status'=>1
+                ]);
+            }
+            
+        }
+        else{
+            $validator = Validator::make($request->all(),[
+                'image'=>'required|mimes:jpeg,jpg,png,svg,JPEG,JPG,PNG,SVG|max:500',
+                'signature'=>'required|mimes:jpeg,jpg,png,svg,JPEG,JPG,PNG,SVG|max:500',
+                'cv'=>'required|mimes:pdf|max:500'
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->route('fill-details')
+                        ->withErrors($validator)
+                        ->withInput();
+            }
+
+            $image=$request->file('image');
+            $image_name=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('assets/uploads/images'),$image_name);
+
+            $image=$request->file('signature');
+            $signature_name=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('assets/uploads/signature'),$signature_name);
+
+            $image=$request->file('cv');
+            $cv_name=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('assets/uploads/cv'),$cv_name);
+
+            Upload::create([
+                'user_id'=>Auth::user()->id,
+                'image'=>$image_name,
+                'signature'=>$signature_name,
+                'cv'=>$cv_name,
+                'status'=>'1'
+            ]);
         }
 
-        $image=$request->file('image');
-        $image_name=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        $image->move(public_path('assets/uploads/images'),$image_name);
-
-        $image=$request->file('signature');
-        $signature_name=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        $image->move(public_path('assets/uploads/signature'),$signature_name);
-
-        $image=$request->file('cv');
-        $cv_name=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        $image->move(public_path('assets/uploads/cv'),$cv_name);
-
-        Upload::create([
-            'user_id'=>Auth::user()->id,
-            'image'=>$image_name,
-            'signature'=>$signature_name,
-            'cv'=>$cv_name,
-            'status'=>'1'
-        ]);
-        
         return redirect()->route('preview');
     }
 
@@ -88,7 +153,17 @@ class FormController extends Controller
             return redirect()->route('fill-details');
         }
         else{
-            return view('step-form/preview/index');
+            $data=[];
+            $data['personal_data']=User::where('id',Auth::user()->id)->first()->toArray();
+            $data['education_data']['qualifications']=Education::where('user_id',Auth::user()->id)->get()->toArray();
+            $data['education_data']['specialization']=Specialization::where('user_id',Auth::user()->id)->get()->toArray();
+            $data['experience_data']['experience']=Experience::where('user_id',Auth::user()->id)->get()->toArray();
+            $data['experience_data']['isworking']=IsWorking::where('user_id',Auth::user()->id)->first()->toArray();
+            $data['experience_data']['organization']=Organization::where('user_id',Auth::user()->id)->get()->toArray();
+            $data['preference_data']['preference']=Preference::where('user_id',Auth::user()->id)->first()->toArray();
+            $data['preference_data']['language']=LanguageDetails::where('user_id',Auth::user()->id)->get()->toArray();
+            $data['upload']=Upload::where('user_id',Auth::user()->id)->first()->toArray();
+            return view('step-form/preview/index',compact('data'));
         }
     }
 
@@ -100,6 +175,7 @@ class FormController extends Controller
         $isworking_data=IsWorking::where('user_id',Auth::user()->id)->get();
         $language_data=LanguageDetails::where('user_id',Auth::user()->id)->get();
         $preference_data=Preference::where('user_id',Auth::user()->id)->get();
+        $upload=Upload::where('user_id',Auth::user()->id)->get();
         $data=[
             'specialization'=>$specialization_data,
             'education'=>$education_data,
@@ -107,8 +183,47 @@ class FormController extends Controller
             'organization'=>$organization_data,
             'isworking'=>$isworking_data,
             'language'=>$language_data,
-            'preference'=>$preference_data
+            'preference'=>$preference_data,
+            'upload'=>$upload
         ];
         return $data;
+    }
+
+    public function editForm(){
+        Education::where('user_id',Auth::user()->id)->update([
+            'status'=>'0'
+        ]);
+        Experience::where('user_id',Auth::user()->id)->update([
+            'status'=>'0'
+        ]);
+        Preference::where('user_id',Auth::user()->id)->update([
+            'status'=>'0'
+        ]);
+        Organization::where('user_id',Auth::user()->id)->update([
+            'status'=>'0'
+        ]);
+        Upload::where('user_id',Auth::user()->id)->update([
+            'status'=>'0'
+        ]);
+    }
+
+    public function finalSubmit(){
+        $exist=FinalStatus::where('user_id',Auth::user()->id)->get();
+        if(!sizeOf($exist)){
+            FinalStatus::create([
+                'user_id'=>Auth::user()->id,
+                'status'=>1
+            ]);
+        }
+    }
+
+    public function finalView(){
+        $exist=FinalStatus::where('user_id',Auth::user()->id)->get();
+        if(!sizeOf($exist)){
+            return redirect()->route('preview');
+        }
+        else{
+            return view('step-form/success/index');
+        }
     }
 }

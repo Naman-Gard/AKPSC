@@ -2,7 +2,7 @@ $(document).ready(function(){
     
     let current_fs, next_fs, previous_fs; //fieldsets
     let opacity,previous_data;
-    if(step!==''){
+    if(typeof step!== 'undefined'){
         $("#"+step+'_fieldset').css({
             'display': 'block',
             'position': 'relative'
@@ -175,6 +175,12 @@ $(document).ready(function(){
                                 $('input[name=paper_setter][value="'+response[key][0].paper_setter+'"]').attr('checked',true).change()
                                 $('input[name=interview][value="'+response[key][0].interview+'"]').attr('checked',true).change()
                                 $('input[name=enquiry][value="'+response[key][0].enquiry+'"]').attr('checked',true).change()
+                                if(response[key][0].enquiry ==='yes'){
+                                    $('#brief').val(response[key][0].brief)
+                                }
+                                else{
+                                    $('#brief').val('')
+                                }
                                 $('#line_1').val(response[key][0].line_1)
                                 $('#line_2').val(response[key][0].line_2)
                                 $('#pin_code').val(response[key][0].pincode)
@@ -182,12 +188,20 @@ $(document).ready(function(){
                                 $('#district option[value="'+response[key][0].district+'"]').prop("selected",true).change()
                             }
                         }
+
+                        if(key==='upload'){
+                            if(response[key].length){
+                                createImages(response[key])
+                            }
+                        }
                     })
                 }
             })
     }
 
-    setFormData()
+    if(window.location.pathname==='/fill-details'){
+        setFormData()
+    }
 
     let delete_id=0,heading='';
     $('.delete-mem-btn').on('click',function(){
@@ -357,6 +371,10 @@ $(document).ready(function(){
             languageDataStatus=0
         }
         $('#language_list').html(innerhtml)
+    }
+
+    function createImages(){
+
     }
         
 });

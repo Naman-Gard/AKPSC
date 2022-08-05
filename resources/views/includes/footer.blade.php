@@ -14,6 +14,7 @@ let educationDataStatus = 0,
 <script src="{{asset('assets/step-form/js/education.js')}}"></script>
 <script src="{{asset('assets/step-form/js/experience.js')}}"></script>
 <script src="{{asset('assets/step-form/js/prefrence.js')}}"></script>
+<script src="{{asset('assets/preview/js/preview.js')}}"></script>
 
 <!-- endinject -->
 <!-- Plugin js for this page -->

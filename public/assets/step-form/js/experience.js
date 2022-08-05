@@ -75,10 +75,12 @@ function experienceValidation(){
                 let innerhtml=''
                 response.forEach((item,index)=>{
                     if(item.error){
-                        $('#experience_error').html('This experience type is already exist.')
+                        $('#notify-message').html('This experience type is already exist.')
+                        $('#NotifyModal').modal('show')
+                        // $('#experience_error').html('This experience type is already exist.')
                         return false
                     }
-                    $('#experience_error').html('')
+                    $('#notify-message').html('')
                     innerhtml+=`<tr>
                             <th scope="row">${index+1}</th>
                             <td>${item.type}</td>
@@ -144,10 +146,12 @@ function organizationValidation(){
                 let innerhtml=''
                 response.forEach((item,index)=>{
                     if(item.error){
-                        $('#organization_error').html('This organization is already exist.')
+                        $('#notify-message').html('This organization is already exist.')
+                        $('#NotifyModal').modal('show')
+                        // $('#organization_error').html('This organization is already exist.')
                         return false
                     }
-                    $('#organization_error').html('')
+                    $('#notify-message').html('')
                     innerhtml+=`<tr>
                             <th scope="row">${index+1}</th>
                             <td>${item.org_type}</td>
@@ -239,16 +243,24 @@ function finalExperienceValidation(){
     }
     else{
         if(experienceDataStatus){
-            $('#experience_error').html('')
+            // $('#experience_error').html('')
+            $('#notify-message').html('')
         }
         else{
-            $('#experience_error').html('Please add your experience details')
+            $('#notify-message').html('Please add your Experience details')
+            $('#NotifyModal').modal('show')
+            return false
+            // $('#experience_error').html('Please add your experience details')
         }
         if(organizationDataStatus){
-            $('#organization_error').html('')
+            // $('#organization_error').html('')
+            $('#notify-message').html('')
         }
         else{
-            $('#organization_error').html('Please add your organization details')
+            $('#notify-message').html('Please add organization details')
+            $('#NotifyModal').modal('show')
+            return false
+            // $('#organization_error').html('Please add your organization details')
         }
         return false
     }

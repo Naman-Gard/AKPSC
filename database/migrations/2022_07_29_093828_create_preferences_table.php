@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('preferences', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->integer('user_id');
             $table->string('paper_setter');
             $table->string('interview');
             $table->string('line_1');

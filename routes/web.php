@@ -25,8 +25,11 @@ Route::group(["middleware" => ["islogout"]], function(){
 });
 
 Route::group(["middleware" => ["islogin"]], function(){
-    Route::get('/fill-details', 'App\Http\Controllers\FormController@index')->name('fill-details');
-    Route::get('/preview', 'App\Http\Controllers\FormController@preview')->name('preview');
+    Route::get('fill-details', 'App\Http\Controllers\FormController@index')->name('fill-details');
+    Route::get('preview', 'App\Http\Controllers\FormController@preview')->name('preview');
+    Route::get('edit/Form', 'App\Http\Controllers\FormController@editForm');
+    Route::get('final/submit', 'App\Http\Controllers\FormController@finalSubmit');
+    Route::get('submitted', 'App\Http\Controllers\FormController@finalView');
     Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
     Route::post('submit', 'App\Http\Controllers\FormController@submit')->name('submit');
 
@@ -37,6 +40,7 @@ Route::group(["middleware" => ["islogin"]], function(){
     Route::get('delete/Education/{id}', 'App\Http\Controllers\EducationController@deleteEducation');
     Route::get('final-save/education', 'App\Http\Controllers\EducationController@finalEducation');
     Route::get('getSubjects', 'App\Http\Controllers\EducationController@getSubjects');
+    Route::get('getQualifications', 'App\Http\Controllers\EducationController@getQualifications');
 
     //Get Form Data Routes
     Route::get('getExperienceData', 'App\Http\Controllers\FormController@getExperienceData');

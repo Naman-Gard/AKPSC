@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('language_details', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->integer('user_id');
             $table->string('language');
             $table->string('proficiency');
             $table->string('status');

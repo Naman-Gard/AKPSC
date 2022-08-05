@@ -6,18 +6,24 @@
         <div class="container border mb-3 p-3">
             <span class="text-danger" id="specialization_error"></span>
             <div class="row">
-                <div class="form-group col-md-6">
+
+                <div class="form-group col-md-4">
+                    <label for="exampleInputEmail3">Subject</label>
+                    <select class="form-select mb-2 firstList_input" id="specialization_subject">
+                        <option value="">Select</option>
+                    </select>
+                    <span class="text-danger" id="valid_specialization_subject"></span>
+                </div>
+
+                <div class="form-group col-md-4">
                     <label for="exampleInputEmail3">Specialization</label>
                     <select class="form-select mb-2 firstList_input" id="specialization">
                         <option value="">Select</option>
-                        <option value="math">Math</option>
-                        <option value="chemistry">Chemistry</option>
-                        <option value="physics">Physics</option>
                     </select>
                     <span class="text-danger" id="valid_specialization"></span>
                 </div>
                 <!--  -->
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <label for="exampleInputEmail3">Super Specialization</label>
                     <select class="form-select mb-2 firstList_input" id="super_specialization">
                         <option value="">Select</option>
@@ -35,6 +41,7 @@
                     <thead>
                         <tr>
                             <th scope="col">S.no</th>
+                            <th scope="col">Subject</th>
                             <th scope="col">Specialization</th>
                             <th scope="col">Super Specialization</th>
                             <th scope="col">Action</th>
@@ -50,10 +57,9 @@
             <span class="text-danger" id="education_error"></span>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Deegre Name</label>
+                    <label for="exampleInputEmail3">Deegre</label>
                     <select class="form-select mb-2 secondList_input" id="degree">
                         <option value="">Select</option>
-                        <option value="Graduation">Graduation</option>
                     </select>
                     <span class="text-danger" id="valid_degree"></span>
                 </div>

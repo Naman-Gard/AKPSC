@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('is_workings', function (Blueprint $table) {
+        Schema::create('final_statuses', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('isworking');
-            $table->string('designation')->nullable();
-            $table->string('serving')->nullable();
-            $table->string('status');
+            $table->integer('status');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('is_workings');
+        Schema::dropIfExists('final_statuses');
     }
 };
