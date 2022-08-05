@@ -12,20 +12,20 @@
                     <div class="col-md-3">
                         <div class="form-check d-flex">
                             <input type="radio" name="isworking" value="retired" id="retired" />
-                            <label for="flexRadioDefault1">Retired </label>
+                            <label class="ms-2" for="flexRadioDefault1">Retired </label>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-check d-flex">
                             <input type="radio" name="isworking" value="service" id="service" />
-                            <label for="flexRadioDefault1"> Service </label>
+                            <label class="ms-2" for="flexRadioDefault1"> Service </label>
                         </div>
                     </div>
                     <span class="text-danger" id="valid_isworking"></span>
                 </div>
             </div>
 
-            <div class="row d-none" id="designation_row">
+            <div class="row mt-4 d-none" id="designation_row">
                 <div class="form-group col-md-6">
                     <label for="exampleInputEmail3">Designation</label>
                     <select class="form-select serving_input mb-2" id="designation">
@@ -135,7 +135,7 @@
                 </div>
 
             </div>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="form-group col-md-6">
                     <label for="exampleInputEmail3">Number of Years</label>
                     <select class="form-select org_input mb-2" id="org_year">
@@ -147,7 +147,7 @@
                 </div>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 mt-4">
                 <input type="button" name="add-organization" id="add-organization" class="action-button" value="Add" />
             </div>
 
