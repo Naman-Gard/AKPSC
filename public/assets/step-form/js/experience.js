@@ -3,7 +3,9 @@ $('#type').change((e)=>{
         $('#specify').parent().removeClass('d-none')
     }
     else{
-        $('#specify').parent().addClass('d-none')
+        if(!$("#specify").hasClass('d-none')){
+            $('#specify').parent().addClass('d-none')
+        }
     }
 })
 
@@ -72,6 +74,9 @@ function experienceValidation(){
                 $("#experience_fieldset .experience_input").each(function(key,value){
                     $('#'+$(this).attr('id')).val('')
                 })
+                if(!$("#specify").hasClass('d-none')){
+                    $('#specify').parent().addClass('d-none')
+                }
                 let innerhtml=''
                 response.forEach((item,index)=>{
                     if(item.error){

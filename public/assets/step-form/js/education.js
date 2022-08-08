@@ -283,6 +283,12 @@ function getEducationDetails(){
                 $('#specialization').append(`<option value="${subject.subject_list}">${subject.subject_list}</option>`)
                 $('#specialization_subject').append(`<option value="${subject.subject_list}">${subject.subject_list}</option>`)
             })
+            $('#super_specialization').append(`<option value="Other">Other</option>`)
+            $('#specialization').append(`<option value="Other">Other</option>`)
+            $('#specialization_subject').append(`<option value="Other">Other</option>`)
+            $('#super_specialization').append(`<option value="Not Applicable">Not Applicable</option>`)
+            $('#specialization').append(`<option value="Not Applicable">Not Applicable</option>`)
+            $('#specialization_subject').append(`<option value="Not Applicable">Not Applicable</option>`)
         }
     })
     $.ajax({

@@ -23,13 +23,13 @@ function languageValidation(){
     let data={
         "_token":token
     }
-    if($('input[name=language]:checked').length !== 0){
+    if($('#language').val() !== ''){
         $('#valid_language').html('')
-        data['language']=$('input[name=language]:checked').val()
+        data['language']=$('#language').val()
     }
     else{
         $('#valid_language').html('This field is required')
-        $('input[name=language]').focus()
+        $('#language').focus()
         return false
     }
 
@@ -50,7 +50,7 @@ function languageValidation(){
         data:JSON.stringify(data),
         url: base_url+'add/LanguageDetails',
         success:function(response){
-            $('input[name="language"]').val([])
+            $('#language').val('')
             $('#proficiency').val('')
             let innerhtml=''
             response.forEach((item,index)=>{

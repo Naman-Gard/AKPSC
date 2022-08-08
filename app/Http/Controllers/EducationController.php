@@ -11,10 +11,11 @@ use DB;
 class EducationController extends Controller
 {
     public function addSpecialization(Request $request){
-        $exist=Specialization::where('user_id',Auth::user()->id)->where('specialization',$request->specialization)->get();
+        $exist=Specialization::where('user_id',Auth::user()->id)->where('specialization',$request->specialization)->where('subject',$request->specialization_subject)->get();
         if(!sizeOf($exist)){
             Specialization::create([
                 'user_id'=>Auth::user()->id,
+                "subject"=>$request->specialization_subject,
                 "specialization"=>$request->specialization,
                 "super_specialization"=>$request->super_specialization,
                 "status"=>'0'

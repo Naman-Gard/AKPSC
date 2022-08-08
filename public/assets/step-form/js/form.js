@@ -191,7 +191,7 @@ $(document).ready(function(){
 
                         if(key==='upload'){
                             if(response[key].length){
-                                createImages(response[key])
+                                setImagesPreview(response[key][0])
                             }
                         }
                     })
@@ -269,6 +269,7 @@ $(document).ready(function(){
         data.forEach((item,index)=>{
             innerhtml+=`<tr>
                     <th scope="row">${index+1}</th>
+                    <td>${item.subject}</td>
                     <td>${item.specialization}</td>
                     <td>${item.super_specialization}</td>
                     <td>
@@ -373,8 +374,9 @@ $(document).ready(function(){
         $('#language_list').html(innerhtml)
     }
 
-    function createImages(){
-
+    function setImagesPreview(data){
+        $('#image_preview').attr('src', "assets/uploads/images/"+data.image);
+        $('#sig_preview').attr('src',"assets/uploads/signature/"+ data.signature);
     }
         
 });

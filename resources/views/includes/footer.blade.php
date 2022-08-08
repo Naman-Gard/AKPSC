@@ -2,6 +2,7 @@
 <!-- plugins:js -->
 <!-- <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script> -->
 <script src="{{asset('assets/step-form/vendors/js/vendor.bundle.base.js')}}"></script>
+<script src="{{ asset('assets/js/jquery.dataTables.min.js')}}"></script>
 <script>
 let base_url = "http://localhost:8000/";
 let educationDataStatus = 0,
@@ -9,12 +10,18 @@ let educationDataStatus = 0,
     experienceDataStatus = 0,
     languageDataStatus = 0,
     organizationDataStatus = 0;
+
+// $(document).ready(function() {
+//     $('.table').DataTable();
+// });
 </script>
 <script src="{{asset('assets/step-form/js/form.js')}}"></script>
 <script src="{{asset('assets/step-form/js/education.js')}}"></script>
 <script src="{{asset('assets/step-form/js/experience.js')}}"></script>
 <script src="{{asset('assets/step-form/js/prefrence.js')}}"></script>
 <script src="{{asset('assets/preview/js/preview.js')}}"></script>
+<script src="{{asset('assets/step-form/js/upload.js')}}"></script>
+
 
 <!-- endinject -->
 <!-- Plugin js for this page -->

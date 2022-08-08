@@ -5,6 +5,7 @@
             <div class="form-group mb-4 col-md-6">
                 <label for="flexRadioDefault1">Image </label>
                 <input class="upload_input" type="file" name="image" id="image">
+                <img id="image_preview" src="#" alt="" />
                 @error('image')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
@@ -12,6 +13,7 @@
             <div class="form-group mb-4 col-md-6">
                 <label for="flexRadioDefault1"> Signature </label>
                 <input class="upload_input" type="file" name="signature" id="signature">
+                <img id="sig_preview" src="#" alt="" />
                 @error('signature')
                 <span class="text-danger">{{$message}}</span>
                 @enderror

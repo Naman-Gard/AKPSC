@@ -54,6 +54,7 @@
         </div>
         
         <div class="container border p-3">
+            <h4 class="mb-4">Qualification Details</h4>
             <span class="text-danger" id="education_error"></span>
             <div class="row">
                 <div class="form-group col-md-6">
@@ -79,7 +80,16 @@
                     <label for="exampleInputEmail3">Passing Year</label>
                     <select class="form-select mb-2 secondList_input" id="passing_year">
                         <option value="">Select</option>
-                        <option value="1997">1997</option>
+                        @for($i=67;$i<=99;$i++)
+                        <option value="19{{$i}}">19{{$i}}</option>
+                        @endfor
+                        <option value="2000">2000</option>
+                        @for($i=01;$i<=9;$i++)
+                        <option value="200{{$i}}">200{{$i}}</option>
+                        @endfor
+                        @for($i=10;$i<=22;$i++)
+                        <option value="20{{$i}}">20{{$i}}</option>
+                        @endfor
                     </select>
                     <span class="text-danger" id="valid_passing_year"></span>
                 </div>

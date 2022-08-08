@@ -21,6 +21,7 @@ class AuthController extends Controller
         'mobile' => $request->mobile,
         'category' => $request->category,
         'dob' => $request->dob,
+        'type'=>'user',
         'password' => Hash::make(base64_decode($request->pass))
         ]);
         $credentials=['email'=>$request->reg_email,'password'=>base64_decode($request->pass)];

@@ -12,6 +12,11 @@ class ExperienceController extends Controller
 {
     public function addExperience(Request $request){
         $exist=Experience::where('user_id',Auth::user()->id)->where('type',$request->type)->get();
+
+        if($request->type==='other'){
+            $exist=Experience::where('user_id',Auth::user()->id)->where('specify',$request->specify)->get();
+        }
+
         if(!sizeOf($exist)){
             Experience::create([
                 'user_id'=>Auth::user()->id,

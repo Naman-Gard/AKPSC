@@ -98,7 +98,7 @@
                 <div class="input-div">
                     <!-- <label>Date of Birth (जन्म की तारीख)</label> -->
                     <label for="dob" class="form-label">Date of Birth (जन्म की तारीख) <span class="red-feild">*</span></label>
-                    <input type="date" name="dob" required autocomplete="off" />
+                    <input type="date" name="dob" required autocomplete="off"/>
                     <p class="text-danger" id="valid_dob"></p>
                 </div>
                 <div class="input-div">
@@ -299,14 +299,14 @@
                 success:function(response){
                     if(response.status==='Already Exist'){
                         $('#valid_email').html("This Email is already registered");
-                        $('input[name=reg_email]').attr('disabled',false)
+                        $('input[name=reg_email]').attr('readonly',false)
                         if(!$('#register-btn').hasClass('d-none')){
                             $('#register-btn').addClass('d-none')
                         }
                     }
                     else{
                         $('#valid_email').html("");
-                        $('input[name=reg_email]').attr('disabled',true)
+                        $('input[name=reg_email]').attr('readonly',true)
                         $('#get_OTP').addClass('d-none')
                         $('#register-btn').removeClass('d-none')
                         $('#otp_input').removeClass('d-none')
@@ -359,7 +359,7 @@
             if ( msLeft < 1000 ) {
                 element.innerHTML="";
                 $('#resend-otp').removeClass('d-none')
-                $('input[name=reg_email]').attr('disabled',false)
+                $('input[name=reg_email]').attr('readonly',false)
                 if(!$('#register-btn').hasClass('d-none')){
                     $('#register-btn').addClass('d-none')
                 }

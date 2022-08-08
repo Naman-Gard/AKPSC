@@ -10,6 +10,7 @@ class Specialization extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
+        'subject',
         'specialization',
         'super_specialization',
         'status'

@@ -1,7 +1,7 @@
 @include('includes/header')
 @include('includes/nav')
 
-<section class="preview my-5 pt-5">
+    <section class="preview my-5 pt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -85,56 +85,63 @@
                                             {{$data['personal_data']['email']}}
                                         </td>
                                     </tr>
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <th scope="row">8.</th>
-                                        <td>
-                                            Specialization:
-
-                                        </td>
-                                        <td>
-
-                                        </td>
+                                        <th scope="row" colspan="4">Education Details</th>
                                     </tr>
                                     <tr>
-                                        <th scope="row">9.</th>
-                                        <td>
-                                            Degree Type :
-                                        </td>
-                                        <td>
-
-                                        </td>
+                                        <th scope="col">S.no</th>
+                                        <th scope="col">Subject</th>
+                                        <th scope="col">Specialization</th>
+                                        <th scope="col">Super Specialization</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($data['education_data']['specialization'] as $key=>$specialization)
+                                    <tr>
+                                        <th>{{$key+1}}</th>
+                                        <td>{{$specialization['subject']}}</td>
+                                        <td>{{$specialization['specialization']}}</td>
+                                        <td>{{$specialization['super_specialization']}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="row" colspan="5">Qualification Details</th>
                                     </tr>
                                     <tr>
-                                        <th scope="row">10.</th>
-                                        <td>
-                                            Degree Name :
-                                        </td>
-                                        <td>
-
-                                        </td>
+                                        <th scope="col">S.no</th>
+                                        <th scope="col">Deegre</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Passing Year</th>
+                                        <th scope="col">Subjects</th>
                                     </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($data['education_data']['qualifications'] as $key=>$qualifications)
                                     <tr>
-                                        <th scope="row">11.</th>
-                                        <td>
-                                            Subjects :
-                                        </td>
-                                        <td>
-
-                                        </td>
+                                        <th>{{$key+1}}</th>
+                                        <td>{{$qualifications['degree']}}</td>
+                                        <td>{{$qualifications['name']}}</td>
+                                        <td>{{$qualifications['passing_year']}}</td>
+                                        <td>{{$qualifications['subject']}}</td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">12.</th>
-                                        <td>
-                                            Passing Year :
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                
+                                <tbody>
                                     <tr>
                                         <th scope="row">13.</th>
                                         <td>
-                                            Retired Or In Service :
+                                            Whether in serivce or retired?
 
                                         </td>
                                         <td>
@@ -144,7 +151,7 @@
                                     <tr>
                                         <th scope="row">14.</th>
                                         <td>
-                                            Designation if Serving :
+                                            Designation (if Serving) :
                                         </td>
                                         <td>
                                             {{$data['experience_data']['isworking']['designation']}}
@@ -159,82 +166,105 @@
                                             {{$data['experience_data']['isworking']['serving']}}
                                         </td>
                                     </tr>
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <th scope="row">16.</th>
-                                        <td>
-                                            Total Teaching/ Professional Experience :
-                                        </td>
-                                        <td>
-
-                                        </td>
+                                        <th scope="row" colspan="4">Total Teaching/ Professional Experience</th>
                                     </tr>
                                     <tr>
-                                        <th scope="row">17.</th>
-                                        <td>
-                                            Profession Type :
-                                        </td>
-                                        <td>
-
-                                        </td>
+                                        <th scope="col">S.no</th>
+                                        <th scope="col">Experience Type</th>
+                                        <th scope="col">Number of Years</th>
+                                        <th scope="col">Specify</th>
                                     </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($data['experience_data']['experience'] as $key=>$experience)
                                     <tr>
-                                        <th scope="row">18.</th>
-                                        <td>
-                                            Total Experience :
-                                        </td>
-                                        <td>
-
-                                        </td>
+                                        <th>{{$key+1}}</th>
+                                        <td>{{$experience['type']}}</td>
+                                        <td>{{$experience['year']}}</td>
+                                        <td>{{$experience['specify']}}</td>
                                     </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <th scope="row" colspan="3">Prior Experience of acting as Advisor/Expert in
+                                        <th scope="row" colspan="4">Prior Experience of acting as Advisor/Expert in
                                             Interview Board (s)/Question paper setter/ Objective Item writer/ Moderator/
                                             Examiner/ Evaluator/ Syllabus Framing Organ.</th>
                                     </tr>
                                     <tr>
-                                        <th scope="row">19.</th>
-                                        <td>
-                                            Organisation Name :
-                                        </td>
-                                        <td>
-
-                                        </td>
+                                        <th scope="col">S.no</th>
+                                        <th scope="col">Organisation Name</th>
+                                        <th scope="col">Organisation Type</th>
+                                        <th scope="col">Total Organisation Experience</th>
                                     </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($data['experience_data']['organization'] as $key=>$organization)
                                     <tr>
-                                        <th scope="row">20.</th>
-                                        <td>
-                                            Organisation Type :
-                                        </td>
-                                        <td>
-
-                                        </td>
+                                        <th>{{$key+1}}</th>
+                                        <td>{{$organization['org_name']}}</td>
+                                        <td>{{$organization['org_type']}}</td>
+                                        <td>{{$organization['org_year']}}</td>
                                     </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <tbody>
                                     <tr>
-                                        <th scope="row">21.</th>
-                                        <td>
-                                            Total Organisational Experience :
-                                        </td>
-                                        <td>
-
-                                        </td>
+                                        <th colspan="3">Are you willing to be appointed as :</th>
                                     </tr>
                                     <tr>
                                         <th scope="row">22.</th>
                                         <td>
-                                            Are you willing to be appointed as :
-                                            <ol>
-                                                <li>Question paper setter/ Objective Item writer/ Moderator/ Examiner/
-                                                    Evaluator/ Syllabus Framing</li>
-                                                <li>Expert in Interview Board (s)</li>
-                                            </ol>
+                                            Question paper setter/ Objective Item writer/ Moderator/ Examiner/
+                                            Evaluator/ Syllabus Framing
                                         </td>
                                         <td>
-                                            <ol>
-                                                <li>{{$data['preference_data']['preference']['paper_setter']}}</li>
-                                                <li>{{$data['preference_data']['preference']['interview']}}</li>
-                                            </ol>
+                                            {{$data['preference_data']['preference']['paper_setter']}}
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <th scope="row">23.</th>
+                                        <td>
+                                            Expert in Interview Board (s)
+                                        </td>
+                                        <td>
+                                            {{$data['preference_data']['preference']['interview']}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="row" colspan="3">Language Proficiency</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">S.no</th>
+                                        <th scope="col">Language</th>
+                                        <th scope="col">Proficiency Level</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($data['preference_data']['language'] as $key=>$language)
+                                    <tr>
+                                        <th>{{$key+1}}</th>
+                                        <td>{{$language['language']}}</td>
+                                        <td>{{$language['proficiency']}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <tbody>
                                     <tr>
                                         <th scope="row">23.</th>
                                         <td>

@@ -129,7 +129,7 @@
 
                 <div class="form-group col-md-6">
                     <label for="exampleInputEmail3">Organisation Name</label>
-                    <input type="text" class="org_input mb-2" id="org_name" name="org_name"
+                    <input type="text" autocomplete="off" class="org_input mb-2" id="org_name" name="org_name"
                         placeholder="Organisation Name" />
                     <span class="text-danger" id="valid_org_name"></span>
                 </div>

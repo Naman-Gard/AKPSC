@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('paper_setter');
             $table->string('interview');
             $table->string('line_1');
-            $table->string('line_2');
+            $table->string('line_2')->nullable();
             $table->string('pincode');
             $table->string('state');
             $table->string('district');

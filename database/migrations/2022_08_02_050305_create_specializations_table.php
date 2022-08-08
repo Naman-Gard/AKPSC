@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('specializations', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->string('subject');
             $table->string('specialization');
             $table->string('super_specialization');
             $table->string('status');

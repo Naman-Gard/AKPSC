@@ -59,3 +59,8 @@ Route::group(["middleware" => ["islogin"]], function(){
     Route::get('delete/Language/{id}', 'App\Http\Controllers\PreferenceController@deleteLanguage');
     Route::post('add/Preference', 'App\Http\Controllers\PreferenceController@addPreference');
 });
+
+Route::group(["middleware" => ["adminlogin"]], function(){
+    Route::get('dashboard', 'App\Http\Controllers\AdminController@index')->name('dashboard');
+    Route::get('admin/logout', 'App\Http\Controllers\AdminController@logout')->name('admin-logout');
+});

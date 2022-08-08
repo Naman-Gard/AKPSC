@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Auth;
 
-class IsLogout
+class AdminAuth
 {
     /**
      * Handle an incoming request.
@@ -18,15 +18,15 @@ class IsLogout
     public function handle(Request $request, Closure $next)
     {
         if(Auth::user()){
-            if(Auth::user()->type==='user'){
-                return redirect()->route('fill-details');
+            if(Auth::user()->type==='admin'){
+                return $next($request);
             }
             else{
-                return redirect()->route('dashboard');
+                return redirect()->route('fill-details');
             }
         }
         else{
-            return $next($request);
+            return redirect()->route('/');
         }
     }
 }
