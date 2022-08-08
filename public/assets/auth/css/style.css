@@ -17,7 +17,7 @@
     background: #555;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 
 * {
     padding: 0;
@@ -38,7 +38,7 @@
     background-color: #fff;
     position: relative;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     border-radius: 20px;
 }
 
@@ -57,13 +57,11 @@
     border-bottom-left-radius: 20px;
     padding: 20px 30px;
     box-sizing: border-box;
-
 }
 
 /*left-side-start*/
 .left-heading {
     color: #fff;
-
 }
 
 .steps-content {
@@ -106,13 +104,10 @@
     top: -5px;
     z-index: 10;
     background-color: #304767;
-
-
 }
 
-
 .progress-bar li::after {
-    content: '';
+    content: "";
     position: absolute;
     height: 90px;
     width: 2px;
@@ -122,10 +117,8 @@
     top: -70px;
 }
 
-
 .progress-bar li.active::after {
     background-color: #fff;
-
 }
 
 .progress-bar li:first-child:after {
@@ -218,17 +211,13 @@ h2 {
     width: 100%;
     margin: 30px 0;
     position: relative;
-
 }
 
 .input-text1 .input-div {
     width: 100%;
     margin: 15px 0;
     position: relative;
-
 }
-
-
 
 input[type="text"] {
     width: 100%;
@@ -306,8 +295,8 @@ select {
     transition: all 0.5s;
 }
 
-.input-div input:focus~span,
-.input-div input:valid~span {
+.input-div input:focus ~ span,
+.input-div input:valid ~ span {
     top: -20px;
     left: 6px;
     font-size: 12px;
@@ -331,11 +320,21 @@ select {
     color: #fff;
     cursor: pointer;
 }
+.myBtn {
+    height: 40px;
+    width: 100px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    /* background-color: #e499d7; */
+    background-color: #04245d;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+}
 
 .button_space {
     display: flex;
     gap: 20px;
-
 }
 
 .button_space button:nth-child(1) {
@@ -405,7 +404,6 @@ select {
     align-items: center;
     margin-left: 10px;
     color: #cbd6dc;
-
 }
 
 .social span i {
@@ -428,7 +426,6 @@ select {
     display: flex;
     flex-direction: column;
     width: 100%;
-
 }
 
 .user_name h3 {
@@ -445,7 +442,6 @@ select {
 .detail p {
     font-size: 12px;
     font-weight: 700;
-
 }
 
 .detail p a {
@@ -473,7 +469,8 @@ select {
     stroke-miterlimit: 10;
     margin: 10% auto;
     box-shadow: inset 0px 0px 0px #7ac142;
-    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+    animation: fill 0.4s ease-in-out 0.4s forwards,
+        scale 0.3s ease-in-out 0.9s both;
 }
 
 .checkmark__check {
@@ -490,7 +487,6 @@ select {
 }
 
 @keyframes scale {
-
     0%,
     100% {
         transform: none;
@@ -511,13 +507,10 @@ select {
     border: 1px solid red !important;
 }
 
-
 /*right-side-end*/
-@media (max-width:750px) {
+@media (max-width: 750px) {
     .container {
         height: scroll;
-
-
     }
 
     .container .card {
@@ -528,7 +521,6 @@ select {
 
     .container .card .right-side {
         width: 100%;
-
     }
 
     .input-text {
@@ -537,7 +529,6 @@ select {
 
     .input-text .input-div {
         margin-top: 20px;
-
     }
 
     .container .card .left-side {
@@ -551,12 +542,16 @@ select {
 
 .right-side {
     background: rgb(6, 130, 140);
-    background: linear-gradient(90deg, rgba(6, 130, 140, 1) 0%, rgba(62, 178, 175, 1) 100%);
+    background: linear-gradient(
+        90deg,
+        rgba(6, 130, 140, 1) 0%,
+        rgba(62, 178, 175, 1) 100%
+    );
     min-height: 582px !important;
 }
 
 .left-side {
-    background: url('../../images/side_bg4.jpg') no-repeat;
+    background: url("../../images/side_bg4.jpg") no-repeat;
     min-height: 582px !important;
     width: 700px !important;
 }
@@ -575,10 +570,13 @@ a {
 #registerModal .modal-content {
     /* max-width: 60rem !important; */
     background: rgb(6, 130, 140) !important;
-    background: linear-gradient(90deg, rgba(6, 130, 140, 1) 0%, rgba(62, 178, 175, 1) 100%) !important;
+    background: linear-gradient(
+        90deg,
+        rgba(6, 130, 140, 1) 0%,
+        rgba(62, 178, 175, 1) 100%
+    ) !important;
 }
 #registerModal .modal-content {
-
 }
 
 span.red-feild {

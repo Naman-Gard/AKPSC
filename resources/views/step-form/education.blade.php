@@ -6,7 +6,6 @@
         <div class="container border mb-3 p-3">
             <span class="text-danger" id="specialization_error"></span>
             <div class="row">
-
                 <div class="form-group col-md-4">
                     <label for="exampleInputEmail3">Subject <span class="text-danger">*</span></label>
                     <select class="form-select mb-2 firstList_input" id="specialization_subject">
@@ -22,7 +21,7 @@
                     </select>
                     <span class="text-danger" id="valid_specialization"></span>
                 </div>
-                <!--  -->
+
                 <div class="form-group col-md-4">
                     <label for="exampleInputEmail3">Super Specialization <span class="text-danger">*</span></label>
                     <select class="form-select mb-2 firstList_input" id="super_specialization">
