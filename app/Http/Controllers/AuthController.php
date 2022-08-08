@@ -40,7 +40,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             return Redirect()->route('fill-details')->with('success','Login Successfully');
         }
-        return redirect()->back()->with('fail','Invalid Credentials');
+        return redirect()->back()->with('success','Invalid Credentials');
     }
 
     public function logout(){
@@ -70,5 +70,75 @@ class AuthController extends Controller
         else{
             return response(1);
         }
+    }
+
+    public function sendResetLink($email){
+        $email=encode5t($email);
+        $date=encode5t(date('Y-m-d'));
+        date_default_timezone_set('Asia/Kolkata');
+        $time=encode5t(date('h:i:s'));
+        
+        $link=url('/').'/token='.$email.'/'.$date.'/'.$time;
+        $user=User::where('email',decode5t($email))->first();
+        if($user){
+            $data=User::where('email',decode5t($email))->update([
+                'remember_token'=>'true',
+            ]);
+            dd($link);
+            Mail::to($email)->send(new ResetLinkMail($link));
+            
+            return ['status'=>"Success"];
+        }
+        else{
+            return ["status"=>"Unauthorized User"];
+        }
+    }
+
+    public function viewReset($email,$date,$time){
+        $email=decode5t($email);
+        $date=decode5t($date);
+        $time=decode5t($time);
+
+        $c_date=date('Y-m-d');
+        date_default_timezone_set('Asia/Kolkata');
+        $c_time=date('h:i:s');
+        $min=(int)round(abs(strtotime($c_time)-strtotime($time))/60);
+        if($date==$c_date && $min<=10){
+            $user=User::where('email',$email)->first();
+            if($user){
+                if($user->remember_token=='true'){
+                return view('auth.resetPassword.index',compact('email','date','time'));
+                }
+                else{
+                    return redirect()->route('/')->with('success','Reset Link Expired.Generate New Reset Link');
+                }
+            }
+            else{
+                return redirect()->route('/')->with('success','Unauthorized User');
+            }
+        }
+        else{
+            return redirect()->route('/')->with('success','Reset Link Expired.Generate New Reset Link');
+        }
+    
+   }
+
+    public function successful(Request $request,$email,$date,$time){
+        $validator = Validator::make($request->all(),[
+            'password'=>'required|confirmed|min:5',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('view-reset',[$email,$date,$time])
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+        
+        $email=decode5t($email);
+        
+        User::where('email',$email)->update([
+            'password'=>Hash::make($request->password),
+            'remember_token'=>'false'
+        ]);
+        return redirect()->route('/')->with('success','Password is successfully reset');
     }
 }

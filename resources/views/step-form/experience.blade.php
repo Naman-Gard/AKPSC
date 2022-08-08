@@ -7,7 +7,7 @@
             <div class="input-div">
                 <div class="row form-group">
                     <div class="col-md-6">
-                        <label for="exampleInputCity1" class="c-text">Whether in serivce or retired?</label>
+                        <label for="exampleInputCity1" class="c-text">Whether in serivce or retired? <span class="text-danger">*</span></label>
                     </div>
                     <div class="col-md-3">
                         <div class="form-check d-flex">
@@ -27,7 +27,7 @@
 
             <div class="row mt-4 d-none" id="designation_row">
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Designation</label>
+                    <label for="exampleInputEmail3">Designation <span class="text-danger">*</span></label>
                     <select class="form-select serving_input mb-2" id="designation">
                         <option value="">Select</option>
                         <option value="Professor">Professor</option>
@@ -38,7 +38,7 @@
                 </div>
                 <!--  -->
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Serving Under</label>
+                    <label for="exampleInputEmail3">Serving Under <span class="text-danger">*</span></label>
                     <select class="form-select serving_input mb-2" id="serving">
                         <option value="">Select</option>
                         <option value="Central Govt">Central Govt</option>
@@ -60,7 +60,7 @@
                 <h4 class="mb-4">Professional Experience</h4>
                 <span class="text-danger mb-3" id="experience_error"></span>
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Type</label>
+                    <label for="exampleInputEmail3">Type <span class="text-danger">*</span></label>
                     <select class="form-select experience_input mb-2" id="type">
                         <option value="">Select</option>
                         <option value="UG">UG</option>
@@ -72,7 +72,7 @@
                 </div>
                 <!--  -->
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Number of Years</label>
+                    <label for="exampleInputEmail3">Number of Years <span class="text-danger">*</span></label>
                     <select class="form-select experience_input mb-2" id="year">
                         <option value="">Select</option>
                         @for($i=1 ; $i<=40 ; $i++) <option value="{{$i}}">{{$i}}</option>
@@ -83,7 +83,7 @@
             </div>
             <div class="row">
                 <div class="form-group d-none">
-                    <label for="exampleInputEmail3">Specify</label>
+                    <label for="exampleInputEmail3">Specify <span class="text-danger">*</span></label>
                     <input class="experience_input" type="text" id="specify" name="specify"
                         placeholder="Please Specify" />
                     <span class="text-danger" id="valid_specify"></span>
@@ -117,7 +117,7 @@
                     setter/ Objective Item writer/ Moderator/ Examiner/ Evaluator/ Syllabus Framing</h4>
                 <span class="text-danger mb-3" id="organization_error"></span>
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Organisation Type</label>
+                    <label for="exampleInputEmail3">Organisation Type <span class="text-danger">*</span></label>
                     <select class="form-select org_input mb-2" id="org_type">
                         <option value="">Select</option>
                         <option value="UPSC">UPSC</option>
@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Organisation Name</label>
+                    <label for="exampleInputEmail3">Organisation Name <span class="text-danger">*</span></label>
                     <input type="text" autocomplete="off" class="org_input mb-2" id="org_name" name="org_name"
                         placeholder="Organisation Name" />
                     <span class="text-danger" id="valid_org_name"></span>
@@ -137,7 +137,7 @@
             </div>
             <div class="row mt-4">
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Number of Years</label>
+                    <label for="exampleInputEmail3">Number of Years <span class="text-danger">*</span></label>
                     <select class="form-select org_input mb-2" id="org_year">
                         <option value="">Select</option>
                         @for($i=1 ; $i<=40 ; $i++) <option value="{{$i}}">{{$i}}</option>

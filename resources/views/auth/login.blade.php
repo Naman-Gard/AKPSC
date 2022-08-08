@@ -28,15 +28,15 @@
                                 <div class="text">
                                 </div>
                                 <div class="input-text" id="login">
-                                    @if(session('fail'))
-                                    <span class="text-danger">{{session('fail')}}</span>
+                                    @if(session('success'))
+                                    <span class="text-danger">{{session('success')}}</span>
                                     @endif
                                     <form method="POST" action="{{route('login')}}" id="login-form">
                                         @csrf
                                         <div class="input-div">
                                             <label for="email" class="form-label">User ID / Email ID (यूज़र आईडी
                                                 / ईमेल आईडी)</label>
-                                            <input type="email" name="email" required autocomplete="off">
+                                            <input type="text" name="email" required autocomplete="off">
                                             <!-- <span>Institute ID / Email ID (संस्थान आईडी / ईमेल आईडी)</span> -->
                                         </div>
                                         <div class="input-div">
@@ -48,14 +48,37 @@
                                             <button class="next_button">Submit</button>
                                         </div>
                                     </form>
-                                    <!-- <p style="font-size:14px; color:#fff; text-align:left;margin:20px 0 0 0">
-                                        <a>Forgot Password? (पासवर्ड भूल गए?)</a>
-                                    </p> -->
+                                    <p style="font-size:14px; color:#fff; text-align:left;margin:20px 0 0 0">
+                                        <a id="forget-button">Forgot Password? (पासवर्ड भूल गए?)</a>
+                                    </p>
                                     <p style="font-size:14px; color:#fff;text-align:left; margin:20px 0 0 0">
                                         Don't have a UKPSC ID? (यूकेपीएससी आईडी नहीं है?)<br>
                                         <!-- <a id="register-here">Register Here! (यहां रजिस्टर करें!)</a> -->
                                         <a type="button" data-bs-toggle="modal" data-bs-target="#registerModal">
                                             Register Here! (यहां रजिस्टर करें!)
+                                        </a>
+                                    </p>
+                                    
+                                </div>
+
+                                <div class="input-text d-none" id="forget-password">
+                                    <form id="forget-form">
+                                        @csrf
+                                        <h2>Forget Password</h2>
+                                        <div class="input-div">
+                                            <label for="email" class="form-label">Email ID (ईमेल आईडी)</label>
+                                            <input type="email" name="forget_email" required autocomplete="off">
+                                            <!-- <span>Institute ID / Email ID (संस्थान आईडी / ईमेल आईडी)</span> -->
+                                            <span id="valid_forget_email"></span>
+                                        </div>
+                                        <div class="buttons">
+                                            <button class="next_button">Proceed</button>
+                                        </div>
+                                    </form>
+                                    <p style="font-size:14px; color:#fff;text-align:left; margin:20px 0 0 0">
+                                        <!-- <a id="register-here">Register Here! (यहां रजिस्टर करें!)</a> -->
+                                        <a type="button" id="back-to-login">
+                                            Back To Login!
                                         </a>
                                     </p>
                                     
@@ -169,6 +192,7 @@
                 <div class="d-none" id="otp_input">
                     <label class="form-label">OTP</label>
                     <input type="text" name="otp" id="otp">
+                    <span class="text-danger" id="valid_otp"></span>
                     <div id="ten-countdown"></div>
                     <div class="d-none" id="resend-otp">
                         <input class=" btn next_button" type="button" id="resend-otp-btn" value="Resend OTP"/>
@@ -201,6 +225,11 @@
 
     });
 
+    $('#forget-form').on('submit',function(e){
+        e.preventDefault();
+        doForgetValidation()
+    })
+
     $('#register-form').on('submit', function (e) {
 
         e.preventDefault();
@@ -224,13 +253,19 @@
 
     function doValidation() {
         let flag = [];
-
-        if ($('input[name=reg_email]').val() !== '') {
-            $('#valid_email').html("");
+        $('#valid_otp').html("");
+        if ($('input[name=mobile]').val() !== '') {
+            if($('input[name=mobile]').val().length<10){
+                flag.push(false)
+                $('#valid_mobile').html("Please enter valid mobile");
+            }
+            else{
+                $('#valid_mobile').html("");
+            }
         }
         else{
             flag.push(false)
-            $('#valid_email').html("Please enter valid email");
+            $('#valid_mobile').html("Please enter valid mobile");
         }
 
         if ($('input[name=otp]').val() !== '') {
@@ -359,6 +394,7 @@
             if ( msLeft < 1000 ) {
                 element.innerHTML="";
                 $('#resend-otp').removeClass('d-none')
+                $('#valid_otp').html("");
                 $('input[name=reg_email]').attr('readonly',false)
                 if(!$('#register-btn').hasClass('d-none')){
                     $('#register-btn').addClass('d-none')
@@ -387,15 +423,78 @@
         const generatedOTP=$('#otp').val()
         if(generatedOTP.length===4){
             if(generatedOTP===otp){
+                $('#valid_otp').html("");
                 return true
             }
             else{
+                $('#valid_otp').html("Please enter valid otp");
                 return false
             }
         }
         else{
+            $('#valid_otp').html("Please enter valid otp");
             return false
         }
+    }
+
+    $('#forget-button').click(()=>{
+        if(!$('#login').hasClass('d-none')){
+            $('#login').addClass('d-none')
+        }
+        $('#valid_forget_email').html("");
+        $('#forget-password').removeClass('d-none')
+    })
+
+    $('#back-to-login').click(()=>{
+        if(!$('#forget-password').hasClass('d-none')){
+            $('#forget-password').addClass('d-none')
+        }
+        $('#login').removeClass('d-none')
+    })
+
+    function doForgetValidation(){
+        let email = $('input[name=forget_email]').val()
+        let valid =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (email.toLowerCase().match(valid)) {
+            
+            $.ajax({
+                type: "GET",
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                },
+                url: base_url + 'check/isEmailRegistered/'+email,
+                success:function(response){
+                    if(response.status==='Already Exist'){
+                        sendResetLink(email)
+                    }
+                    else{
+                        $('#valid_forget_email').html("This Email is not registered");
+                    }
+                }
+            })
+        } else {
+            $('#valid_forget_email').html("Please enter valid email");
+        }
+    }
+
+    function sendResetLink(email){
+        $.ajax({
+            type: "GET",
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            url: base_url + 'send/reset/link/'+email,
+            success:function(response){
+                if(response.status==='Success'){
+                    $('#valid_forget_email').html("Password Reset Link is sent to registered Email");
+                }
+                else{
+                    $('#valid_forget_email').html("Unauthorized User");
+                }
+            }
+        })
     }
 
 

@@ -23,3 +23,7 @@ $('#final-submit').click(()=>{
         alert('Please declare the form.')
     }
 })
+
+$('#print-window').click(function() {
+    window.print();
+});

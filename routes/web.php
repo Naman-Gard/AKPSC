@@ -22,6 +22,9 @@ Route::group(["middleware" => ["islogout"]], function(){
     Route::get('send/otp/{email}/{otp}', 'App\Http\Controllers\AuthController@sendOtp');
     Route::post('register', 'App\Http\Controllers\AuthController@register')->name('register');
     Route::post('login', 'App\Http\Controllers\AuthController@login')->name('login');
+    Route::get('send/reset/link/{email}', 'App\Http\Controllers\AuthController@sendResetLink');
+    Route::get('/token={email}/{date}/{time}', 'App\Http\Controllers\AuthController@viewReset')->name('view-reset');
+    Route::post('/succeed/{email}/{date}/{time}', 'App\Http\Controllers\AuthController@successful')->name('succeed');
 });
 
 Route::group(["middleware" => ["islogin"]], function(){
@@ -29,7 +32,7 @@ Route::group(["middleware" => ["islogin"]], function(){
     Route::get('preview', 'App\Http\Controllers\FormController@preview')->name('preview');
     Route::get('edit/Form', 'App\Http\Controllers\FormController@editForm');
     Route::get('final/submit', 'App\Http\Controllers\FormController@finalSubmit');
-    Route::get('submitted', 'App\Http\Controllers\FormController@finalView');
+    Route::get('submitted', 'App\Http\Controllers\FormController@finalView')->name('final-submitted');
     Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
     Route::post('submit', 'App\Http\Controllers\FormController@submit')->name('submit');
 

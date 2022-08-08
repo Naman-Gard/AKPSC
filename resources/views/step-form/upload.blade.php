@@ -3,7 +3,7 @@
         <h2 class="fs-title">Upload Documents</h2>
         <div class="input-div row">
             <div class="form-group mb-4 col-md-6">
-                <label for="flexRadioDefault1">Image </label>
+                <label for="flexRadioDefault1">Image <span class="text-danger">*</span></label>
                 <input class="upload_input" type="file" name="image" id="image">
                 <img id="image_preview" src="#" alt="" />
                 @error('image')
@@ -11,7 +11,7 @@
                 @enderror
             </div>
             <div class="form-group mb-4 col-md-6">
-                <label for="flexRadioDefault1"> Signature </label>
+                <label for="flexRadioDefault1"> Signature <span class="text-danger">*</span></label>
                 <input class="upload_input" type="file" name="signature" id="signature">
                 <img id="sig_preview" src="#" alt="" />
                 @error('signature')
@@ -22,7 +22,7 @@
 
         <div class="input-div row">
             <div class="form-group mb-4 col-md-6">
-                <label class="upload_input" for="flexRadioDefault1">CV</label>
+                <label class="upload_input" for="flexRadioDefault1">CV <span class="text-danger">*</span></label>
                 <input type="file" name="cv" id="cv">
                 @error('cv')
                 <span class="text-danger">{{$message}}</span>

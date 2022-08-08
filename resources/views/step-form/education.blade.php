@@ -8,7 +8,7 @@
             <div class="row">
 
                 <div class="form-group col-md-4">
-                    <label for="exampleInputEmail3">Subject</label>
+                    <label for="exampleInputEmail3">Subject <span class="text-danger">*</span></label>
                     <select class="form-select mb-2 firstList_input" id="specialization_subject">
                         <option value="">Select</option>
                     </select>
@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="form-group col-md-4">
-                    <label for="exampleInputEmail3">Specialization</label>
+                    <label for="exampleInputEmail3">Specialization <span class="text-danger">*</span></label>
                     <select class="form-select mb-2 firstList_input" id="specialization">
                         <option value="">Select</option>
                     </select>
@@ -24,7 +24,7 @@
                 </div>
                 <!--  -->
                 <div class="form-group col-md-4">
-                    <label for="exampleInputEmail3">Super Specialization</label>
+                    <label for="exampleInputEmail3">Super Specialization <span class="text-danger">*</span></label>
                     <select class="form-select mb-2 firstList_input" id="super_specialization">
                         <option value="">Select</option>
                     </select>
@@ -58,7 +58,7 @@
             <span class="text-danger" id="education_error"></span>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Deegre</label>
+                    <label for="exampleInputEmail3">Deegre <span class="text-danger">*</span></label>
                     <select class="form-select mb-2 secondList_input" id="degree">
                         <option value="">Select</option>
                     </select>
@@ -66,7 +66,7 @@
                 </div>
                 <!--  -->
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Name</label>
+                    <label for="exampleInputEmail3">Name <span class="text-danger">*</span></label>
                     <select class="form-select mb-2 secondList_input" id="name">
                         <option value="">Select</option>
                     </select>
@@ -77,7 +77,7 @@
             <div class="row">
                 
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Passing Year</label>
+                    <label for="exampleInputEmail3">Passing Year <span class="text-danger">*</span></label>
                     <select class="form-select mb-2 secondList_input" id="passing_year">
                         <option value="">Select</option>
                         @for($i=67;$i<=99;$i++)
@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Subject</label>
+                    <label for="exampleInputEmail3">Subject <span class="text-danger">*</span></label>
                     <select class="form-select mb-2 secondList_input" id="subject">
                         <option value="">Select</option>
                     </select>

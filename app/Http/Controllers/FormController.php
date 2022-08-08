@@ -153,6 +153,7 @@ class FormController extends Controller
             return redirect()->route('fill-details');
         }
         else{
+            $finalStatus=FinalStatus::where('user_id',Auth::user()->id)->where('status','1')->get();
             $data=[];
             $data['personal_data']=User::where('id',Auth::user()->id)->first()->toArray();
             $data['education_data']['qualifications']=Education::where('user_id',Auth::user()->id)->get()->toArray();
@@ -163,7 +164,13 @@ class FormController extends Controller
             $data['preference_data']['preference']=Preference::where('user_id',Auth::user()->id)->first()->toArray();
             $data['preference_data']['language']=LanguageDetails::where('user_id',Auth::user()->id)->get()->toArray();
             $data['upload']=Upload::where('user_id',Auth::user()->id)->first()->toArray();
-            return view('step-form/preview/index',compact('data'));
+            if(!sizeof($finalStatus)){
+                return view('step-form/preview/index',compact('data'));
+            }
+            else{
+                return redirect()->route('final-submitted');
+            }
+            
         }
     }
 
@@ -218,12 +225,22 @@ class FormController extends Controller
     }
 
     public function finalView(){
-        $exist=FinalStatus::where('user_id',Auth::user()->id)->get();
+        $exist=FinalStatus::where('user_id',Auth::user()->id)->where('status','1')->get();
         if(!sizeOf($exist)){
             return redirect()->route('preview');
         }
         else{
-            return view('step-form/success/index');
+            $data=[];
+            $data['personal_data']=User::where('id',Auth::user()->id)->first()->toArray();
+            $data['education_data']['qualifications']=Education::where('user_id',Auth::user()->id)->get()->toArray();
+            $data['education_data']['specialization']=Specialization::where('user_id',Auth::user()->id)->get()->toArray();
+            $data['experience_data']['experience']=Experience::where('user_id',Auth::user()->id)->get()->toArray();
+            $data['experience_data']['isworking']=IsWorking::where('user_id',Auth::user()->id)->first()->toArray();
+            $data['experience_data']['organization']=Organization::where('user_id',Auth::user()->id)->get()->toArray();
+            $data['preference_data']['preference']=Preference::where('user_id',Auth::user()->id)->first()->toArray();
+            $data['preference_data']['language']=LanguageDetails::where('user_id',Auth::user()->id)->get()->toArray();
+            $data['upload']=Upload::where('user_id',Auth::user()->id)->first()->toArray();
+            return view('step-form/success/index',compact('data'));
         }
     }
 }

@@ -143,7 +143,20 @@ function preferenceValidation(){
                 return false
             }
             else{
-                $('#valid_'+$(this).attr('id')).html('')
+                if($(this).attr('id')==='pin_code'){
+                    if($(this).val().length<6){
+                        flag.push(false)
+                        $('#'+$(this).attr('id')).focus()
+                        $('#valid_'+$(this).attr('id')).html('Please Enter Valid Pincode')
+                        return false
+                    }
+                    else{
+                        $('#valid_'+$(this).attr('id')).html('')
+                    }
+                }
+                else{
+                    $('#valid_'+$(this).attr('id')).html('')
+                }
             }
         }
         data[$(this).attr('id')]=$(this).val()

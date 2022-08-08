@@ -2,6 +2,7 @@
 @include('includes/nav')
 
     <section class="preview my-5 pt-5">
+        <button id="print-window">Print</button>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -154,7 +155,7 @@
                                             Designation (if Serving) :
                                         </td>
                                         <td>
-                                            {{$data['experience_data']['isworking']['designation']}}
+                                            {{$data['experience_data']['isworking']['designation']?$data['experience_data']['isworking']['designation']:'-'}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -163,7 +164,7 @@
                                             Serving Under :
                                         </td>
                                         <td>
-                                            {{$data['experience_data']['isworking']['serving']}}
+                                            {{$data['experience_data']['isworking']['serving']?$data['experience_data']['isworking']['serving']:'-'}}
                                         </td>
                                     </tr>
                                 </tbody>

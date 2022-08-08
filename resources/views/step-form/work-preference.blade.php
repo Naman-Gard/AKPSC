@@ -4,7 +4,7 @@
             and Other Details
         </h2>
         <div class="form-group container border mb-3 p-3">
-            <label for="exampleInputCity1">Are you willing to be appointed as</label>
+            <label for="exampleInputCity1">Are you willing to be appointed as <span class="text-danger">*</span></label>
             <div class="input-div row align-items-center">
                 <div class="col-md-8">
                     <label for="exampleInputCity1">a. Question paper setter/ Objective Item writer/ Moderator/ Examiner/
@@ -63,7 +63,7 @@
                     </div>
                 </div> -->
                 <div class="form-group col-md-6">
-                    <label>Language</label>
+                    <label>Language <span class="text-danger">*</span></label>
                     <select class="form-select" name="language" id="language">
                         <option value="">Select</option>
                         <option value="Hindi">Hindi</option>
@@ -73,7 +73,7 @@
                     <span class="text-danger" id="valid_language"></span>
                 </div>
                 <div class="form-group col-md-6">
-                    <label>Proficiency Level</label>
+                    <label>Proficiency Level <span class="text-danger">*</span></label>
                     <select class="form-select" name="proficiency" id="proficiency">
                         <option value="">Select</option>
                         <option value="Excellent">Excellent</option>
@@ -107,7 +107,7 @@
             <div class="row">
                 <h4 class="mb-4">Address</h4>
                 <div class="form-group mb-4">
-                    <label for="exampleInputEmail3">Line 1</label>
+                    <label for="exampleInputEmail3">Line 1 <span class="text-danger">*</span></label>
                     <input type="text" autocomplete="off" class="prefrence_input mb-2" id="line_1" name="line_1" placeholder="Line 1" />
                     <span class="text-danger" id="valid_line_1"></span>
                 </div>
@@ -120,7 +120,7 @@
                     <span class="text-danger" id="valid_line_2"></span>
                 </div>
                 <div class="form-group mb-4 col-md-4">
-                    <label for="exampleInputEmail3">Pin Code</label>
+                    <label for="exampleInputEmail3">Pin Code <span class="text-danger">*</span></label>
                     <input type="text" autocomplete="off" class="prefrence_input mb-2" id="pin_code" name="pin_code"
                         placeholder="Pin code" />
                     <span class="text-danger" id="valid_pin_code"></span>
@@ -128,7 +128,7 @@
             </div>
             <div class="row">
                 <div class="form-group mb-4 col-md-6">
-                    <label>State</label>
+                    <label>State <span class="text-danger">*</span></label>
                     <select class="prefrence_input form-select" name="state" id="state">
                         <option value="">Select</option>
                         <option value="Uttar Pradesh">Uttar Pradesh</option>
@@ -136,7 +136,7 @@
                     <span class="text-danger" id="valid_state"></span>
                 </div>
                 <div class="form-group mb-4 col-md-6">
-                    <label>District</label>
+                    <label>District <span class="text-danger">*</span></label>
                     <select class="prefrence_input form-select" name="district" id="district">
                         <option value="">Select</option>
                         <option value="Ghaziabad">Ghaziabad</option>
@@ -153,8 +153,8 @@
                         debarred
                         from
                         University
-                        Examination work or any Public Service Commission or Hon’ble Courts. If yes,
-                        please indicate in brief</label>
+                        Examination work or any Public Service Commission or Hon’ble Courts? If yes,
+                        please indicate in brief. <span class="text-danger">*</span></label>
                 </div>
                 <div class="form-check d-flex col-md-2">
                     <input type="radio" name="enquiry" value="yes" />
