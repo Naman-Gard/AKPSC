@@ -75,8 +75,16 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header align-items-start">
-            <div class="img-wrap text-center">
-                <img src="{{asset('assets/images/ukpsc_logo.png')}}" width="150">
+            <div class="d-flex align-items-between">
+                <div class="img-wrap text-center">
+                    <img src="{{asset('assets/images/ukpsc_logo.png')}}" width="150">
+                </div>
+                <div>
+                    <h4 class="text-white">
+                        Registration Form
+                    </h4>
+                </div>
+
             </div>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -171,12 +179,12 @@
                     <input type="text" name="otp" id="otp">
                     <div id="ten-countdown"></div>
                     <div class="d-none" id="resend-otp">
-                        <input class=" btn next_button" type="button" id="resend-otp-btn" value="Resend OTP"/>
+                        <input class="next_button myBtn" type="button" id="resend-otp-btn" value="Resend OTP"/>
                     </div>
                 </div>
 
                 <div class="buttons mt-4">
-                    <input class=" btn next_button" type="button" id="get_OTP" value="Get OTP"/>
+                    <input class="next_button myBtn" type="button" id="get_OTP" value="Get OTP"/>
                     <button class="next_button d-none" id="register-btn">Register</button>
                 </div>
             </form>
