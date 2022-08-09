@@ -195,15 +195,28 @@ function specializationValidation(){
     $("#education_fieldset .firstList_input").each(function(key,value){
         if($(this).val()===''){
             flag.push(false)
-            console.log($(this).attr('id'))
             $('#'+$(this).attr('id')).focus()
             $('#valid_'+$(this).attr('id')).html('This field is required')
             return false
         }
         else{
+            if($(this).val()==='Other'){
+                if($('#specify_'+$(this).attr('id')+' input[type=text]').val()===''){
+                    flag.push(false)
+                    $('#specify_'+$(this).attr('id')).focus()
+                    $('#valid_specify_'+$(this).attr('id')).html('This field is required')
+                }
+                else{
+                    data[$(this).attr('id')]=$('#specify_'+$(this).attr('id')+' input[type=text]').val()
+                    $('#specify_'+$(this).attr('id')+' input[type=text]').val('')
+                    $('#valid_specify_'+$(this).attr('id')).html('')
+                }
+            }
+            else{
+                data[$(this).attr('id')]=$(this).val()
+            }
             $('#valid_'+$(this).attr('id')).html('')
         }
-        data[$(this).attr('id')]=$(this).val()
     });
 
     if(flag.includes(false)){
@@ -220,6 +233,15 @@ function specializationValidation(){
                 $("#education_fieldset .firstList_input").each(function(key,value){
                     $('#'+$(this).attr('id')).val('')
                 })
+                if(!$('#specify_specialization_subject').hasClass('d-none')){
+                    $('#specify_specialization_subject').addClass('d-none')
+                }
+                if(!$('#specify_specialization').hasClass('d-none')){
+                    $('#specify_specialization').addClass('d-none')
+                }
+                if(!$('#specify_super_specialization').hasClass('d-none')){
+                    $('#specify_super_specialization').addClass('d-none')
+                }
                 let innerhtml=''
                 response.forEach((item,index)=>{
                     innerhtml+=`<tr>
@@ -306,3 +328,36 @@ function getEducationDetails(){
 if(typeof step!=='undefined'){
     getEducationDetails()
 }
+
+$('#specialization_subject').change((e)=>{
+    if(e.target.value==='Other'){
+        $('#specify_specialization_subject').removeClass('d-none')
+    }
+    else{
+        if(!$('#specify_specialization_subject').hasClass('d-none')){
+            $('#specify_specialization_subject').addClass('d-none')
+        }
+    }
+})
+
+$('#specialization').change((e)=>{
+    if(e.target.value==='Other'){
+        $('#specify_specialization').removeClass('d-none')
+    }
+    else{
+        if(!$('#specify_specialization').hasClass('d-none')){
+            $('#specify_specialization').addClass('d-none')
+        }
+    }
+})
+
+$('#super_specialization').change((e)=>{
+    if(e.target.value==='Other'){
+        $('#specify_super_specialization').removeClass('d-none')
+    }
+    else{
+        if(!$('#specify_super_specialization').hasClass('d-none')){
+            $('#specify_super_specialization').addClass('d-none')
+        }
+    }
+})

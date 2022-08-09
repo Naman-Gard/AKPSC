@@ -1,0 +1,14 @@
+.dt-buttons {
+    float: left;
+    margin-top: 42px;
+    margin-left: -149px;
+    margin-bottom: 20px;
+}
+
+.dt-buttons button {
+    padding: 2px;
+}
+
+.current {
+    padding: 2px !important;
+}

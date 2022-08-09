@@ -48,10 +48,10 @@
                                             <button class="next_button">Submit</button>
                                         </div>
                                     </form>
-                                    <p style="font-size:14px; color:#fff; text-align:left;margin:20px 0 0 0">
+                                    <p>
                                         <a id="forget-button">Forgot Password? (पासवर्ड भूल गए?)</a>
                                     </p>
-                                    <p style="font-size:14px; color:#fff;text-align:left; margin:20px 0 0 0">
+                                    <p>
                                         Don't have a UKPSC ID? (यूकेपीएससी आईडी नहीं है?)<br>
                                         <!-- <a id="register-here">Register Here! (यहां रजिस्टर करें!)</a> -->
                                         <a type="button" data-bs-toggle="modal" data-bs-target="#registerModal">
@@ -64,7 +64,7 @@
                                 <div class="input-text d-none" id="forget-password">
                                     <form id="forget-form">
                                         @csrf
-                                        <h2>Forget Password</h2>
+                                        <h2 class="text-white fw-bold text-center">Forget Password</h2>
                                         <div class="input-div">
                                             <label for="email" class="form-label">Email ID (ईमेल आईडी)</label>
                                             <input type="email" name="forget_email" required autocomplete="off">
@@ -75,7 +75,7 @@
                                             <button class="next_button">Proceed</button>
                                         </div>
                                     </form>
-                                    <p style="font-size:14px; color:#fff;text-align:left; margin:20px 0 0 0">
+                                    <p>
                                         <!-- <a id="register-here">Register Here! (यहां रजिस्टर करें!)</a> -->
                                         <a type="button" id="back-to-login">
                                             Back To Login!
@@ -98,14 +98,14 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header align-items-start">
-            <div class="d-flex align-items-between">
+            <div class="d-flex align-items-center">
                 <div class="img-wrap text-center">
                     <img src="{{asset('assets/images/ukpsc_logo.png')}}" width="150">
                 </div>
                 <div>
-                    <h4 class="text-white">
+                    <h3 class="text-white register-name">
                         Registration Form
-                    </h4>
+                    </h3>
                 </div>
 
             </div>
