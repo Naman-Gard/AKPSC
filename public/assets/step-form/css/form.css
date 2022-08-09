@@ -320,7 +320,7 @@ td {
 }
 
 .table thead th {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
 }
 
 .table tbody td,
@@ -330,4 +330,21 @@ th {
 
 span.text-danger {
     font-weight: 700;
+}
+
+.download-btn {
+    background: #128c93;
+    color: #fff;
+    border: 1px solid #128c93;
+    margin-right: 1.2rem !important;
+    margin-top: 1.5rem;
+    font-weight: 700;
+}
+
+.download-btn img {
+    height: 2rem;
+}
+
+.table td .btn img {
+    height: 1.8rem;
 }

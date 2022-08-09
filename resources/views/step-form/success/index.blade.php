@@ -1,7 +1,11 @@
 @include('includes/header')
 @include('includes/nav')
 
-    <section class="preview my-5 pt-5">
+    <div class="btn-sec d-flex justify-content-end me-5 mt-5 px-5 py-4">
+        <a href="{{route('generate-pdf')}}" target="_blank" class="btn download-btn btn-custom mx-2">Download <img src="{{asset('assets/images/download.svg')}}"></a>
+    </div>
+
+    <section class="preview ">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -139,7 +143,7 @@
                                 
                                 <tbody>
                                     <tr>
-                                        <th scope="row">13.</th>
+                                        <th scope="row">8.</th>
                                         <td>
                                             Whether in serivce or retired?
 
@@ -149,7 +153,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">14.</th>
+                                        <th scope="row">9.</th>
                                         <td>
                                             Designation (if Serving) :
                                         </td>
@@ -158,7 +162,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">15.</th>
+                                        <th scope="row">10.</th>
                                         <td>
                                             Serving Under :
                                         </td>
@@ -222,7 +226,7 @@
                                         <th colspan="3">Are you willing to be appointed as :</th>
                                     </tr>
                                     <tr>
-                                        <th scope="row">22.</th>
+                                        <th scope="row">11.</th>
                                         <td>
                                             Question paper setter/ Objective Item writer/ Moderator/ Examiner/
                                             Evaluator/ Syllabus Framing
@@ -232,7 +236,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">23.</th>
+                                        <th scope="row">12.</th>
                                         <td>
                                             Expert in Interview Board (s)
                                         </td>
@@ -266,7 +270,7 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th scope="row">23.</th>
+                                        <th scope="row">13.</th>
                                         <td>
                                             Address :
                                         </td>
@@ -276,7 +280,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">24.</th>
+                                        <th scope="row">14.</th>
                                         <td>
                                             Have you ever faced any vigilance Enquiry or were debarred from University
                                             Examination work or any Public Service Commission or Hon’ble Courts. If yes,

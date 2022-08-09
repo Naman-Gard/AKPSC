@@ -1,6 +1,6 @@
 @include('includes/header')
 @include('includes/nav')
-
+@include('step-form/form-head/index')
 <!-- partial -->
 <div class="container-fluid page-body-wrapper">
     <!-- partial -->

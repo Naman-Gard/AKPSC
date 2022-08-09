@@ -5,6 +5,7 @@
             <div class="form-group mb-4 col-md-6">
                 <label for="flexRadioDefault1">Image <span class="text-danger">*</span></label>
                 <input class="upload_input" type="file" name="image" id="image">
+                <p>Note: Allow only jpg,png,jpeg file</p>
                 <img id="image_preview" src="#" alt="" />
                 @error('image')
                 <span class="text-danger">{{$message}}</span>
@@ -13,6 +14,7 @@
             <div class="form-group mb-4 col-md-6">
                 <label for="flexRadioDefault1"> Signature <span class="text-danger">*</span></label>
                 <input class="upload_input" type="file" name="signature" id="signature">
+                <p>Note: Allow only jpg,png,jpeg file</p>
                 <img id="sig_preview" src="#" alt="" />
                 @error('signature')
                 <span class="text-danger">{{$message}}</span>
@@ -24,6 +26,7 @@
             <div class="form-group mb-4 col-md-6">
                 <label class="upload_input" for="flexRadioDefault1">CV <span class="text-danger">*</span></label>
                 <input type="file" name="cv" id="cv">
+                <p>Note: Allow only pdf file</p>
                 @error('cv')
                 <span class="text-danger">{{$message}}</span>
                 @enderror

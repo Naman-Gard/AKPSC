@@ -273,7 +273,7 @@ $(document).ready(function(){
                     <td>${item.specialization}</td>
                     <td>${item.super_specialization}</td>
                     <td>
-                        <input type="button" class="btn btn-danger btn-sm Education_delete" data-id="${item.id}" data-heading="specialization" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                        <button type="button" class="btn btn-sm Education_delete" data-id="${item.id}" data-heading="specialization" data-bs-toggle="modal" data-bs-target="#DeleteModal"><img src="${base_url}assets/images/delete.svg" ></button>
                     </td>
                 </tr>`
         })
@@ -296,7 +296,7 @@ $(document).ready(function(){
                     <td>${item.subject}</td>
                     <td>${item.passing_year}</td>
                     <td>
-                        <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="education" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                        <button type="button" class="btn btn-sm" data-id="${item.id}" data-heading="education" data-bs-toggle="modal" data-bs-target="#DeleteModal"><img src="${base_url}assets/images/delete.svg" ></button>
                     </td>
                 </tr>`
         })
@@ -318,8 +318,7 @@ $(document).ready(function(){
                             <td>${item.year}</td>
                             <td>${item.specify}</td>
                             <td>
-                                <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="experience" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
-                            </td>
+                                <button type="button" class="btn btn-sm" data-id="${item.id}" data-heading="experience" data-bs-toggle="modal" data-bs-target="#DeleteModal"><img src="${base_url}assets/images/delete.svg" ></button>                           </td>
                         </tr>`
         })
         if(data.length){
@@ -340,7 +339,7 @@ $(document).ready(function(){
                             <td>${item.org_name}</td>
                             <td>${item.org_year}</td>
                             <td>
-                                <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="organization" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                                <button type="button" class="btn btn-sm" data-id="${item.id}" data-heading="organization" data-bs-toggle="modal" data-bs-target="#DeleteModal"><img src="${base_url}assets/images/delete.svg" ></button>
                             </td>
                         </tr>`
         })
@@ -361,7 +360,7 @@ $(document).ready(function(){
                         <td>${item.language}</td>
                         <td>${item.proficiency}</td>
                         <td>
-                            <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="language" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                            <button type="button" class="btn btn-sm" data-id="${item.id}" data-heading="language" data-bs-toggle="modal" data-bs-target="#DeleteModal"><img src="${base_url}assets/images/delete.svg"></button>
                         </td>
                     </tr>`
         })

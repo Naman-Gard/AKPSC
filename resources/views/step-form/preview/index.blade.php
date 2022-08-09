@@ -139,7 +139,7 @@
                                 
                                 <tbody>
                                     <tr>
-                                        <th scope="row">13.</th>
+                                        <th scope="row">8.</th>
                                         <td>
                                             Whether in serivce or retired?
 
@@ -149,7 +149,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">14.</th>
+                                        <th scope="row">9.</th>
                                         <td>
                                             Designation (if Serving) :
                                         </td>
@@ -158,7 +158,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">15.</th>
+                                        <th scope="row">10.</th>
                                         <td>
                                             Serving Under :
                                         </td>
@@ -222,7 +222,7 @@
                                         <th colspan="3">Are you willing to be appointed as :</th>
                                     </tr>
                                     <tr>
-                                        <th scope="row">22.</th>
+                                        <th scope="row">11.</th>
                                         <td>
                                             Question paper setter/ Objective Item writer/ Moderator/ Examiner/
                                             Evaluator/ Syllabus Framing
@@ -232,7 +232,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">23.</th>
+                                        <th scope="row">12.</th>
                                         <td>
                                             Expert in Interview Board (s)
                                         </td>
@@ -266,7 +266,7 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th scope="row">23.</th>
+                                        <th scope="row">13.</th>
                                         <td>
                                             Address :
                                         </td>
@@ -276,7 +276,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">24.</th>
+                                        <th scope="row">14.</th>
                                         <td>
                                             Have you ever faced any vigilance Enquiry or were debarred from University
                                             Examination work or any Public Service Commission or Hon’ble Courts. If yes,
