@@ -689,3 +689,9 @@
 .navbar.navbar-dark .navbar-menu-wrapper .search-field .input-group i {
   color: #ffffff;
 }
+
+.nav-welcome-text p {
+  line-height: 1;
+  letter-spacing: 1px;
+  font-size: 1.3rem;
+}

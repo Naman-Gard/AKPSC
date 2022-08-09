@@ -67,7 +67,7 @@ function languageValidation(){
                         <td>${item.language}</td>
                         <td>${item.proficiency}</td>
                         <td>
-                            <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="language" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                            <button type="button" class="btn btn-sm" data-id="${item.id}" data-heading="language" data-bs-toggle="modal" data-bs-target="#DeleteModal"><img src="${base_url}assets/images/delete.svg"></button>
                         </td>
                     </tr>`
             })

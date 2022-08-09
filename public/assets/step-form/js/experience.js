@@ -92,7 +92,7 @@ function experienceValidation(){
                             <td>${item.year}</td>
                             <td>${item.specify}</td>
                             <td>
-                                <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="experience" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                                <button type="button" class="btn btn-sm" data-id="${item.id}" data-heading="experience" data-bs-toggle="modal" data-bs-target="#DeleteModal"><img src="${base_url}assets/images/delete.svg"></button>
                             </td>
                         </tr>`
                 })
@@ -163,7 +163,7 @@ function organizationValidation(){
                             <td>${item.org_name}</td>
                             <td>${item.org_year}</td>
                             <td>
-                                <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="organization" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                                <button type="button" class="btn btn-sm" data-id="${item.id}" data-heading="organization" data-bs-toggle="modal" data-bs-target="#DeleteModal"><img src="${base_url}assets/images/delete.svg"></button>
                             </td>
                         </tr>`
                 })

@@ -7,6 +7,9 @@
                         src="{{asset('assets/step-form/images/logo.svg')}}" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"><img
                         src="{{asset('assets/step-form/images/logo-mini.svg')}}" alt="logo" /></a> -->
+                <div class="nav-welcome-text">
+                    <p class="mb-1 text-white fw-bold">Welcome {{Auth::user()->name}}</p>
+                </div>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-stretch">
                 <ul class="navbar-nav navbar-nav-right">

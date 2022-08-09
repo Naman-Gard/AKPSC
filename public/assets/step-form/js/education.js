@@ -158,7 +158,7 @@ function educationValidation(){
                             <td>${item.subject}</td>
                             <td>${item.passing_year}</td>
                             <td>
-                                <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="education" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                                <button type="button" class="btn btn-sm" data-id="${item.id}" data-heading="education" data-bs-toggle="modal" data-bs-target="#DeleteModal"><img src="${base_url}assets/images/delete.svg"></button>
                             </td>
                         </tr>`
                 })
@@ -250,7 +250,7 @@ function specializationValidation(){
                             <td>${item.specialization}</td>
                             <td>${item.super_specialization}</td>
                             <td>
-                                <input type="button" class="btn btn-danger btn-sm" data-id="${item.id}" data-heading="specialization" data-bs-toggle="modal" data-bs-target="#DeleteModal" value="Delete">
+                                <button type="button" class="btn btn-sm" data-id="${item.id}" data-heading="specialization" data-bs-toggle="modal" data-bs-target="#DeleteModal"><img src="${base_url}assets/images/delete.svg" ></button>
                             </td>
                         </tr>`
                 })

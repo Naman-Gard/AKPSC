@@ -35,7 +35,7 @@ Route::group(["middleware" => ["islogin"]], function(){
     Route::get('submitted', 'App\Http\Controllers\FormController@finalView')->name('final-submitted');
     Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
     Route::post('submit', 'App\Http\Controllers\FormController@submit')->name('submit');
-    Route::get('generate-pdf', 'App\Http\Controllers\FormController@generatePDF');
+    Route::get('generate-pdf', 'App\Http\Controllers\FormController@generatePDF')->name('generate-pdf');
 
     //Education Routes//
     Route::post('add/specialization', 'App\Http\Controllers\EducationController@addSpecialization');

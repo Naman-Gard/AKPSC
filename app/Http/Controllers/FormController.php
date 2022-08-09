@@ -259,8 +259,8 @@ class FormController extends Controller
         $finalData=[
             'data'=>$data
         ];
-        $pdf = PDF::loadView('step-form/pdf/index', compact('data'))->setOptions(['javascript-delay' => 5000,'page-size'=>'a4']);
-    
+        $pdf = PDF::loadView('step-form/pdf/index', compact('data'))->setOptions(['javascript-delay' => 500,'page-size'=>'a4','chroot'  => public_path('assets/')]);
+        
         return $pdf->download('preview.pdf');
     }
 }

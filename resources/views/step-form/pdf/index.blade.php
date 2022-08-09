@@ -1,15 +1,124 @@
 @include('includes/header')
+
+<style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.preview {
+    padding: 3rem;
+}
+
+.preview .heading {
+  background: rgb(6, 130, 140);
+  background: linear-gradient(90deg, rgba(6, 130, 140, 1) 0%, rgba(62, 178, 175, 1) 100%);
+  padding: 1rem;
+}
+
+.preview table,
+.preview th,
+.preview td {
+  border: 1px solid #08848e !important;
+}
+
+.preview table tbody tr th {
+  width: 4% !important;
+}
+
+.preview table tbody tr td:first-child,
+.preview table tbody tr td:last-child {
+  width: 48% !important;
+}
+
+.preview table tbody tr {
+  vertical-align: middle !important;
+}
+
+.preview .btn-custom {
+  background: #08848e !important;
+  border: 1px solid #08848e !important;
+  color: #fff !important;
+  border-radius: 3px !important;
+}
+
+.preview .form-check-input:checked {
+  background-color: #08848e !important;
+  border-color: #08848e !important;
+}
+
+.preview .form-check-input:focus {
+  box-shadow: none !important;
+}
+.row{
+    display:flex;
+    flex-wrap: wrap;
+}
+.col-md-12 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+.align-items-center {
+    align-items: center!important;
+}
+.justify-content-between {
+    justify-content: space-between!important;
+}
+.d-flex {
+    display: flex!important;
+}
+
+element.style {
+}
+.preview table, .preview th, .preview td {
+    border: 1px solid #08848e !important;
+}
+.table, th, td {
+    border: 1px solid #08848e !important;
+}
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+}
+table {
+    caption-side: bottom;
+    border-collapse: collapse;
+}
+.text-white {
+    color: #fff!important;
+}
+.mb-0 {
+    margin-bottom: 0!important;
+}
+.me-2 {
+    margin-right: 0.5rem!important;
+}
+.table tbody td, th {
+    font-size: 1rem;
+    padding: 0.5rem;
+} 
+.content h3 {
+    margin-left: 32rem;
+    margin-top: -4rem;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+</style>
     <section class="preview my-5 pt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="heading">
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="custom">
                             <div class="img-wrap">
-                                <img src="http://localhost:8000/assets/uploads/images/1740304132855148.png" width="120" alt="">
+                                <img src="{{public_path('assets/preview/images/ukpsc_logo.png')}}" width="120" alt="">
                             </div>
                             <div class="content">
-                                <h3 class="text-white mb-0 me-2">Form Preview</h3>
+                                <h3 class="text-white">Form Preview</h3>
                             </div>
                         </div>
                     </div>
@@ -19,7 +128,7 @@
                                 
                                 <tbody>
                                     <tr>
-                                        <td scope="col" colspan="2" class="text-center"><img src="{{public_path('assets/uploads/images/').$data['upload']['image']}}" width="120" height="120" alt="photo"></td>
+                                        <td scope="col" colspan="2" class="text-center"><img src="{{public_path('/assets/uploads/images/'.$data['upload']['image'])}}" width="120" height="120" alt="photo"></td>
                                         <td scope="col" class="text-center"><img src="{{public_path('assets/uploads/signature/'.$data['upload']['signature'])}}" alt="signature" width="60" height="60"></td>
                                     </tr>
                                     <tr>
@@ -137,7 +246,7 @@
                                 
                                 <tbody>
                                     <tr>
-                                        <th scope="row">13.</th>
+                                        <th scope="row">8.</th>
                                         <td>
                                             Whether in serivce or retired?
 
@@ -147,7 +256,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">14.</th>
+                                        <th scope="row">9.</th>
                                         <td>
                                             Designation (if Serving) :
                                         </td>
@@ -156,7 +265,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">15.</th>
+                                        <th scope="row">10.</th>
                                         <td>
                                             Serving Under :
                                         </td>
@@ -166,6 +275,18 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="preview my-5 pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="preview-form">
+                        <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -220,7 +341,7 @@
                                         <th colspan="3">Are you willing to be appointed as :</th>
                                     </tr>
                                     <tr>
-                                        <th scope="row">22.</th>
+                                        <th scope="row">11.</th>
                                         <td>
                                             Question paper setter/ Objective Item writer/ Moderator/ Examiner/
                                             Evaluator/ Syllabus Framing
@@ -230,7 +351,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">23.</th>
+                                        <th scope="row">12.</th>
                                         <td>
                                             Expert in Interview Board (s)
                                         </td>
@@ -264,7 +385,7 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th scope="row">23.</th>
+                                        <th scope="row">13.</th>
                                         <td>
                                             Address :
                                         </td>
@@ -274,7 +395,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">24.</th>
+                                        <th scope="row">14.</th>
                                         <td>
                                             Have you ever faced any vigilance Enquiry or were debarred from University
                                             Examination work or any Public Service Commission or Hon’ble Courts. If yes,
@@ -288,23 +409,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- <div class="declaration mt-4">
-                            <h6 class="fw-bold">Declaration :
-                            </h6>
-                            <div class="d-flex">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="declaration">
-                                  </div>
-                                  <p>I hereby certify that the information furnished in this form is true to best of my knowledge.</p>
-                            </div>
-                        </div> -->
-                        <!-- <div class="d-flex justify-content-end mt-3">
-                            <img src="{{public_path('assets/uploads/signature/'.$data['upload']['signature'])}}" class="me-4" alt="signature" width="60" height="60">
-                        </div> -->
-                        <!-- <div class="btn-sec mb-5 d-flex justify-content-center mt-5">
-                            <button type="submit" class="btn btn-custom mx-2" id="final-submit">Final Submit <img src="{{public_path('assets/preview/images/tick-box.gif')}}" height="24" alt=""></button>
-                            <button type="submit" class="btn btn-custom mx-2" id="edit-form">Edit Form <img src="{{public_path('assets/preview/images/edit.svg')}}" height="24" alt=""></button>
-                        </div> -->
                     </div>
                 </div>
             </div>
