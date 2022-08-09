@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\LanguageDetails;
 use App\Models\FinalStatus;
 use Auth;
+use PDF;
 
 class FormController extends Controller
 {
@@ -242,5 +243,24 @@ class FormController extends Controller
             $data['upload']=Upload::where('user_id',Auth::user()->id)->first()->toArray();
             return view('step-form/success/index',compact('data'));
         }
+    }
+
+    public function generatePDF(){
+        $data=[];
+        $data['personal_data']=User::where('id',Auth::user()->id)->first()->toArray();
+        $data['education_data']['qualifications']=Education::where('user_id',Auth::user()->id)->get()->toArray();
+        $data['education_data']['specialization']=Specialization::where('user_id',Auth::user()->id)->get()->toArray();
+        $data['experience_data']['experience']=Experience::where('user_id',Auth::user()->id)->get()->toArray();
+        $data['experience_data']['isworking']=IsWorking::where('user_id',Auth::user()->id)->first()->toArray();
+        $data['experience_data']['organization']=Organization::where('user_id',Auth::user()->id)->get()->toArray();
+        $data['preference_data']['preference']=Preference::where('user_id',Auth::user()->id)->first()->toArray();
+        $data['preference_data']['language']=LanguageDetails::where('user_id',Auth::user()->id)->get()->toArray();
+        $data['upload']=Upload::where('user_id',Auth::user()->id)->first()->toArray();
+        $finalData=[
+            'data'=>$data
+        ];
+        $pdf = PDF::loadView('step-form/pdf/index', compact('data'))->setOptions(['javascript-delay' => 5000,'page-size'=>'a4']);
+    
+        return $pdf->download('preview.pdf');
     }
 }

@@ -69,7 +69,7 @@ html {
     box-sizing: border-box;
     font-family: montserrat;
     color: #2c3e50;
-    font-size: 16px;
+    font-size: 1rem;
     letter-spacing: 1px;
 }
 
@@ -94,7 +94,7 @@ html {
 
 /*Blue Buttons*/
 #msform .action-button {
-    width: 120px;
+    width: 9rem;
     background: rgb(6, 130, 140) !important;
     font-weight: bold;
     color: white;
@@ -102,7 +102,9 @@ html {
     border-radius: 0px;
     cursor: pointer;
     padding: 10px 5px;
-    margin: 10px 5px;
+    margin: 15px 0px;
+    font-size: 1rem;
+    border-radius: 5px;
 }
 
 #msform .action-button:hover,
@@ -112,12 +114,12 @@ html {
 
 /*Previous Buttons*/
 #msform .action-button-previous {
-    width: 100px;
+    width: 9rem;
     background: #616161;
     font-weight: bold;
     color: white;
     border: 0 none;
-    border-radius: 0px;
+    border-radius: 5px;
     cursor: pointer;
     padding: 10px 5px;
     margin: 10px 5px;
@@ -151,7 +153,7 @@ select.list-dt:focus {
 
 /*FieldSet headings*/
 .fs-title {
-    font-size: 25px;
+    font-size: 1.8rem;
     color: #08838d;
     margin-bottom: 24px;
     font-weight: bold;
@@ -266,33 +268,66 @@ select.list-dt:focus {
 .main-panel {
     margin-top: 5rem;
 }
+
 .border {
     /* border: 1px solid #08848d !important; */
 }
+
 .form-group label {
     color: #000;
     margin-bottom: 0.5rem;
     font-weight: 500;
+    font-size: 1.2rem;
 }
+
 .form-group .form-select {
     border-color: #31b3b0;
+    font-size: 1rem;
 }
 
 .form-group .form-select:focus {
     box-shadow: none;
 }
+
 #msform input.btn {
     padding: 4px 8px !important;
     color: #fff !important;
     margin-top: 3px !important;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: 1px solid;
+    margin-bottom: 3px !important;
+    width: 75px;
 }
+
 #msform input[type="radio"] {
     width: 15px !important;
     height: 15px !important;
-    margin-top: 6px !important;
+    margin-top: 12px !important;
     margin-bottom: 10px !important;
 }
+
 .main-panel h4 {
-    font-size: 21px;
+    font-size: 1.5rem;
     color: #118c93;
+    font-weight: 700;
+}
+
+.table,
+th,
+td {
+    border: 1px solid #08848e !important;
+}
+
+.table thead th {
+    font-size: 1.4rem;
+}
+
+.table tbody td,
+th {
+    font-size: 1rem;
+}
+
+span.text-danger {
+    font-weight: 700;
 }

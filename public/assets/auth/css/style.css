@@ -207,6 +207,10 @@ h2 {
     gap: 20px;
 }
 
+.input-div {
+    margin-bottom: 1.6rem;
+}
+
 .input-text .input-div {
     width: 100%;
     margin: 30px 0;
@@ -219,6 +223,13 @@ h2 {
     position: relative;
 }
 
+.input-text p {
+    font-size: 18px;
+    color: #fff;
+    text-align: left;
+    margin: 20px 0 0 0;
+}
+
 input[type="text"] {
     width: 100%;
     height: 40px;
@@ -229,6 +240,7 @@ input[type="text"] {
     gap: 20px;
     box-sizing: border-box;
     padding: 0px 10px;
+    font-weight: 600;
 }
 
 input[type="password"] {
@@ -295,8 +307,8 @@ select {
     transition: all 0.5s;
 }
 
-.input-div input:focus ~ span,
-.input-div input:valid ~ span {
+.input-div input:focus~span,
+.input-div input:valid~span {
     top: -20px;
     left: 6px;
     font-size: 12px;
@@ -320,6 +332,7 @@ select {
     color: #fff;
     cursor: pointer;
 }
+
 .myBtn {
     height: 40px;
     width: 100px;
@@ -487,6 +500,7 @@ select {
 }
 
 @keyframes scale {
+
     0%,
     100% {
         transform: none;
@@ -542,11 +556,9 @@ select {
 
 .right-side {
     background: rgb(6, 130, 140);
-    background: linear-gradient(
-        90deg,
-        rgba(6, 130, 140, 1) 0%,
-        rgba(62, 178, 175, 1) 100%
-    );
+    background: linear-gradient(90deg,
+            rgba(6, 130, 140, 1) 0%,
+            rgba(62, 178, 175, 1) 100%);
     min-height: 582px !important;
 }
 
@@ -557,9 +569,11 @@ select {
 }
 
 .input-div label {
-    font-size: 13px;
+    font-size: 1rem;
+    font-weight: 600;
     color: #fff;
 }
+
 a {
     cursor: pointer;
 }
@@ -567,20 +581,46 @@ a {
 #registerModal .modal-dialog {
     max-width: 40rem !important;
 }
+
 #registerModal .modal-content {
     /* max-width: 60rem !important; */
     background: rgb(6, 130, 140) !important;
-    background: linear-gradient(
-        90deg,
-        rgba(6, 130, 140, 1) 0%,
-        rgba(62, 178, 175, 1) 100%
-    ) !important;
+    background: linear-gradient(90deg,
+            rgba(6, 130, 140, 1) 0%,
+            rgba(62, 178, 175, 1) 100%) !important;
 }
-#registerModal .modal-content {
-}
+
+#registerModal .modal-content {}
 
 span.red-feild {
     top: 0 !important;
     left: 0 !important;
     font-size: 15px !important;
+}
+
+span.text-danger {
+    color: #dc3545 !important;
+    background: #fff;
+    border-radius: 3px;
+    padding: 6px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-weight: 700;
+}
+
+p.text-danger {
+    color: #dc3545 !important;
+    background: #fff;
+    border-radius: 3px;
+    padding: 0;
+    margin: 7px 0;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.register-name {
+    margin-left: 12rem;
+    margin-bottom: 0;
 }

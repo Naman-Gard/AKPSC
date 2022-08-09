@@ -286,6 +286,7 @@
   font-size: 0.9rem;
   margin-top: 0;
   padding: 0;
+  margin-left: -0.5rem;
 }
 
 .rtl .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown {
@@ -297,6 +298,11 @@
   margin-bottom: 0;
   padding: 11px 13px;
   cursor: pointer;
+  font-size: 1.3rem;
+}
+
+.mdi-logout:before {
+  font-size: 1.5rem;
 }
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item i {
@@ -386,6 +392,7 @@
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile .nav-link .nav-profile-text p {
   line-height: 1;
   letter-spacing: 1px;
+  font-size: 1.3rem;
 }
 
 @media (max-width: 767px) {

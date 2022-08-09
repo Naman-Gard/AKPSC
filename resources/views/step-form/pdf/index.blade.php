@@ -1,6 +1,4 @@
 @include('includes/header')
-@include('includes/nav')
-
     <section class="preview my-5 pt-5">
         <div class="container">
             <div class="row">
@@ -8,7 +6,7 @@
                     <div class="heading">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="img-wrap">
-                                <img src="{{asset('assets/preview/images/ukpsc_logo.png')}}" width="120" alt="">
+                                <img src="http://localhost:8000/assets/uploads/images/1740304132855148.png" width="120" alt="">
                             </div>
                             <div class="content">
                                 <h3 class="text-white mb-0 me-2">Form Preview</h3>
@@ -21,8 +19,8 @@
                                 
                                 <tbody>
                                     <tr>
-                                        <td scope="col" colspan="2" class="text-center"><img src="{{asset('assets/uploads/images/'.$data['upload']['image'])}}" width="120" height="120" alt="photo"></td>
-                                        <td scope="col" class="text-center"><img src="{{asset('assets/uploads/signature/'.$data['upload']['signature'])}}" alt="signature" width="60" height="60"></td>
+                                        <td scope="col" colspan="2" class="text-center"><img src="{{public_path('assets/uploads/images/').$data['upload']['image']}}" width="120" height="120" alt="photo"></td>
+                                        <td scope="col" class="text-center"><img src="{{public_path('assets/uploads/signature/'.$data['upload']['signature'])}}" alt="signature" width="60" height="60"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">1.</th>
@@ -290,7 +288,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="declaration mt-4">
+                        <!-- <div class="declaration mt-4">
                             <h6 class="fw-bold">Declaration :
                             </h6>
                             <div class="d-flex">
@@ -299,14 +297,14 @@
                                   </div>
                                   <p>I hereby certify that the information furnished in this form is true to best of my knowledge.</p>
                             </div>
-                        </div>
-                        <div class="d-flex justify-content-end mt-3">
-                            <img src="{{asset('assets/uploads/signature/'.$data['upload']['signature'])}}" class="me-4" alt="signature" width="60" height="60">
-                        </div>
-                        <div class="btn-sec mb-5 d-flex justify-content-center mt-5">
-                            <button type="submit" class="btn btn-custom mx-2" id="final-submit">Final Submit <img src="{{asset('assets/preview/images/tick-box.gif')}}" height="24" alt=""></button>
-                            <button type="submit" class="btn btn-custom mx-2" id="edit-form">Edit Form <img src="{{asset('assets/preview/images/edit.svg')}}" height="24" alt=""></button>
-                        </div>
+                        </div> -->
+                        <!-- <div class="d-flex justify-content-end mt-3">
+                            <img src="{{public_path('assets/uploads/signature/'.$data['upload']['signature'])}}" class="me-4" alt="signature" width="60" height="60">
+                        </div> -->
+                        <!-- <div class="btn-sec mb-5 d-flex justify-content-center mt-5">
+                            <button type="submit" class="btn btn-custom mx-2" id="final-submit">Final Submit <img src="{{public_path('assets/preview/images/tick-box.gif')}}" height="24" alt=""></button>
+                            <button type="submit" class="btn btn-custom mx-2" id="edit-form">Edit Form <img src="{{public_path('assets/preview/images/edit.svg')}}" height="24" alt=""></button>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -314,5 +312,3 @@
     </section>
     </body>
 </html>
-
-@include('includes/footer')

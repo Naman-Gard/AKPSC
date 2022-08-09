@@ -31,6 +31,23 @@
                 </div>
             </div>
 
+            <div class="row mt-3">
+                <div class="form-group col-md-4 d-none" id="specify_specialization_subject">
+                    <input type="text" placeholder="Please specify your Subject">
+                    <span class="text-danger" id="valid_specify_specialization_subject"></span>
+                </div>
+
+                <div class="form-group col-md-4 d-none" id="specify_specialization">
+                    <input type="text" placeholder="Please specify your Specialization">
+                    <span class="text-danger" id="valid_specify_specialization"></span>
+                </div>
+
+                <div class="form-group col-md-4 d-none" id="specify_super_specialization">
+                    <input type="text" placeholder="Please specify your Super Specialization">
+                    <span class="text-danger" id="valid_specify_super_specialization"></span>
+                </div>
+            </div>
+
             <div class="mb-3">
                 <input type="button" name="add-specialization" id="add-specialization" class="action-button" value="Add" />
             </div>
