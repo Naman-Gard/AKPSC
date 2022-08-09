@@ -95,14 +95,14 @@
             </div>
 
             <div>
-                <table class="table">
+                <table class="table step-table align-middle text-center">
                     <thead>
                         <tr>
-                            <th scope="col">S.no</th>
+                            <th scope="col" width="5%">S.no</th>
                             <th scope="col">Experience Type</th>
                             <th scope="col">Number of Years</th>
                             <th scope="col">Specify</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" width="5%">Action</th>
                         </tr>
                     </thead>
                     <tbody id="experience_list">
@@ -152,14 +152,14 @@
             </div>
 
             <div>
-                <table class="table">
+                <table class="table step-table align-middle text-center">
                     <thead>
                         <tr>
-                            <th scope="col">S.no</th>
+                            <th scope="col" width="5%">S.no</th>
                             <th scope="col">Organization Type</th>
                             <th scope="col">Organization Name</th>
                             <th scope="col">Number of Years</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" width="5%">Action</th>
                         </tr>
                     </thead>
                     <tbody id="organization_list">

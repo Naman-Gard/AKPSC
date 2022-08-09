@@ -180,22 +180,22 @@ select.list-dt:focus {
 }
 
 /*Icons in the ProgressBar*/
-#progressbar #account:before {
+#progressbar #step-1:before {
     font-family: FontAwesome;
     content: "\f023";
 }
 
-#progressbar #personal:before {
+#progressbar #step-2:before {
     font-family: FontAwesome;
     content: "\f007";
 }
 
-#progressbar #payment:before {
+#progressbar #step-3:before {
     font-family: FontAwesome;
     content: "\f09d";
 }
 
-#progressbar #confirm:before {
+#progressbar #step-4:before {
     font-family: FontAwesome;
     content: "\f00c";
 }
@@ -328,6 +328,10 @@ th {
     font-size: 1rem;
 }
 
+.step-table tbody td {
+    padding: 0;
+}
+
 span.text-danger {
     font-weight: 700;
 }
@@ -347,6 +351,10 @@ span.text-danger {
 
 .table td .btn img {
     height: 1.8rem;
+}
+
+.table td .btn {
+    padding: 0;
 }
 
 /*  */
@@ -373,25 +381,26 @@ span.text-danger {
     position: relative;
     font-weight: 400;
 }
-#progressbar #account:before {
+
+#progressbar #step-1:before {
     background-image: url("../../images/education.svg");
     background-repeat: no-repeat;
     background-position: center;
 }
 
-#progressbar #personal:before {
+#progressbar #step-2:before {
     background-image: url("../../images/experience.svg");
     background-repeat: no-repeat;
     background-position: center;
 }
 
-#progressbar #payment:before {
+#progressbar #step-3:before {
     background-image: url("../../images/work.svg");
     background-repeat: no-repeat;
     background-position: center;
 }
 
-#progressbar #confirm:before {
+#progressbar #step-4:before {
     background-image: url("../../images/upload.svg");
     background-repeat: no-repeat;
     background-position: center;

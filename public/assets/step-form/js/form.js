@@ -3,15 +3,33 @@ $(document).ready(function(){
     let current_fs, next_fs, previous_fs; //fieldsets
     let opacity,previous_data;
     if(typeof step!== 'undefined'){
+
+        const step_code={
+            'education':1,
+            'experience':2,
+            'preference':3,
+            'upload':4,
+        }
+
         $("#"+step+'_fieldset').css({
             'display': 'block',
             'position': 'relative'
         })
+        for(let i=2;i<=4;i++){
+            $('#step-'+i).removeClass('active')
+        }
+
         if(step!=='education'){
             $("#education_fieldset").css({
                 'display': 'none',
                 'position': 'relative'
             })
+            
+            for(let i=1;i<=step_code[step];i++){
+                if(!$('#step-'+i).hasClass('active')){
+                    $('#step-'+i).addClass('active')
+                }
+            }
         }
     }
     
