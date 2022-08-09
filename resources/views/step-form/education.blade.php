@@ -53,14 +53,14 @@
             </div>
 
             <div>
-                <table class="table">
+                <table class="table step-table align-middle text-center">
                     <thead>
                         <tr>
-                            <th scope="col">S.no</th>
+                            <th scope="col" width="5%">S.no</th>
                             <th scope="col">Subject</th>
                             <th scope="col">Specialization</th>
                             <th scope="col">Super Specialization</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" width="5%">Action</th>
                         </tr>
                     </thead>
                     <tbody id="specialization_list">
@@ -142,17 +142,17 @@
             </div>
 
             <div>
-                <table class="table">
+                <table class="table step-table align-middle text-center">
                     <thead>
                         <tr>
-                            <th scope="col">S.no</th>
+                            <th scope="col" width="5%">S.no</th>
                             <!-- <th scope="col">Specialization</th>
                             <th scope="col">Super Specialization</th> -->
                             <th scope="col">Deegre Name</th>
                             <th scope="col">Name</th>
                             <th scope="col">Subject</th>
                             <th scope="col">Passing Year</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" width="5%">Action</th>
                         </tr>
                     </thead>
                     <tbody id="education_list">
