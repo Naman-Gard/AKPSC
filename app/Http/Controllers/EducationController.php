@@ -46,7 +46,7 @@ class EducationController extends Controller
     }
 
      public function addEducation(Request $request){
-        $exist=Education::where('user_id',Auth::user()->id)->where('degree',$request->degree)->get();
+        $exist=Education::where('user_id',Auth::user()->id)->where('passing_year',$request->passing_year)->get();
         if(!sizeOf($exist)){
             $subjects=$request->subject;
 

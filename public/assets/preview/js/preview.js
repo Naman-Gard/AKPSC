@@ -15,15 +15,12 @@ $('#final-submit').click(()=>{
             type: "GET",
             url: base_url+'final/submit',
             success:function(){
-                location.href='submitted'
+                alert('Your Form is submitted successfully')
+                location.href='profile'
             }
         })
     }
     else{
-        alert('Please declare the form.')
+        alert('Please select the declaration.')
     }
 })
-
-$('#print-window').click(function() {
-    window.print();
-});

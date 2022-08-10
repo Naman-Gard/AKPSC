@@ -146,7 +146,7 @@ function educationValidation(){
                 response.forEach((item,index)=>{
                     if(item.error){
                         // $('#education_error').html('This degree is already exist.')
-                        $('#notify-message').html('This degree is already exist.')
+                        $('#notify-message').html('This degree year is already exist.')
                         $('#NotifyModal').modal('show')
                         return false
                     }

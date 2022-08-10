@@ -2,12 +2,11 @@
 @include('includes/nav')
 @include('step-form/form-head/index')
 <!-- partial -->
-<div class="container-fluid page-body-wrapper">
-    <!-- partial -->
-    <div class="main-panel">
-        <div class="content-wrapper">
-            <div class="row justify-content-center">
-                <div class="col-10 grid-margin stretch-card">
+<section class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-panel">
                     <div class="card">
                         <div class="card-body">
                             <!-- <h2 class="card-title">Education Details</h2> -->
@@ -22,15 +21,17 @@
                             </form>
                         </div>
                     </div>
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
+                    <!-- partial -->
                 </div>
             </div>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <!-- partial -->
     </div>
+    <!-- partial -->
+
     <!-- main-panel ends -->
-</div>
+</section>
 <!-- page-body-wrapper ends -->
 </div>
 
@@ -88,7 +89,7 @@
 </div>
 </body>
 <script>
-let token = '{{csrf_token()}}'
-let step = '{{$step}}'
+    let token = '{{csrf_token()}}'
+    let step = '{{$step}}'
 </script>
 @include('includes/footer')
