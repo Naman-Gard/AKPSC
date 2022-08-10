@@ -2,7 +2,10 @@
 @include('admin/includes/nav')
 
 <div class="container mt-5 p-5">
-    <div>
+    <div class="heading mb-3">
+        <h2>Users List</h2>
+    </div>
+    <div class="border p-5">
         <table class="table table-responsive">
             <thead>
                 <tr>

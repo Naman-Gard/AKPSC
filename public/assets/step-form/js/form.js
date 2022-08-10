@@ -55,7 +55,8 @@ $(document).ready(function(){
         $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
         
         //show the next fieldset
-        next_fs.show(); 
+        next_fs.show();
+        window.scrollTo(0, 0); 
         //hide the current fieldset with style
         current_fs.animate({opacity: 0}, {
             step: function(now) {
@@ -95,7 +96,7 @@ $(document).ready(function(){
         
         //show the previous fieldset
         previous_fs.show();
-    
+        window.scrollTo(0, 0);
         //hide the current fieldset with style
         current_fs.animate({opacity: 0}, {
             step: function(now) {

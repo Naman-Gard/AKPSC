@@ -1,14 +1,29 @@
 @include('includes/header')
 @include('includes/nav')
 
-    <div class="btn-sec d-flex justify-content-end me-5 mt-5 px-5 py-4">
-        <a href="{{route('generate-pdf')}}" target="_blank" class="btn download-btn btn-custom mx-2">Download <img src="{{asset('assets/images/download.svg')}}"></a>
-    </div>
-
-    <section class="preview ">
+    <section class="heading mt-5 pt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <div class="text-center mt-3">
+                        <h2 class="dark-green fw-bold">
+                            UTTARAKHAND PUBLIC SERVICE COMMISSION HARIDWAR 
+                        </h2>
+                        <h5 class="dark-green mb-0 fw-bold">ONLINE FORMAT FOR BIO-DATA OF EXPERTS</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="btn-sec d-flex justify-content-end me-5 px-5 pb-4">
+        <a href="{{route('generate-pdf')}}" target="_blank" class="btn download-btn btn-custom mx-2">Download <img src="{{asset('assets/images/download.svg')}}"></a>
+    </div>
+
+    <section class="preview">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-5">
                     <div class="heading">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="img-wrap">
@@ -25,66 +40,59 @@
                                 
                                 <tbody>
                                     <tr>
-                                        <td scope="col" colspan="2" class="text-center"><img src="{{asset('assets/uploads/images/'.$data['upload']['image'])}}" width="120" height="120" alt="photo"></td>
-                                        <td scope="col" class="text-center"><img src="{{asset('assets/uploads/signature/'.$data['upload']['signature'])}}" alt="signature" width="60" height="60"></td>
+                                        <td scope="col" class="text-center w-50"><img src="{{asset('assets/uploads/images/'.$data['upload']['image'])}}" width="120" height="120" alt="photo"></td>
+                                        <td scope="col" class="text-center w-50"><img src="{{asset('assets/uploads/signature/'.$data['upload']['signature'])}}" alt="signature" width="60" height="60"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">1.</th>
-                                        <td>Name :</td>
+                                        <th>Name :</th>
                                         <td>
                                             {{$data['personal_data']['name']}}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">2.</th>
-                                        <td>
+                                        <th>
                                             Father's Name :
-                                        </td>
+                                        </th>
                                         <td>
                                             {{$data['personal_data']['father_name']}}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">3.</th>
-                                        <td>
+                                        <th>
                                             Date of Birth :
-                                        </td>
+                                        </th>
                                         <td>
                                             {{$data['personal_data']['dob']}}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">4.</th>
-                                        <td>
+                                        <th>
                                             Gender :
-                                        </td>
+                                        </th>
                                         <td>
                                             {{$data['personal_data']['gender']}}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">5.</th>
-                                        <td>
+                                        <th>
                                             Category :
-                                        </td>
+                                        </th>
                                         <td>
                                             {{$data['personal_data']['category']}}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">6.</th>
-                                        <td>
+                                        <th>
                                             Mobile Number :
-                                        </td>
+                                        </th>
                                         <td>
                                             {{$data['personal_data']['mobile']}}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">7.</th>
-                                        <td>
+                                        <th>
                                             Email Id :
-                                        </td>
+                                        </th>
                                         <td>
                                             {{$data['personal_data']['email']}}
                                         </td>
@@ -94,10 +102,9 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="row" colspan="4">Education Details</th>
+                                        <th class="dark-green" scope="row" colspan="3">Education Details</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col">S.no</th>
                                         <th scope="col">Subject</th>
                                         <th scope="col">Specialization</th>
                                         <th scope="col">Super Specialization</th>
@@ -106,7 +113,6 @@
                                 <tbody>
                                     @foreach($data['education_data']['specialization'] as $key=>$specialization)
                                     <tr>
-                                        <th>{{$key+1}}</th>
                                         <td>{{$specialization['subject']}}</td>
                                         <td>{{$specialization['specialization']}}</td>
                                         <td>{{$specialization['super_specialization']}}</td>
@@ -117,10 +123,9 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="row" colspan="5">Qualification Details</th>
+                                        <th class="dark-green" scope="row" colspan="4">Qualification Details</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col">S.no</th>
                                         <th scope="col">Deegre</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Passing Year</th>
@@ -130,7 +135,6 @@
                                 <tbody>
                                     @foreach($data['education_data']['qualifications'] as $key=>$qualifications)
                                     <tr>
-                                        <th>{{$key+1}}</th>
                                         <td>{{$qualifications['degree']}}</td>
                                         <td>{{$qualifications['name']}}</td>
                                         <td>{{$qualifications['passing_year']}}</td>
@@ -143,29 +147,26 @@
                                 
                                 <tbody>
                                     <tr>
-                                        <th scope="row">8.</th>
-                                        <td>
+                                        <th class="w-50">
                                             Whether in serivce or retired?
 
-                                        </td>
-                                        <td>
+                                        </th>
+                                        <td class="w-50">
                                             {{$data['experience_data']['isworking']['isworking']}}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">9.</th>
-                                        <td>
+                                        <th>
                                             Designation (if Serving) :
-                                        </td>
+                                        </th>
                                         <td>
                                             {{$data['experience_data']['isworking']['designation']?$data['experience_data']['isworking']['designation']:'-'}}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">10.</th>
-                                        <td>
+                                        <th>
                                             Serving Under :
-                                        </td>
+                                        </th>
                                         <td>
                                             {{$data['experience_data']['isworking']['serving']?$data['experience_data']['isworking']['serving']:'-'}}
                                         </td>
@@ -175,10 +176,9 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="row" colspan="4">Total Teaching/ Professional Experience</th>
+                                        <th scope="row" class="dark-green"  colspan="3">Total Teaching/ Professional Experience</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col">S.no</th>
                                         <th scope="col">Experience Type</th>
                                         <th scope="col">Number of Years</th>
                                         <th scope="col">Specify</th>
@@ -187,7 +187,6 @@
                                 <tbody>
                                     @foreach($data['experience_data']['experience'] as $key=>$experience)
                                     <tr>
-                                        <th>{{$key+1}}</th>
                                         <td>{{$experience['type']}}</td>
                                         <td>{{$experience['year']}}</td>
                                         <td>{{$experience['specify']}}</td>
@@ -198,12 +197,11 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="row" colspan="4">Prior Experience of acting as Advisor/Expert in
+                                        <th class="dark-green" scope="row" colspan="3">Prior Experience of acting as Advisor/Expert in
                                             Interview Board (s)/Question paper setter/ Objective Item writer/ Moderator/
                                             Examiner/ Evaluator/ Syllabus Framing Organ.</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col">S.no</th>
                                         <th scope="col">Organisation Name</th>
                                         <th scope="col">Organisation Type</th>
                                         <th scope="col">Total Organisation Experience</th>
@@ -212,7 +210,6 @@
                                 <tbody>
                                     @foreach($data['experience_data']['organization'] as $key=>$organization)
                                     <tr>
-                                        <th>{{$key+1}}</th>
                                         <td>{{$organization['org_name']}}</td>
                                         <td>{{$organization['org_type']}}</td>
                                         <td>{{$organization['org_year']}}</td>
@@ -223,23 +220,21 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th colspan="3">Are you willing to be appointed as :</th>
+                                        <th colspan="2">Are you willing to be appointed as :</th>
                                     </tr>
                                     <tr>
-                                        <th scope="row">11.</th>
-                                        <td>
+                                        <th class="w-75">
                                             Question paper setter/ Objective Item writer/ Moderator/ Examiner/
                                             Evaluator/ Syllabus Framing
-                                        </td>
-                                        <td>
+                                        </th>
+                                        <td class="w-25">
                                             {{$data['preference_data']['preference']['paper_setter']}}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">12.</th>
-                                        <td>
+                                        <th>
                                             Expert in Interview Board (s)
-                                        </td>
+                                        </th>
                                         <td>
                                             {{$data['preference_data']['preference']['interview']}}
                                         </td>
@@ -249,19 +244,17 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="row" colspan="3">Language Proficiency</th>
+                                        <th class="dark-green" scope="row" colspan="2">Language Proficiency</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col">S.no</th>
-                                        <th scope="col">Language</th>
-                                        <th scope="col">Proficiency Level</th>
+                                        <th scope="col" class="w-50">Language</th>
+                                        <th scope="col"  class="w-50">Proficiency Level</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($data['preference_data']['language'] as $key=>$language)
                                     <tr>
-                                        <th>{{$key+1}}</th>
-                                        <td>{{$language['language']}}</td>
+                                        <td class="w-50">{{$language['language']}}</td>
                                         <td>{{$language['proficiency']}}</td>
                                     </tr>
                                     @endforeach
@@ -270,22 +263,20 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th scope="row">13.</th>
-                                        <td>
+                                        <th  class="w-50">
                                             Address :
-                                        </td>
-                                        <td>
+                                        </th>
+                                        <td  class="w-50">
                                             <div>{{$data['preference_data']['preference']['line_1']}}{{$data['preference_data']['preference']['line_2']}} , {{$data['preference_data']['preference']['district']}} , {{$data['preference_data']['preference']['state']}}</div>
                                             <div>Pincode: {{$data['preference_data']['preference']['pincode']}}</div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">14.</th>
-                                        <td>
+                                        <th>
                                             Have you ever faced any vigilance Enquiry or were debarred from University
                                             Examination work or any Public Service Commission or Hon’ble Courts. If yes,
                                             please indicate in brief :
-                                        </td>
+                                        </th>
                                         <td>
                                             <div>{{$data['preference_data']['preference']['enquiry']}}</div>
                                             <div>{{$data['preference_data']['preference']['brief']}}</div>
@@ -320,9 +311,3 @@
 </html>
 
 @include('includes/footer')
-
-<script>
-    $('document').ready(()=>{
-        alert('Your form is successfully submitted')
-    })
-</script>

@@ -7,6 +7,12 @@
 
 .dt-buttons button {
     padding: 2px;
+    background-color: #08848e;
+    color: #fff;
+}
+
+.heading {
+    color: #08848e;
 }
 
 .current {

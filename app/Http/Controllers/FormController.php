@@ -169,7 +169,7 @@ class FormController extends Controller
                 return view('step-form/preview/index',compact('data'));
             }
             else{
-                return redirect()->route('final-submitted');
+                return redirect()->route('profile');
             }
             
         }

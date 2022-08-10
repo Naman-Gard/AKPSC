@@ -129,7 +129,7 @@
                 <div class="input-div">
                     <!-- <label>Date of Birth (जन्म की तारीख)</label> -->
                     <label for="dob" class="form-label">Date of Birth (जन्म की तारीख) <span class="red-feild">*</span></label>
-                    <input type="date" name="dob" required autocomplete="off"/>
+                    <input type="text" name="dob" id="dob" required autocomplete="off" placeholder="dd/mm/yyyy"/>
                     <p class="text-danger" id="valid_dob"></p>
                 </div>
                 <div class="input-div">
@@ -200,7 +200,7 @@
                 <div class="d-none" id="otp_input">
                     <label class="form-label">OTP</label>
                     <input type="text" name="otp" id="otp">
-                    <span class="text-danger" id="valid_otp"></span>
+                    <p class="text-danger" id="valid_otp"></p>
                     <div id="ten-countdown"></div>
                     <div class="d-none" id="resend-otp">
                         <input class="next_button myBtn" type="button" id="resend-otp-btn" value="Resend OTP"/>
@@ -504,5 +504,12 @@
             }
         })
     }
+
+    $('document').ready(()=>{
+        $("#dob").datepicker({
+            date: true,
+            dateFormat: 'dd/mm/yy'
+        })
+    })
 
 </script>

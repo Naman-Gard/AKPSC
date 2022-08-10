@@ -32,10 +32,13 @@ Route::group(["middleware" => ["islogin"]], function(){
     Route::get('preview', 'App\Http\Controllers\FormController@preview')->name('preview');
     Route::get('edit/Form', 'App\Http\Controllers\FormController@editForm');
     Route::get('final/submit', 'App\Http\Controllers\FormController@finalSubmit');
-    Route::get('submitted', 'App\Http\Controllers\FormController@finalView')->name('final-submitted');
+    Route::get('form-view', 'App\Http\Controllers\FormController@finalView')->name('form-view');
     Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
     Route::post('submit', 'App\Http\Controllers\FormController@submit')->name('submit');
     Route::get('generate-pdf', 'App\Http\Controllers\FormController@generatePDF')->name('generate-pdf');
+
+    //Profile Route//
+    Route::get('profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
 
     //Education Routes//
     Route::post('add/specialization', 'App\Http\Controllers\EducationController@addSpecialization');

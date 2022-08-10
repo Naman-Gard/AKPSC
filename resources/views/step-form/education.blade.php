@@ -74,7 +74,7 @@
             <span class="text-danger" id="education_error"></span>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Deegre <span class="text-danger">*</span></label>
+                    <label for="exampleInputEmail3">Degree Type <span class="text-danger">*</span></label>
                     <select class="form-select mb-2 secondList_input" id="degree">
                         <option value="">Select</option>
                     </select>
@@ -82,7 +82,7 @@
                 </div>
                 <!--  -->
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail3">Name <span class="text-danger">*</span></label>
+                    <label for="exampleInputEmail3">Degree Name <span class="text-danger">*</span></label>
                     <select class="form-select mb-2 secondList_input" id="name">
                         <option value="">Select</option>
                     </select>
@@ -148,8 +148,8 @@
                             <th scope="col" width="5%">S.no</th>
                             <!-- <th scope="col">Specialization</th>
                             <th scope="col">Super Specialization</th> -->
-                            <th scope="col">Deegre Name</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">Degree Type</th>
+                            <th scope="col">Degree Name</th>
                             <th scope="col">Subject</th>
                             <th scope="col">Passing Year</th>
                             <th scope="col" width="5%">Action</th>
