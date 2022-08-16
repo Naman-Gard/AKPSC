@@ -7,6 +7,12 @@ body {
     background-image: url(../../images/news_bg.png);
     background-position: center;
     background-size: cover;
+    font-family: 'Roboto', sans-serif !important;
+    letter-spacing: 1px;
+}
+.navbar {
+    font-family: 'Roboto', sans-serif !important;
+    letter-spacing: 1px;
 }
 
 html {
@@ -28,7 +34,7 @@ html {
 #msform {
     text-align: center;
     position: relative;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 #msform fieldset .form-card {
@@ -36,7 +42,7 @@ html {
     border: 0 none;
     border-radius: 0px;
     /* box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2); */
-    padding: 20px;
+    padding: 15px;
     box-sizing: border-box;
     width: 100%;
     /* margin: 0 3% 20px 3%; */
@@ -70,7 +76,7 @@ html {
 
 #msform input,
 #msform textarea {
-    padding: 0px 8px 4px 8px;
+    padding: 6px 8px 4px 8px;
     border: none;
     border-bottom: 1px solid #07838c;
     border-radius: 0px;
@@ -78,7 +84,7 @@ html {
     margin-top: 2px;
     width: 100%;
     box-sizing: border-box;
-    font-family: montserrat;
+    /* font-family: montserrat; */
     color: #2c3e50;
     font-size: 1rem;
     letter-spacing: 1px;
@@ -173,7 +179,7 @@ select.list-dt:focus {
 
 /*progressbar*/
 #progressbar {
-    margin: 1rem;
+    margin: 0.5rem 1rem;
     padding: 0;
     overflow: hidden;
     color: #adaaaa;
@@ -287,7 +293,8 @@ select.list-dt:focus {
 
 .form-group label {
     color: #000;
-    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
     font-weight: 500;
     font-size: 1.2rem;
 }
@@ -371,11 +378,11 @@ span.text-danger {
 
 /*  */
 .form-head {
-    margin-top: 8rem;
+    margin-top: 7rem;
 }
 
 #progressbar {
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     overflow: hidden;
     color: #adaaaa;
 }
@@ -463,4 +470,25 @@ span.text-danger {
     height: 6rem;
     display: flex;
     align-items: center;
+}
+
+.custom-add .action-button {
+    width: 5rem !important;
+    padding: 6px 5px !important;
+    margin: 2.4rem 0 0 !important;
+}
+
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown {
+    margin-left: 7rem !important;
+}
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item {
+    font-size: 1.2rem !important;
+    color: #07838c;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #ffffff !important;
+    background-color: #08848d !important;
+}
+.note-txt {
+    margin-top: -1rem;
 }

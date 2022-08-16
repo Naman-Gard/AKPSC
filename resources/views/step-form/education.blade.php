@@ -6,28 +6,45 @@
         <div class="container border mb-3 p-3">
             <span class="text-danger" id="specialization_error"></span>
             <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="exampleInputEmail3">Subject <span class="text-danger">*</span></label>
-                    <select class="form-select mb-2 firstList_input" id="specialization_subject">
-                        <option value="">Select</option>
-                    </select>
-                    <span class="text-danger" id="valid_specialization_subject"></span>
+                <div class="col-md-11">
+                    <div class="form-sec">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail3">Subject <span class="text-danger">*</span></label>
+                                    <select class="form-select mb-2 firstList_input" id="specialization_subject">
+                                        <option value="">Select</option>
+                                    </select>
+                                    <span class="text-danger" id="valid_specialization_subject"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail3">Specialization <span class="text-danger">*</span></label>
+                                    <select class="form-select mb-2 firstList_input" id="specialization">
+                                        <option value="">Select</option>
+                                    </select>
+                                    <span class="text-danger" id="valid_specialization"></span>
+                                </div>
+            
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail3">Super Specialization <span class="text-danger">*</span></label>
+                                    <select class="form-select mb-2 firstList_input" id="super_specialization">
+                                        <option value="">Select</option>
+                                    </select>
+                                    <span class="text-danger" id="valid_super_specialization"></span>
+                                </div>
+            
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="form-group col-md-4">
-                    <label for="exampleInputEmail3">Specialization <span class="text-danger">*</span></label>
-                    <select class="form-select mb-2 firstList_input" id="specialization">
-                        <option value="">Select</option>
-                    </select>
-                    <span class="text-danger" id="valid_specialization"></span>
-                </div>
-
-                <div class="form-group col-md-4">
-                    <label for="exampleInputEmail3">Super Specialization <span class="text-danger">*</span></label>
-                    <select class="form-select mb-2 firstList_input" id="super_specialization">
-                        <option value="">Select</option>
-                    </select>
-                    <span class="text-danger" id="valid_super_specialization"></span>
+                <div class="col-md-1">
+                    <div class="custom-add">
+                        <input type="button" name="add-specialization" id="add-specialization" class="action-button" value="Add" />
+                    </div>
                 </div>
             </div>
 
@@ -48,9 +65,7 @@
                 </div>
             </div>
 
-            <div class="mb-3">
-                <input type="button" name="add-specialization" id="add-specialization" class="action-button" value="Add" />
-            </div>
+            
 
             <div>
                 <table class="table step-table align-middle text-center">
@@ -70,7 +85,7 @@
         </div>
         
         <div class="container border p-3">
-            <h4 class="mb-4">Qualification Details</h4>
+            <h4 class="mb-2">Qualification Details</h4>
             <span class="text-danger" id="education_error"></span>
             <div class="row">
                 <div class="form-group col-md-6">

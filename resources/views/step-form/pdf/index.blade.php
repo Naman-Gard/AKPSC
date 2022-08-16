@@ -292,23 +292,29 @@ table {
                     <div class="preview-form">
                         <div class="table-responsive">
                             <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50%;"></th>
+                                        <th style="width: 50%;"></th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <tr>
-                                        <th  class="w-50">
+                                        <th  class="" style="width: 50%;">
                                             Address :
                                         </th>
-                                        <td  class="w-50">
+                                        <td  class="" style="width: 50%;">
                                             <div>{{$data['preference_data']['preference']['line_1']}}{{$data['preference_data']['preference']['line_2']}} , {{$data['preference_data']['preference']['district']}} , {{$data['preference_data']['preference']['state']}}</div>
                                             <div>Pincode: {{$data['preference_data']['preference']['pincode']}}</div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>
+                                        <th  style="width: 50%;">
                                             Have you ever faced any vigilance Enquiry or were debarred from University
                                             Examination work or any Public Service Commission or Hon’ble Courts. If yes,
                                             please indicate in brief :
                                         </th>
-                                        <td>
+                                        <td style="width: 50%;">
                                             <div>{{$data['preference_data']['preference']['enquiry']}}</div>
                                             <div>{{$data['preference_data']['preference']['brief']}}</div>
                                         </td>

@@ -100,7 +100,7 @@
         <div class="modal-header align-items-start">
             <div class="d-flex align-items-center">
                 <div class="img-wrap text-center">
-                    <img src="{{asset('assets/images/ukpsc_logo.png')}}" width="150">
+                    <img src="{{asset('assets/images/ukpsc_logo.png')}}" width="120">
                 </div>
                 <div>
                     <h3 class="text-white register-name">
@@ -129,7 +129,7 @@
                 <div class="input-div">
                     <!-- <label>Date of Birth (जन्म की तारीख)</label> -->
                     <label for="dob" class="form-label">Date of Birth (जन्म की तारीख) <span class="red-feild">*</span></label>
-                    <input type="text" name="dob" id="dob" required autocomplete="off" placeholder="dd/mm/yyyy"/>
+                    <input type="date" name="dob" id="dob" required autocomplete="off" placeholder="dd/mm/yyyy"/>
                     <p class="text-danger" id="valid_dob"></p>
                 </div>
                 <div class="input-div">
@@ -505,11 +505,11 @@
         })
     }
 
-    $('document').ready(()=>{
-        $("#dob").datepicker({
-            date: true,
-            dateFormat: 'dd/mm/yy'
-        })
-    })
+    // $('document').ready(()=>{
+    //     $("#dob").datepicker({
+    //         date: true,
+    //         dateFormat: 'dd/mm/yy'
+    //     })
+    // })
 
 </script>

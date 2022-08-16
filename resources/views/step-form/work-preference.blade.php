@@ -39,7 +39,7 @@
         </div>
 
         <div class="container border mb-3 p-3">
-            <h4 class="mb-4">Language Proficiency</h4>
+            <h4 class="mb-2">Language Proficiency</h4>
             <span class="text-danger" id="language_error"></span>
             <div class="row">
                 <!-- <div class="col-md-6">
@@ -62,31 +62,41 @@
 
                     </div>
                 </div> -->
-                <div class="form-group col-md-6">
-                    <label>Language <span class="text-danger">*</span></label>
-                    <select class="form-select" name="language" id="language">
-                        <option value="">Select</option>
-                        <option value="Hindi">Hindi</option>
-                        <option value="English">English</option>
-                        <option value="Sanskrit">Sanskrit</option>
-                    </select>
-                    <span class="text-danger" id="valid_language"></span>
+                <div class="col-md-11">
+                    <div class="form-sec">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Language <span class="text-danger">*</span></label>
+                                <select class="form-select" name="language" id="language">
+                                    <option value="">Select</option>
+                                    <option value="Hindi">Hindi</option>
+                                    <option value="English">English</option>
+                                    <option value="Sanskrit">Sanskrit</option>
+                                </select>
+                                <span class="text-danger" id="valid_language"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Proficiency Level <span class="text-danger">*</span></label>
+                                <select class="form-select" name="proficiency" id="proficiency">
+                                    <option value="">Select</option>
+                                    <option value="Excellent">Excellent</option>
+                                    <option value="Good">Good</option>
+                                    <option value="Fair">Fair</option>
+                                </select>
+                                <span class="text-danger" id="valid_proficiency"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <label>Proficiency Level <span class="text-danger">*</span></label>
-                    <select class="form-select" name="proficiency" id="proficiency">
-                        <option value="">Select</option>
-                        <option value="Excellent">Excellent</option>
-                        <option value="Good">Good</option>
-                        <option value="Fair">Fair</option>
-                    </select>
-                    <span class="text-danger" id="valid_proficiency"></span>
+                <div class="col-md-1">
+                    <div class="custom-add mt-1">
+                        <input type="button" name="add-language" id="add-language" class="action-button" value="Add" />
+                    </div>
                 </div>
-                <div class="mb-3 mt-3">
-                    <input type="button" name="add-language" id="add-language" class="action-button" value="Add" />
-                </div>
+                
+                
 
-                <div>
+                <div class="table-responsive mt-4">
                 <table class="table step-table align-middle text-center">
                     <thead>
                         <tr>
@@ -105,7 +115,7 @@
 
         <div class="container border mb-3 p-3">
             <div class="row">
-                <h4 class="mb-4">Address</h4>
+                <h4 class="mb-3">Address</h4>
                 <div class="form-group mb-4">
                     <label for="exampleInputEmail3">Line 1 <span class="text-danger">*</span></label>
                     <input type="text" autocomplete="off" class="prefrence_input mb-2" id="line_1" name="line_1" placeholder="Line 1" />
