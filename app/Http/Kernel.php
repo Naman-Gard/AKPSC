@@ -51,6 +51,9 @@ class Kernel extends HttpKernel
         ],
         'adminlogin'=>[
             \App\Http\Middleware\AdminAuth::class,
+        ],
+        'adminlogout'=>[
+            \App\Http\Middleware\AdminLogout::class,
         ]
     ];
 

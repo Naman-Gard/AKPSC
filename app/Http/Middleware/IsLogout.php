@@ -18,12 +18,7 @@ class IsLogout
     public function handle(Request $request, Closure $next)
     {
         if(Auth::user()){
-            if(Auth::user()->type==='user'){
-                return redirect()->route('fill-details');
-            }
-            else{
-                return redirect()->route('dashboard');
-            }
+            return redirect()->route('fill-details');
         }
         else{
             return $next($request);

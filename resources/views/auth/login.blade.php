@@ -36,7 +36,7 @@
                                         <div class="input-div">
                                             <label for="email" class="form-label">User ID / Email ID (यूज़र आईडी
                                                 / ईमेल आईडी)</label>
-                                            <input type="text" name="email" required autocomplete="off">
+                                            <input type="email" name="email" required autocomplete="off">
                                             <!-- <span>Institute ID / Email ID (संस्थान आईडी / ईमेल आईडी)</span> -->
                                         </div>
                                         <div class="input-div">
@@ -52,9 +52,10 @@
                                         <a id="forget-button">Forgot Password? (पासवर्ड भूल गए?)</a>
                                     </p>
                                     <p>
-                                        Don't have a UKPSC ID? (यूकेपीएससी आईडी नहीं है?)<br>
+                                        
                                         <!-- <a id="register-here">Register Here! (यहां रजिस्टर करें!)</a> -->
                                         <a type="button" data-bs-toggle="modal" data-bs-target="#registerModal">
+                                            Don't have a UKPSC ID? (यूकेपीएससी आईडी नहीं है?)<br>
                                             Register Here! (यहां रजिस्टर करें!)
                                         </a>
                                     </p>
@@ -128,8 +129,13 @@
                 </div>
                 <div class="input-div">
                     <!-- <label>Date of Birth (जन्म की तारीख)</label> -->
-                    <label for="dob" class="form-label">Date of Birth (जन्म की तारीख) <span class="red-feild">*</span></label>
-                    <input type="text" name="dob" id="dob" required autocomplete="off" placeholder="dd/mm/yyyy"/>
+                    <!-- <label for="dob" class="form-label">Date of Birth (जन्म की तारीख) <span class="red-feild">*</span></label>
+                    <input type="text" name="dob" id="dob" data-date-format="dd/mm/yyyy" required autocomplete="off" placeholder="dd/mm/yyyy"/> -->
+                    <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+                    <input placeholder="Select date" type="text" id="dob" class="form-control">
+                    <label for="example">Try me...</label>
+                    <i class="fas fa-calendar input-prefix"></i>
+                    </div>
                     <p class="text-danger" id="valid_dob"></p>
                 </div>
                 <div class="input-div">
@@ -303,6 +309,17 @@
             flag.push(false)
         }
 
+        $("#dob").blur(function(){
+            val = $(this).val();
+            val1 = Date.parse(val);
+            if (isNaN(val1)==true && val!==''){
+                $('#valid_dob').html("Please enter valid date");
+            }
+            else{
+                $('#valid_dob').html("");
+            }
+        });
+
         return flag.includes(false) ? false : true
     }
 
@@ -338,7 +355,7 @@
                 headers: {
                     'Access-Control-Allow-Origin': '*'
                 },
-                url: base_url + 'check/isEmailRegistered/'+email,
+                url: base_url + 'check/isEmailRegistered/'+btoa(email),
                 success:function(response){
                     if(response.status==='Already Exist'){
                         $('#valid_email').html("This Email is already registered");
@@ -507,8 +524,7 @@
 
     $('document').ready(()=>{
         $("#dob").datepicker({
-            date: true,
-            dateFormat: 'dd/mm/yy'
+            inline: true
         })
     })
 

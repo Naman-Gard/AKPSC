@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 
-class AdminAuth
+class AdminLogout
 {
     /**
      * Handle an incoming request.
@@ -19,10 +19,10 @@ class AdminAuth
     public function handle(Request $request, Closure $next)
     {
         if(Session::has('admin-user')){
-            return $next($request);
+            return redirect()->route('dashboard');
         }
         else{
-            return redirect()->route('secure-admin');
+            return $next($request);
         }
     }
 }

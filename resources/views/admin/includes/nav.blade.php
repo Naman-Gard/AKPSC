@@ -9,7 +9,7 @@
                         src="{{asset('assets/step-form/images/logo-mini.svg')}}" alt="logo" /></a> -->
                 <div class="nav-welcome-text px-4">
                     <p class="mb-0 text-white fw-bold">Welcome!</p>
-                    <p class="mb-1 text-white fw-bold">{{Auth::user()->name}}</p>
+                    <p class="mb-1 text-white fw-bold">{{Session::get('admin-user')->name}}</p>
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-stretch">
                     <ul class="navbar-nav navbar-nav-right">
@@ -21,7 +21,7 @@
                                     <span class="availability-status online"></span>
                                 </div> -->
                                 <div class="nav-profile-text">
-                                    <p class="mb-1 text-white fw-bold">{{Auth::user()->name}}</p>
+                                    <p class="mb-1 text-white fw-bold">{{Session::get('admin-user')->name}}</p>
                                 </div>
                             </a>
                             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">

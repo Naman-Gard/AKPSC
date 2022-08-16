@@ -8,7 +8,7 @@
                         <label for="flexRadioDefault1">Image <span class="text-danger">*</span></label>
                     </div>
                     <div class="col-md-12">
-                        <div class="img-wrapper">
+                        <div class="img-wrapper d-none">
                             <img id="image_preview" src="#" alt="" height="90" />
                         </div>
                         <input class="upload_input" type="file" name="image" id="image">
@@ -27,7 +27,7 @@
                         <label for="flexRadioDefault1"> Signature <span class="text-danger">*</span></label>
                     </div>
                     <div class="col-md-12">
-                        <div class="img-wrapper">
+                        <div class="img-wrapper d-none">
                             <img id="sig_preview" src="#" alt="" height="90" />
                         </div>
                         <input class="upload_input" type="file" name="signature" id="signature">

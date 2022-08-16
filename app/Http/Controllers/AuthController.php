@@ -36,11 +36,12 @@ class AuthController extends Controller
                 $credentials[$key]=base64_decode($item);
             }
         }
+        $credentials['type']='user';
         // dd($credentials);
         if (Auth::attempt($credentials)) {
             return Redirect()->route('fill-details')->with('success','Login Successfully');
         }
-        return redirect()->back()->with('success','Invalid Credentials');
+        return redirect()->route('/')->with('success','Invalid Credentials');
     }
 
     public function logout(){

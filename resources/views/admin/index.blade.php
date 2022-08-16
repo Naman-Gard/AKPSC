@@ -2,7 +2,20 @@
 @include('admin/includes/nav')
 
 <div class="container mt-5 p-5">
-    <div class="heading mb-3">
+
+    <div class="row d-flex justify-content-center mb-2">
+        <section class="col-md-3 m-3 p-3 border">
+            <p>Number of Expert Registered: </p><span></span>
+        </section>
+        <section class="col-md-3 m-3 p-3 border">
+            <p>Number of Expert Empanelled: </p><span></span>
+        </section>
+        <section class="col-md-3 m-3 p-3 border">
+            <p>Number of Expert Backlisted: </p><span></span>
+        </section>
+    </div>
+
+    <!-- <div class="heading mb-3">
         <h2>Users List</h2>
     </div>
     <div class="border p-5">
@@ -32,7 +45,7 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </div> -->
 </div>
 </body>
 

@@ -4,7 +4,7 @@
 <script src="{{asset('assets/step-form/vendors/js/vendor.bundle.base.js')}}"></script>
 <script src="{{ asset('assets/js/jquery.dataTables.min.js')}}"></script>
 <script>
-let base_url = "http://localhost:8000/";
+let base_url = "{{env('BASE_URL')}}";
 let educationDataStatus = 0,
     SpecializationStatus = 0,
     experienceDataStatus = 0,
