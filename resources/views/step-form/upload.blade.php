@@ -12,7 +12,7 @@
                             <img id="image_preview" src="#" alt="" height="90" />
                         </div>
                         <input class="upload_input" type="file" name="image" id="image">
-                        <p>Note: Allow only jpg,png,jpeg file</p>
+                        <p class="mb-0 note-txt">Note: Allow only jpg,png,jpeg file</p>
                         @error('image')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -31,7 +31,7 @@
                             <img id="sig_preview" src="#" alt="" height="90" />
                         </div>
                         <input class="upload_input" type="file" name="signature" id="signature">
-                        <p>Note: Allow only jpg,png,jpeg file</p>
+                        <p class="mb-0 note-txt">Note: Allow only jpg,png,jpeg file</p>
                         @error('signature')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -44,7 +44,7 @@
             <div class="form-group mb-4 col-md-6">
                 <label class="upload_input" for="flexRadioDefault1">CV <span class="text-danger">*</span></label>
                 <input type="file" name="cv" id="cv">
-                <p>Note: Allow only pdf file</p>
+                <p class="mb-0 note-txt">Note: Allow only pdf file</p>
                 @error('cv')
                 <span class="text-danger">{{$message}}</span>
                 @enderror

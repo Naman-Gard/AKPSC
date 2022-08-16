@@ -101,7 +101,7 @@
         <div class="modal-header align-items-start">
             <div class="d-flex align-items-center">
                 <div class="img-wrap text-center">
-                    <img src="{{asset('assets/images/ukpsc_logo.png')}}" width="150">
+                    <img src="{{asset('assets/images/ukpsc_logo.png')}}" width="120">
                 </div>
                 <div>
                     <h3 class="text-white register-name">
@@ -129,13 +129,8 @@
                 </div>
                 <div class="input-div">
                     <!-- <label>Date of Birth (जन्म की तारीख)</label> -->
-                    <!-- <label for="dob" class="form-label">Date of Birth (जन्म की तारीख) <span class="red-feild">*</span></label>
-                    <input type="text" name="dob" id="dob" data-date-format="dd/mm/yyyy" required autocomplete="off" placeholder="dd/mm/yyyy"/> -->
-                    <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
-                    <input placeholder="Select date" type="text" id="dob" class="form-control">
-                    <label for="example">Try me...</label>
-                    <i class="fas fa-calendar input-prefix"></i>
-                    </div>
+                    <label for="dob" class="form-label">Date of Birth (जन्म की तारीख) <span class="red-feild">*</span></label>
+                    <input type="date" name="dob" id="dob" required autocomplete="off" placeholder="dd/mm/yyyy"/>
                     <p class="text-danger" id="valid_dob"></p>
                 </div>
                 <div class="input-div">
@@ -521,11 +516,5 @@
             }
         })
     }
-
-    $('document').ready(()=>{
-        $("#dob").datepicker({
-            inline: true
-        })
-    })
 
 </script>

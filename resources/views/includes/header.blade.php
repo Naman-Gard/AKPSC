@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{asset('assets/preview/css/style.css')}}">
     <!-- <link rel="stylesheet" href="{{asset('assets/step-form/css/style.css')}}"> -->
     <link rel="stylesheet" href="{{asset('assets/step-form/css/form.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/step-form/css/font.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/step-form/images/favicon.ico')}}" />
 
