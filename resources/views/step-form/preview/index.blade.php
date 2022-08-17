@@ -7,9 +7,8 @@
             <div class="col-md-12">
                 <div class="text-center mt-3">
                     <h2 class="dark-green fw-bold">
-                        UTTARAKHAND PUBLIC SERVICE COMMISSION HARIDWAR 
+                        Form Preview
                     </h2>
-                    <h5 class="dark-green mb-0 fw-bold">ONLINE FORMAT FOR BIO-DATA OF EXPERTS</h5>
                 </div>
             </div>
         </div>
@@ -20,12 +19,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="heading">
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
                             <div class="img-wrap">
                                 <img src="{{asset('assets/preview/images/ukpsc_logo.png')}}" width="120" alt="">
                             </div>
-                            <div class="content">
-                                <h3 class="text-white mb-0 me-2">Form Preview</h3>
+                            <div class="content text-center">
+                                <h2 class="text-white me-2 fw-bold">
+                                UTTARAKHAND PUBLIC SERVICE COMMISSION HARIDWAR 
+                                </h2>
+                                <h5 class="text-white mb-0 fw-bold">ONLINE FORMAT FOR BIO-DATA OF EXPERTS</h5>
                             </div>
                         </div>
                     </div>
@@ -34,14 +36,24 @@
                             <table class="table">
                                 
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <td scope="col" class="text-center w-50"><img src="{{asset('assets/uploads/images/'.$data['upload']['image'])}}" width="120" height="120" alt="photo"></td>
                                         <td scope="col" class="text-center w-50"><img src="{{asset('assets/uploads/signature/'.$data['upload']['signature'])}}" alt="signature" width="60" height="60"></td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <th>Name :</th>
                                         <td>
                                             {{$data['personal_data']['name']}}
+                                        </td>
+                                        <td rowspan="7">
+                                            <div class="img-wrap text-center d-flex flex-column">
+                                                <div class="img1 mb-4">
+                                                    <img src="{{asset('assets/uploads/images/'.$data['upload']['image'])}}" width="140" height="140" alt="photo">
+                                                </div>
+                                                <div class="img2">
+                                                    <img src="{{asset('assets/uploads/signature/'.$data['upload']['signature'])}}" alt="signature" width="100" height="60">
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
