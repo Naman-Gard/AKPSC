@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('user_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('register_id');
-            $table->string('empanelled');
-            $table->string('blacklisted');
+            $table->integer('user_id')->unique();
+            $table->string('register_id')->unique();
+            $table->string('empanelled')->nullable();
+            $table->string('blacklisted')->nullable();
+            $table->string('appointed')->nullable();
             $table->timestamps();
         });
     }

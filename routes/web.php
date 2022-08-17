@@ -69,12 +69,6 @@ Route::group(["middleware" => ["islogin"]], function(){
 
 
 // Admin Panel Routes
-
-Route::group(["middleware" => ["adminlogin"]], function(){
-    Route::get('secure-admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
-    Route::get('secure-admin/logout', 'App\Http\Controllers\AdminController@logout')->name('admin-logout');
-});
-
 Route::group(["middleware" => ["adminlogout"]], function(){
 
     Route::get('secure-admin', function () {
@@ -82,4 +76,9 @@ Route::group(["middleware" => ["adminlogout"]], function(){
     })->name('secure-admin');
 
     Route::post('secure-admin/login', 'App\Http\Controllers\AdminController@login')->name('admin-login');
+});
+
+Route::group(["middleware" => ["adminlogin"]], function(){
+    Route::get('secure-admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
+    Route::get('secure-admin/logout', 'App\Http\Controllers\AdminController@logout')->name('admin-logout');
 });

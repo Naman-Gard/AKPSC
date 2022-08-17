@@ -243,6 +243,8 @@ function specializationValidation(){
                     $('#specify_super_specialization').addClass('d-none')
                 }
                 let innerhtml=''
+                getEducationDetails()
+
                 response.forEach((item,index)=>{
                     innerhtml+=`<tr>
                             <th scope="row">${index+1}</th>
@@ -296,10 +298,18 @@ function finalEduactionValidation(){
 }
 
 function getEducationDetails(){
+    $('#super_specialization').find('option').not(':first').remove();
+    $('#specialization').find('option').not(':first').remove();
+    $('#specialization_subject').find('option').not(':first').remove();
+    $('#degree').find('option').not(':first').remove();
     $.ajax({
         type: "GET",
         url: base_url+'getSubjects',
         success:function(response){
+
+            $('#super_specialization').append(`<option value="Not Applicable">Not Applicable</option>`)
+            $('#specialization').append(`<option value="Not Applicable">Not Applicable</option>`)
+            $('#specialization_subject').append(`<option value="Not Applicable">Not Applicable</option>`)
             response.forEach((subject)=>{
                 $('#super_specialization').append(`<option value="${subject.subject_list}">${subject.subject_list}</option>`)
                 $('#specialization').append(`<option value="${subject.subject_list}">${subject.subject_list}</option>`)
@@ -308,16 +318,16 @@ function getEducationDetails(){
             $('#super_specialization').append(`<option value="Other">Other</option>`)
             $('#specialization').append(`<option value="Other">Other</option>`)
             $('#specialization_subject').append(`<option value="Other">Other</option>`)
-            $('#super_specialization').append(`<option value="Not Applicable">Not Applicable</option>`)
-            $('#specialization').append(`<option value="Not Applicable">Not Applicable</option>`)
-            $('#specialization_subject').append(`<option value="Not Applicable">Not Applicable</option>`)
+            
         }
     })
+
     $.ajax({
         type: "GET",
         url: base_url+'getQualifications',
         success:function(response){
             qualificationDetails=response
+
             Object.keys(response).forEach((degree)=>{
                 $('#degree').append(`<option value="${degree}">${degree}</option>`)
             })

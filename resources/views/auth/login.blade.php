@@ -55,7 +55,7 @@
                                         
                                         <!-- <a id="register-here">Register Here! (यहां रजिस्टर करें!)</a> -->
                                         <a type="button" data-bs-toggle="modal" data-bs-target="#registerModal">
-                                            Don't have a UKPSC ID? (यूकेपीएससी आईडी नहीं है?)<br>
+                                            Don't have a UKPSC Registration? (यूकेपीएससी पंजीकरण नहीं है?)<br>
                                             Register Here! (यहां रजिस्टर करें!)
                                         </a>
                                     </p>
@@ -67,10 +67,10 @@
                                         @csrf
                                         <h2 class="text-white fw-bold text-center">Forget Password</h2>
                                         <div class="input-div">
+                                            <p id="valid_forget_email" class="text-danger"></p>
                                             <label for="email" class="form-label">Email ID (ईमेल आईडी)</label>
                                             <input type="email" name="forget_email" required autocomplete="off">
                                             <!-- <span>Institute ID / Email ID (संस्थान आईडी / ईमेल आईडी)</span> -->
-                                            <span id="valid_forget_email"></span>
                                         </div>
                                         <div class="buttons">
                                             <button class="next_button">Proceed</button>
@@ -395,8 +395,8 @@
             url: base_url + 'send/otp/'+btoa(email)+'/'+btoa(OTP),
         })
         otp=OTP
-        console.log(otp)
-        countdown( "ten-countdown", 1, 0 );
+        // console.log(otp)
+        countdown( "ten-countdown", 4, 0 );
     }
 
     function countdown( elementName, minutes, seconds )
@@ -484,13 +484,14 @@
                 headers: {
                     'Access-Control-Allow-Origin': '*'
                 },
-                url: base_url + 'check/isEmailRegistered/'+email,
+                url: base_url + 'check/isEmailRegistered/'+btoa(email),
                 success:function(response){
                     if(response.status==='Already Exist'){
                         sendResetLink(email)
                     }
                     else{
-                        $('#valid_forget_email').html("This Email is not registered");
+                        $('#valid_forget_email').html("Unauthorized User");
+                        $('input[name=forget_email]').val('')
                     }
                 }
             })
@@ -505,7 +506,7 @@
             headers: {
                 'Access-Control-Allow-Origin': '*'
             },
-            url: base_url + 'send/reset/link/'+email,
+            url: base_url + 'send/reset/link/'+btoa(email),
             success:function(response){
                 if(response.status==='Success'){
                     $('#valid_forget_email').html("Password Reset Link is sent to registered Email");
@@ -513,6 +514,7 @@
                 else{
                     $('#valid_forget_email').html("Unauthorized User");
                 }
+                $('input[name=forget_email]').val('')
             }
         })
     }
