@@ -130,7 +130,7 @@
                 <div class="input-div">
                     <!-- <label>Date of Birth (जन्म की तारीख)</label> -->
                     <label for="dob" class="form-label">Date of Birth (जन्म की तारीख) <span class="red-feild">*</span></label>
-                    <input type="date" name="dob" id="dob" required autocomplete="off" placeholder="dd/mm/yyyy"/>
+                    <input type="text" name="dob" id="dob" required autocomplete="off" placeholder="dd/mm/yyyy"/>
                     <p class="text-danger" id="valid_dob"></p>
                 </div>
                 <div class="input-div">
@@ -518,5 +518,12 @@
             }
         })
     }
+
+    $("#dob").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "dd/mm/yy",
+        yearRange: '1957:2022'
+    });
 
 </script>
