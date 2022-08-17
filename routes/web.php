@@ -67,7 +67,18 @@ Route::group(["middleware" => ["islogin"]], function(){
     Route::post('add/Preference', 'App\Http\Controllers\PreferenceController@addPreference');
 });
 
+
+// Admin Panel Routes
+Route::group(["middleware" => ["adminlogout"]], function(){
+
+    Route::get('secure-admin', function () {
+        return view('admin/auth/login');
+    })->name('secure-admin');
+
+    Route::post('secure-admin/login', 'App\Http\Controllers\AdminController@login')->name('admin-login');
+});
+
 Route::group(["middleware" => ["adminlogin"]], function(){
-    Route::get('dashboard', 'App\Http\Controllers\AdminController@index')->name('dashboard');
-    Route::get('admin/logout', 'App\Http\Controllers\AdminController@logout')->name('admin-logout');
+    Route::get('secure-admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
+    Route::get('secure-admin/logout', 'App\Http\Controllers\AdminController@logout')->name('admin-logout');
 });

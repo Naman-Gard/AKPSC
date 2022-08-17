@@ -24,6 +24,10 @@ class AuthController extends Controller
         'type'=>'user',
         'password' => Hash::make(base64_decode($request->pass))
         ]);
+
+        // UserStatus::create([
+        //     'user_id'
+        // ]);
         $credentials=['email'=>$request->reg_email,'password'=>base64_decode($request->pass)];
         Auth::attempt($credentials);
         return Redirect()->route('fill-details')->with('success','User Registered Successfully');
@@ -36,11 +40,12 @@ class AuthController extends Controller
                 $credentials[$key]=base64_decode($item);
             }
         }
+        $credentials['type']='user';
         // dd($credentials);
         if (Auth::attempt($credentials)) {
             return Redirect()->route('fill-details')->with('success','Login Successfully');
         }
-        return redirect()->back()->with('success','Invalid Credentials');
+        return redirect()->route('/')->with('success','Invalid Credentials');
     }
 
     public function logout(){
@@ -49,6 +54,7 @@ class AuthController extends Controller
     }
 
     public function isEmailRegistered($email){
+        $email=base64_decode($email);
         $status=User::where('email',$email)->get();
         if(sizeOf($status)){
             return ['status'=>'Already Exist'];
@@ -61,18 +67,24 @@ class AuthController extends Controller
     public function sendOtp($email,$otp){
         $otp=base64_decode($otp);
         $email=base64_decode($email);
-        
-        Mail::to($email)->send(new OtpMail($otp));
 
-        if(Mail::failures($email)){
-            return response(0);
-        }
-        else{
-            return response(1);
-        }
+        $subject = "UKPSC - Registration OTP";
+        $body = "Below is your One Time Password(OTP) for registration. /n".$otp;
+        // $body .= $otp;
+        $headers = "From: stagtbny@premium215.web-hosting.com";
+        mail($email, $subject, $body, $headers);
+        // Mail::to($email)->send(new OtpMail($otp));
+
+        // if(Mail::failures($email)){
+        //     return response(0);
+        // }
+        // else{
+        //     return response(1);
+        // }
     }
 
     public function sendResetLink($email){
+        $email=base64_decode($email);
         $email=encode5t($email);
         $date=encode5t(date('Y-m-d'));
         date_default_timezone_set('Asia/Kolkata');
@@ -84,8 +96,14 @@ class AuthController extends Controller
             $data=User::where('email',decode5t($email))->update([
                 'remember_token'=>'true',
             ]);
-            dd($link);
-            Mail::to($email)->send(new ResetLinkMail($link));
+
+            $subject = "UKPSC - Reset Link";
+            $body = "Below is your Reset Link for change Password.";
+            $body .= "$link";
+            $headers = "From: stagtbny@premium215.web-hosting.com";
+            mail(decode5t($email), $subject, $body, $headers);
+            // dd($link);
+            // Mail::to($email)->send(new ResetLinkMail($link));
             
             return ['status'=>"Success"];
         }

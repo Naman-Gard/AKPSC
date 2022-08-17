@@ -12,6 +12,66 @@ class EducationController extends Controller
 {
     public function addSpecialization(Request $request){
         $exist=Specialization::where('user_id',Auth::user()->id)->where('specialization',$request->specialization)->where('subject',$request->specialization_subject)->get();
+        
+        if($request->specialization!==$request->specialization_subject){
+
+            if($request->super_specialization!==$request->specialization_subject){
+                if($request->super_specialization!==$request->specialization){
+                    $new_subject=DB::table('subject_master')->where('subject_list',$request->super_specialization)->first();
+                    if(!$new_subject){
+                        DB::table('subject_master')->insert([
+                            'subject_list'=>$request->super_specialization
+                        ]);
+                    }
+                    $new_subject=DB::table('subject_master')->where('subject_list',$request->specialization_subject)->first();
+                    if(!$new_subject){
+                        DB::table('subject_master')->insert([
+                            'subject_list'=>$request->specialization_subject
+                        ]);
+                    }
+                }
+            }
+            else{
+                $new_subject=DB::table('subject_master')->where('subject_list',$request->specialization_subject)->first();
+                if(!$new_subject){
+                    DB::table('subject_master')->insert([
+                        'subject_list'=>$request->specialization_subject
+                    ]);
+                }
+            }
+            $new_subject=DB::table('subject_master')->where('subject_list',$request->specialization)->first();
+            if(!$new_subject){
+                DB::table('subject_master')->insert([
+                    'subject_list'=>$request->specialization
+                ]);
+            }
+        }
+        else{
+            if($request->super_specialization!==$request->specialization_subject){
+                $new_subject=DB::table('subject_master')->where('subject_list',$request->specialization_subject)->first();
+                if(!$new_subject){
+                    DB::table('subject_master')->insert([
+                        'subject_list'=>$request->specialization_subject
+                    ]);
+                }
+
+                $new_subject=DB::table('subject_master')->where('subject_list',$request->super_specialization)->first();
+                if(!$new_subject){
+                    DB::table('subject_master')->insert([
+                        'subject_list'=>$request->super_specialization
+                    ]);
+                }
+            }
+            else{
+                $new_subject=DB::table('subject_master')->where('subject_list',$request->specialization_subject)->first();
+                if(!$new_subject){
+                    DB::table('subject_master')->insert([
+                        'subject_list'=>$request->specialization_subject
+                    ]);
+                }
+            }
+
+        }
         if(!sizeOf($exist)){
             Specialization::create([
                 'user_id'=>Auth::user()->id,

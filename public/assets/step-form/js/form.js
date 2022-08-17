@@ -393,6 +393,8 @@ $(document).ready(function(){
     }
 
     function setImagesPreview(data){
+        $('#image_preview').parent().removeClass('d-none');
+        $('#sig_preview').parent().removeClass('d-none');
         $('#image_preview').attr('src', "assets/uploads/images/"+data.image);
         $('#sig_preview').attr('src',"assets/uploads/signature/"+ data.signature);
     }

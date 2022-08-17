@@ -10,6 +10,7 @@ body {
     font-family: 'Roboto', sans-serif !important;
     letter-spacing: 1px;
 }
+
 .navbar {
     font-family: 'Roboto', sans-serif !important;
     letter-spacing: 1px;
@@ -483,16 +484,26 @@ span.text-danger {
     width: 5rem;
     margin-left: 0 !important;
 }
+
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item {
     font-size: 1.2rem !important;
     color: #07838c;
 }
-.dropdown-item:focus, .dropdown-item:hover {
+
+.dropdown-item:focus,
+.dropdown-item:hover {
     color: #ffffff !important;
     background-color: #08848d !important;
 }
+
 .note-txt {
     margin-top: -1rem;
+}
+
+.note-txt2 {
+    margin-top: -1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 .navbar li.custom-dropdown {
@@ -501,4 +512,5 @@ span.text-danger {
 
 .heading .content {
     margin-left: 6rem;
+
 }

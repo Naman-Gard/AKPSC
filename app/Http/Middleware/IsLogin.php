@@ -17,12 +17,7 @@ class IsLogin
     public function handle(Request $request, Closure $next)
     {
         if(Auth::user()){
-            if(Auth::user()->type==='user'){
-                return $next($request);
-            }
-            else{
-                return redirect()->route('dashboard');
-            }
+            return $next($request);
         }
         else{
             return redirect()->route('/');

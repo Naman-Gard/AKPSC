@@ -11,15 +11,16 @@
 <script>
     $(document).ready(function() {
         $('.table').DataTable({
-            dom: 'lBfrtip',
-            buttons: [
-            'copy', 'csv', 'excel', 'print',
-                {
-                    extend: 'pdfHtml5',
-                    orientation: 'landscape',
-                    pageSize: 'A4'
-                }
-            ]
+            searching: false,
+            // dom: 'lBfrtip',
+            // buttons: [
+            // 'copy', 'csv', 'excel', 'print',
+            //     {
+            //         extend: 'pdfHtml5',
+            //         orientation: 'landscape',
+            //         pageSize: 'A4'
+            //     }
+            // ]
         });
     });
 </script>
