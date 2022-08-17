@@ -101,7 +101,7 @@
         <div class="modal-header align-items-start">
             <div class="d-flex align-items-center">
                 <div class="img-wrap text-center">
-                    <img src="{{asset('assets/images/ukpsc_logo.png')}}" width="120">
+                    <img src="{{asset('assets/images/ukpsc_logo.png')}}" width="90">
                 </div>
                 <div>
                     <h3 class="text-white register-name">
