@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="panel blue">
-                    <a href="">
+                    <a href="{{route('registered-users')}}">
                         <div class="panel-heading bg-blue">
                             <div class="row align-items-center">
                                 <div class="col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt=""></div>
@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-4">
                 <div class="panel green">
-                    <a href="">
+                    <a href="{{route('empanelled-users')}}">
                         <div class="panel-heading bg-green">
                             <div class="row align-items-center">
                                 <div class="col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt=""></div>
@@ -53,7 +53,7 @@
             </div>
             <div class="col-md-4">
                 <div class="panel blue">
-                    <a href="">
+                    <a href="{{route('blacklisted-users')}}">
                         <div class="panel-heading bg-blue">
                             <div class="row align-items-center">
                                 <div class="col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt=""></div>
@@ -111,14 +111,14 @@
                 </select>
             </div>
         </div>
-        <table class="table table-responsive">
+        <table class="table action-table table-responsive">
             <thead>
                 <tr>
                     <th scope="col">S.no</th>
-                    <th scope="col">Registration Number</th>
+                    <th scope="col">Registration Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Contact Number</th>
-                    <th scope="col">Subject</th>
+                    <th scope="col">Subjects</th>
                     <th scope="col">Total Experience</th>
                     <!-- <th scope="col">Specialization</th> -->
                     <!-- <th scope="col">Super Specialization</th> -->

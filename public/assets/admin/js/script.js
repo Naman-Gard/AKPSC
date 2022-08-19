@@ -1,5 +1,5 @@
 
-let table=$('.table').DataTable({
+let table=$('.action-table').DataTable({
             searching: false,
 
             // dom: 'lBfrtip',
@@ -11,6 +11,17 @@ let table=$('.table').DataTable({
             //         pageSize: 'A4'
             //     }
             // ]
+        });
+        $('.users-table').DataTable({
+            dom: 'lBfrtip',
+            buttons: [
+            'copy', 'csv', 'excel', 'print',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'A4'
+                }
+            ]
         });
 let users=[];
 

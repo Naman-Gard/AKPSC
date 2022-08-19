@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('final_statuses', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->string('register_id')->unique();
+            $table->string('empanelled')->nullable();
+            $table->string('blacklisted')->nullable();
+            $table->string('appointed')->nullable();
             $table->integer('status');
             $table->timestamps();
         });

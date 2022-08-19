@@ -10,7 +10,6 @@ class UserStatus extends Model
     use HasFactory;
     protected $fillable=[
         'user_id',
-        'register_id',
         'empanelled',
         'blacklisted',
         'appointed',

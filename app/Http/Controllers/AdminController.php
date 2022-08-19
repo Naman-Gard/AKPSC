@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\UserStatus;
+use App\Models\FinalStatus;
 use App\Models\Experience;
 use Auth;
 use Session;
@@ -20,13 +20,13 @@ class AdminController extends Controller
 
         $users=BlackListed::where('lifespan',$year)->select('user_id')->get()->toArray();
         BlackListed::where('lifespan',$year)->delete();
-        UserStatus::whereIn('user_id',$users)->update([
+        FinalStatus::whereIn('user_id',$users)->update([
             'blacklisted'=>0
         ]);
 
         $registered=User::where('type','user')->count();
-        $empanelled=UserStatus::where('empanelled','1')->count();
-        $blacklist=UserStatus::where('blacklisted','1')->count();
+        $empanelled=FinalStatus::where('empanelled','1')->count();
+        $blacklist=FinalStatus::where('blacklisted','1')->count();
 
         $count=array(
             "register"=>$registered,
@@ -62,7 +62,7 @@ class AdminController extends Controller
     }
 
     public function getUsers(){
-        $users=User::where('type','user')->join('user_statuses','user_statuses.user_id','=','users.id')->join('specializations','specializations.user_id','=','users.id')->where('user_statuses.empanelled','0')->where('user_statuses.blacklisted','0')->get()->groupBy('user_id');
+        $users=User::where('type','user')->join('final_statuses','final_statuses.user_id','=','users.id')->join('specializations','specializations.user_id','=','users.id')->where('final_statuses.status','1')->where('final_statuses.empanelled','0')->where('final_statuses.blacklisted','0')->get()->groupBy('user_id');
         $experiences=Experience::get()->groupBy('user_id');
         // dd($experiences);
         
@@ -98,5 +98,53 @@ class AdminController extends Controller
         }
 
         return $users;
+    }
+
+    public function getRegisteredUser(){
+        $users=User::join('final_statuses','final_statuses.user_id','=','users.id')->where('type','user')->get();
+        return view('admin.users.registered',compact('users'));
+    }
+
+    public function getEmpanelledUser(){
+        $users=User::where('type','user')->join('final_statuses','final_statuses.user_id','=','users.id')->join('specializations','specializations.user_id','=','users.id')->where('final_statuses.status','1')->where('final_statuses.empanelled','1')->get()->groupBy('user_id');
+        $experiences=Experience::get()->groupBy('user_id');
+        
+        foreach($users as $user_key=>$user){
+            $subjects=[];
+            $specializations=[];
+            $super_specializations=[];
+            foreach($user as $key=>$subject){
+                $temp_subjects=explode(',',$subject['subject']);
+                $temp_specializations=explode(',',$subject['specialization']);
+                $temp_super_specializations=explode(',',$subject['super_specialization']);
+                foreach($temp_subjects as $sub){
+                    if(!in_array($sub,$subjects)){
+                        array_push($subjects,$sub);
+                    }
+                }
+                foreach($temp_specializations as $sub){
+                    if(!in_array($sub,$specializations)){
+                        array_push($specializations,$sub);
+                    }
+                }
+                foreach($temp_super_specializations as $sub){
+                    if(!in_array($sub,$super_specializations)){
+                        array_push($super_specializations,$sub);
+                    }
+                }
+            }
+            $users[$user_key]=$users[$user_key][0];
+            $users[$user_key]['subject']=$subjects;
+            $users[$user_key]['specialization']=$specializations;
+            $users[$user_key]['super_specialization']=$super_specializations;
+            $users[$user_key]['experience']=$experiences[$user_key]?$experiences[$user_key]:'';
+        }
+
+        return view('admin.users.empanelled',compact('users'));
+    }
+
+    public function getBlacklistedUser(){
+        $users=User::join('final_statuses','final_statuses.user_id','=','users.id')->where('type','user')->where('final_statuses.blacklisted',1)->get();
+        return view('admin.users.blacklisted',compact('users'));
     }
 }

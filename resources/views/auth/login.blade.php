@@ -386,7 +386,7 @@
         for (let i = 0; i < 4; i++ ) {
             OTP += string[Math.floor(Math.random() * len)];
         }
-
+        console.log(OTP)
         $.ajax({
             type: "GET",
             headers: {

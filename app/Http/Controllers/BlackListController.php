@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\UserStatus;
+use App\Models\FinalStatus;
 use App\Models\BlackListed;
 
 class BlackListController extends Controller
@@ -29,7 +29,7 @@ class BlackListController extends Controller
         }
         
 
-        UserStatus::where('user_id',$request->user_id)->update([
+        FinalStatus::where('user_id',$request->user_id)->update([
             'blacklisted'=>1
         ]);
 

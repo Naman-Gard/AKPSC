@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\UserStatus;
+use App\Models\FinalStatus;
 use App\Models\Empanelment;
 
 class EmpanelController extends Controller
@@ -20,7 +20,7 @@ class EmpanelController extends Controller
             'secret_code2'=>$request->secret_code2
         ]);
 
-        UserStatus::where('user_id',$request->user_id)->update([
+        FinalStatus::where('user_id',$request->user_id)->update([
             'empanelled'=>1
         ]);
 
