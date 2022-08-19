@@ -9,11 +9,11 @@
                         src="{{asset('assets/step-form/images/logo-mini.svg')}}" alt="logo" /></a> -->
                 <div class="nav-welcome-text px-4">
                     <p class="mb-0 text-white fw-bold">Welcome!</p>
-                    <p class="mb-1 text-white fw-bold">{{Session::get('admin-user')->name}}</p>
+                    <p class="mb-0 text-white fw-bold">{{Session::get('admin-user')->name}}</p>
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-stretch">
                     <ul class="navbar-nav navbar-nav-right">
-                        <li class="nav-item nav-profile dropdown">
+                        <li class="nav-item nav-profile dropdown custom-dropdown">
                             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <!-- <div class="nav-profile-img">
@@ -21,7 +21,7 @@
                                     <span class="availability-status online"></span>
                                 </div> -->
                                 <div class="nav-profile-text">
-                                    <p class="mb-1 text-white fw-bold">{{Session::get('admin-user')->name}}</p>
+                                    <p class="mb-0 text-white fw-bold">{{Session::get('admin-user')->name}}</p>
                                 </div>
                             </a>
                             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -29,7 +29,7 @@
                                     <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a> -->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{route('admin-logout')}}">
-                                    <i class="mdi mdi-logout me-2 text-primary"></i> Signout
+                                    <i class="mdi mdi-logout me-2"></i> Signout
                                 </a>
                             </div>
                         </li>
