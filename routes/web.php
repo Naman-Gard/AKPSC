@@ -80,5 +80,8 @@ Route::group(["middleware" => ["adminlogout"]], function(){
 
 Route::group(["middleware" => ["adminlogin"]], function(){
     Route::get('secure-admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
+    Route::get('secure-admin/getUsers', 'App\Http\Controllers\AdminController@getUsers')->name('getUsers');
     Route::get('secure-admin/logout', 'App\Http\Controllers\AdminController@logout')->name('admin-logout');
+    Route::post('secure-admin/add/empanel', 'App\Http\Controllers\EmpanelController@addEmpanel')->name('add-empanel');
+    Route::post('secure-admin/blacklisted', 'App\Http\Controllers\BlackListController@index')->name('blacklisted');
 });

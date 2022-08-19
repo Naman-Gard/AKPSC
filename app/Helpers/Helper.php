@@ -104,3 +104,8 @@ function IND_money_format($money){
   }
   return $result;
 }
+
+function uniquecodeGenerator(){
+  $str = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+  return substr(str_shuffle($str), 0, 8);
+}

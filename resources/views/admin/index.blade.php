@@ -27,18 +27,27 @@
                 <label for="">Subject</label>
                 <select class="form-select" name="subject" id="subject">
                     <option value="">Select</option>
+                    @foreach($subjects as $subject)
+                    <option value="{{$subject->subject_list}}">{{$subject->subject_list}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-group col-md-3">
                 <label for="">Specialization</label>
-                <select class="form-select" name="subject" id="subject">
+                <select class="form-select" name="subject" id="specialization">
                     <option value="">Select</option>
+                    @foreach($subjects as $subject)
+                    <option value="{{$subject->subject_list}}">{{$subject->subject_list}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-group col-md-3">
                 <label for="">Super Specialization</label>
-                <select class="form-select" name="subject" id="subject">
+                <select class="form-select" name="subject" id="super_specialization">
                     <option value="">Select</option>
+                    @foreach($subjects as $subject)
+                    <option value="{{$subject->subject_list}}">{{$subject->subject_list}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -56,36 +65,104 @@
                     <th scope="col">Action</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach($users as $user)
-                <tr>
-                    <th>{{ $loop->index+1 }}</th>
-                    <td>{{$user->register_id}}</td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->mobile}}</td>
-                    <td>
-                        {{implode (", ", $user->subject)}}
-                    </td>
-                    <td>
-                        <?php $str=''?>
-                       @foreach($user->experience as $experience)
-                       <?php $str.=$experience->type.':'.$experience->year.','?>
-                       @endforeach
-                        {{trim($str,',')}}
-                    </td>
-                    <!-- <td>{{implode (", ", $user->specialization)}}</td> -->
-                    <!-- <td>{{implode (", ", $user->super_specialization)}}</td> -->
-                    <td>
-                        <button class="btn btn-sm p-2 btn-primary">Empanel</button>
-                        <button class="btn btn-sm p-2 btn-primary">Blacklist</button>
-                    </td>
-                </tr>
-                @endforeach
+            <tbody id="dashboard_users">
+                
             </tbody>
         </table>
     </div>
 </div>
 </body>
+
+<div class="modal fade" id="EmpanelModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body p-0">
+
+
+                <div class="card">
+                    <!-- <div class="card-header">Delete user
+                <button type="button" class="btn-close float-right" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> -->
+                    <div class="card-body">
+                        <form action="{{route('add-empanel')}}" method="POST" id="add-empanel">
+                            @csrf
+                            <h2>User Empanelment</h2>
+                            <input type="hidden" name="user_id" id="user_id">
+                            <div class="row m-2">
+                                <div class="form-group col-md-6">
+                                    <label for="">File Number</label>
+                                    <input type="text" class="empanel_input" name="file_number" id="file_number" autocomplete='off'>
+                                    <span class="text-danger" id="valid_file_number"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Date of Empanelment</label>
+                                    <input type="text" class="empanel_input" name="doe" id="doe" autocomplete='off'>
+                                    <span class="text-danger" id="valid_doe"></span>
+                                </div>
+                            </div>
+                            <div class="row m-2">
+                                <div class="form-group col-md-6">
+                                    <label for="">Secret Code1</label>
+                                    <input type="text" class="empanel_input" name="secret_code1" id="secret_code1" autocomplete='off'>
+                                    <span class="text-danger" id="valid_secret_code1"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Secret Code2</label>
+                                    <input type="text" class="empanel_input" name="secret_code2" id="secret_code2" autocomplete='off'>
+                                    <span class="text-danger" id="valid_secret_code2"></span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                            <button class="btn btn-primary btn-sm">Add</button>
+                        </form>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="BlackListModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body p-0">
+
+
+                <div class="card">
+                    <!-- <div class="card-header">Delete user
+                <button type="button" class="btn-close float-right" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> -->
+                    <div class="card-body">
+                        <form action="{{route('blacklisted')}}" method="POST" id="blacklisted">
+                            @csrf
+                            <h2>BlackList</h2>
+                            <input type="hidden" name="user_id" id="id">
+                            <div class="row m-2">
+                                <div class="form-group col-md-6">
+                                    <label for="">Number of years</label>
+                                    <input type="text" class="" name="lifespan" id="lifespan" autocomplete='off'>
+                                    <span class="text-danger" id="valid_lifespan"></span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                            <button class="btn btn-primary btn-sm">Add</button>
+                        </form>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @include('admin/includes/footer')

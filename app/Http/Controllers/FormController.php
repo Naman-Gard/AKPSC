@@ -14,6 +14,7 @@ use App\Models\Upload;
 use App\Models\User;
 use App\Models\LanguageDetails;
 use App\Models\FinalStatus;
+use App\Models\UserStatus;
 use Auth;
 use PDF;
 
@@ -218,6 +219,14 @@ class FormController extends Controller
     public function finalSubmit(){
         $exist=FinalStatus::where('user_id',Auth::user()->id)->get();
         if(!sizeOf($exist)){
+            $unique=uniquecodeGenerator();
+            UserStatus::create([
+                'user_id'=>Auth::user()->id,
+                'register_id'=>$unique,
+                'empanelled'=>0,
+                'blacklisted'=>0,
+                'appointed'=>0,
+            ]);
             FinalStatus::create([
                 'user_id'=>Auth::user()->id,
                 'status'=>1

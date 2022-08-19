@@ -526,4 +526,12 @@
         yearRange: '1957:2022'
     });
 
+
+    $('document').ready(()=>{
+        $("#registerModal").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    })
+
 </script>

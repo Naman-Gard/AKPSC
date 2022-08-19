@@ -9,19 +9,12 @@
 
 
 <script>
-    $(document).ready(function() {
-        $('.table').DataTable({
-            searching: false,
-            // dom: 'lBfrtip',
-            // buttons: [
-            // 'copy', 'csv', 'excel', 'print',
-            //     {
-            //         extend: 'pdfHtml5',
-            //         orientation: 'landscape',
-            //         pageSize: 'A4'
-            //     }
-            // ]
-        });
-    });
+    let base_url = "{{env('BASE_URL')}}"
 </script>
+
+
+<script src="{{ asset('assets/admin/js/script.js')}}"></script>
+
+
+
 </html>
