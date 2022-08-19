@@ -109,19 +109,19 @@ function educationValidation(){
             $('#valid_'+$(this).attr('id')).html('')
         }
         data[$(this).attr('id')]=$(this).val()
-    });
 
-    if($('#sub1').val()!=='' || $('#sub2').val()!=='')
-    {
-        if($('#subject').val()===$('#sub1').val() || $('#subject').val()===$('#sub2').val() || $('#sub1').val()===$('#sub2').val())
+        if($('#sub1').val()!=='' || $('#sub2').val()!=='')
         {
-            flag.push(false)
-            $('#valid_subject').html('Please choose different Subjects')
+            if($('#subject').val()===$('#sub1').val() || $('#subject').val()===$('#sub2').val() || $('#sub1').val()===$('#sub2').val())
+            {
+                flag.push(false)
+                $('#valid_subject').html('Please choose different Subjects')
+            }
+            else{
+                $('#valid_subject').html('')
+            }
         }
-        else{
-            $('#valid_subject').html('')
-        }
-    }
+    });
     
 
     if(flag.includes(false)){
@@ -146,7 +146,7 @@ function educationValidation(){
                 response.forEach((item,index)=>{
                     if(item.error){
                         // $('#education_error').html('This degree is already exist.')
-                        $('#notify-message').html('This degree year is already exist.')
+                        $('#notify-message').html('Please add valid details')
                         $('#NotifyModal').modal('show')
                         return false
                     }

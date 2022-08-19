@@ -107,7 +107,8 @@ class EducationController extends Controller
 
      public function addEducation(Request $request){
         $exist=Education::where('user_id',Auth::user()->id)->where('passing_year',$request->passing_year)->get();
-        if(!sizeOf($exist)){
+        $exist1=Education::where('user_id',Auth::user()->id)->where("name",$request->name)->get();
+        if(!sizeOf($exist) && !sizeOf($exist1)){
             $subjects=$request->subject;
 
             if($request->sub1){

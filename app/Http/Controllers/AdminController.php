@@ -62,7 +62,12 @@ class AdminController extends Controller
     }
 
     public function getUsers(){
-        $users=User::where('type','user')->join('final_statuses','final_statuses.user_id','=','users.id')->join('specializations','specializations.user_id','=','users.id')->where('final_statuses.status','1')->where('final_statuses.empanelled','0')->where('final_statuses.blacklisted','0')->get()->groupBy('user_id');
+        $users=User::where('type','user')->join('final_statuses','final_statuses.user_id','=','users.id')
+        ->join('specializations','specializations.user_id','=','users.id')
+        ->where('final_statuses.status','1')
+        ->where('final_statuses.empanelled','0')
+        ->where('final_statuses.blacklisted','0')
+        ->get()->groupBy('user_id');
         $experiences=Experience::get()->groupBy('user_id');
         // dd($experiences);
         
@@ -101,12 +106,18 @@ class AdminController extends Controller
     }
 
     public function getRegisteredUser(){
-        $users=User::join('final_statuses','final_statuses.user_id','=','users.id')->where('type','user')->get();
+        $users=User::join('final_statuses','final_statuses.user_id','=','users.id')
+        ->where('type','user')->get();
         return view('admin.users.registered',compact('users'));
     }
 
     public function getEmpanelledUser(){
-        $users=User::where('type','user')->join('final_statuses','final_statuses.user_id','=','users.id')->join('specializations','specializations.user_id','=','users.id')->where('final_statuses.status','1')->where('final_statuses.empanelled','1')->get()->groupBy('user_id');
+        $users=User::where('type','user')->join('final_statuses','final_statuses.user_id','=','users.id')
+        ->join('specializations','specializations.user_id','=','users.id')
+        ->join('empanelments','empanelments.user_id','=','users.id')
+        ->where('final_statuses.status','1')
+        ->where('final_statuses.empanelled','1')
+        ->get()->groupBy('user_id');
         $experiences=Experience::get()->groupBy('user_id');
         
         foreach($users as $user_key=>$user){

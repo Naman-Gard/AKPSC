@@ -9,15 +9,28 @@ $('#type').change((e)=>{
     }
 })
 
-$('input[name=isworking]').change((e)=>{
-    if(e.target.value==='service'){
-        $('#designation_row').removeClass('d-none')
+// $('input[name=isworking]').change((e)=>{
+//     if(e.target.value==='service'){
+//         $('#designation_row').removeClass('d-none')
+//     }
+//     else{
+//         if(!$('#designation_row').hasClass('d-none')){
+//             $('#designation_row').addClass('d-none')
+//             $('#designation').val('')
+//             $('#serving').val('')
+//         }
+//     }
+// })
+$('input[name=isprior]').change((e)=>{
+    if(e.target.value==='Yes'){
+        $('#organization_details').removeClass('d-none')
     }
     else{
-        if(!$('#designation_row').hasClass('d-none')){
-            $('#designation_row').addClass('d-none')
-            $('#designation').val('')
-            $('#serving').val('')
+        if(!$('#organization_details').hasClass('d-none')){
+            $('#organization_details').addClass('d-none')
+            $("#experience_fieldset .org_input").each(function(key,value){
+                $(this).val('')
+            })
         }
     }
 })
@@ -203,6 +216,16 @@ function isWorkingValidation(){
         return false
     }
 
+    if($('input[name=isprior]:checked').length !== 0){
+        $('#valid_isprior').html('')
+        flag.push(true)
+    }
+    else{
+        $('#valid_isprior').html('This field is required')
+        $('input[name=isprior]').focus()
+        return false
+    }
+
     $("#experience_fieldset .serving_input").each(function(key,value){
         if(!$('#designation_row').hasClass('d-none')){
             if($(this).val()===''){
@@ -233,7 +256,7 @@ function isWorkingValidation(){
 
 function finalExperienceValidation(){
     let data=isWorkingValidation()
-    if(data && experienceDataStatus && organizationDataStatus){
+    if(data && experienceDataStatus && (organizationDataStatus && $('input[name=isprior]:checked').val()!=='Yes')){
          $.ajax({
             type: "POST",
             contentType: "application/json",
@@ -257,16 +280,19 @@ function finalExperienceValidation(){
             return false
             // $('#experience_error').html('Please add your experience details')
         }
-        if(organizationDataStatus){
-            // $('#organization_error').html('')
-            $('#notify-message').html('')
+        if($('input[name=isprior]').is(':checked') && $('input[name=isprior]:checked').val()!=='No'){
+            if(organizationDataStatus){
+                // $('#organization_error').html('')
+                $('#notify-message').html('')
+            }
+            else{
+                $('#notify-message').html('Please add organization details')
+                $('#NotifyModal').modal('show')
+                return false
+                // $('#organization_error').html('Please add your organization details')
+            }
         }
-        else{
-            $('#notify-message').html('Please add organization details')
-            $('#NotifyModal').modal('show')
-            return false
-            // $('#organization_error').html('Please add your organization details')
-        }
+        
         return false
     }
 }

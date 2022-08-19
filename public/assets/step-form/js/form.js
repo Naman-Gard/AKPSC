@@ -174,16 +174,16 @@ $(document).ready(function(){
                         if(key==='isworking'){
                             if(response[key].length){
                                 $('input[name=isworking][value="'+response[key][0].isworking+'"]').attr('checked',true).change()
-                                if(response[key][0].isworking==='retired'){
-                                    if(!$('#designation_row').hasClass('d-none')){
-                                        $('#designation_row').addClass('d-none')
-                                    }
-                                }
-                                else{
+                                // if(response[key][0].isworking==='retired'){
+                                //     if(!$('#designation_row').hasClass('d-none')){
+                                //         $('#designation_row').addClass('d-none')
+                                //     }
+                                // }
+                                // else{
                                     $('#designation option[value="'+response[key][0].designation+'"]').prop("selected",true).change()
                                     $('#serving option[value="'+response[key][0].serving+'"]').prop("selected",true).change()
-                                    $('#designation_row').removeClass('d-none')
-                                }
+                                //     $('#designation_row').removeClass('d-none')
+                                // }
                             }
                         }
                         if(key==='language'){

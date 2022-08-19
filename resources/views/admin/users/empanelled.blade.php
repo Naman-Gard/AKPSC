@@ -22,7 +22,7 @@
                 @foreach($users as $user)
                 <tr>
                 <th>{{$loop->index+1}}</th>
-                <td>{{$user->register_id}}</td>
+                <td>{{$user->empanelment_id}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->mobile}}</td>
                 <td>{{implode(',' , $user->subject)}}</td>

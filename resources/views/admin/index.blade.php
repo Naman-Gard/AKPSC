@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Date of Empanelment</label>
-                                    <input type="text" class="empanel_input" name="doe" id="doe" autocomplete='off'>
+                                    <input type="date" max="19/08/2020" class="empanel_input" name="doe" id="doe" autocomplete='off'>
                                     <span class="text-danger" id="valid_doe"></span>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Secret Code2</label>
-                                    <input type="text" class="empanel_input" name="secret_code2" id="secret_code2" autocomplete='off'>
+                                    <input type="text" class="" name="secret_code2" id="secret_code2" autocomplete='off'>
                                     <span class="text-danger" id="valid_secret_code2"></span>
                                 </div>
                             </div>
@@ -203,11 +203,26 @@
                             @csrf
                             <h2>BlackList</h2>
                             <input type="hidden" name="user_id" id="id">
-                            <div class="row m-2">
-                                <div class="form-group col-md-6">
-                                    <label for="">Number of years</label>
-                                    <input type="text" class="" name="lifespan" id="lifespan" autocomplete='off'>
-                                    <span class="text-danger" id="valid_lifespan"></span>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <div class="form-check d-flex">
+                                        <input type="radio" name="lifespan" value="years" id="years" />
+                                        <label class="ms-2" for="flexRadioDefault1">Number of years </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check d-flex">
+                                        <input type="radio" name="lifespan" value="lifetime" id="lifetime" />
+                                        <label class="ms-2" for="flexRadioDefault1">Lifetime</label>
+                                    </div>
+                                </div>
+                                <span class="text-danger" id="valid_lifespan"></span>
+                            </div>
+
+                            <div class="row d-none" id="n_years">
+                                <div class="col-md-12 form-group">
+                                    <input type="text" name="n_years" placeholder="Please enter number of years">
+                                    <span id="valid_n_years" class="text-danger"></span>
                                 </div>
                             </div>
                             <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>

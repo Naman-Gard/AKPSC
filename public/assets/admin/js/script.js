@@ -158,7 +158,7 @@ function doEmpanelValidation(){
         }
     })
 
-    if($('#secret_code2').val()===$('#secret_code1').val()){
+    if($('#secret_code2').val()===$('#secret_code1').val() && $('#secret_code1').val()!==''){
         flag.push(false)
         $('#valid_secret_code2').html('Secret Codes should be unique')
     }
@@ -168,12 +168,45 @@ function doEmpanelValidation(){
     return flag.includes(false)?false:true
 }
 
+$('input[name=lifespan]').change((e)=>{
+    if(e.target.value==='years'){
+        $('#n_years').removeClass('d-none')
+    }
+    else{
+        if(!$('#n_years').hasClass('d-none')){
+            $('#n_years').addClass('d-none')
+        }
+    }
+})
+
 function doBlackListValidation(){
-    if($('#lifespan').val()!==''){
+    // if($('#lifespan').val()!==''){
+    //     $('#valid_lifespan').html('')
+    //     return true
+    // }else{
+    //     $('#valid_lifespan').html('The Field is required')
+    //     return false
+    // }
+
+    if($('input[name=lifespan]:checked').length !== 0){
+
+        if($('input[name=lifespan]:checked').val()==='years'){
+            if($('input[name=n_years]').val()!==''){
+                $('#valid_n_years').html('')
+            }
+            else{
+                $('#valid_lifespan').html('')
+                $('#valid_n_years').html('This field is required')
+                return false
+            }
+        }
+
         $('#valid_lifespan').html('')
         return true
-    }else{
-        $('#valid_lifespan').html('The Field is required')
+    }
+    else{
+        $('#valid_lifespan').html('This field is required')
+        $('input[name=lifespan]').focus()
         return false
     }
 }

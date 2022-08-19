@@ -9,21 +9,20 @@ use App\Models\BlackListed;
 class BlackListController extends Controller
 {
     public function index(Request $request){
-
         $year=date('Y');
         date_default_timezone_set('Asia/Kolkata');
 
         if($request->lifespan!=='lifetime'){
             BlackListed::create([
                 'user_id'=>$request->user_id,
-                'years'=>$request->lifespan,
-                'lifespan'=>(int)$request->lifespan + (int)$year
+                'years'=>$request->n_years,
+                'lifespan'=>(int)$request->n_years + (int)$year
             ]);
         }
         else{
             BlackListed::create([
                 'user_id'=>$request->user_id,
-                'years'=>$request->lifespan,
+                'years'=>0,
                 'lifespan'=>$request->lifespan
             ]);
         }
