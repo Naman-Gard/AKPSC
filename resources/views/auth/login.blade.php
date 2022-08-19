@@ -386,7 +386,7 @@
         for (let i = 0; i < 4; i++ ) {
             OTP += string[Math.floor(Math.random() * len)];
         }
-
+        console.log(OTP)
         $.ajax({
             type: "GET",
             headers: {
@@ -525,5 +525,13 @@
         dateFormat: "dd/mm/yy",
         yearRange: '1957:2022'
     });
+
+
+    $('document').ready(()=>{
+        $("#registerModal").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    })
 
 </script>

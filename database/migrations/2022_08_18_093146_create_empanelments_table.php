@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('final_statuses', function (Blueprint $table) {
+        Schema::create('empanelments', function (Blueprint $table) {
             $table->id();
+            $table->string('empanelment_id');
             $table->integer('user_id');
-            $table->string('register_id')->unique();
-            $table->string('empanelled')->nullable();
-            $table->string('blacklisted')->nullable();
-            $table->string('appointed')->nullable();
-            $table->integer('status');
+            $table->string('file_number');
+            $table->string('date_of_empanel');
+            $table->string('secret_code1')->nullable();
+            $table->string('secret_code2')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('final_statuses');
+        Schema::dropIfExists('empanelments');
     }
 };

@@ -10,6 +10,10 @@ class FinalStatus extends Model
     use HasFactory;
     protected $fillable=[
         'user_id',
-        'status'
+        'register_id',
+        'status',
+        'empanelled',
+        'blacklisted',
+        'appointed'
     ];
 }

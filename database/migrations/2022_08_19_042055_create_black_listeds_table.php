@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_statuses', function (Blueprint $table) {
+        Schema::create('black_listeds', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unique();
-            $table->string('register_id')->unique();
-            $table->string('empanelled')->nullable();
-            $table->string('blacklisted')->nullable();
-            $table->string('appointed')->nullable();
+            $table->integer('user_id');
+            $table->integer('years');
+            $table->string('lifespan');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_statuses');
+        Schema::dropIfExists('black_listeds');
     }
 };

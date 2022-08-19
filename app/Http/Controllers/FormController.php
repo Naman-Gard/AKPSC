@@ -14,6 +14,7 @@ use App\Models\Upload;
 use App\Models\User;
 use App\Models\LanguageDetails;
 use App\Models\FinalStatus;
+
 use Auth;
 use PDF;
 
@@ -216,12 +217,13 @@ class FormController extends Controller
     }
 
     public function finalSubmit(){
-        $exist=FinalStatus::where('user_id',Auth::user()->id)->get();
+        $exist=FinalStatus::where('user_id',Auth::user()->id)->where('status',1)->get();
         if(!sizeOf($exist)){
-            FinalStatus::create([
-                'user_id'=>Auth::user()->id,
+
+            FinalStatus::where('user_id',Auth::user()->id)->update([
                 'status'=>1
             ]);
+
         }
     }
 

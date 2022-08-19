@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="col-md-1">
-                    <div class="custom-add mt-1">
+                    <div class="custom-add">
                         <input type="button" name="add-experience" id="add-experience" class="action-button" value="Add" />
                     </div>
                 </div>
