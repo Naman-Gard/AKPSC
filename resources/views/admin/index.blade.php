@@ -1,18 +1,78 @@
 @include('admin/includes/header')
 @include('admin/includes/nav')
 
-<div class="container mt-5 p-5">
+<div class="container mt-5 py-5">
 
-    <div class="row d-flex justify-content-center mb-2">
-        <section class="col-md-3 m-3 px-5 py-3 border">
-            <p>Number of Expert Registered: <span>{{$count['register']}}</span> </p>
-        </section>
-        <section class="col-md-3 m-3 px-5 py-3 border">
-            <p>Number of Expert Empanelled: <span>{{$count['empanell']}}</span></p>
-        </section>
-        <section class="col-md-3 m-3 px-5 py-3 border">
-            <p>Number of Expert Backlisted: <span>{{$count['blacklist']}}</span></p>
-        </section>
+    <div class="panel-sec">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel blue">
+                    <a href="">
+                        <div class="panel-heading bg-blue">
+                            <div class="row align-items-center">
+                                <div class="col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt=""></div>
+                                <div class="col-md-3">
+                                    <span>{{$count['register']}}</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="panel-footer">
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-0">Number of Expert Registered </p>
+                                <img src="{{ asset('assets/admin/images/arrow_right_blue.svg') }}" alt="">
+
+                            </div>
+                        </div>
+
+                    </a>
+    
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel green">
+                    <a href="">
+                        <div class="panel-heading bg-green">
+                            <div class="row align-items-center">
+                                <div class="col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt=""></div>
+                                <div class="col-md-3">
+                                    <span>{{$count['empanell']}}</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="panel-footer">
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-0">Number of Expert Empanelled </p>
+                                <img src="{{ asset('assets/admin/images/arrow_right_green.svg') }}" alt="">
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel blue">
+                    <a href="">
+                        <div class="panel-heading bg-blue">
+                            <div class="row align-items-center">
+                                <div class="col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt=""></div>
+                                <div class="col-md-3">
+                                    <span>{{$count['blacklist']}}</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="panel-footer">
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-0">Number of Expert Backlisted </p>
+                                <img src="{{ asset('assets/admin/images/arrow_right_blue.svg') }}" alt="">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="heading mb-3">

@@ -54,8 +54,8 @@ body {
 
 .container .card .left-side {
     /*width:65%;*/
-    background-color: #304767;
-    height: 100%;
+    background-color: #e7e7e7;
+    /* height: 100%; */
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     padding: 20px 30px;
@@ -567,7 +567,7 @@ select {
 
 .left-side {
     background: url("../../images/side_bg4.jpg") no-repeat;
-    min-height: 582px !important;
+    max-height: 614px !important;
     width: 700px !important;
 }
 
