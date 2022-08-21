@@ -18,7 +18,7 @@
     <section class="preview">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 mb-5">
+                <div class="col-md-12">
                     <div class="heading">
                         <div class="d-flex align-items-center">
                             <div class="img-wrap">
@@ -37,6 +37,10 @@
                             <table class="table">
                                 
                                 <tbody>
+                                    <!-- <tr>
+                                        <td scope="col" class="text-center w-50"><img src="{{asset('assets/uploads/images/'.$data['upload']['image'])}}" width="120" height="120" alt="photo"></td>
+                                        <td scope="col" class="text-center w-50"><img src="{{asset('assets/uploads/signature/'.$data['upload']['signature'])}}" alt="signature" width="60" height="60"></td>
+                                    </tr> -->
                                     <tr>
                                         <th>Name :</th>
                                         <td>
@@ -175,6 +179,17 @@
                                             {{$data['experience_data']['isworking']['serving']?$data['experience_data']['isworking']['serving']:'-'}}
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <th class="w-75">
+                                        Prior Experience of acting as Advisor/Expert in
+                                            Interview Board (s)/Question paper setter/ Objective Item writer/ Moderator/
+                                            Examiner/ Evaluator/ Syllabus Framing Organ.
+
+                                        </th>
+                                        <td class="w-25">
+                                            {{$data['experience_data']['isworking']['isprior']}}
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <table class="table">
@@ -198,12 +213,12 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            @if(sizeOf($data['experience_data']['organization']))
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="dark-green" scope="row" colspan="3">Prior Experience of acting as Advisor/Expert in
-                                            Interview Board (s)/Question paper setter/ Objective Item writer/ Moderator/
-                                            Examiner/ Evaluator/ Syllabus Framing Organ.</th>
+                                        <th scope="row" class="dark-green"  colspan="3">Organization Details</th>
                                     </tr>
                                     <tr>
                                         <th scope="col">Organisation Name</th>
@@ -221,6 +236,8 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @endif
+
                             <table class="table">
                                 <tbody>
                                     <tr>
@@ -289,29 +306,12 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- <div class="declaration mt-4">
-                            <h6 class="fw-bold">Declaration :
-                            </h6>
-                            <div class="d-flex">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="declaration">
-                                  </div>
-                                  <p>I hereby certify that the information furnished in this form is true to best of my knowledge.</p>
-                            </div>
-                        </div> -->
-                        <!-- <div class="d-flex justify-content-end mt-3">
-                            <img src="{{asset('assets/uploads/signature/'.$data['upload']['signature'])}}" class="me-4" alt="signature" width="60" height="60">
-                        </div> -->
-                        <!-- <div class="btn-sec mb-5 d-flex justify-content-center mt-5">
-                            <button type="submit" class="btn btn-custom mx-2" id="final-submit">Final Submit <img src="{{asset('assets/preview/images/tick-box.gif')}}" height="24" alt=""></button>
-                            <button type="submit" class="btn btn-custom mx-2" id="edit-form">Edit Form <img src="{{asset('assets/preview/images/edit.svg')}}" height="24" alt=""></button>
-                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    </body>
+</body>
 </html>
 
 @include('includes/footer')

@@ -386,13 +386,27 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th class="" style="width: 50%; border-top: 1px solid #08848e !important;">
+                                    Prior Experience of acting as Advisor/Expert in
+                                        Interview Board (s)/Question paper setter/ Objective Item writer/ Moderator/
+                                        Examiner/ Evaluator/ Syllabus Framing Organ.
+
+                                    </th>
+                                    <td class="" style="width: 50%; border-top: 1px solid #08848e !important;">
+                                        {{$data['experience_data']['isworking']['isprior']}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        @if(sizeOf($data['experience_data']['organization']))
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="dark-green" scope="row" colspan="3">Prior Experience of acting as
-                                        Advisor/Expert in
-                                        Interview Board (s)/Question paper setter/ Objective Item writer/ Moderator/
-                                        Examiner/ Evaluator/ Syllabus Framing Organ.</th>
+                                    <th class="dark-green" scope="row" colspan="3">Organization Details</th>
                                 </tr>
                                 <tr>
                                     <th scope="col">Organisation Name</th>
@@ -410,7 +424,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-
+                        @endif
                     </div>
                 </div>
             </div>

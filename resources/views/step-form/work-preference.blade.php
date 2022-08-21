@@ -13,11 +13,11 @@
                 </div>
 
                 <div class="form-check d-flex col-md-2">
-                    <input type="radio" name="paper_setter" value="yes" />
+                    <input type="radio" name="paper_setter" value="Yes" />
                     <label class="ms-2" for="flexRadioDefault1">Yes </label>
                 </div>
                 <div class="form-check d-flex col-md-2">
-                    <input type="radio" name="paper_setter" value="no" />
+                    <input type="radio" name="paper_setter" value="No" />
                     <label class="ms-2" for="flexRadioDefault1"> No </label>
                 </div>
                 <span class="text-danger mb-3" id="valid_paper_setter"></span>
@@ -27,11 +27,11 @@
                     <label for="exampleInputCity1">b. Expert in Interview Board (s)</label>
                 </div>
                 <div class="form-check d-flex col-md-2">
-                    <input class="" type="radio" name="interview" value="yes" />
+                    <input class="" type="radio" name="interview" value="Yes" />
                     <label class="ms-2" for="flexRadioDefault1">Yes </label>
                 </div>
                 <div class="form-check d-flex col-md-2">
-                    <input class="" type="radio" name="interview" value="no" />
+                    <input class="" type="radio" name="interview" value="No" />
                     <label class="ms-2" for="flexRadioDefault1"> No </label>
                 </div>
                 <span class="text-danger" id="valid_interview"></span>
@@ -167,11 +167,11 @@
                         please indicate in brief. <span class="text-danger">*</span></label>
                 </div>
                 <div class="form-check d-flex col-md-2">
-                    <input type="radio" name="enquiry" value="yes" />
+                    <input type="radio" name="enquiry" value="Yes" />
                     <label class="ms-2" for="flexRadioDefault1">Yes </label>
                 </div>
                 <div class="form-check d-flex col-md-2">
-                    <input type="radio" name="enquiry" value="no" />
+                    <input type="radio" name="enquiry" value="No" />
                     <label class="ms-2" for="flexRadioDefault1"> No </label>
                 </div>
                 <span class="text-danger" id="valid_enquiry"></span>

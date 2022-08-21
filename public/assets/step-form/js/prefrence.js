@@ -1,5 +1,5 @@
 $('input[name=enquiry]').change((e)=>{
-    if(e.target.value==='yes'){
+    if(e.target.value==='Yes'){
         $('#brief').parent().removeClass('d-none')
     }
     else{
@@ -10,13 +10,15 @@ $('input[name=enquiry]').change((e)=>{
 
 $('input[name=pin_code]').keydown((e) => {
     var keyCode = (e.keyCode ? e.keyCode : e.which);
-    if (e.currentTarget.value.length === 6 && keyCode!==8)
-    {
+    if (e.currentTarget.value.length == 6 && keyCode!==8)
         return false;
-    }
-    if ((keyCode > 64 && keyCode < 91) || (keyCode > 96 && keyCode < 123)) {
-        e.preventDefault();
-    }
+    
+    return e.ctrlKey || e.altKey 
+                || (47<e.keyCode && e.keyCode<58 && e.shiftKey==false) 
+                || (95<e.keyCode && e.keyCode<106)
+                || (e.keyCode==8) || (e.keyCode==9) 
+                || (e.keyCode>34 && e.keyCode<40) 
+                || (e.keyCode==46)
 })
 
 function languageValidation(){

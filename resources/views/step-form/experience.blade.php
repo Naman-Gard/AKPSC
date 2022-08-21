@@ -11,13 +11,13 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-check d-flex">
-                            <input type="radio" name="isworking" value="retired" id="retired" />
+                            <input type="radio" name="isworking" value="Retired" id="retired" />
                             <label class="ms-2" for="flexRadioDefault1">Retired </label>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-check d-flex">
-                            <input type="radio" name="isworking" value="service" id="service" />
+                            <input type="radio" name="isworking" value="Service" id="service" />
                             <label class="ms-2" for="flexRadioDefault1"> Service </label>
                         </div>
                     </div>

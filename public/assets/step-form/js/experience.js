@@ -9,6 +9,17 @@ $('#type').change((e)=>{
     }
 })
 
+$('input[name=org_name]').keydown((e) => {
+
+    var keyCode = (e.keyCode ? e.keyCode : e.which);
+    if (!(keyCode >= 65 && keyCode <= 123)
+                        && (keyCode != 32 && keyCode != 0)
+                        && (keyCode != 48 && keyCode != 8)
+                        && (keyCode != 9)) {
+        e.preventDefault();
+    }
+})
+
 // $('input[name=isworking]').change((e)=>{
 //     if(e.target.value==='service'){
 //         $('#designation_row').removeClass('d-none')
@@ -218,6 +229,7 @@ function isWorkingValidation(){
 
     if($('input[name=isprior]:checked').length !== 0){
         $('#valid_isprior').html('')
+        data['isprior']=$('input[name=isprior]:checked').val()
         flag.push(true)
     }
     else{
@@ -256,7 +268,28 @@ function isWorkingValidation(){
 
 function finalExperienceValidation(){
     let data=isWorkingValidation()
-    if(data && experienceDataStatus && (organizationDataStatus && $('input[name=isprior]:checked').val()!=='Yes')){
+    let flag=''
+
+    if($('input[name=isprior]').is(':checked') && $('input[name=isprior]:checked').val()!=='No'){
+        if(organizationDataStatus){
+            $('#notify-message').html('')
+            flag=true
+        }
+        else{
+            $('#notify-message').html('Please add organization details')
+            $('#NotifyModal').modal('show')
+            flag=false
+        }
+    }
+    else{
+        flag=true
+    }
+
+    if(!flag){
+        return false
+    }
+        
+    if(data && experienceDataStatus && flag){
          $.ajax({
             type: "POST",
             contentType: "application/json",
@@ -270,6 +303,7 @@ function finalExperienceValidation(){
         return true
     }
     else{
+
         if(experienceDataStatus){
             // $('#experience_error').html('')
             $('#notify-message').html('')
@@ -280,20 +314,6 @@ function finalExperienceValidation(){
             return false
             // $('#experience_error').html('Please add your experience details')
         }
-        if($('input[name=isprior]').is(':checked') && $('input[name=isprior]:checked').val()!=='No'){
-            if(organizationDataStatus){
-                // $('#organization_error').html('')
-                $('#notify-message').html('')
-            }
-            else{
-                $('#notify-message').html('Please add organization details')
-                $('#NotifyModal').modal('show')
-                return false
-                // $('#organization_error').html('Please add your organization details')
-            }
-        }
-        
-        return false
     }
 }
 

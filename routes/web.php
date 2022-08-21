@@ -18,7 +18,7 @@ Route::group(["middleware" => ["islogout"]], function(){
         return view('auth/login');
     })->name('/');
 
-    Route::get('check/isEmailRegistered/{email}', 'App\Http\Controllers\AuthController@isEmailRegistered');
+    Route::get('check/isEmailRegistered/{email}/{mobile}', 'App\Http\Controllers\AuthController@isEmailRegistered');
     Route::get('send/otp/{email}/{otp}', 'App\Http\Controllers\AuthController@sendOtp');
     Route::post('register', 'App\Http\Controllers\AuthController@register')->name('register');
     Route::post('login', 'App\Http\Controllers\AuthController@login')->name('login');

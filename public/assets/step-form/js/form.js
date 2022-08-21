@@ -174,6 +174,14 @@ $(document).ready(function(){
                         if(key==='isworking'){
                             if(response[key].length){
                                 $('input[name=isworking][value="'+response[key][0].isworking+'"]').attr('checked',true).change()
+                                $('input[name=isprior][value="'+response[key][0].isprior+'"]').attr('checked',true).change()
+                                if(response[key][0].isprior!=='No'){
+                                    $('#organization_details').removeClass('d-none')
+                                }else{
+                                    if(!$('#organization_details').hasClass('d-none')){
+                                        $('#organization_details').addClass('d-none')
+                                    }
+                                }
                                 // if(response[key][0].isworking==='retired'){
                                 //     if(!$('#designation_row').hasClass('d-none')){
                                 //         $('#designation_row').addClass('d-none')

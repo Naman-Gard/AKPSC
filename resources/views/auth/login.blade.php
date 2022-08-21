@@ -138,7 +138,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender" value="male"
+                                <input class="form-check-input" type="radio" name="gender" value="Male"
                                     id="male" />
                                 <label class="form-check-label" for="flexRadioDefault1">Male </label>
                             </div>
@@ -146,14 +146,14 @@
                         <div class="col-md-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="gender"
-                                    value="female" id="female" />
+                                    value="Female" id="female" />
                                 <label class="form-check-label" for="flexRadioDefault1"> Female </label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="gender"
-                                    value="other" id="other" />
+                                    value="Other" id="other" />
                                 <label class="form-check-label" for="flexRadioDefault1"> Other </label>
                             </div>
                         </div>
@@ -263,19 +263,7 @@
     function doValidation() {
         let flag = [];
         $('#valid_otp').html("");
-        if ($('input[name=mobile]').val() !== '') {
-            if($('input[name=mobile]').val().length<10){
-                flag.push(false)
-                $('#valid_mobile').html("Please enter valid mobile");
-            }
-            else{
-                $('#valid_mobile').html("");
-            }
-        }
-        else{
-            flag.push(false)
-            $('#valid_mobile').html("Please enter valid mobile");
-        }
+        
 
         if ($('input[name=otp]').val() !== '') {
             flag.push(otpValidation())
@@ -321,7 +309,21 @@
     $('input[name=name]').keydown((e) => {
 
         var keyCode = (e.keyCode ? e.keyCode : e.which);
-        if (keyCode > 47 && keyCode < 58) {
+        if (!(keyCode >= 65 && keyCode <= 123)
+                            && (keyCode != 32 && keyCode != 0)
+                            && (keyCode != 48 && keyCode != 8)
+                            && (keyCode != 9)) {
+            e.preventDefault();
+        }
+    })
+
+    $('input[name=father_name]').keydown((e) => {
+
+        var keyCode = (e.keyCode ? e.keyCode : e.which);
+        if (!(keyCode >= 65 && keyCode <= 123)
+                            && (keyCode != 32 && keyCode != 0)
+                            && (keyCode != 48 && keyCode != 8)
+                            && (keyCode != 9)) {
             e.preventDefault();
         }
     })
@@ -331,37 +333,79 @@
         if (e.currentTarget.value.length == 10 && keyCode!==8)
             return false;
         
-        if ((keyCode > 64 && keyCode < 91) || (keyCode > 96 && keyCode < 123)) {
-            e.preventDefault();
-        }
+        return e.ctrlKey || e.altKey 
+                    || (47<e.keyCode && e.keyCode<58 && e.shiftKey==false) 
+                    || (95<e.keyCode && e.keyCode<106)
+                    || (e.keyCode==8) || (e.keyCode==9) 
+                    || (e.keyCode>34 && e.keyCode<40) 
+                    || (e.keyCode==46)
     })
 
 
     function emailValidation() {
         // let email=document.getElementById('email').value;
+        let flag=''
         let email = $('input[name=reg_email]').val()
         let valid =
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        if (email.toLowerCase().match(valid)) {
+        if ($('input[name=mobile]').val() !== '') {
+            if($('input[name=mobile]').val().length<10){
+                flag=false
+                $('#valid_mobile').html("Please enter valid mobile");
+            }
+            else{
+                flag='true'
+                $('#valid_mobile').html("");
+            }
+        }
+        else{
+            flag=false
+            $('#valid_mobile').html("Please enter valid mobile");
+        }
+
+        if (email.toLowerCase().match(valid) && flag) {
             
             $.ajax({
                 type: "GET",
                 headers: {
                     'Access-Control-Allow-Origin': '*'
                 },
-                url: base_url + 'check/isEmailRegistered/'+btoa(email),
+                url: base_url + 'check/isEmailRegistered/'+btoa(email)+'/'+btoa($('input[name=mobile]').val()),
                 success:function(response){
+                    console.log(response.status)
                     if(response.status==='Already Exist'){
                         $('#valid_email').html("This Email is already registered");
+                        $('#valid_mobile').html("This Mobile is already registered");
                         $('input[name=reg_email]').attr('readonly',false)
+                        $('input[name=mobile]').attr('readonly',false)
+                        if(!$('#register-btn').hasClass('d-none')){
+                            $('#register-btn').addClass('d-none')
+                        }
+                    }
+                    else if(response.status==='Mobile Already Exist'){
+                        $('#valid_email').html("");
+                        $('#valid_mobile').html("This Mobile is already registered");
+                        $('input[name=reg_email]').attr('readonly',false)
+                        $('input[name=mobile]').attr('readonly',false)
+                        if(!$('#register-btn').hasClass('d-none')){
+                            $('#register-btn').addClass('d-none')
+                        }
+                    }
+                    else if(response.status==='Email Already Exist'){
+                        $('#valid_email').html("This Email is already registered");
+                        $('#valid_mobile').html("");
+                        $('input[name=reg_email]').attr('readonly',false)
+                        $('input[name=mobile]').attr('readonly',false)
                         if(!$('#register-btn').hasClass('d-none')){
                             $('#register-btn').addClass('d-none')
                         }
                     }
                     else{
                         $('#valid_email').html("");
+                        $('#valid_mobile').html("");
                         $('input[name=reg_email]').attr('readonly',true)
+                        $('input[name=mobile]').attr('readonly',true)
                         $('#get_OTP').addClass('d-none')
                         $('#register-btn').removeClass('d-none')
                         $('#otp_input').removeClass('d-none')
@@ -370,7 +414,12 @@
                 }
             })
         } else {
-            $('#valid_email').html("Please enter valid email");
+            if(email.toLowerCase().match(valid)){
+                $('#valid_email').html("");
+            }
+            else{
+                $('#valid_email').html("Please enter valid email");
+            }
         }
     }
 
@@ -416,6 +465,7 @@
                 $('#resend-otp').removeClass('d-none')
                 $('#valid_otp').html("");
                 $('input[name=reg_email]').attr('readonly',false)
+                $('input[name=mobile]').attr('readonly',false)
                 if(!$('#register-btn').hasClass('d-none')){
                     $('#register-btn').addClass('d-none')
                 }

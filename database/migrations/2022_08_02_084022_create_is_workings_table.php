@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('isworking');
+            $table->string('isprior');
             $table->string('designation')->nullable();
             $table->string('serving')->nullable();
             $table->string('status');
