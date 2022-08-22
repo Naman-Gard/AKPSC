@@ -62,11 +62,32 @@ class AuthController extends Controller
         return redirect()->route('/')->with('success','Logout Sucessfully');
     }
 
-    public function isEmailRegistered($email){
-        $email=base64_decode($email);
+    public function isEmailRegistered($data){
+        $data=json_decode(base64_decode($data));
+        $email=$data->email;
+        $mobile=$data->mobile;
+        $name=$data->name;
+        $father_name=$data->father_name;
+        $dob=$data->dob;
+
         $status=User::where('email',$email)->get();
-        if(sizeOf($status)){
+        $mobileStatus=User::where('mobile',$mobile)->get();
+        $userStatus=User::where('name',$name)
+        ->where('father_name',$father_name)
+        ->where('dob',$dob)
+        ->get();
+
+        if(sizeOf($userStatus)){
+            return ['status'=>'User Already Exist'];
+        }
+        else if(sizeOf($status) && sizeOf($mobileStatus)){
             return ['status'=>'Already Exist'];
+        }
+        else if(sizeOf($status)){
+            return ['status'=>'Email Already Exist'];
+        }
+        else if(sizeOf($mobileStatus)){
+            return ['status'=>'Mobile Already Exist'];
         }
         else{
             return ['status'=>'Not Registered'];

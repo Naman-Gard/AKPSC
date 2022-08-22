@@ -1,7 +1,7 @@
 @include('admin/includes/header')
 @include('admin/includes/nav')
-
-<div class="container mt-5 py-5">
+@include('admin/includes/sidebar')
+<div id="main" class="container mt-5 p-5">
 
     <div class="heading mb-3">
         <h2>Registered Users</h2>

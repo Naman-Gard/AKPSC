@@ -178,6 +178,17 @@
                                             {{$data['experience_data']['isworking']['serving']?$data['experience_data']['isworking']['serving']:'-'}}
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <th class="w-75">
+                                        Prior Experience of acting as Advisor/Expert in
+                                            Interview Board (s)/Question paper setter/ Objective Item writer/ Moderator/
+                                            Examiner/ Evaluator/ Syllabus Framing Organ.
+
+                                        </th>
+                                        <td class="w-25">
+                                            {{$data['experience_data']['isworking']['isprior']}}
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <table class="table">
@@ -201,12 +212,12 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            @if(sizeOf($data['experience_data']['organization']))
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="dark-green" scope="row" colspan="3">Prior Experience of acting as Advisor/Expert in
-                                            Interview Board (s)/Question paper setter/ Objective Item writer/ Moderator/
-                                            Examiner/ Evaluator/ Syllabus Framing Organ.</th>
+                                        <th scope="row" class="dark-green"  colspan="3">Organization Details</th>
                                     </tr>
                                     <tr>
                                         <th scope="col">Organisation Name</th>
@@ -224,6 +235,8 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @endif
+
                             <table class="table">
                                 <tbody>
                                     <tr>

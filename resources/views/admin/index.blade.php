@@ -1,8 +1,8 @@
 @include('admin/includes/header')
 @include('admin/includes/nav')
+@include('admin/includes/sidebar')
 
-<div class="container mt-5 py-5">
-
+<div id="main" class="container mt-5 p-5">
     <div class="panel-sec">
         <div class="row">
             <div class="col-md-4">
@@ -113,7 +113,7 @@
         </div>
         <table class="table action-table table-responsive">
             <thead>
-                <tr>
+                <tr class="align-middle">
                     <th scope="col">S.no</th>
                     <th scope="col">Registration Id</th>
                     <th scope="col">Name</th>
@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Date of Empanelment</label>
-                                    <input type="text" class="empanel_input" name="doe" id="doe" autocomplete='off'>
+                                    <input type="date" max="19/08/2020" class="empanel_input" name="doe" id="doe" autocomplete='off'>
                                     <span class="text-danger" id="valid_doe"></span>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Secret Code2</label>
-                                    <input type="text" class="empanel_input" name="secret_code2" id="secret_code2" autocomplete='off'>
+                                    <input type="text" class="" name="secret_code2" id="secret_code2" autocomplete='off'>
                                     <span class="text-danger" id="valid_secret_code2"></span>
                                 </div>
                             </div>
@@ -186,43 +186,5 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="BlackListModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-body p-0">
-
-
-                <div class="card">
-                    <!-- <div class="card-header">Delete user
-                <button type="button" class="btn-close float-right" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div> -->
-                    <div class="card-body">
-                        <form action="{{route('blacklisted')}}" method="POST" id="blacklisted">
-                            @csrf
-                            <h2>BlackList</h2>
-                            <input type="hidden" name="user_id" id="id">
-                            <div class="row m-2">
-                                <div class="form-group col-md-6">
-                                    <label for="">Number of years</label>
-                                    <input type="text" class="" name="lifespan" id="lifespan" autocomplete='off'>
-                                    <span class="text-danger" id="valid_lifespan"></span>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                            <button class="btn btn-primary btn-sm">Add</button>
-                        </form>
-
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
 
 @include('admin/includes/footer')

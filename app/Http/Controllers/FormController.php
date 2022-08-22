@@ -38,8 +38,18 @@ class FormController extends Controller
             $step='education';
             return view('step-form/index',compact('step'));
         }
-        if(sizeOf($experience) && sizeOf($organization) && sizeOf($isworking)){
-            $step='preference';
+        if(sizeOf($experience) && sizeOf($isworking)){
+            if($isworking[0]->isprior==='No'){
+                $step='preference';
+            }
+            else{
+                if(sizeOf($organization)){
+                    $step='preference';
+                }
+                else{
+                    $step='experience';
+                }
+            }
         }
         if(sizeOf($preference)){
             $step='upload';

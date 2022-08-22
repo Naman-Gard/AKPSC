@@ -18,7 +18,7 @@ Route::group(["middleware" => ["islogout"]], function(){
         return view('auth/login');
     })->name('/');
 
-    Route::get('check/isEmailRegistered/{email}', 'App\Http\Controllers\AuthController@isEmailRegistered');
+    Route::get('check/isEmailRegistered/{data}', 'App\Http\Controllers\AuthController@isEmailRegistered');
     Route::get('send/otp/{email}/{otp}', 'App\Http\Controllers\AuthController@sendOtp');
     Route::post('register', 'App\Http\Controllers\AuthController@register')->name('register');
     Route::post('login', 'App\Http\Controllers\AuthController@login')->name('login');
@@ -84,7 +84,11 @@ Route::group(["middleware" => ["adminlogin"]], function(){
     Route::get('secure-admin/logout', 'App\Http\Controllers\AdminController@logout')->name('admin-logout');
     Route::post('secure-admin/add/empanel', 'App\Http\Controllers\EmpanelController@addEmpanel')->name('add-empanel');
     Route::post('secure-admin/blacklisted', 'App\Http\Controllers\BlackListController@index')->name('blacklisted');
+    Route::get('remove/blacklistedUser/{id}', 'App\Http\Controllers\BlackListController@removeUser')->name('remove-blacklistedUser');
+    Route::post('secure-admin/appointed', 'App\Http\Controllers\AppointController@index')->name('appointed');
+
     Route::get('secure-admin/registered/users', 'App\Http\Controllers\AdminController@getRegisteredUser')->name('registered-users');
     Route::get('secure-admin/empanelled/users', 'App\Http\Controllers\AdminController@getEmpanelledUser')->name('empanelled-users');
     Route::get('secure-admin/blacklisted/users', 'App\Http\Controllers\AdminController@getBlacklistedUser')->name('blacklisted-users');
+    Route::get('secure-admin/appointed/users', 'App\Http\Controllers\AppointController@getUsers')->name('appointed-users');
 });

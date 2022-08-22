@@ -13,6 +13,7 @@ class IsWorking extends Model
         'isworking',
         'designation',
         'serving',
+        'isprior',
         'status'
     ];
 }

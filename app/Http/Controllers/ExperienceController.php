@@ -68,12 +68,18 @@ class ExperienceController extends Controller
     }
 
     public function addFinalExperience(Request $request){
+
+        if($request->isprior==='No'){
+            $this->deleteUserOrganization();
+        }
+
         $exist=IsWorking::where('user_id',Auth::user()->id)->get();
         if(sizeOf($exist)){
              IsWorking::where('user_id',Auth::user()->id)->update([
                 "isworking"=>$request->isworking,
                 "designation"=>$request->designation,
                 "serving"=>$request->serving,
+                "isprior"=>$request->isprior,
                 'status'=>'1'
             ]);
         }
@@ -83,6 +89,7 @@ class ExperienceController extends Controller
                 "isworking"=>$request->isworking,
                 "designation"=>$request->designation,
                 "serving"=>$request->serving,
+                "isprior"=>$request->isprior,
                 'status'=>'1'
             ]);
         }
@@ -94,6 +101,10 @@ class ExperienceController extends Controller
         Organization::where('user_id',Auth::user()->id)->update([
             'status'=>'1'
         ]);
+    }
+
+    public function deleteUserOrganization(){
+        Organization::where('user_id',Auth::user()->id)->delete();
     }
         
 }

@@ -90,13 +90,13 @@ function setUsers(){
             //         </tr>`)
             let innerhtml=[
                 index+1,
-                users[user]['register_id'],
+                `<a target="_blank">${users[user]['register_id']}</a>`,
                 users[user]['name'],
                 users[user]['mobile'],
                 users[user]['subject'].toString(),
                 exp.toString(),
-                `<button data-id="${user}" data-bs-toggle="modal" data-bs-target="#EmpanelModal" class="btn btn-sm p-2 btn-primary">Empanel</button>
-                <button data-id="${user}" data-bs-toggle="modal" data-bs-target="#BlackListModal" class="btn btn-sm p-2 btn-primary">Blacklist</button>`
+                `<button data-id="${user}" data-bs-toggle="modal" data-bs-target="#EmpanelModal" class="btn btn-sm p-2 btn-primary">Empanel</button>`
+                // <button data-id="${user}" data-bs-toggle="modal" data-bs-target="#BlackListModal" class="btn btn-sm p-2 btn-primary">Blacklist</button>`
             ]
             table.row.add(innerhtml).draw()
         })
@@ -122,6 +122,10 @@ $('#EmpanelModal').on('show.bs.modal', function(e) {
 
 $('#BlackListModal').on('show.bs.modal', function(e) {
     $('#id').val($(e.relatedTarget).data('id'))
+});
+
+$('#AppointedModal').on('show.bs.modal', function(e) {
+    $('#appoint_user_id').val($(e.relatedTarget).data('id'))
 });
 
 $('#add-empanel').on('submit', function (e) {
@@ -158,7 +162,7 @@ function doEmpanelValidation(){
         }
     })
 
-    if($('#secret_code2').val()===$('#secret_code1').val()){
+    if($('#secret_code2').val()===$('#secret_code1').val() && $('#secret_code1').val()!==''){
         flag.push(false)
         $('#valid_secret_code2').html('Secret Codes should be unique')
     }
@@ -168,12 +172,45 @@ function doEmpanelValidation(){
     return flag.includes(false)?false:true
 }
 
+$('input[name=lifespan]').change((e)=>{
+    if(e.target.value==='years'){
+        $('#n_years').removeClass('d-none')
+    }
+    else{
+        if(!$('#n_years').hasClass('d-none')){
+            $('#n_years').addClass('d-none')
+        }
+    }
+})
+
 function doBlackListValidation(){
-    if($('#lifespan').val()!==''){
+    // if($('#lifespan').val()!==''){
+    //     $('#valid_lifespan').html('')
+    //     return true
+    // }else{
+    //     $('#valid_lifespan').html('The Field is required')
+    //     return false
+    // }
+
+    if($('input[name=lifespan]:checked').length !== 0){
+
+        if($('input[name=lifespan]:checked').val()==='years'){
+            if($('input[name=n_years]').val()!==''){
+                $('#valid_n_years').html('')
+            }
+            else{
+                $('#valid_lifespan').html('')
+                $('#valid_n_years').html('This field is required')
+                return false
+            }
+        }
+
         $('#valid_lifespan').html('')
         return true
-    }else{
-        $('#valid_lifespan').html('The Field is required')
+    }
+    else{
+        $('#valid_lifespan').html('This field is required')
+        $('input[name=lifespan]').focus()
         return false
     }
 }

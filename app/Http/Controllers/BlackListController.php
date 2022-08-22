@@ -16,14 +16,14 @@ class BlackListController extends Controller
         if($request->lifespan!=='lifetime'){
             BlackListed::create([
                 'user_id'=>$request->user_id,
-                'years'=>$request->lifespan,
-                'lifespan'=>(int)$request->lifespan + (int)$year
+                'years'=>$request->n_years,
+                'lifespan'=>(int)$request->n_years + (int)$year
             ]);
         }
         else{
             BlackListed::create([
                 'user_id'=>$request->user_id,
-                'years'=>$request->lifespan,
+                'years'=>0,
                 'lifespan'=>$request->lifespan
             ]);
         }
@@ -33,6 +33,14 @@ class BlackListController extends Controller
             'blacklisted'=>1
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('empanelled-users');
+    }
+
+    public function removeUser($id){
+        FinalStatus::where('user_id',$id)->update([
+            'blacklisted'=>0
+        ]);
+        BlackListed::where('user_id',$id)->delete();
+        return redirect()->route('blacklisted-users');
     }
 }

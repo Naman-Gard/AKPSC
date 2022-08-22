@@ -9,15 +9,39 @@ $('#type').change((e)=>{
     }
 })
 
-$('input[name=isworking]').change((e)=>{
-    if(e.target.value==='service'){
-        $('#designation_row').removeClass('d-none')
+$('input[name=org_name]').keydown((e) => {
+
+    var keyCode = (e.keyCode ? e.keyCode : e.which);
+    if (!(keyCode >= 65 && keyCode <= 123)
+                        && (keyCode != 32 && keyCode != 0)
+                        && (keyCode != 48 && keyCode != 8)
+                        && (keyCode != 9)) {
+        e.preventDefault();
+    }
+})
+
+// $('input[name=isworking]').change((e)=>{
+//     if(e.target.value==='service'){
+//         $('#designation_row').removeClass('d-none')
+//     }
+//     else{
+//         if(!$('#designation_row').hasClass('d-none')){
+//             $('#designation_row').addClass('d-none')
+//             $('#designation').val('')
+//             $('#serving').val('')
+//         }
+//     }
+// })
+$('input[name=isprior]').change((e)=>{
+    if(e.target.value==='Yes'){
+        $('#organization_details').removeClass('d-none')
     }
     else{
-        if(!$('#designation_row').hasClass('d-none')){
-            $('#designation_row').addClass('d-none')
-            $('#designation').val('')
-            $('#serving').val('')
+        if(!$('#organization_details').hasClass('d-none')){
+            $('#organization_details').addClass('d-none')
+            $("#experience_fieldset .org_input").each(function(key,value){
+                $(this).val('')
+            })
         }
     }
 })
@@ -203,6 +227,17 @@ function isWorkingValidation(){
         return false
     }
 
+    if($('input[name=isprior]:checked').length !== 0){
+        $('#valid_isprior').html('')
+        data['isprior']=$('input[name=isprior]:checked').val()
+        flag.push(true)
+    }
+    else{
+        $('#valid_isprior').html('This field is required')
+        $('input[name=isprior]').focus()
+        return false
+    }
+
     $("#experience_fieldset .serving_input").each(function(key,value){
         if(!$('#designation_row').hasClass('d-none')){
             if($(this).val()===''){
@@ -233,7 +268,28 @@ function isWorkingValidation(){
 
 function finalExperienceValidation(){
     let data=isWorkingValidation()
-    if(data && experienceDataStatus && organizationDataStatus){
+    let flag=''
+
+    if($('input[name=isprior]').is(':checked') && $('input[name=isprior]:checked').val()!=='No'){
+        if(organizationDataStatus){
+            $('#notify-message').html('')
+            flag=true
+        }
+        else{
+            $('#notify-message').html('Please add organization details')
+            $('#NotifyModal').modal('show')
+            flag=false
+        }
+    }
+    else{
+        flag=true
+    }
+
+    if(!flag){
+        return false
+    }
+        
+    if(data && experienceDataStatus && flag){
          $.ajax({
             type: "POST",
             contentType: "application/json",
@@ -247,6 +303,7 @@ function finalExperienceValidation(){
         return true
     }
     else{
+
         if(experienceDataStatus){
             // $('#experience_error').html('')
             $('#notify-message').html('')
@@ -257,17 +314,6 @@ function finalExperienceValidation(){
             return false
             // $('#experience_error').html('Please add your experience details')
         }
-        if(organizationDataStatus){
-            // $('#organization_error').html('')
-            $('#notify-message').html('')
-        }
-        else{
-            $('#notify-message').html('Please add organization details')
-            $('#NotifyModal').modal('show')
-            return false
-            // $('#organization_error').html('Please add your organization details')
-        }
-        return false
     }
 }
 
