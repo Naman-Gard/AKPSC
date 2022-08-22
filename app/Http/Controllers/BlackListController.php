@@ -9,6 +9,7 @@ use App\Models\BlackListed;
 class BlackListController extends Controller
 {
     public function index(Request $request){
+
         $year=date('Y');
         date_default_timezone_set('Asia/Kolkata');
 
@@ -32,6 +33,14 @@ class BlackListController extends Controller
             'blacklisted'=>1
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('empanelled-users');
+    }
+
+    public function removeUser($id){
+        FinalStatus::where('user_id',$id)->update([
+            'blacklisted'=>0
+        ]);
+        BlackListed::where('user_id',$id)->delete();
+        return redirect()->route('blacklisted-users');
     }
 }

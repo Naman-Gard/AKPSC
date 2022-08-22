@@ -25,7 +25,7 @@ class AdminController extends Controller
         ]);
 
         $registered=User::where('type','user')->count();
-        $empanelled=FinalStatus::where('empanelled','1')->count();
+        $empanelled=FinalStatus::where('empanelled','1')->where('blacklisted','0')->count();
         $blacklist=FinalStatus::where('blacklisted','1')->count();
 
         $count=array(
@@ -117,6 +117,8 @@ class AdminController extends Controller
         ->join('empanelments','empanelments.user_id','=','users.id')
         ->where('final_statuses.status','1')
         ->where('final_statuses.empanelled','1')
+        ->where('final_statuses.blacklisted','0')
+        ->where('final_statuses.appointed','0')
         ->get()->groupBy('user_id');
         $experiences=Experience::get()->groupBy('user_id');
         
@@ -155,7 +157,9 @@ class AdminController extends Controller
     }
 
     public function getBlacklistedUser(){
-        $users=User::join('final_statuses','final_statuses.user_id','=','users.id')->where('type','user')->where('final_statuses.blacklisted',1)->get();
+        $users=User::join('final_statuses','final_statuses.user_id','=','users.id')
+        ->join('empanelments','empanelments.user_id','=','users.id')
+        ->where('type','user')->where('final_statuses.blacklisted',1)->get();
         return view('admin.users.blacklisted',compact('users'));
     }
 }

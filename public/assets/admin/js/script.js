@@ -90,13 +90,13 @@ function setUsers(){
             //         </tr>`)
             let innerhtml=[
                 index+1,
-                users[user]['register_id'],
+                `<a target="_blank">${users[user]['register_id']}</a>`,
                 users[user]['name'],
                 users[user]['mobile'],
                 users[user]['subject'].toString(),
                 exp.toString(),
-                `<button data-id="${user}" data-bs-toggle="modal" data-bs-target="#EmpanelModal" class="btn btn-sm p-2 btn-primary">Empanel</button>
-                <button data-id="${user}" data-bs-toggle="modal" data-bs-target="#BlackListModal" class="btn btn-sm p-2 btn-primary">Blacklist</button>`
+                `<button data-id="${user}" data-bs-toggle="modal" data-bs-target="#EmpanelModal" class="btn btn-sm p-2 btn-primary">Empanel</button>`
+                // <button data-id="${user}" data-bs-toggle="modal" data-bs-target="#BlackListModal" class="btn btn-sm p-2 btn-primary">Blacklist</button>`
             ]
             table.row.add(innerhtml).draw()
         })
@@ -122,6 +122,10 @@ $('#EmpanelModal').on('show.bs.modal', function(e) {
 
 $('#BlackListModal').on('show.bs.modal', function(e) {
     $('#id').val($(e.relatedTarget).data('id'))
+});
+
+$('#AppointedModal').on('show.bs.modal', function(e) {
+    $('#appoint_user_id').val($(e.relatedTarget).data('id'))
 });
 
 $('#add-empanel').on('submit', function (e) {

@@ -115,103 +115,118 @@
         <div class="modal-body">
             <form action="{{route('register')}}" id="register-form" method="POST">
                 @csrf
-                <div class="input-div">
-                    <label for="name" class="form-label">Name (नाम) <span class="red-feild">*</span> </label>
-                    <input type="text" name="name" required autocomplete="off" />
-                    <!-- <span>Name (नाम)</span> -->
-                    <p class="text-danger" id="valid_name"></p>
-                </div>
-                <div class="input-div">
-                    <label for="father_name" class="form-label">Father Name (पिता का नाम) <span class="red-feild">*</span></label>
-                    <input type="text" name="father_name" required autocomplete="off" />
-                    <!-- <span>Father Name (पिता का नाम)</span> -->
-                    <p class="text-danger" id="valid_father_name"></p>
-                </div>
-                <div class="input-div">
-                    <!-- <label>Date of Birth (जन्म की तारीख)</label> -->
-                    <label for="dob" class="form-label">Date of Birth (जन्म की तारीख) <span class="red-feild">*</span></label>
-                    <input type="text" name="dob" id="dob" required autocomplete="off" placeholder="dd/mm/yyyy"/>
-                    <p class="text-danger" id="valid_dob"></p>
-                </div>
-                <div class="input-div">
-                    <label>Gender</label>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender" value="Male"
-                                    id="male" />
-                                <label class="form-check-label" for="flexRadioDefault1">Male </label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender"
-                                    value="Female" id="female" />
-                                <label class="form-check-label" for="flexRadioDefault1"> Female </label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender"
-                                    value="Other" id="other" />
-                                <label class="form-check-label" for="flexRadioDefault1"> Other </label>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <span>Gender (लिंग)</span> -->
-                    <p class="text-danger" id="valid_gender"></p>
-                </div>
-                <div class="input-div">
-                    <label for="category" class="form-label">Category (श्रेणी) <span class="red-feild">*</span></label>
-                    <select required name="category" id="category">
-                        <option value="">Select</option>
-                        <option value="General">General</option>
-                        <option value="OBC">OBC</option>
-                        <option value="SC">SC</option>
-                        <option value="ST">ST</option>
-                    </select>
-                    <!-- <input type="text" name="category" required autocomplete="off" /> -->
-                    <!-- <span>Category (श्रेणी)</span> -->
-                    <p class="text-danger" id="valid_category"></p>
-                </div>
-                <div class="input-div">
-                    <label for="mobile" class="form-label">Mobile No. (मोबाइल नंबर) <span class="red-feild">*</span></label>
-                    <input type="text" name="mobile" required autocomplete="off" />
-                    <!-- <span>Mobile No. (मोबाइल नंबर)</span> -->
-                    <p class="text-danger" id="valid_mobile"></p>
-                </div>
-                <div class="input-div">
-                    <label for="reg_email" class="form-label">Email ID (ईमेल आईडी) <span class="red-feild">*</span></label>
-                    <input type="email" name="reg_email" required autocomplete="off" />
-                    <!-- <span>Email ID (ईमेल आईडी)</span> -->
-                    <p class="text-danger" id="valid_email"></p>
-                </div>
-                <div class="input-div">
-                    <label for="pass" class="form-label">Password (पासवर्ड) <span class="red-feild">*</span></label>
-                    <input type="password" name="pass" required autocomplete="off" />
-                    <p class="text-danger" id="valid_pass"></p>
-                    <!-- <span>Password (पासवर्ड)</span> -->
-                </div>
-                <div class="input-div">
-                    <label for="cnfrm_pass" class="form-label">Confirm Password (पासवर्ड पुष्टि करें) <span class="red-feild">*</span></label>
-                    <input type="password" name="cnfrm_pass" required autocomplete="off" />
-                    <!-- <span>Confirm Password (पासवर्ड पुष्टि करें)</span> -->
-                </div>
 
-                <div class="d-none" id="otp_input">
-                    <label class="form-label">OTP</label>
-                    <input type="text" name="otp" id="otp">
-                    <p class="text-danger" id="valid_otp"></p>
-                    <div id="ten-countdown"></div>
-                    <div class="d-none" id="resend-otp">
-                        <input class="next_button myBtn" type="button" id="resend-otp-btn" value="Resend OTP"/>
+                <div class="register-data">
+                    <div class="input-div">
+                        <label for="name" class="form-label">Name (नाम) <span class="red-feild">*</span> </label>
+                        <input type="text" name="name" required autocomplete="off" />
+                        <!-- <span>Name (नाम)</span> -->
+                        <p class="text-danger" id="valid_name"></p>
+                    </div>
+                    <div class="input-div">
+                        <label for="father_name" class="form-label">Father Name (पिता का नाम) <span class="red-feild">*</span></label>
+                        <input type="text" name="father_name" required autocomplete="off" />
+                        <!-- <span>Father Name (पिता का नाम)</span> -->
+                        <p class="text-danger" id="valid_father_name"></p>
+                    </div>
+                    <div class="input-div">
+                        <!-- <label>Date of Birth (जन्म की तारीख)</label> -->
+                        <label for="dob" class="form-label">Date of Birth (जन्म की तारीख) <span class="red-feild">*</span></label>
+                        <input type="text" name="dob" id="dob" required autocomplete="off" placeholder="dd/mm/yyyy"/>
+                        <p class="text-danger" id="valid_dob"></p>
+                    </div>
+                    <div class="input-div">
+                        <label>Gender</label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" value="Male"
+                                        id="male" />
+                                    <label class="form-check-label" for="flexRadioDefault1">Male </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender"
+                                        value="Female" id="female" />
+                                    <label class="form-check-label" for="flexRadioDefault1"> Female </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender"
+                                        value="Other" id="other" />
+                                    <label class="form-check-label" for="flexRadioDefault1"> Other </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <span>Gender (लिंग)</span> -->
+                        <p class="text-danger" id="valid_gender"></p>
+                    </div>
+                    <div class="input-div">
+                        <label for="category" class="form-label">Category (श्रेणी) <span class="red-feild">*</span></label>
+                        <select required name="category" id="category">
+                            <option value="">Select</option>
+                            <option value="General">General</option>
+                            <option value="OBC">OBC</option>
+                            <option value="SC">SC</option>
+                            <option value="ST">ST</option>
+                        </select>
+                        <!-- <input type="text" name="category" required autocomplete="off" /> -->
+                        <!-- <span>Category (श्रेणी)</span> -->
+                        <p class="text-danger" id="valid_category"></p>
+                    </div>
+                    <div class="input-div">
+                        <label for="mobile" class="form-label">Mobile No. (मोबाइल नंबर) <span class="red-feild">*</span></label>
+                        <input type="text" name="mobile" required autocomplete="off" />
+                        <!-- <span>Mobile No. (मोबाइल नंबर)</span> -->
+                        <p class="text-danger" id="valid_mobile"></p>
+                    </div>
+                    <div class="input-div">
+                        <label for="reg_email" class="form-label">Email ID (ईमेल आईडी) <span class="red-feild">*</span></label>
+                        <input type="email" name="reg_email" required autocomplete="off" />
+                        <!-- <span>Email ID (ईमेल आईडी)</span> -->
+                        <p class="text-danger" id="valid_email"></p>
+                    </div>
+                    <div class="input-div">
+                        <label for="pass" class="form-label">Password (पासवर्ड) <span class="red-feild">*</span></label>
+                        <input type="password" name="pass" required autocomplete="off" />
+                        <p class="text-danger" id="valid_pass"></p>
+                        <!-- <span>Password (पासवर्ड)</span> -->
+                    </div>
+                    <div class="input-div">
+                        <label for="cnfrm_pass" class="form-label">Confirm Password (पासवर्ड पुष्टि करें) <span class="red-feild">*</span></label>
+                        <input type="password" name="cnfrm_pass" required autocomplete="off" />
+                        <!-- <span>Confirm Password (पासवर्ड पुष्टि करें)</span> -->
+                    </div>
+                
+
+                    <div class="buttons mt-4">
+                        <input class="next_button myBtn" type="button" id="get_OTP" value="Get OTP"/>
                     </div>
                 </div>
 
-                <div class="buttons mt-4">
-                    <input class="next_button myBtn" type="button" id="get_OTP" value="Get OTP"/>
-                    <button class="next_button d-none" id="register-btn">Register</button>
+                <div class="d-none verify-otp">
+
+                    <div>
+                        <h4 class="text-white">Verify OTP</h4>
+                    </div>
+                    <div class="" id="otp_input">
+                        <label class="form-label">OTP</label>
+                        <input type="text" name="otp" id="otp">
+                        <p class="text-danger" id="valid_otp"></p>
+                        <div id="ten-countdown"></div>
+                        <div class="d-none" id="resend-otp">
+                            <input class="next_button myBtn" type="button" id="resend-otp-btn" value="Resend OTP"/>
+                        </div>
+                    </div>
+
+                    
+                    <div class="buttons mt-4">
+                        <button class="next_button" id="register-btn">Verify</button>
+                    </div>
                 </div>
+
             </form>
         </div>
       </div>
@@ -243,7 +258,7 @@
 
         e.preventDefault();
 
-        let flag = doValidation()
+        let flag = otpValidation()
 
         if (flag) {
             $.each(this, function (i, element) {
@@ -263,14 +278,63 @@
     function doValidation() {
         let flag = [];
         $('#valid_otp').html("");
-        
 
-        if ($('input[name=otp]').val() !== '') {
-            flag.push(otpValidation())
+        if ($('input[name=name]').val() !== '') {
+            $('#valid_name').html("");
         }
         else{
             flag.push(false)
-            $('#valid_otp').html("Please enter valid otp");
+            $('input[name=name]').focus();
+            $('#valid_name').html("The field is Required");
+        }
+
+        if ($('input[name=father_name]').val() !== '') {
+            $('#valid_father_name').html("");
+        }
+        else{
+            flag.push(false)
+            $('input[name=father_name]').focus();
+            $('#valid_father_name').html("The field is Required");
+        }
+
+        if ($('input[name=dob]').val() !== '') {
+            flag.push(dateIsValid($('input[name=dob]').val()))
+        }
+        else{
+            flag.push(false)
+            $('#valid_dob').html("The field is Required");
+        }
+
+        if ($('#category').val() !== '') {
+             $('#valid_category').html("");
+        }
+        else{
+            flag.push(false)
+            $('#valid_category').html("The field is Required");
+        }
+        
+
+        // if ($('input[name=otp]').val() !== '') {
+        //     flag.push(otpValidation())
+        // }
+        // else{
+        //     flag.push(false)
+        //     $('#valid_otp').html("Please enter valid otp");
+        // }
+
+        if ($('input[name=mobile]').val() !== '') {
+            if($('input[name=mobile]').val().length<10){
+                flag.push(false)
+                $('#valid_mobile').html("Please enter valid mobile");
+            }
+            else{
+                // flag='true'
+                $('#valid_mobile').html("");
+            }
+        }
+        else{
+            flag.push(false)
+            $('#valid_mobile').html("Please enter valid mobile");
         }
 
         if ($('input[name=pass]').val() !== '') {
@@ -282,26 +346,19 @@
                 flag.push(false)
             }
         }
+        else{
+            flag.push(false)
+            $('#valid_pass').html("The field is required");
+        }
 
         if ($('input[name=gender]:checked').length !== 0) {
             $('#valid_gender').html("");
             flag.push(true)
         } else {
-            $('#valid_gender').html("Gender Field is Required");
+            $('#valid_gender').html("The field is Required");
             $('input[name=gender]').focus()
             flag.push(false)
         }
-
-        $("#dob").blur(function(){
-            val = $(this).val();
-            val1 = Date.parse(val);
-            if (isNaN(val1)==true && val!==''){
-                $('#valid_dob').html("Please enter valid date");
-            }
-            else{
-                $('#valid_dob').html("");
-            }
-        });
 
         return flag.includes(false) ? false : true
     }
@@ -344,71 +401,72 @@
 
     function emailValidation() {
         // let email=document.getElementById('email').value;
-        let flag=''
+        let flag=doValidation()
         let email = $('input[name=reg_email]').val()
         let valid =
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-        if ($('input[name=mobile]').val() !== '') {
-            if($('input[name=mobile]').val().length<10){
-                flag=false
-                $('#valid_mobile').html("Please enter valid mobile");
-            }
-            else{
-                flag='true'
-                $('#valid_mobile').html("");
-            }
-        }
-        else{
-            flag=false
-            $('#valid_mobile').html("Please enter valid mobile");
-        }
-
         if (email.toLowerCase().match(valid) && flag) {
-            
+            let data={
+                'email':email,
+                'mobile':$('input[name=mobile]').val(),
+                'name':$('input[name=name]').val(),
+                'father_name':$('input[name=father_name]').val(),
+                'dob':$('input[name=dob]').val()
+            }
             $.ajax({
                 type: "GET",
-                headers: {
-                    'Access-Control-Allow-Origin': '*'
-                },
-                url: base_url + 'check/isEmailRegistered/'+btoa(email)+'/'+btoa($('input[name=mobile]').val()),
+                url: base_url + 'check/isEmailRegistered/'+btoa(JSON.stringify(data)),
                 success:function(response){
-                    console.log(response.status)
-                    if(response.status==='Already Exist'){
+                    // console.log(response.status)
+                    $('input[name=reg_email]').attr('readonly',false)
+                    $('input[name=mobile]').attr('readonly',false)
+
+                    if(response.status==='User Already Exist'){
+                        $('#valid_name').html("This User is already registered");
+                        $('#valid_email').html("");
+                        $('#valid_mobile').html("");
+                        // if(!$('#register-btn').hasClass('d-none')){
+                        //     $('#register-btn').addClass('d-none')
+                        // }
+                    }
+                    else if(response.status==='Already Exist'){
                         $('#valid_email').html("This Email is already registered");
                         $('#valid_mobile').html("This Mobile is already registered");
-                        $('input[name=reg_email]').attr('readonly',false)
-                        $('input[name=mobile]').attr('readonly',false)
-                        if(!$('#register-btn').hasClass('d-none')){
-                            $('#register-btn').addClass('d-none')
-                        }
+                        $('#valid_name').html("");
+                        // if(!$('#register-btn').hasClass('d-none')){
+                        //     $('#register-btn').addClass('d-none')
+                        // }
                     }
                     else if(response.status==='Mobile Already Exist'){
                         $('#valid_email').html("");
+                        $('#valid_name').html("");
                         $('#valid_mobile').html("This Mobile is already registered");
-                        $('input[name=reg_email]').attr('readonly',false)
-                        $('input[name=mobile]').attr('readonly',false)
-                        if(!$('#register-btn').hasClass('d-none')){
-                            $('#register-btn').addClass('d-none')
-                        }
+                        // if(!$('#register-btn').hasClass('d-none')){
+                        //     $('#register-btn').addClass('d-none')
+                        // }
                     }
                     else if(response.status==='Email Already Exist'){
                         $('#valid_email').html("This Email is already registered");
                         $('#valid_mobile').html("");
-                        $('input[name=reg_email]').attr('readonly',false)
-                        $('input[name=mobile]').attr('readonly',false)
-                        if(!$('#register-btn').hasClass('d-none')){
-                            $('#register-btn').addClass('d-none')
-                        }
+                        $('#valid_name').html("");
+                        // if(!$('#register-btn').hasClass('d-none')){
+                        //     $('#register-btn').addClass('d-none')
+                        // }
                     }
                     else{
                         $('#valid_email').html("");
                         $('#valid_mobile').html("");
+                        $('#valid_name').html("");
                         $('input[name=reg_email]').attr('readonly',true)
                         $('input[name=mobile]').attr('readonly',true)
-                        $('#get_OTP').addClass('d-none')
-                        $('#register-btn').removeClass('d-none')
-                        $('#otp_input').removeClass('d-none')
+                        // $('#get_OTP').addClass('d-none')
+                        // $('#register-btn').removeClass('d-none')
+                        // $('#otp_input').removeClass('d-none')
+
+                        $('.verify-otp').removeClass('d-none')
+                        if(!$('.register-data').hasClass('d-none')){
+                            $('.register-data').addClass('d-none')
+                        }
                         otpCreation(email)
                     }
                 }
@@ -582,6 +640,48 @@
             backdrop: 'static',
             keyboard: false
         });
+
+        // $("#dob").change(function(){
+        //     val = $(this).val();
+        //     console.log(val)
+        //     val1 = Date.parse(val);
+        //     if (isNaN(val1)==true && val!==''){
+        //         $('#valid_dob').html("Please enter valid date");
+        //     }
+        //     else{
+        //         $('#valid_dob').html("");
+        //     }
+        // });
     })
+
+    function dateIsValid(dateStr){
+        const regex = /^\d{2}\/\d{2}\/\d{4}$/;
+
+        if (dateStr.match(regex) === null) {
+            $('#valid_dob').html('Please enter valid date')
+            return false;
+        }
+
+        const [day, month, year] = dateStr.split('/');
+
+        // 👇️ format Date string as `yyyy-mm-dd`
+        const isoFormattedStr = `${year}-${month}-${day}`;
+
+        const date = new Date(isoFormattedStr);
+
+        const timestamp = date.getTime();
+
+        if (typeof timestamp !== 'number' || Number.isNaN(timestamp)) {
+            $('#valid_dob').html('Please enter valid date')
+            return false;
+        }
+
+        if (parseInt(year)>=2022) {
+            $('#valid_dob').html('Please enter valid date')
+            return false;
+        }
+        $('#valid_dob').html('')
+        return true;
+    }
 
 </script>

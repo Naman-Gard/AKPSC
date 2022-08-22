@@ -187,57 +187,5 @@
     </div>
 </div>
 
-<div class="modal fade" id="BlackListModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-body p-0">
-
-
-                <div class="card">
-                    <!-- <div class="card-header">Delete user
-                <button type="button" class="btn-close float-right" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div> -->
-                    <div class="card-body">
-                        <form action="{{route('blacklisted')}}" method="POST" id="blacklisted">
-                            @csrf
-                            <h2>BlackList</h2>
-                            <input type="hidden" name="user_id" id="id">
-                            <div class="row form-group">
-                                <div class="col-md-6">
-                                    <div class="form-check d-flex">
-                                        <input type="radio" name="lifespan" value="years" id="years" />
-                                        <label class="ms-2" for="flexRadioDefault1">Number of years </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check d-flex">
-                                        <input type="radio" name="lifespan" value="lifetime" id="lifetime" />
-                                        <label class="ms-2" for="flexRadioDefault1">Lifetime</label>
-                                    </div>
-                                </div>
-                                <span class="text-danger" id="valid_lifespan"></span>
-                            </div>
-
-                            <div class="row d-none" id="n_years">
-                                <div class="col-md-12 form-group">
-                                    <input type="text" name="n_years" placeholder="Please enter number of years">
-                                    <span id="valid_n_years" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                            <button class="btn btn-primary btn-sm">Add</button>
-                        </form>
-
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
 
 @include('admin/includes/footer')
