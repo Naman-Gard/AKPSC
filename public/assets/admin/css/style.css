@@ -62,3 +62,58 @@ a {
 .panel-sec {
     margin-bottom: 2rem;
 }
+
+.sidebar {
+    /* background: url('../images/sidebar2.jpg'); */
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 250px;
+    padding: 10px 0;
+    background: #FFF;
+    /* background-color: #E4E9F7; */
+    border-right: 1px dotted #07838d;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.sidebar ul li {
+    list-style: none;
+}
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover
+ {
+    background: #07838d;
+    color: #fff;
+    border-bottom: 1px dotted #fff;
+}
+.sidebar .nav-link {
+    color: #07838c;
+    border-bottom: 1px dotted #07838d;
+}
+.sidebar .dropdown-menu {
+    width: 100%;
+    padding: 0;
+    border: 1px dotted #07838d;
+}
+.sidebar .dropdown-menu li a:last-child {
+    border-bottom: none;
+}
+.sidebar .dropdown-menu li a {
+    border-bottom: 1px dotted #07838d;
+}
+
+#main {
+    width: calc(100% - 250px);
+    position: absolute;
+    top: 0;
+    top: 0;
+    left: 250px;
+    /* background-color: #E4E9F7; */
+    transition: all 0.3s ease;
+}
+
+#DataTables_Table_0_length label {
+    margin: 1rem 0;
+}
