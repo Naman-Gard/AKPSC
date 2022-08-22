@@ -1,8 +1,8 @@
 @include('admin/includes/header')
 @include('admin/includes/nav')
+@include('admin/includes/sidebar')
 
-<div class="container mt-5 py-5">
-
+<div id="main" class="container mt-5 p-5">
     <div class="panel-sec">
         <div class="row">
             <div class="col-md-4">
@@ -113,7 +113,7 @@
         </div>
         <table class="table action-table table-responsive">
             <thead>
-                <tr>
+                <tr class="align-middle">
                     <th scope="col">S.no</th>
                     <th scope="col">Registration Id</th>
                     <th scope="col">Name</th>
@@ -213,12 +213,8 @@
                             <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                             <button class="btn btn-primary btn-sm">Add</button>
                         </form>
-
                     </div>
                 </div>
-
-
-
             </div>
         </div>
     </div>
