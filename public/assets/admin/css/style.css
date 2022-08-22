@@ -1,8 +1,8 @@
 .dt-buttons {
     float: left;
-    margin-top: 42px;
-    margin-left: -149px;
-    margin-bottom: 20px;
+    margin-top: 58px;
+    margin-left: -167px;
+    margin-bottom: 12px;
 }
 
 .dt-buttons button {
@@ -14,9 +14,11 @@
 .heading {
     color: #08848e;
 }
+
 a {
     text-decoration: none;
 }
+
 .current {
     padding: 2px !important;
 }
@@ -24,41 +26,52 @@ a {
 .bg-blue {
     background-color: #347ab7;
 }
+
 .bg-green {
     background-color: #42b622;
 }
-.panel  {
+
+.panel {
     border-radius: 10px;
     border: 1px solid;
 }
+
 .panel span {
     color: #fff;
     font-size: 3.5rem;
 }
-.panel.blue  {
+
+.panel.blue {
     border-color: #1072c7;
 }
+
 .panel.blue p {
     color: #0060b3;
 }
+
 .panel.green p {
     color: #23a500;
 }
-.panel.green  {
+
+.panel.green {
     border-color: #26b100;
 }
-.panel-heading  {
+
+.panel-heading {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     padding: 1rem 0.5rem;
 }
-.panel-footer  {
+
+.panel-footer {
     padding: 0.5rem;
 }
+
 .panel-footer p {
     font-size: 0.95rem;
     font-weight: 500;
 }
+
 .panel-sec {
     margin-bottom: 2rem;
 }
@@ -81,25 +94,29 @@ a {
 .sidebar ul li {
     list-style: none;
 }
+
 .sidebar .nav-link.active,
-.sidebar .nav-link:hover
- {
+.sidebar .nav-link:hover {
     background: #07838d;
     color: #fff;
     border-bottom: 1px dotted #fff;
 }
+
 .sidebar .nav-link {
     color: #07838c;
     border-bottom: 1px dotted #07838d;
 }
+
 .sidebar .dropdown-menu {
     width: 100%;
     padding: 0;
     border: 1px dotted #07838d;
 }
+
 .sidebar .dropdown-menu li a:last-child {
     border-bottom: none;
 }
+
 .sidebar .dropdown-menu li a {
     border-bottom: 1px dotted #07838d;
 }
