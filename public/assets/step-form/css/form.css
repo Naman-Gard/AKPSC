@@ -7,12 +7,14 @@ body {
     background-image: url(../../images/news_bg.png);
     background-position: center;
     background-size: cover;
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Poppins', sans-serif !important;
+    /* font-family: 'Roboto', sans-serif !important; */
     letter-spacing: 1px;
 }
 
 .navbar {
-    font-family: 'Roboto', sans-serif !important;
+    /* font-family: 'Roboto', sans-serif !important; */
+    font-family: 'Poppins', sans-serif !important;
     letter-spacing: 1px;
 }
 
@@ -294,10 +296,10 @@ select.list-dt:focus {
 
 .form-group label {
     color: #000;
-    margin-top: 0.5rem;
+    /* margin-top: 0.5rem; */
     margin-bottom: 0.3rem;
     font-weight: 500;
-    font-size: 1.05rem;
+    font-size: 0.875rem;
 }
 
 .form-group .form-select {
@@ -375,6 +377,10 @@ span.text-danger {
 
 .table td .btn {
     padding: 0;
+    margin: 5px;
+    background: #07838d;
+    color: #fff !important;
+    border-color: #07838d;
 }
 
 /*  */
@@ -479,15 +485,22 @@ span.text-danger {
     margin: 2.4rem 0 0 !important;
 }
 
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown {
+/* .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown {
     left: 88%;
     width: 5rem;
     margin-left: 0 !important;
-}
+} */
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item {
-    font-size: 1.2rem !important;
+    font-size: 0.875rem !important;
     color: #07838c;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item:hover,
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item:focus {
+    border-radius: 4px;
 }
 
 .dropdown-item:focus,
@@ -506,9 +519,9 @@ span.text-danger {
     font-weight: 600;
 }
 
-.navbar li.custom-dropdown {
+/* .navbar li.custom-dropdown {
     position: unset !important;
-}
+} */
 
 .heading .content {
     margin-left: 6rem;
