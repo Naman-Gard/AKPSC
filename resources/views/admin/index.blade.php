@@ -111,24 +111,32 @@
                 </select>
             </div>
         </div>
-        <table class="table action-table table-responsive">
-            <thead>
-                <tr class="align-middle">
-                    <th scope="col">S.no</th>
-                    <th scope="col">Registration Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Contact Number</th>
-                    <th scope="col">Subjects</th>
-                    <th scope="col">Total Experience</th>
-                    <!-- <th scope="col">Specialization</th> -->
-                    <!-- <th scope="col">Super Specialization</th> -->
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody id="dashboard_users">
-                
-            </tbody>
-        </table>
+         @if(session('success'))
+         <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{session('success')}}</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+        <div class="table-responsive">
+            <table class="table action-table ">
+                <thead>
+                    <tr class="align-middle">
+                        <th scope="col">S.no</th>
+                        <th scope="col">Registration Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Contact Number</th>
+                        <th scope="col">Subjects</th>
+                        <th scope="col">Specialization</th>
+                        <th scope="col">Total Experience</th>
+                        <!-- <th scope="col">Super Specialization</th> -->
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="dashboard_users">
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 </body>

@@ -6,6 +6,7 @@
 <script src="{{ asset('assets/admin/js/datatablepdf/vfs_fonts.js')}}"></script>
 <script src="{{ asset('assets/admin/js/datatablepdf/buttons.html5.min.js')}}"></script>
 <script src="{{ asset('assets/admin/js/datatablepdf/buttons.print.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
 
 
 <script>

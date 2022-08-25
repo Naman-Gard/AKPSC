@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FinalStatus;
 use App\Models\BlackListed;
+use App\Models\Appoint;
 
 class BlackListController extends Controller
 {
@@ -30,10 +31,13 @@ class BlackListController extends Controller
         
 
         FinalStatus::where('user_id',$request->user_id)->update([
-            'blacklisted'=>1
+            'blacklisted'=>1,
+            'appointed'=>0
         ]);
 
-        return redirect()->route('empanelled-users');
+        Appoint::where('user_id',$request->user_id)->delete();
+
+        return redirect()->route('empanelled-users')->with('success','Expert blacklisted successfully');
     }
 
     public function removeUser($id){

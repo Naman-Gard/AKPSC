@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\FinalStatus;
 use App\Models\Experience;
+use App\Models\Appoint;
 use Auth;
 use Session;
 use DB;
@@ -107,19 +108,9 @@ class AdminController extends Controller
 
     public function getRegisteredUser(){
         $users=User::join('final_statuses','final_statuses.user_id','=','users.id')
-        ->where('type','user')->get();
-        return view('admin.users.registered',compact('users'));
-    }
-
-    public function getEmpanelledUser(){
-        $users=User::where('type','user')->join('final_statuses','final_statuses.user_id','=','users.id')
         ->join('specializations','specializations.user_id','=','users.id')
-        ->join('empanelments','empanelments.user_id','=','users.id')
-        ->where('final_statuses.status','1')
-        ->where('final_statuses.empanelled','1')
-        ->where('final_statuses.blacklisted','0')
-        ->where('final_statuses.appointed','0')
-        ->get()->groupBy('user_id');
+        ->where('type','user')->get()->groupBy('user_id');
+
         $experiences=Experience::get()->groupBy('user_id');
         
         foreach($users as $user_key=>$user){
@@ -150,7 +141,54 @@ class AdminController extends Controller
             $users[$user_key]['subject']=$subjects;
             $users[$user_key]['specialization']=$specializations;
             $users[$user_key]['super_specialization']=$super_specializations;
-            $users[$user_key]['experience']=$experiences[$user_key]?$experiences[$user_key]:'';
+            $users[$user_key]['experience']=sizeOf($experiences) ? $experiences->has($user_key)?$experiences[$user_key]:[] :[];
+        }
+        return view('admin.users.registered',compact('users'));
+    }
+
+    public function getEmpanelledUser(){
+        $users=User::where('type','user')->join('final_statuses','final_statuses.user_id','=','users.id')
+        ->join('specializations','specializations.user_id','=','users.id')
+        ->join('empanelments','empanelments.user_id','=','users.id')
+        // ->join('appoints','appoints.user_id','=','users.id')
+        ->where('final_statuses.status','1')
+        ->where('final_statuses.empanelled','1')
+        ->where('final_statuses.blacklisted','0')
+        ->get()->groupBy('user_id');
+        $experiences=Experience::get()->groupBy('user_id');
+        $appoints=Appoint::get()->groupBy('user_id');
+        
+        foreach($users as $user_key=>$user){
+            $subjects=[];
+            $specializations=[];
+            $super_specializations=[];
+            $dates=[];
+            foreach($user as $key=>$subject){
+                $temp_subjects=explode(',',$subject['subject']);
+                $temp_specializations=explode(',',$subject['specialization']);
+                $temp_super_specializations=explode(',',$subject['super_specialization']);
+                foreach($temp_subjects as $sub){
+                    if(!in_array($sub,$subjects)){
+                        array_push($subjects,$sub);
+                    }
+                }
+                foreach($temp_specializations as $sub){
+                    if(!in_array($sub,$specializations)){
+                        array_push($specializations,$sub);
+                    }
+                }
+                foreach($temp_super_specializations as $sub){
+                    if(!in_array($sub,$super_specializations)){
+                        array_push($super_specializations,$sub);
+                    }
+                }
+            }
+            $users[$user_key]=$users[$user_key][0];
+            $users[$user_key]['subject']=$subjects;
+            $users[$user_key]['specialization']=$specializations;
+            $users[$user_key]['super_specialization']=$super_specializations;
+            $users[$user_key]['experience']=sizeOf($experiences) ? $experiences->has($user_key)?$experiences[$user_key]:[] :[];
+            $users[$user_key]['appoint']=sizeOf($appoints) ? $appoints->has($user_key)?$appoints[$user_key]:[] : [];
         }
 
         return view('admin.users.empanelled',compact('users'));
@@ -159,7 +197,38 @@ class AdminController extends Controller
     public function getBlacklistedUser(){
         $users=User::join('final_statuses','final_statuses.user_id','=','users.id')
         ->join('empanelments','empanelments.user_id','=','users.id')
-        ->where('type','user')->where('final_statuses.blacklisted',1)->get();
+        ->join('specializations','specializations.user_id','=','users.id')
+        ->where('type','user')->where('final_statuses.blacklisted',1)->get()->groupBy('user_id');
+
+        foreach($users as $user_key=>$user){
+            $subjects=[];
+            $specializations=[];
+            $super_specializations=[];
+            foreach($user as $key=>$subject){
+                $temp_subjects=explode(',',$subject['subject']);
+                $temp_specializations=explode(',',$subject['specialization']);
+                $temp_super_specializations=explode(',',$subject['super_specialization']);
+                foreach($temp_subjects as $sub){
+                    if(!in_array($sub,$subjects)){
+                        array_push($subjects,$sub);
+                    }
+                }
+                foreach($temp_specializations as $sub){
+                    if(!in_array($sub,$specializations)){
+                        array_push($specializations,$sub);
+                    }
+                }
+                foreach($temp_super_specializations as $sub){
+                    if(!in_array($sub,$super_specializations)){
+                        array_push($super_specializations,$sub);
+                    }
+                }
+            }
+            $users[$user_key]=$users[$user_key][0];
+            $users[$user_key]['subject']=$subjects;
+            $users[$user_key]['specialization']=$specializations;
+            $users[$user_key]['super_specialization']=$super_specializations;
+        }
         return view('admin.users.blacklisted',compact('users'));
     }
 }

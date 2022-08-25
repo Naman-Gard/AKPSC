@@ -99,7 +99,7 @@ class AuthController extends Controller
         $email=base64_decode($email);
 
         $subject = "UKPSC - Registration OTP";
-        $body = "Below is your One Time Password(OTP) for registration. /n".$otp;
+        $body = "Below is your One Time Password(OTP) for registration. ".$otp;
         // $body .= $otp;
         $headers = "From: stagtbny@premium215.web-hosting.com";
         mail($email, $subject, $body, $headers);

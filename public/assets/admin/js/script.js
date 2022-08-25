@@ -94,6 +94,7 @@ function setUsers(){
                 users[user]['name'],
                 users[user]['mobile'],
                 users[user]['subject'].toString(),
+                users[user]['specialization'].toString(),
                 exp.toString(),
                 `<button data-id="${user}" data-bs-toggle="modal" data-bs-target="#EmpanelModal" class="btn btn-sm p-2 btn-primary">Empanel</button>`
                 // <button data-id="${user}" data-bs-toggle="modal" data-bs-target="#BlackListModal" class="btn btn-sm p-2 btn-primary">Blacklist</button>`
@@ -214,3 +215,10 @@ function doBlackListValidation(){
         return false
     }
 }
+
+$(".date").datepicker({
+    changeMonth: true,
+    changeYear: true,
+    dateFormat: "dd/mm/yy",
+    yearRange: '1957:2025'
+});
