@@ -2,7 +2,7 @@
 @include('admin/includes/nav')
 @include('admin/includes/sidebar')
 
-<div id="main" class="container mt-5 p-5">
+<div id="main">
     <div class="panel-sec">
         <div class="row">
             <div class="col-md-4">
@@ -10,8 +10,8 @@
                     <a href="{{route('registered-users')}}">
                         <div class="panel-heading bg-blue">
                             <div class="row align-items-center">
-                                <div class="col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt=""></div>
-                                <div class="col-md-3">
+                                <div class="col-9 col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt="icon" class="panel-icon"></div>
+                                <div class="col-3 col-md-3">
                                     <span>{{$count['register']}}</span>
                                 </div>
                             </div>
@@ -20,7 +20,7 @@
                         <div class="panel-footer">
                             <div class="d-flex justify-content-between">
                                 <p class="mb-0">Number of Expert Registered </p>
-                                <img src="{{ asset('assets/admin/images/arrow_right_blue.svg') }}" alt="">
+                                <img src="{{ asset('assets/admin/images/arrow_right_blue.svg') }}" alt="icon" />
 
                             </div>
                         </div>
@@ -34,8 +34,8 @@
                     <a href="{{route('empanelled-users')}}">
                         <div class="panel-heading bg-green">
                             <div class="row align-items-center">
-                                <div class="col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt=""></div>
-                                <div class="col-md-3">
+                                <div class="col-9 col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt="icon" class="panel-icon" /></div>
+                                <div class="col-3 col-md-3">
                                     <span>{{$count['empanell']}}</span>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                         <div class="panel-footer">
                             <div class="d-flex justify-content-between">
                                 <p class="mb-0">Number of Expert Empanelled </p>
-                                <img src="{{ asset('assets/admin/images/arrow_right_green.svg') }}" alt="">
+                                <img src="{{ asset('assets/admin/images/arrow_right_green.svg') }}" />
 
                             </div>
                         </div>
@@ -56,8 +56,8 @@
                     <a href="{{route('blacklisted-users')}}">
                         <div class="panel-heading bg-blue">
                             <div class="row align-items-center">
-                                <div class="col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt=""></div>
-                                <div class="col-md-3">
+                                <div class="col-9 col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}"  alt="icon" class="panel-icon" /></div>
+                                <div class="col-3 col-md-3">
                                     <span>{{$count['blacklist']}}</span>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                         <div class="panel-footer">
                             <div class="d-flex justify-content-between">
                                 <p class="mb-0">Number of Expert Backlisted </p>
-                                <img src="{{ asset('assets/admin/images/arrow_right_blue.svg') }}" alt="">
+                                <img src="{{ asset('assets/admin/images/arrow_right_blue.svg') }}" alt="icon" />
                             </div>
                         </div>
                     </a>
@@ -76,12 +76,12 @@
     </div>
 
     <div class="heading mb-3">
-        <h2>Users List</h2>
+        <h2 class="heading-blue">Users List</h2>
     </div>
-    <div class="border p-5">
+    <div class="border bdr-radius dashboard-tab-content p-3">
         <div class="row  mb-2">
             <div class="col-md-2">
-                <h3> Filters:</h3>
+                <h3 class="title-black"> Filters:</h3>
             </div>
             <div class="form-group col-md-3">
                 <label for="">Subject</label>
@@ -139,7 +139,9 @@
 
             <div class="modal-body p-0">
 
-
+                <div class="card-header">
+                    <h2>User Empanelment</h2>
+                </div>
                 <div class="card">
                     <!-- <div class="card-header">Delete user
                 <button type="button" class="btn-close float-right" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -147,9 +149,9 @@
                     <div class="card-body">
                         <form action="{{route('add-empanel')}}" method="POST" id="add-empanel">
                             @csrf
-                            <h2>User Empanelment</h2>
+                            
                             <input type="hidden" name="user_id" id="user_id">
-                            <div class="row m-2">
+                            <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">File Number</label>
                                     <input type="text" class="empanel_input" name="file_number" id="file_number" autocomplete='off'>
@@ -161,7 +163,7 @@
                                     <span class="text-danger" id="valid_doe"></span>
                                 </div>
                             </div>
-                            <div class="row m-2">
+                            <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">Secret Code1</label>
                                     <input type="text" class="empanel_input" name="secret_code1" id="secret_code1" autocomplete='off'>

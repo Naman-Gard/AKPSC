@@ -7,9 +7,16 @@
                         src="{{asset('assets/step-form/images/logo.svg')}}" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"><img
                         src="{{asset('assets/step-form/images/logo-mini.svg')}}" alt="logo" /></a> -->
-                <div class="nav-welcome-text px-4">
-                    <p class="mb-0 text-white fw-bold">Welcome!</p>
-                    <p class="mb-0 text-white fw-bold">{{Session::get('admin-user')->name}}</p>
+                <div class="d-flex align-items-center">
+                    <button class="toggle-btn px-2">
+                        <span class="toggle-icon"></span>
+                        <span class="toggle-icon"></span>
+                        <span class="toggle-icon"></span>
+                    </button>
+                    <div class="nav-welcome-text">
+                        <p class="mb-0 text-white">Welcome!</p>
+                        <p class="mb-0 text-white">{{Session::get('admin-user')->name}}</p>
+                    </div>
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-stretch">
                     <ul class="navbar-nav navbar-nav-right">
@@ -21,7 +28,7 @@
                                     <span class="availability-status online"></span>
                                 </div> -->
                                 <div class="nav-profile-text">
-                                    <p class="mb-0 text-white fw-bold">{{Session::get('admin-user')->name}}</p>
+                                    <p class="mb-0 text-white"><i class="mdi mdi-account-circle me-2"></i> {{Session::get('admin-user')->name}}</p>
                                 </div>
                             </a>
                             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">

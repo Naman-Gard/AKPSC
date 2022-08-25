@@ -1,12 +1,12 @@
 @include('admin/includes/header')
 @include('admin/includes/nav')
 @include('admin/includes/sidebar')
-<div id="main" class="container mt-5 p-5">
+<div id="main">
 
     <div class="heading mb-3">
-        <h2>Empanelled Users</h2>
+        <h2 class="heading-blue">Empanelled Users</h2>
     </div>
-    <div class="border p-5">
+    <div class="border bdr-radius p-3">
         <table class="users-table table table-responsive">
             <thead>
                 <tr>
@@ -54,7 +54,9 @@
         <div class="modal-content">
 
             <div class="modal-body p-0">
-
+                <div class="card-header">
+                    <h2>BlackList</h2>
+                </div>
 
                 <div class="card">
                     <!-- <div class="card-header">Delete user
@@ -63,17 +65,17 @@
                     <div class="card-body">
                         <form action="{{route('blacklisted')}}" method="POST" id="blacklisted">
                             @csrf
-                            <h2>BlackList</h2>
+                            
                             <input type="hidden" name="user_id" id="id">
-                            <div class="row form-group">
+                            <div class="row mb-4">
                                 <div class="col-md-6">
-                                    <div class="form-check d-flex">
+                                    <div class="form-check d-flex p-0">
                                         <input type="radio" name="lifespan" value="years" id="years" />
                                         <label class="ms-2" for="flexRadioDefault1">Number of years </label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-check d-flex">
+                                    <div class="form-check d-flex p-0">
                                         <input type="radio" name="lifespan" value="lifetime" id="lifetime" />
                                         <label class="ms-2" for="flexRadioDefault1">Lifetime</label>
                                     </div>
@@ -107,7 +109,9 @@
 
             <div class="modal-body p-0">
 
-
+                <div class="card-header">
+                    <h2>Appoint User</h2>
+                </div>
                 <div class="card">
                     <!-- <div class="card-header">Delete user
                 <button type="button" class="btn-close float-right" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -115,10 +119,10 @@
                     <div class="card-body">
                         <form action="{{route('appointed')}}" method="POST" id="appointed">
                             @csrf
-                            <h2>Appoint User</h2>
+                            
                             <input type="hidden" name="user_id" id="appoint_user_id">
 
-                            <div class="row m-2">
+                            <div class="row mb-4">
                                 <div class="form-group col-md-6">
                                     <label for="">From:</label>
                                     <input type="date" max="19/08/2020" class="appoint_input" required name="from" id="from" autocomplete='off'>

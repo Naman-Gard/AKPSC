@@ -1,12 +1,12 @@
 @include('admin/includes/header')
 @include('admin/includes/nav')
 @include('admin/includes/sidebar')
-<div id="main" class="container mt-5 p-5">
+<div id="main">
 
     <div class="heading mb-3">
-        <h2>Appointed Users</h2>
+        <h2 class="heading-blue">Appointed Users</h2>
     </div>
-    <div class="border p-5">
+    <div class="border bdr-radius p-3">
         <table class="users-table table table-responsive">
             <thead>
                 <tr>
