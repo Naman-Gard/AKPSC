@@ -18,7 +18,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{asset('assets/preview/css/style.css')}}">
     <!-- <link rel="stylesheet" href="{{asset('assets/step-form/css/style.css')}}"> -->
-    <link rel="stylesheet" href="{{asset('assets/step-form/css/form.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('assets/step-form/css/form.css')}}"> -->
     <link rel="stylesheet" href="{{asset('assets/step-form/css/font.css')}}">
     <link href="{{asset('assets/css/jquery-ui.css')}}" rel="stylesheet" />
     <!-- End layout styles -->

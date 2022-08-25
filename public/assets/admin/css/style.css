@@ -1,10 +1,18 @@
+body {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.navbar {
+    font-family: 'Poppins', sans-serif !important;
+}
+
 .dt-buttons {
     /* float: left;
     margin-top: 58px;
     margin-left: -167px;
     margin-bottom: 12px; */
     float: left;
-    margin: 45px 0 15px -10rem;
+    margin: 45px 0 15px -9rem;
 }
 
 .dt-buttons button {
@@ -209,10 +217,65 @@ table.dataTable tbody td{
     border-radius: 10px;
 }
 
-@media (max-width: 1360px) {
-    #main .dataTables_wrapper .dataTable{
-        display: block;
-    }
+.navbar .navbar-brand-wrapper {
+    padding: 0 30px;
+}
+
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link{
+    margin: 0;
+}
+
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link i {
+    font-size: 1.75rem;
+}
+
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item {
+    font-size: 0.875rem !important;
+    color: #07838c;
+    display: flex;
+    align-items: center;
+}
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item:hover,
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item:focus {
+    border-radius: 5px;
+    background: #07838d;
+    color: #fff;
+}
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-toggle:after {
+    font-size: 1.2rem;
+}
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu {
+    margin-left: -1.5rem;
+}
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile .nav-link .nav-profile-text p {
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.nav-welcome-text p {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.form-group label {
+    margin-top: 0;
+    font-size: 0.875rem;
+}
+.table, th, td {
+    border: 1px solid #08848e !important;
+}
+.table td .btn{
+    background: #07838d;
+    color: #fff;
+    border-color: #07838d;
+}
+
+.panel-icon i {
+    font-size: 100px;
+    color: #fff;
+    line-height: 1;
 }
 
 @media (min-width: 992px) {
@@ -222,11 +285,14 @@ table.dataTable tbody td{
 }
 
 @media (max-width: 991px) {
+    #main {
+        padding: 15px;
+    }
     .panel {
         margin-bottom: 15px;
     }
-    .panel .panel-icon{
-        height: 50px;
+    .panel-icon i {
+        font-size: 50px;
     }
     .panel span {
         font-size: 2.5rem;
@@ -235,13 +301,14 @@ table.dataTable tbody td{
         background: transparent;
         border: none;
         display: block;
+        margin-right: 10px;
     }
     .toggle-btn .toggle-icon {
         display: block;
         background: #fff;
         width: 20px;
         padding: 1px;
-        margin: 5px;
+        margin: 5px 0;
     }
     
     .sidebar {
@@ -251,5 +318,32 @@ table.dataTable tbody td{
     #main {
         width: 100%;
     }
+
+    .navbar .navbar-brand-wrapper {
+        padding: 0 15px;
+        width: 100%;
+    }
+    .navbar .navbar-menu-wrapper{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .dropdown-menu[data-bs-popper]{
+        left: unset !important;
+        right: 0 !important;
+        width: unset !important;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
 }
 
+
+@media (max-width: 767px) {
+    .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile .nav-link .nav-profile-text {
+      display: block;
+    }
+    /* #main .dataTables_wrapper .dataTable{
+        display: block;
+    } */
+}
