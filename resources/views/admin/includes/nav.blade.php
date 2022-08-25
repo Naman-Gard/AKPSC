@@ -8,7 +8,7 @@
                 <a class="navbar-brand brand-logo-mini" href="index.html"><img
                         src="{{asset('assets/step-form/images/logo-mini.svg')}}" alt="logo" /></a> -->
                 <div class="d-flex align-items-center">
-                    <button class="toggle-btn px-2">
+                    <button class="toggle-btn">
                         <span class="toggle-icon"></span>
                         <span class="toggle-icon"></span>
                         <span class="toggle-icon"></span>
