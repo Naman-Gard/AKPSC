@@ -10,7 +10,12 @@
                     <a href="{{route('registered-users')}}">
                         <div class="panel-heading bg-blue">
                             <div class="row align-items-center">
-                                <div class="col-9 col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt="icon" class="panel-icon"></div>
+                                <div class="col-9 col-md-9">
+                                    <!-- <img src="{{ asset('assets/admin/images/user-img.png') }}" alt="icon" class="panel-icon" /> -->
+                                    <div class="panel-icon">
+                                        <i class="mdi mdi-account"></i>
+                                    </div>
+                                </div>
                                 <div class="col-3 col-md-3">
                                     <span>{{$count['register']}}</span>
                                 </div>
@@ -34,7 +39,12 @@
                     <a href="{{route('empanelled-users')}}">
                         <div class="panel-heading bg-green">
                             <div class="row align-items-center">
-                                <div class="col-9 col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}" alt="icon" class="panel-icon" /></div>
+                                <div class="col-9 col-md-9">
+                                    <!-- <img src="{{ asset('assets/admin/images/user-img.png') }}" alt="icon" class="panel-icon" /> -->
+                                    <div class="panel-icon">
+                                        <i class="mdi mdi-account-check"></i>
+                                    </div>
+                                </div>
                                 <div class="col-3 col-md-3">
                                     <span>{{$count['empanell']}}</span>
                                 </div>
@@ -56,7 +66,12 @@
                     <a href="{{route('blacklisted-users')}}">
                         <div class="panel-heading bg-blue">
                             <div class="row align-items-center">
-                                <div class="col-9 col-md-9"><img src="{{ asset('assets/admin/images/user-img.png') }}"  alt="icon" class="panel-icon" /></div>
+                                <div class="col-9 col-md-9">
+                                    <!-- <img src="{{ asset('assets/admin/images/user-img.png') }}"  alt="icon" class="panel-icon" /> -->
+                                    <div class="panel-icon">
+                                        <i class="mdi mdi-account-off"></i>
+                                    </div>
+                                </div>
                                 <div class="col-3 col-md-3">
                                     <span>{{$count['blacklist']}}</span>
                                 </div>
