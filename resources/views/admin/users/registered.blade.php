@@ -4,7 +4,7 @@
 <div id="main">
 
     <div class="heading mb-3">
-        <h2 class="heading-blue">Registered Users</h2>
+        <h2 class="heading-blue">Registered Experts</h2>
     </div>
     <div class="border bdr-radius p-3">
         <div class="table-responsive">
@@ -14,8 +14,10 @@
                         <th scope="col">S.no</th>
                         <th scope="col">Registration Number</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Father Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Contact Number</th>
+                        <!-- <th scope="col">Category</th> -->
                         <th scope="col">Subjects</th>
                         <th scope="col">Specialization</th>
                         <th scope="col">Total Experience</th>
@@ -28,6 +30,7 @@
                     <th>{{$loop->index+1}}</th>
                     <td>{{$user->register_id}}</td>
                     <td>{{$user->name}}</td>
+                    <td>{{$user->father_name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->mobile}}</td>
                     <td>{{implode(',' , $user->subject)}}</td>

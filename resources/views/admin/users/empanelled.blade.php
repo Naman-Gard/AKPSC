@@ -4,7 +4,7 @@
 <div id="main">
 
     <div class="heading mb-3">
-        <h2 class="heading-blue">Empanelled Users</h2>
+        <h2 class="heading-blue">Empanelled Experts</h2>
     </div>
     <div class="border bdr-radius p-3">
         @if(session('success'))
@@ -47,7 +47,7 @@
                         <?php $str=trim($str,","); ?>
                         {{$str}}
                     </td>
-                    <td>
+                    <td id="dates-{{$user->id}}">
                         <?php $str='';?>
                         @if(sizeOf($user->appoint))
                         @foreach($user->appoint as $appoint)
@@ -57,7 +57,8 @@
                         @endforeach
                         <?php $str=trim($str," , "); ?>
                         @endif
-                        {{$str?$str:'Not Appointed Yet'}}</td>
+                        {{$str?$str:'Not Appointed Yet'}}
+                    </td>
                     <td>
                         <button data-id="{{$user->user_id}}" data-bs-toggle="modal" data-bs-target="#AppointedModal" class="btn btn-sm p-2 btn-primary">Appoint</button>
                         <button data-id="{{$user->user_id}}" data-bs-toggle="modal" data-bs-target="#BlackListModal" class="btn btn-sm p-2 btn-primary">Blacklist</button>
@@ -145,15 +146,19 @@
                             <input type="hidden" name="user_id" id="appoint_user_id">
 
                             <div class="row mb-4">
-                                <div class="form-group col-md-6">
-                                    <label for="">From:</label>
-                                    <input type="text" placeholder="dd/mm/yyyy" class="appoint_input date" required name="from" id="from" autocomplete='off'>
+                                <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="from">From:</label>
+                                    <input type="text" placeholder="dd/mm/yyyy" class="appoint_input date" required name="from" id="from" autocomplete='off' autofocus >
                                     <span class="text-danger" id="valid_doe"></span>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="">To:</label>
-                                    <input type="text" placeholder="dd/mm/yyyy" class="appoint_input date" required name="to" id="to" autocomplete='off'>
+                                </div>
+                                <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="date-to">To:</label>
+                                    <input type="text" placeholder="dd/mm/yyyy" class="appoint_input date" required name="to" id="to" autocomplete='off' autofocus >
                                     <span class="text-danger" id="valid_doe"></span>
+                                </div>
                                 </div>
                             </div>
 

@@ -4,7 +4,7 @@
 <div id="main">
 
     <div class="heading mb-3">
-        <h2 class="heading-blue">Appointed Users</h2>
+        <h2 class="heading-blue">Appointed Experts</h2>
     </div>
     <div class="border bdr-radius p-3">
         <div class="table-responsive">

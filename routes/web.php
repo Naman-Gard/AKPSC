@@ -81,6 +81,7 @@ Route::group(["middleware" => ["adminlogout"]], function(){
 Route::group(["middleware" => ["adminlogin"]], function(){
     Route::get('secure-admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
     Route::get('secure-admin/getUsers', 'App\Http\Controllers\AdminController@getUsers')->name('getUsers');
+    Route::get('secure-admin/getReportUsers', 'App\Http\Controllers\AdminController@getReportUsers')->name('getReportUsers');
     Route::get('secure-admin/logout', 'App\Http\Controllers\AdminController@logout')->name('admin-logout');
     Route::post('secure-admin/add/empanel', 'App\Http\Controllers\EmpanelController@addEmpanel')->name('add-empanel');
     Route::post('secure-admin/blacklisted', 'App\Http\Controllers\BlackListController@index')->name('blacklisted');
@@ -91,4 +92,5 @@ Route::group(["middleware" => ["adminlogin"]], function(){
     Route::get('secure-admin/empanelled/users', 'App\Http\Controllers\AdminController@getEmpanelledUser')->name('empanelled-users');
     Route::get('secure-admin/blacklisted/users', 'App\Http\Controllers\AdminController@getBlacklistedUser')->name('blacklisted-users');
     Route::get('secure-admin/appointed/users', 'App\Http\Controllers\AppointController@getUsers')->name('appointed-users');
+    Route::get('secure-admin/report', 'App\Http\Controllers\AdminController@getReport')->name('report');
 });
