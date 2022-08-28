@@ -9,6 +9,7 @@
             <h2 class="heading-blue">Filters</h2>
         </div>
         <div class="border bdr-radius p-3">
+
             <div class="row">
                 <div class="form-group col-md-3">
                     <label for="">Type of Experts</label>
@@ -29,13 +30,25 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="">Specialization</label>
-                    <select class="form-select report-filters" name="subject" id="report_specialization">
+                    <select class="form-select report-filters" name="specialization" id="report_specialization">
                         <option value="">Select</option>
                         @foreach($subjects as $subject)
                         <option value="{{$subject->subject_list}}">{{$subject->subject_list}}</option>
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group col-md-3">
+                    <label for="">Super Specialization</label>
+                    <select class="form-select report-filters" name="super_specialization" id="report_super_specialization">
+                        <option value="">Select</option>
+                        @foreach($subjects as $subject)
+                        <option value="{{$subject->subject_list}}">{{$subject->subject_list}}</option>
+                        @endforeach
+                    </select>
+                </div>               
+            </div>
+
+            <div class="row">
                 <div class="form-group col-md-3">
                     <label for="">Qualification</label>
                     <select class="form-select report-filters" name="report_qual" id="report_qual">
@@ -45,9 +58,6 @@
                         @endforeach
                     </select>
                 </div>
-                
-            </div>
-            <div class="row">
                 <div class="form-group col-md-3">
                     <label for="">Working Status</label>
                     <select class="form-select report-filters" name="w_status" id="w_status">
@@ -74,6 +84,10 @@
                         @endfor
                     </select>
                 </div>
+                                
+            </div>
+
+            <div class="row">
                 <div class="form-group col-md-3">
                     <label for="">Language</label>
                     <select class="form-select report-filters" name="report_language" id="report_language">
@@ -84,9 +98,7 @@
                             @endforeach
                         @endforeach
                     </select>
-                </div>                
-            </div>
-            <div class="row">
+                </div>
                 <div class="form-group col-md-3">
                     <label for="">Gender</label>
                     <select class="form-select report-filters" name="gender" id="gender">
@@ -104,17 +116,21 @@
                         <option value="{{$i}}">{{$i}}</option>
                         @endfor
                     </select>
-                </div>                
+                </div>                                
+            </div>
+
+            <div class="row">
                 <div class="form-group col-md-3">
-                    <label for="">From</label>
+                    <label for="">From:</label>
                     <input type="text" class="report-filters" placeholder="dd/mm/yyyy" id=report-from>
                 </div>                
                 <div class="form-group col-md-3">
-                    <label for="">To</label>
+                    <label for="">To:{!! "&nbsp;" !!}{!! "&nbsp;" !!}</label>
                     <input type="text" class="report-filters" placeholder="dd/mm/yyyy" id=report-to>
-                </div>                
+                </div>
             </div>
-            <div class="row">
+
+            <div class="row mt-3">
                 <div class="col-md-3">
                     <button class="btn btn-sm p-2 btn-primary" onClick="resetFilters()">Reset</button>
                 </div>
@@ -144,6 +160,7 @@
                             <th scope="col">Contact Number</th>
                             <th scope="col">Subjects</th>
                             <th scope="col">Specialization</th>
+                            <th scope="col">Super Specialization</th>
                             <th scope="col">Qualifications</th>
                             <th scope="col">Working Status</th>
                             <th scope="col">Designation</th>
@@ -164,3 +181,4 @@
 </body>
 
 @include('admin/includes/footer')
+<script src="{{ asset('assets/admin/js/report.js')}}"></script>

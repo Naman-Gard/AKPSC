@@ -76,6 +76,7 @@ Route::group(["middleware" => ["adminlogout"]], function(){
     })->name('secure-admin');
 
     Route::post('secure-admin/login', 'App\Http\Controllers\AdminController@login')->name('admin-login');
+    Route::get('secure-admin/check/credentials/{data}', 'App\Http\Controllers\AdminController@checkCredentials')->name('admin-credentials');
 });
 
 Route::group(["middleware" => ["adminlogin"]], function(){

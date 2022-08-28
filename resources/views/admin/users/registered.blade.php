@@ -28,7 +28,7 @@
                     @foreach($users as $user)
                     <tr>
                     <th>{{$loop->index+1}}</th>
-                    <td>{{$user->register_id}}</td>
+                    <td><a href="{{asset('assets/uploads/cv/'.$user->cv)}}" download="{{$user->name}}">{{$user->register_id}}</a></td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->father_name}}</td>
                     <td>{{$user->email}}</td>

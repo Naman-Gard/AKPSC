@@ -64,9 +64,28 @@ class AdminController extends Controller
         }
     }
 
+    public function checkCredentials($data){
+        $data=json_decode(base64_decode($data));
+        $email=$data->email;
+        $password=base64_decode($data->password);
+        $user=User::where('email',$email)->where('type','admin')->first();
+        if($user){
+            if(password_verify($password, $user->password)){
+                return ['status'=>'Valid Credentials','data'=>base64_encode($user->mobile)];       
+            }
+            else{
+                return ['status'=>'Invalid Credentials'];        
+            }
+        }
+        else{
+            return ['status'=>'Invalid Credentials'];        
+        }
+    }
+
     public function getUsers(){
         $users=User::where('type','user')->join('final_statuses','final_statuses.user_id','=','users.id')
         ->join('specializations','specializations.user_id','=','users.id')
+        ->join('uploads','uploads.user_id','=','users.id')
         ->where('final_statuses.status','1')
         ->where('final_statuses.empanelled','0')
         ->where('final_statuses.blacklisted','0')
@@ -111,6 +130,7 @@ class AdminController extends Controller
     public function getRegisteredUser(){
         $users=User::join('final_statuses','final_statuses.user_id','=','users.id')
         ->join('specializations','specializations.user_id','=','users.id')
+        ->join('uploads','uploads.user_id','=','users.id')
         ->where('final_statuses.status','1')
         ->where('type','user')->get()->groupBy('user_id');
 
@@ -153,7 +173,7 @@ class AdminController extends Controller
         $users=User::where('type','user')->join('final_statuses','final_statuses.user_id','=','users.id')
         ->join('specializations','specializations.user_id','=','users.id')
         ->join('empanelments','empanelments.user_id','=','users.id')
-        // ->join('appoints','appoints.user_id','=','users.id')
+        ->join('uploads','uploads.user_id','=','users.id')
         ->where('final_statuses.status','1')
         ->where('final_statuses.empanelled','1')
         ->where('final_statuses.blacklisted','0')
@@ -201,6 +221,7 @@ class AdminController extends Controller
         $users=User::join('final_statuses','final_statuses.user_id','=','users.id')
         ->join('empanelments','empanelments.user_id','=','users.id')
         ->join('specializations','specializations.user_id','=','users.id')
+        ->join('uploads','uploads.user_id','=','users.id')
         ->where('type','user')->where('final_statuses.blacklisted',1)->get()->groupBy('user_id');
 
         foreach($users as $user_key=>$user){
@@ -248,20 +269,22 @@ class AdminController extends Controller
         ->join('empanelments','empanelments.user_id','=','users.id')
         ->join('preferences','preferences.user_id','=','users.id')
         ->join('is_workings','is_workings.user_id','=','users.id')
+        ->join('uploads','uploads.user_id','=','users.id')
         ->where('final_statuses.status','1')
         ->where('final_statuses.empanelled','1')
         ->where('final_statuses.blacklisted','0')
-        ->select('users.*','users.created_at as from','empanelments.*','final_statuses.*','specializations.*','preferences.*','is_workings.*')
+        ->select('users.*','users.created_at as from','empanelments.*','final_statuses.*','specializations.*','preferences.*','is_workings.*','uploads.*')
         ->get()->groupBy('user_id');
 
         $registered_users=User::where('type','user')->join('final_statuses','final_statuses.user_id','=','users.id')
         ->join('specializations','specializations.user_id','=','users.id')
         ->join('preferences','preferences.user_id','=','users.id')
         ->join('is_workings','is_workings.user_id','=','users.id')
+        ->join('uploads','uploads.user_id','=','users.id')
         ->where('final_statuses.status','1')
         ->where('final_statuses.empanelled','0')
         ->where('final_statuses.blacklisted','0')
-        ->select('users.*','users.created_at as from','final_statuses.*','specializations.*','preferences.*','is_workings.*')
+        ->select('users.*','users.created_at as from','final_statuses.*','specializations.*','preferences.*','is_workings.*','uploads.*')
         ->get()->groupBy('user_id');
 
         $experiences=Experience::get()->groupBy('user_id');
