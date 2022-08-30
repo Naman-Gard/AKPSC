@@ -1,9 +1,9 @@
 body {
-    font-family: 'Poppins', sans-serif !important;
+    font-family: "Poppins", sans-serif !important;
 }
 
 .navbar {
-    font-family: 'Poppins', sans-serif !important;
+    font-family: "Poppins", sans-serif !important;
 }
 
 .dt-buttons {
@@ -16,9 +16,11 @@ body {
 }
 
 .dt-buttons button {
-    padding: 5px 10px;
+    padding: 3px 10px;
     background-color: #08848e;
     color: #fff;
+    border: 1px solid #08848e;
+    border-radius: 0.2rem;
 }
 
 .dt-buttons button span {
@@ -72,7 +74,6 @@ a {
     border-color: #26b100;
 }
 
-
 .btn-primary {
     background: #07838c;
 }
@@ -104,7 +105,7 @@ a {
     height: 100%;
     width: 250px;
     /* padding: 10px 0; */
-    background: #FFF;
+    background: #fff;
     /* background-color: #E4E9F7; */
     border-right: 1px dotted #07838d;
     transition: all 0.3s ease;
@@ -240,21 +241,40 @@ table.dataTable tbody td {
     font-size: 1.75rem;
 }
 
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item {
+.navbar
+    .navbar-menu-wrapper
+    .navbar-nav
+    .nav-item.dropdown
+    .dropdown-menu.navbar-dropdown
+    .dropdown-item {
     font-size: 0.875rem !important;
     color: #07838c;
     display: flex;
     align-items: center;
 }
 
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item:hover,
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item:focus {
+.navbar
+    .navbar-menu-wrapper
+    .navbar-nav
+    .nav-item.dropdown
+    .dropdown-menu.navbar-dropdown
+    .dropdown-item:hover,
+.navbar
+    .navbar-menu-wrapper
+    .navbar-nav
+    .nav-item.dropdown
+    .dropdown-menu.navbar-dropdown
+    .dropdown-item:focus {
     border-radius: 5px;
     background: #07838d;
     color: #fff;
 }
 
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-toggle:after {
+.navbar
+    .navbar-menu-wrapper
+    .navbar-nav
+    .nav-item.dropdown
+    .dropdown-toggle:after {
     font-size: 1.2rem;
 }
 
@@ -262,7 +282,13 @@ table.dataTable tbody td {
     margin-left: -1.5rem;
 }
 
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile .nav-link .nav-profile-text p {
+.navbar
+    .navbar-menu-wrapper
+    .navbar-nav
+    .nav-item.nav-profile
+    .nav-link
+    .nav-profile-text
+    p {
     font-size: 0.875rem;
     font-weight: 500;
     display: flex;
@@ -365,13 +391,84 @@ td {
     }
 }
 
-
 @media (max-width: 767px) {
-    .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile .nav-link .nav-profile-text {
+    .navbar
+        .navbar-menu-wrapper
+        .navbar-nav
+        .nav-item.nav-profile
+        .nav-link
+        .nav-profile-text {
         display: block;
     }
 
     /* #main .dataTables_wrapper .dataTable{
         display: block;
     } */
+}
+
+#reportSec .form-group.col-md-3 {
+    margin-bottom: 1.2rem;
+}
+#reportSec .form-group label {
+    margin-bottom: 0.3rem;
+}
+#reportSec .form-group .form-select,
+#reportSec .form-group .form-control {
+    font-size: 0.875rem;
+    padding: 0.2rem 0.5rem;
+}
+#reportSec .form-group .form-select:focus,
+#reportSec .form-group .form-control:focus {
+    box-shadow: none;
+    border-color: #07838d;
+}
+#reportSec .btn-reset {
+    border-color: #07838d;
+    background: #06828c;
+    color: #fff;
+}
+#reportSec .btn-reset:hover {
+    border-color: #07838d;
+    background: #fff;
+    color: #07838d;
+}
+.ui-widget-header {
+    border: 1px solid #07838d !important;
+    background-color: #06828c !important;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default {
+    color: #06828c !important;
+}
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+    border: 1px solid #06828c !important;
+    background: #07838d !important;
+    color: #fff !important;
+}
+.dataTables_wrapper .dataTables_length select {
+    border: 1px solid #07828c;
+}
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #06828c;
+}
+.dataTables_wrapper .dataTables_filter input:focus-within {
+    box-shadow: none;
+    border: none;
+}
+.dataTables_scrollHead {
+    display: none;
+}
+.dataTables_scrollBody thead tr {
+    height: 6rem !important;
+}
+.dataTables_scrollBody thead tr .dataTables_sizing {
+    height: 2.5rem !important;
+}
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border-bottom: none;
+}
+.mdi-logout:before {
+    font-size: 17px !important;
 }

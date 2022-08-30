@@ -8,7 +8,7 @@
         <div class="heading mb-3">
             <h2 class="heading-blue">Filters</h2>
         </div>
-        <div class="border bdr-radius p-3">
+        <div class="border bdr-radius p-3" id="reportSec">
 
             <div class="row">
                 <div class="form-group col-md-3">
@@ -133,17 +133,17 @@
                 </div> 
                 <div class="form-group col-md-3">
                     <label for="">From:</label>
-                    <input type="text" class="report-filters" placeholder="dd/mm/yyyy" id=report-from>
+                    <input type="text" class="report-filters form-control" placeholder="dd/mm/yyyy" id=report-from>
                 </div>                
                 <div class="form-group col-md-3">
                     <label for="">To:{!! "&nbsp;" !!}{!! "&nbsp;" !!}</label>
-                    <input type="text" class="report-filters" placeholder="dd/mm/yyyy" id=report-to>
+                    <input type="text" class="report-filters form-control" placeholder="dd/mm/yyyy" id=report-to>
                 </div>
             </div>
 
             <div class="row mt-3">
                 <div class="col-md-3">
-                    <button class="btn btn-sm p-2 btn-primary" onClick="resetFilters()">Reset</button>
+                    <button class="btn btn-sm btn-reset" onClick="resetFilters()">Reset</button>
                 </div>
             </div>
         </div>
@@ -159,8 +159,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-            <div class="table-responsive">
-                <table class="report-table table ">
+            <div class="">
+                <table class="report-table table">
                     <thead>
                         <tr>
                             <th scope="col">S.no</th>
