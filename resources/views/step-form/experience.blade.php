@@ -52,6 +52,15 @@
                 </div>
             </div>
 
+            <div class="form-group row mt-2">
+                <div class="col-md-6">
+                    <label for="">Organization Name<span class="text-danger">*</span></label>
+                    <input type="text" class="serving_input" name="organization_name" id="organization_name" autocomplete="off" placeholder="Organisation Name">
+                    <span class="text-danger" id="valid_organization_name"></span>
+                </div>
+
+            </div>
+
         </div>
 
         <div class="container border mb-3 p-3">

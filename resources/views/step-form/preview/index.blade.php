@@ -179,6 +179,14 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th>
+                                            Organization:
+                                        </th>
+                                        <td>
+                                            {{$data['experience_data']['isworking']['organization_name']?$data['experience_data']['isworking']['organization_name']:'-'}}
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th class="w-75">
                                         Prior Experience of acting as Advisor/Expert in
                                             Interview Board (s)/Question paper setter/ Objective Item writer/ Moderator/

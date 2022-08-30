@@ -236,9 +236,10 @@ function setReportUsers() {
                 report_users[user]["specialization"].toString(),
                 report_users[user]["super_specialization"].toString(),
                 qualification.toString(),
-                report_users[user]["isworking"],
-                report_users[user]["designation"],
-                report_users[user]["serving"],
+                report_users[user]['isworking'],
+                report_users[user]['designation'],
+                report_users[user]['serving'],
+                report_users[user]['organization_name'],
                 exp.toString(),
                 language.toString(),
                 report_users[user]["line_1"] +

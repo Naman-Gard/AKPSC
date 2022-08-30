@@ -28,6 +28,11 @@
                                 <div class="text">
                                 </div>
                                 <div class="input-text" id="login">
+                                    <p>
+                                        <a type="button" data-bs-toggle="modal" data-bs-target="#registerModal" class="new-user">
+                                            New User Click Here!
+                                        </a>
+                                    </p>
                                     @if(session('success'))
                                     <span class="text-danger">{{session('success')}}</span>
                                     @endif
@@ -51,14 +56,12 @@
                                     <p>
                                         <a id="forget-button">Forgot Password? (पासवर्ड भूल गए?)</a>
                                     </p>
-                                    <p>
-                                        
-                                        <!-- <a id="register-here">Register Here! (यहां रजिस्टर करें!)</a> -->
+                                    <!-- <p>                                        
                                         <a type="button" data-bs-toggle="modal" data-bs-target="#registerModal">
                                             Don't have a UKPSC Registration? (यूकेपीएससी पंजीकरण नहीं है?)<br>
                                             Register Here! (यहां रजिस्टर करें!)
                                         </a>
-                                    </p>
+                                    </p> -->
                                     
                                 </div>
 
@@ -95,7 +98,7 @@
     </div>
 
     <!-- Modal -->
-  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal fade" id="registerModal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header align-items-start">

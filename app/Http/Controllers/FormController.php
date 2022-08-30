@@ -272,6 +272,7 @@ class FormController extends Controller
     }
 
     public function generatePDF(){
+        $register=FinalStatus::where('user_id',Auth::user()->id)->first();
         $data=[];
         $data['personal_data']=User::where('id',Auth::user()->id)->first()->toArray();
         $data['education_data']['qualifications']=Education::where('user_id',Auth::user()->id)->get()->toArray();
@@ -287,7 +288,7 @@ class FormController extends Controller
         ];
         $pdf = PDF::loadView('step-form/pdf/index', compact('data'))->setOptions(['javascript-delay' => 500,'page-size'=>'a4','chroot'  => public_path('assets/')]);
         
-        return $pdf->download('preview.pdf');
+        return $pdf->download($register->register_id.'.pdf');
     }
 
     public function getStates(){

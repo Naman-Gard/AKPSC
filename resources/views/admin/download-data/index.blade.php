@@ -176,6 +176,7 @@
                             <th scope="col">Working Status</th>
                             <th scope="col">Designation</th>
                             <th scope="col">Serving Under</th>
+                            <th scope="col">Organization</th>
                             <th scope="col">Experience</th>
                             <th scope="col">Language Proficiency</th>
                             <th scope="col">Address</th>

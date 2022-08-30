@@ -188,6 +188,7 @@ $(document).ready(function(){
                                 //     }
                                 // }
                                 // else{
+                                    $('#organization_name').val(response[key][0].organization_name)
                                     $('#designation option[value="'+response[key][0].designation+'"]').prop("selected",true).change()
                                     $('#serving option[value="'+response[key][0].serving+'"]').prop("selected",true).change()
                                 //     $('#designation_row').removeClass('d-none')
