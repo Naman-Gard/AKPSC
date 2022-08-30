@@ -8,6 +8,16 @@ $('input[name=enquiry]').change((e)=>{
     }
 })
 
+$('#state').change((e)=>{
+    $('#district').find('option').not(':first').remove()
+    if(e.target.value!==''){
+        states[e.target.value].sort((a,b) => a.district_name.localeCompare(b.district_name));
+        states[e.target.value].forEach((district)=>{
+            $('#district').append(`<option value="${district.district_name}">${district.district_name}</option>`)
+        })
+    }
+})
+
 $('input[name=pin_code]').keydown((e) => {
     var keyCode = (e.keyCode ? e.keyCode : e.which);
     if (e.currentTarget.value.length == 6 && keyCode!==8)

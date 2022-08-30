@@ -3,6 +3,7 @@
 @include('admin/includes/sidebar')
 
 <div id="main">
+
     <div class="panel-sec">
         <div class="row">
             <div class="col-md-4">
@@ -90,60 +91,69 @@
         </div>
     </div>
 
-    <div class="heading mb-3">
-        <h2 class="heading-blue">Users List</h2>
+    <div class="mb-4">
+        <div class="heading mb-3">
+            <h2 class="heading-blue">Filters</h2>
+        </div>
+        <div class="border bdr-radius dashboard-tab-content p-3">
+            <div class="row  mb-2">
+                <div class="form-group col-md-4">
+                    <label for="">Subject</label>
+                    <select class="form-select" name="subject" id="subject">
+                        <option value="">Select</option>
+                        @foreach($subjects as $subject=>$specialization)
+                        <option value="{{$subject}}">{{$subject}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="">Specialization</label>
+                    <select class="form-select" name="subject" id="specialization">
+                        <option value="">Select</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="">Super Specialization</label>
+                    <select class="form-select" name="subject" id="super_specialization">
+                        <option value="">Select</option>
+                    </select>
+                </div>
+            </div>            
+        </div>
     </div>
-    <div class="border bdr-radius dashboard-tab-content p-3">
-        <div class="row  mb-2">
-            <div class="col-md-2">
-                <h3 class="title-black"> Filters:</h3>
+
+    <div>
+        <div class="heading mb-3">
+            <h2 class="heading-blue">Experts</h2>
+        </div>
+        <div class="border bdr-radius dashboard-tab-content p-3">
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{session('success')}}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <div class="form-group col-md-3">
-                <label for="">Subject</label>
-                <select class="form-select" name="subject" id="subject">
-                    <option value="">Select</option>
-                    @foreach($subjects as $subject)
-                    <option value="{{$subject->subject_list}}">{{$subject->subject_list}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group col-md-3">
-                <label for="">Specialization</label>
-                <select class="form-select" name="subject" id="specialization">
-                    <option value="">Select</option>
-                    @foreach($subjects as $subject)
-                    <option value="{{$subject->subject_list}}">{{$subject->subject_list}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group col-md-3">
-                <label for="">Super Specialization</label>
-                <select class="form-select" name="subject" id="super_specialization">
-                    <option value="">Select</option>
-                    @foreach($subjects as $subject)
-                    <option value="{{$subject->subject_list}}">{{$subject->subject_list}}</option>
-                    @endforeach
-                </select>
+            @endif
+            <div class="table-responsive">
+                <table class="table action-table ">
+                    <thead>
+                        <tr class="align-middle">
+                            <th scope="col">S.no</th>
+                            <th scope="col">Registration Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Contact Number</th>
+                            <th scope="col">Subjects</th>
+                            <th scope="col">Specialization</th>
+                            <th scope="col">Total Experience</th>
+                            <!-- <th scope="col">Super Specialization</th> -->
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashboard_users">
+                        
+                    </tbody>
+                </table>
             </div>
         </div>
-        <table class="table action-table table-responsive">
-            <thead>
-                <tr class="align-middle">
-                    <th scope="col">S.no</th>
-                    <th scope="col">Registration Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Contact Number</th>
-                    <th scope="col">Subjects</th>
-                    <th scope="col">Total Experience</th>
-                    <!-- <th scope="col">Specialization</th> -->
-                    <!-- <th scope="col">Super Specialization</th> -->
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody id="dashboard_users">
-                
-            </tbody>
-        </table>
     </div>
 </div>
 </body>
@@ -174,7 +184,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Date of Empanelment</label>
-                                    <input type="date" max="19/08/2020" class="empanel_input" name="doe" id="doe" autocomplete='off'>
+                                    <input type="text" class="empanel_input" name="doe" id="doe" autocomplete='off' placeholder="dd/mm/yyyy">
                                     <span class="text-danger" id="valid_doe"></span>
                                 </div>
                             </div>
@@ -197,11 +207,22 @@
                     </div>
                 </div>
 
-
-
             </div>
         </div>
     </div>
 </div>
 
 @include('admin/includes/footer')
+
+<script>
+    $('#subject').change((e)=>{
+        $('#specialization').empty()
+        $('#super_specialization').empty()
+        $('#specialization').append(`<option value="">Select</option>`)
+        $('#super_specialization').append(`<option value="">Select</option>`)
+        subjects[e.target.value].forEach((specialization)=>{
+            $('#specialization').append(`<option value="${specialization.specialization}">${specialization.specialization}</option>`)
+            $('#super_specialization').append(`<option value="${specialization.specialization}">${specialization.specialization}</option>`)
+        })
+    })
+</script>

@@ -14,6 +14,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th scope="col">Register ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Father Name</th>
                             <th scope="col">Email</th>
@@ -25,6 +26,7 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td><a href="{{asset('assets/uploads/cv/'.$user->cv)}}" download="{{$user->name}}" target="_blank">{{$user->register_id}}</a></td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->father_name}}</td>
                             <td>{{$user->email}}</td>

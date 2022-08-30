@@ -226,7 +226,21 @@ $(document).ready(function(){
             })
     }
 
+    function setStates(){
+        $.ajax({
+                type: "GET",
+                url: base_url+'getStates',
+                success:function(response){
+                    states=response
+                    Object.keys(response).forEach((state)=>{
+                        $('#state').append(`<option value="${state}">${state}</option>`)
+                    })
+                }
+            })
+    }
+
     if(window.location.pathname==='/fill-details'){
+        setStates()
         setFormData()
     }
 

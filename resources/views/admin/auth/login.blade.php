@@ -27,25 +27,44 @@
                                 </div>
                                 <div class="text">
                                 </div>
-                                <div class="input-text" id="login">
+                                <div class="input-text">
                                     @if(session('success'))
                                     <span class="text-danger">{{session('success')}}</span>
                                     @endif
                                     <form method="POST" action="{{route('admin-login')}}" id="login-form">
                                         @csrf
-                                        <div class="input-div">
-                                            <label for="email" class="form-label">Email ID (ईमेल आईडी)</label>
-                                            <input type="email" name="email" required autocomplete="off">
-                                            <!-- <span>Institute ID / Email ID (संस्थान आईडी / ईमेल आईडी)</span> -->
+                                        <div id="login">
+                                            <div class="input-div">
+                                                <label for="email" class="form-label">Email ID (ईमेल आईडी)</label>
+                                                <input type="email" name="email" id="email" required autocomplete="off">
+                                                <!-- <span>Institute ID / Email ID (संस्थान आईडी / ईमेल आईडी)</span> -->
+                                                <p class="text-danger" id="valid_email"></p>
+                                            </div>
+                                            <div class="input-div">
+                                                <label for="email" class="form-label">Password (पासवर्ड)</label>
+                                                <input type="password" name="password" id="password" required autocomplete="off">
+                                                <!-- <span>Password (पासवर्ड)</span> -->
+                                            </div>
+                                            <div class="buttons">
+                                            <button type="button" class="next_button" id="get-otp">Get OTP</button>
                                         </div>
-                                        <div class="input-div">
-                                            <label for="email" class="form-label">Password (पासवर्ड)</label>
-                                            <input type="password" name="password" required autocomplete="off">
-                                            <!-- <span>Password (पासवर्ड)</span> -->
                                         </div>
-                                        <div class="buttons">
-                                            <button class="next_button">Submit</button>
+
+                                        <div class="d-none" id="verify-otp">
+                                            <div class="input-div">
+                                                <label for="otp" class="form-label">OTP</label>
+                                                <input type="otp" name="otp" id="otp" required autocomplete="off">
+                                                <p class="text-danger" id="valid_otp"></p>
+                                                <div id="ten-countdown"></div>
+                                                <div class="d-none" id="resend-otp">
+                                                    <input class="next_button myBtn" type="button" id="resend-otp-btn" value="Resend OTP"/>
+                                                </div>
+                                            </div>
+                                            <div class="buttons">
+                                                <button class="next_button">Submit</button>
+                                            </div>
                                         </div>
+                                        
                                     </form>                                   
                                 </div>
                             </div>
@@ -61,17 +80,4 @@
 </body>
 
 @include('includes.footer')
-<script>
-    let otp=0;
-    $('#login-form').on('submit', function (e) {
-
-        e.preventDefault();
-        $.each(this, function (i, element) {
-            if (element.name == "password") {
-                element.value = btoa(element.value);
-            }
-        })
-        e.currentTarget.submit();
-
-    });
-</script>
+<script src="{{ asset('assets/admin/js/auth.js')}}"></script>

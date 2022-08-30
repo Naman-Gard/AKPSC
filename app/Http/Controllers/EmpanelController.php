@@ -24,6 +24,6 @@ class EmpanelController extends Controller
             'empanelled'=>1
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success','Expert empanell successfully with empanelled id: '.$unique);
     }
 }

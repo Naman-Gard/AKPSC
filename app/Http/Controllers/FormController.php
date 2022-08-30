@@ -16,47 +16,57 @@ use App\Models\LanguageDetails;
 use App\Models\FinalStatus;
 
 use Auth;
+use DB;
 use PDF;
 
 class FormController extends Controller
 {
 
-    public function index(){
+    public function checkStep(){
         $education=Education::where('user_id',Auth::user()->id)->where('status','1')->get();
         $specialization=Specialization::where('user_id',Auth::user()->id)->where('status','1')->get();
         $experience=Experience::where('user_id',Auth::user()->id)->where('status','1')->get();
         $organization=Organization::where('user_id',Auth::user()->id)->where('status','1')->get();
         $isworking=IsWorking::where('user_id',Auth::user()->id)->where('status','1')->get();
         $preference=Preference::where('user_id',Auth::user()->id)->where('status','1')->get();
+        $language=LanguageDetails::where('user_id',Auth::user()->id)->where('status','1')->get();
         $upload=Upload::where('user_id',Auth::user()->id)->where('status','1')->get();
         $step='';
 
-        if(sizeOf($education) && sizeOf($specialization)){
+        if(!sizeOf($upload)){
+            $step='upload';
+        }
+
+        if(!sizeOf($preference) || !sizeOf($language)){
+            $step='preference';
+        }
+
+        if(!sizeOf($experience) || !sizeOf($isworking)){
             $step='experience';
         }
         else{
-            $step='education';
-            return view('step-form/index',compact('step'));
-        }
-        if(sizeOf($experience) && sizeOf($isworking)){
-            if($isworking[0]->isprior==='No'){
-                $step='preference';
-            }
-            else{
-                if(sizeOf($organization)){
-                    $step='preference';
-                }
-                else{
+            if($isworking[0]->isprior==='Yes'){
+                if(!sizeOf($organization)){
                     $step='experience';
                 }
             }
         }
-        if(sizeOf($preference)){
-            $step='upload';
+
+        if(!sizeOf($education) || !sizeOf($specialization)){
+            $step='education';
         }
-        if(sizeOf($upload)){
+
+        return $step;
+    }
+
+    public function index(){
+
+        $step=$this->checkStep();
+        
+        if($step==''){
             return redirect()->route('preview');
         }
+        
         return view('step-form/index',compact('step'));
     }
 
@@ -160,8 +170,8 @@ class FormController extends Controller
     }
 
     public function preview(){
-        $upload=Upload::where('user_id',Auth::user()->id)->where('status','1')->get();
-        if(!sizeOf($upload)){
+        $step=$this->checkStep();
+        if($step!=''){
             return redirect()->route('fill-details');
         }
         else{
@@ -239,10 +249,14 @@ class FormController extends Controller
 
     public function finalView(){
         $exist=FinalStatus::where('user_id',Auth::user()->id)->where('status','1')->get();
+        $step=$this->checkStep();
         if(!sizeOf($exist)){
             return redirect()->route('preview');
         }
         else{
+            if($step!=''){
+                return redirect()->route('fill-details');
+            }
             $data=[];
             $data['personal_data']=User::where('id',Auth::user()->id)->first()->toArray();
             $data['education_data']['qualifications']=Education::where('user_id',Auth::user()->id)->get()->toArray();
@@ -274,5 +288,10 @@ class FormController extends Controller
         $pdf = PDF::loadView('step-form/pdf/index', compact('data'))->setOptions(['javascript-delay' => 500,'page-size'=>'a4','chroot'  => public_path('assets/')]);
         
         return $pdf->download('preview.pdf');
+    }
+
+    public function getStates(){
+        $states=DB::table('district_masters')->orderBy('state_name')->get()->groupBy('state_name');
+        return $states;
     }
 }

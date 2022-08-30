@@ -141,7 +141,7 @@
                     <label>State <span class="text-danger">*</span></label>
                     <select class="prefrence_input form-select" name="state" id="state">
                         <option value="">Select</option>
-                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        
                     </select>
                     <span class="text-danger" id="valid_state"></span>
                 </div>
@@ -149,7 +149,6 @@
                     <label>District <span class="text-danger">*</span></label>
                     <select class="prefrence_input form-select" name="district" id="district">
                         <option value="">Select</option>
-                        <option value="Ghaziabad">Ghaziabad</option>
                     </select>
                     <span class="text-danger" id="valid_district"></span>
                 </div>
