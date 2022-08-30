@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('isprior');
             $table->string('designation')->nullable();
             $table->string('serving')->nullable();
+            $table->string('organization_name')->nullable();
             $table->string('status');
             $table->timestamps();
         });

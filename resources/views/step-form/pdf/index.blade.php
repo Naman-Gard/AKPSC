@@ -288,6 +288,14 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>
+                                        Organization:
+                                    </th>
+                                    <td>
+                                        {{$data['experience_data']['isworking']['organization_name']?$data['experience_data']['isworking']['organization_name']:'-'}}
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th colspan="2">Are you willing to be appointed as :</th>
                                 </tr>
                                 <tr>

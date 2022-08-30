@@ -213,6 +213,7 @@ function setReportUsers(){
                 report_users[user]['isworking'],
                 report_users[user]['designation'],
                 report_users[user]['serving'],
+                report_users[user]['organization_name'],
                 exp.toString(),
                 language.toString(),
                 report_users[user]['line_1']+' '+report_users[user]['district']+','+report_users[user]['state']+',Pincode: '+report_users[user]['pincode']
