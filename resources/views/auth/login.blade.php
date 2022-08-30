@@ -29,8 +29,8 @@
                                 </div>
                                 <div class="input-text" id="login">
                                     <p>
-                                        <a type="button" data-bs-toggle="modal" data-bs-target="#registerModal">
-                                            New User Click-Here
+                                        <a type="button" data-bs-toggle="modal" data-bs-target="#registerModal" class="new-user">
+                                            New User Click Here!
                                         </a>
                                     </p>
                                     @if(session('success'))

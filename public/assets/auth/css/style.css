@@ -627,3 +627,9 @@ p.text-danger {
     margin-left: 15rem;
     margin-bottom: 0;
 }
+a.new-user {
+    color: #fff;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+}

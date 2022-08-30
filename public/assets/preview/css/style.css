@@ -305,6 +305,9 @@
 .mdi-logout:before {
   font-size: 1.5rem;
 }
+.mdi-account:before {
+  font-size: 1.5rem;
+}
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item i {
   font-size: 17px;
@@ -711,3 +714,4 @@
 .profile {
   margin-top: 7rem;
 }
+

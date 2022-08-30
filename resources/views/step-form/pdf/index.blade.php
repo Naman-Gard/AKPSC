@@ -396,15 +396,21 @@
                         </table>
 
                         <table class="table">
+                            <!-- <thead style="height: 0 !important;">
+                                <tr style="height: 0;">
+                                    <th  style="height: 0 !important; width: 80%;"></th>
+                                    <th  style="height: 0 !important; width: 20%;"></th>
+                                </tr>
+                            </thead> -->
                             <tbody>
                                 <tr>
-                                    <th class="" style="width: 50%; border-top: 1px solid #08848e !important;">
-                                    Prior Experience of acting as Advisor/Expert in
+                                    <th class="" style="width: 90% !important; border-top: 1px solid #08848e !important;">
+                                        Prior Experience of acting as Advisor/Expert in
                                         Interview Board (s)/Question paper setter/ Objective Item writer/ Moderator/
                                         Examiner/ Evaluator/ Syllabus Framing Organ.
 
                                     </th>
-                                    <td class="" style="width: 50%; border-top: 1px solid #08848e !important;">
+                                    <td class="" style="width: 10% !important; border-top: 1px solid #08848e !important;">
                                         {{$data['experience_data']['isworking']['isprior']}}
                                     </td>
                                 </tr>
