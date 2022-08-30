@@ -80,6 +80,7 @@ class ExperienceController extends Controller
                 "designation"=>$request->designation,
                 "serving"=>$request->serving,
                 "isprior"=>$request->isprior,
+                "organization_name"=>$request->organization_name,
                 'status'=>'1'
             ]);
         }
@@ -90,6 +91,7 @@ class ExperienceController extends Controller
                 "designation"=>$request->designation,
                 "serving"=>$request->serving,
                 "isprior"=>$request->isprior,
+                "organization_name"=>$request->organization_name,
                 'status'=>'1'
             ]);
         }
