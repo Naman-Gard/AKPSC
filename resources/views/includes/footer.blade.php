@@ -9,7 +9,8 @@ let educationDataStatus = 0,
     SpecializationStatus = 0,
     experienceDataStatus = 0,
     languageDataStatus = 0,
-    organizationDataStatus = 0;
+    organizationDataStatus = 0,
+    states={};
 
 // $(document).ready(function() {
 //     $('.table').DataTable();

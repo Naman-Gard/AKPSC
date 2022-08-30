@@ -16,6 +16,7 @@ use App\Models\LanguageDetails;
 use App\Models\FinalStatus;
 
 use Auth;
+use DB;
 use PDF;
 
 class FormController extends Controller
@@ -287,5 +288,10 @@ class FormController extends Controller
         $pdf = PDF::loadView('step-form/pdf/index', compact('data'))->setOptions(['javascript-delay' => 500,'page-size'=>'a4','chroot'  => public_path('assets/')]);
         
         return $pdf->download('preview.pdf');
+    }
+
+    public function getStates(){
+        $states=DB::table('district_masters')->orderBy('state_name')->get()->groupBy('state_name');
+        return $states;
     }
 }

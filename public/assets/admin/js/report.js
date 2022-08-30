@@ -6,7 +6,7 @@ let report_table=$('.report-table').DataTable({
     ]
 });
 
-let report_users=[];
+let report_users=[],states={};
 
 function getReportUsers(){
     $.ajax({
@@ -19,7 +19,18 @@ function getReportUsers(){
     })
 }
 
+function getStates(){
+    $.ajax({
+            type: "GET",
+            url: base_url+'secure-admin/getStates',
+            success:function(response){
+                states=response
+            }
+        })
+}
+
 getReportUsers()
+getStates()
 
 function reportFilters(temp_users){
 
@@ -52,6 +63,18 @@ function reportFilters(temp_users){
     if($('#report_super_specialization').val()!==''){
         temp_users=temp_users.filter((user)=>{
             return report_users[user]['super_specialization'].includes($('#report_super_specialization').val())
+        })
+    }
+
+    if($('#state').val()!==''){
+        temp_users=temp_users.filter((user)=>{
+            return report_users[user]['state']==$('#state').val()
+        })
+    }
+
+    if($('#district').val()!==''){
+        temp_users=temp_users.filter((user)=>{
+            return report_users[user]['district']==$('#district').val()
         })
     }
 
@@ -259,6 +282,20 @@ $('#age').change(()=>{
     setReportUsers()
 })
 
+$('#district').change(()=>{
+    setReportUsers()
+})
+
+$('#state').change((e)=>{
+    $('#district').find('option').not(':first').remove()
+    setReportUsers()
+    if(e.target.value!==''){
+        states[e.target.value].forEach((district)=>{
+            $('#district').append(`<option value="${district.district_name}">${district.district_name}</option>`)
+        })
+    }
+})
+
 $('#report-from').change(()=>{
     setReportUsers()
 })
@@ -310,5 +347,9 @@ function dateTo(to,check) {
 
 function resetFilters(){
     $('.report-filters').val('')
+    $('#report_specialization').empty()
+    $('#report_super_specialization').empty()
+    $('#report_specialization').append(`<option value="">Select</option>`)
+    $('#report_super_specialization').append(`<option value="">Select</option>`)
     setReportUsers()
 }

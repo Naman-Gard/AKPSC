@@ -51,12 +51,12 @@
                         <?php $str=trim($str,","); ?>
                         {{$str}}
                     </td>
-                    <td id="dates-{{$user->id}}">
+                    <td id="dates-{{$user->user_id}}">
                         <?php $str='';?>
                         @if(sizeOf($user->appoint))
                         @foreach($user->appoint as $appoint)
                         <?php 
-                        $str.='('.date("d/m/Y", strtotime($appoint->from)).'-'.date("d/m/Y", strtotime($appoint->to)).') , '
+                        $str.='('.$appoint->from.'-'.$appoint->to.') , '
                         ?>
                         @endforeach
                         <?php $str=trim($str," , "); ?>
@@ -64,8 +64,8 @@
                         {{$str?$str:'Not Appointed Yet'}}
                     </td>
                     <td>
-                        <button data-id="{{$user->user_id}}" data-bs-toggle="modal" data-bs-target="#AppointedModal" class="btn btn-sm p-2 btn-primary">Appoint</button>
-                        <button data-id="{{$user->user_id}}" data-bs-toggle="modal" data-bs-target="#BlackListModal" class="btn btn-sm p-2 btn-primary">Blacklist</button>
+                        <button data-id="{{$user->user_id}}" data-bs-toggle="modal" data-bs-target="#AppointedModal" class="btn btn-sm p-2 m-1 btn-primary">Appoint</button>
+                        <button data-id="{{$user->user_id}}" data-bs-toggle="modal" data-bs-target="#BlackListModal" class="btn btn-sm p-2 m-1 btn-primary">Blacklist</button>
                     </td>
                     </tr>
                     @endforeach
@@ -148,20 +148,20 @@
                             @csrf
                             
                             <input type="hidden" name="user_id" id="appoint_user_id">
-
+                            <span class="text-danger" id="valid_apoint"></span>
                             <div class="row mb-4">
                                 <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="from">From:</label>
-                                    <input type="text" placeholder="dd/mm/yyyy" class="appoint_input date" required name="from" id="from" autocomplete='off' autofocus >
-                                    <span class="text-danger" id="valid_doe"></span>
+                                    <input type="text" placeholder="dd/mm/yyyy" class="appoint_input date" name="from" required id="from" autocomplete='off'>
+                                    <span class="text-danger" id="valid_from"></span>
                                 </div>
                                 </div>
                                 <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="date-to">To:</label>
-                                    <input type="text" placeholder="dd/mm/yyyy" class="appoint_input date" required name="to" id="to" autocomplete='off' autofocus >
-                                    <span class="text-danger" id="valid_doe"></span>
+                                    <input type="text" placeholder="dd/mm/yyyy" class="appoint_input date" name="to" required id="to" autocomplete='off'>
+                                    <span class="text-danger" id="valid_to"></span>
                                 </div>
                                 </div>
                             </div>

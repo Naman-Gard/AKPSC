@@ -27,7 +27,7 @@ class AdminController extends Controller
             'blacklisted'=>0
         ]);
 
-        $registered=User::where('type','user')->count();
+        $registered=FinalStatus::where('status','1')->count();
         $empanelled=FinalStatus::where('empanelled','1')->where('blacklisted','0')->count();
         $blacklist=FinalStatus::where('blacklisted','1')->count();
 
@@ -36,9 +36,19 @@ class AdminController extends Controller
             "empanell"=>$empanelled,
             "blacklist"=>$blacklist
         );
-        $subjects=DB::table('subject_master')->orderBy('subject_list')->get();
+        $subjects=DB::table('subject_master')->orderBy('subject')->get()->groupBy('subject');
 
         return view('admin.index',compact('count','subjects'));
+    }
+
+    public function getSubjects(){
+        $subjects=DB::table('subject_master')->orderBy('subject')->get()->groupBy('subject');
+        return $subjects;
+    }
+
+    public function getStates(){
+        $states=DB::table('district_masters')->orderBy('district_name')->get()->groupBy('state_name');
+        return $states;
     }
 
     public function logout(){
@@ -257,10 +267,11 @@ class AdminController extends Controller
     }
 
     public function getReport(){
-        $subjects=DB::table('subject_master')->orderBy('subject_list')->get();
+        $subjects=DB::table('subject_master')->orderBy('subject')->get()->groupBy('subject');
         $qualification=DB::table('qualification_master')->get()->groupBy('qual_name');
+        $states=DB::table('district_masters')->orderBy('state_name')->get()->groupBy('state_name');
 
-        return view('admin.download-data.index',compact('subjects','qualification'));
+        return view('admin.download-data.index',compact('subjects','qualification','states'));
     }
 
     public function getReportUsers(){
@@ -363,5 +374,17 @@ class AdminController extends Controller
 
         $users=$empanelled_users->merge($registered_users);
         return $users;
+    }
+
+    public function profile(){
+        return view('admin.profile.index');
+    }
+
+    public function changePassword(Request $request){
+        dd(Session::get('admin-user')->id);
+        User::where('id',Session::get('admin-user')->id)->update([
+            'password' => Hash::make(base64_decode($request->password)),
+        ]);
+        return Redirect()->route('dashboard');
     }
 }

@@ -20,9 +20,16 @@ $('.users-table').DataTable({
     ]
 });
 
-let users=[];
+let users=[],subjects;
 
 function getUsers(){
+    $.ajax({
+        type: "GET",
+        url: base_url+'secure-admin/getSubjects',
+        success:function(response){
+            subjects=response
+        }
+    })
     $.ajax({
         type: "GET",
         url: base_url+'secure-admin/getUsers',
@@ -104,7 +111,12 @@ function setUsers(){
 }
 
 $('document').ready(()=>{
+
     $("#EmpanelModal").modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+    $("#AppointedModal").modal({
         backdrop: 'static',
         keyboard: false
     });
@@ -112,7 +124,9 @@ $('document').ready(()=>{
         backdrop: 'static',
         keyboard: false
     });
+    
 })
+
 
 $('#EmpanelModal').on('show.bs.modal', function(e) {
     $('#user_id').val($(e.relatedTarget).data('id'))
@@ -134,32 +148,38 @@ $('#AppointedModal').on('show.bs.modal', function(e) {
     $('#appoint_user_id').val($(e.relatedTarget).data('id'))
     appointed_dates=$('#dates-'+$(e.relatedTarget).data('id')).html()
 
-     $( "#from" ).datepicker({   
+    $( "#from" ).datepicker({   
         changeMonth: true,
         changeYear: true,
         dateFormat: "dd/mm/yy",
         yearRange: '1957:2025',
+        maxDate:$('#to').val(),
         onClose: function( selectedDate ) {  
             $( "#to" ).datepicker( "option", "minDate", selectedDate );  
+            $( "#from" ).datepicker( "destroy" );  
+            $('#to').focus()
         }  
-    });  
-
+    });
     $( "#to" ).datepicker({
         changeMonth: true,
         changeYear: true,
         dateFormat: "dd/mm/yy",
         yearRange: '1957:2025',
+        minDate:$('#from').val(),
         onClose: function( selectedDate ) {
             $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+            $( "#to" ).datepicker( "destroy" );
+            $('#from').focus()
         }
-    });  
+    });
+    
 });
 
 $('#add-empanel').on('submit', function (e) {
 
     e.preventDefault();
     let flag=doEmpanelValidation()
-    if(flag && dateIsValid($('#doe').val())){
+    if(flag && dateIsValid($('#doe').val(),'doe')){
         e.currentTarget.submit();
     }
 
@@ -168,10 +188,15 @@ $('#add-empanel').on('submit', function (e) {
 $('#appointed').on('submit', function (e) {
 
     e.preventDefault();
-    let flag=doAppointedValidation()
-    console.log(flag)
-    if(flag){
-        e.currentTarget.submit();
+    if(dateIsValid($('#from').val(),'from') && dateIsValid($('#to').val(),'to')){
+        let flag=doAppointedValidation()
+        if(flag){
+            e.currentTarget.submit();
+            $('#valid_apoint').html('')
+        }
+        else{
+            $('#valid_apoint').html('Expert already appointed for these dates')
+        }
     }
 
 });
@@ -257,15 +282,19 @@ function doAppointedValidation(){
     let flag=[]
     appointed_dates=appointed_dates.replace(/\s+/g,' ').trim()
     temp_dates=appointed_dates.split(',')
-    if(temp_dates[0]!=='Not Appointed Yet')
-    temp_dates.forEach((dates)=>{
-        dates=dates.trim()
-        dates=dates.replace('(','')
-        dates=dates.replace(')','')
-        dates=dates.split('-')
-        flag.push(dateCheck(dates[0],dates[1],$('#from').val()))
-        flag.push(dateCheck(dates[0],dates[1],$('#to').val()))
-    })
+
+    if(temp_dates[0]!=='Not Appointed Yet'){
+        temp_dates.forEach((dates)=>{
+            dates=dates.trim()
+            dates=dates.replace('(','')
+            dates=dates.replace(')','')
+            dates=dates.split('-')
+            flag.push(dateCheck(dates[0],dates[1],$('#from').val()))
+            flag.push(dateCheck(dates[0],dates[1],$('#to').val()))
+            flag.push(dateCheck($('#from').val(),$('#to').val(),dates[0]))
+            flag.push(dateCheck($('#from').val(),$('#to').val(),dates[1]))
+        })
+    }
 
     return flag.includes(false)?false:true
 }
@@ -283,11 +312,10 @@ function dateCheck(from,to,check) {
 }
 
 
-function dateIsValid(dateStr){
+function dateIsValid(dateStr,valid){
     const regex = /^\d{2}\/\d{2}\/\d{4}$/;
-
     if (dateStr.match(regex) === null) {
-        $('#valid_doe').html('Please enter valid date')
+        $('#valid_'+valid).html('Please enter valid date')
         return false;
     }
 
@@ -301,14 +329,44 @@ function dateIsValid(dateStr){
     const timestamp = date.getTime();
 
     if (typeof timestamp !== 'number' || Number.isNaN(timestamp)) {
-        $('#valid_doe').html('Please enter valid date')
+        $('#valid_'+valid).html('Please enter valid date')
         return false;
     }
 
     if (parseInt(year)>2022) {
-        $('#valid_doe').html('Please enter valid date')
+        $('#valid_'+valid).html('Please enter valid date')
         return false;
     }
-    $('#valid_doe').html('')
+    $('#valid_'+valid).html('')
     return true;
 }
+
+$( "#from" ).focus(()=>{
+    $( "#from" ).datepicker({   
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "dd/mm/yy",
+        yearRange: '1957:2025',
+        maxDate:$('#to').val(),
+        onClose: function( selectedDate ) {  
+            $( "#to" ).datepicker( "option", "minDate", selectedDate );  
+            $( "#from" ).datepicker( "destroy" );  
+            $('#to').focus()
+        }  
+    }).show();
+})
+
+$( "#to" ).focus(()=>{ 
+    $( "#to" ).datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "dd/mm/yy",
+        yearRange: '1957:2025',
+        minDate:$('#from').val(),
+        onClose: function( selectedDate ) {
+            $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+            $( "#to" ).datepicker( "destroy" );
+            $('#from').focus()
+        }
+    }).show();
+})

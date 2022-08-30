@@ -9,10 +9,10 @@
 <script src="{{ asset('assets/admin/js/datatablepdf/buttons.print.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 
 <script>
-    let base_url = "{{env('BASE_URL')}}"
+    let base_url = "{{env('BASE_URL')}}";
 </script>
 
 

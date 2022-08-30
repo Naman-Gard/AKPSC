@@ -72,6 +72,11 @@ a {
     border-color: #26b100;
 }
 
+
+.btn-primary {
+    background: #07838c;
+}
+
 .panel-heading {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -158,41 +163,45 @@ a {
     background-color: #E4E9F7; */
     transition: all 0.3s ease;
 }
-.dashboard-tab-content #DataTables_Table_0_length label{
+
+.dashboard-tab-content #DataTables_Table_0_length label {
     margin: 1rem 0;
 }
 
-#DataTables_Table_0_length label, 
+#DataTables_Table_0_length label,
 .dataTables_wrapper .dataTables_info,
 .dataTables_wrapper .dataTables_paginate {
     font-size: 0.875rem;
 }
+
 #DataTables_Table_0_filter label {
     font-size: 0.875rem;
 }
+
 table.dataTable thead .sorting {
     font-size: 0.85rem;
     font-weight: 600;
     padding: 10px;
 }
-table.dataTable tbody td{
+
+table.dataTable tbody td {
     font-size: 0.85rem;
     font-weight: 500;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current, 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
     background: #07838d;
     color: #fff !important;
     border-color: #07838d;
     padding: 2px 10px !important;
 }
 
-.heading-blue{
+.heading-blue {
     font-size: 1rem;
 }
 
-.title-black{
+.title-black {
     font-size: 0.875rem;
 }
 
@@ -201,9 +210,11 @@ table.dataTable tbody td{
     margin: 0;
     padding: 10px 0;
 }
+
 .modal .form-group {
     margin-bottom: 15px;
 }
+
 .modal .form-group input {
     width: 100%;
 }
@@ -213,7 +224,7 @@ table.dataTable tbody td{
     font-size: 0.75rem !important;
 }
 
-.bdr-radius{
+.bdr-radius {
     border-radius: 10px;
 }
 
@@ -221,7 +232,7 @@ table.dataTable tbody td{
     padding: 0 30px;
 }
 
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link{
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link {
     margin: 0;
 }
 
@@ -235,18 +246,22 @@ table.dataTable tbody td{
     display: flex;
     align-items: center;
 }
+
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item:hover,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item:focus {
     border-radius: 5px;
     background: #07838d;
     color: #fff;
 }
+
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-toggle:after {
     font-size: 1.2rem;
 }
+
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu {
     margin-left: -1.5rem;
 }
+
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile .nav-link .nav-profile-text p {
     font-size: 0.875rem;
     font-weight: 500;
@@ -263,10 +278,14 @@ table.dataTable tbody td{
     margin-top: 0;
     font-size: 0.875rem;
 }
-.table, th, td {
+
+.table,
+th,
+td {
     border: 1px solid #08848e !important;
 }
-.table td .btn{
+
+.table td .btn {
     background: #07838d;
     color: #fff;
     border-color: #07838d;
@@ -288,21 +307,26 @@ table.dataTable tbody td{
     #main {
         padding: 15px;
     }
+
     .panel {
         margin-bottom: 15px;
     }
+
     .panel-icon i {
         font-size: 50px;
     }
+
     .panel span {
         font-size: 2.5rem;
     }
+
     .toggle-btn {
         background: transparent;
         border: none;
         display: block;
         margin-right: 10px;
     }
+
     .toggle-btn .toggle-icon {
         display: block;
         background: #fff;
@@ -310,11 +334,12 @@ table.dataTable tbody td{
         padding: 1px;
         margin: 5px 0;
     }
-    
+
     .sidebar {
         position: absolute;
         left: -250px;
     }
+
     #main {
         width: 100%;
     }
@@ -323,11 +348,13 @@ table.dataTable tbody td{
         padding: 0 15px;
         width: 100%;
     }
-    .navbar .navbar-menu-wrapper{
+
+    .navbar .navbar-menu-wrapper {
         padding-left: 0;
         padding-right: 0;
     }
-    .dropdown-menu[data-bs-popper]{
+
+    .dropdown-menu[data-bs-popper] {
         left: unset !important;
         right: 0 !important;
         width: unset !important;
@@ -341,8 +368,9 @@ table.dataTable tbody td{
 
 @media (max-width: 767px) {
     .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile .nav-link .nav-profile-text {
-      display: block;
+        display: block;
     }
+
     /* #main .dataTables_wrapper .dataTable{
         display: block;
     } */

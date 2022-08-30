@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Preference;
 use App\Models\LanguageDetails;
 use Auth;
+use DB;
 
 class PreferenceController extends Controller
 {

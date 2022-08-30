@@ -55,7 +55,10 @@ class ProfileController extends Controller
             return redirect()->route('preview');
         }
         else{
-            $user=User::where('id',Auth::user()->id)->first();
+            $user=User::join('final_statuses','final_statuses.user_id','=','users.id')
+            ->join('uploads','uploads.user_id','=','users.id')
+            ->where('users.id',Auth::user()->id)
+            ->first();
             return view('profile.index',compact('user'));
         }
     }

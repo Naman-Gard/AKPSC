@@ -35,6 +35,9 @@
                                 <!-- <a class="dropdown-item" href="#">
                                     <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a> -->
                                 <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{route('admin-profile')}}">
+                                    <i class="mdi mdi-account me-2"></i> Profile
+                                </a>
                                 <a class="dropdown-item" href="{{route('admin-logout')}}">
                                     <i class="mdi mdi-logout me-2"></i> Signout
                                 </a>

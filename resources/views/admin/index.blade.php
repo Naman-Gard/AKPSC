@@ -101,8 +101,8 @@
                     <label for="">Subject</label>
                     <select class="form-select" name="subject" id="subject">
                         <option value="">Select</option>
-                        @foreach($subjects as $subject)
-                        <option value="{{$subject->subject_list}}">{{$subject->subject_list}}</option>
+                        @foreach($subjects as $subject=>$specialization)
+                        <option value="{{$subject}}">{{$subject}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -110,18 +110,12 @@
                     <label for="">Specialization</label>
                     <select class="form-select" name="subject" id="specialization">
                         <option value="">Select</option>
-                        @foreach($subjects as $subject)
-                        <option value="{{$subject->subject_list}}">{{$subject->subject_list}}</option>
-                        @endforeach
                     </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">Super Specialization</label>
                     <select class="form-select" name="subject" id="super_specialization">
                         <option value="">Select</option>
-                        @foreach($subjects as $subject)
-                        <option value="{{$subject->subject_list}}">{{$subject->subject_list}}</option>
-                        @endforeach
                     </select>
                 </div>
             </div>            
@@ -213,11 +207,22 @@
                     </div>
                 </div>
 
-
-
             </div>
         </div>
     </div>
 </div>
 
 @include('admin/includes/footer')
+
+<script>
+    $('#subject').change((e)=>{
+        $('#specialization').empty()
+        $('#super_specialization').empty()
+        $('#specialization').append(`<option value="">Select</option>`)
+        $('#super_specialization').append(`<option value="">Select</option>`)
+        subjects[e.target.value].forEach((specialization)=>{
+            $('#specialization').append(`<option value="${specialization.specialization}">${specialization.specialization}</option>`)
+            $('#super_specialization').append(`<option value="${specialization.specialization}">${specialization.specialization}</option>`)
+        })
+    })
+</script>

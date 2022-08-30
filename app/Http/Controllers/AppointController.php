@@ -11,6 +11,7 @@ use App\Models\Experience;
 class AppointController extends Controller
 {
     public function index(Request $request){
+        // dd($request);
         // $unique=uniquecodeGenerator();
         Appoint::create([
             // 'expert_id'=>$unique,

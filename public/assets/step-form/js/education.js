@@ -9,7 +9,7 @@
 //         $('#super_specialization').append(`<option value="Chem">Chem</option>`)
 //     }
 // })
-let qualificationDetails;
+let qualificationDetails,specializationSubjects;
 $('#degree').change((e)=>{
     $('#subject').empty()
     $('#subject').append(`<option value="">Select</option>`)
@@ -306,14 +306,11 @@ function getEducationDetails(){
         type: "GET",
         url: base_url+'getSubjects',
         success:function(response){
-
+            specializationSubjects=response
             $('#super_specialization').append(`<option value="Not Applicable">Not Applicable</option>`)
             $('#specialization').append(`<option value="Not Applicable">Not Applicable</option>`)
-            $('#specialization_subject').append(`<option value="Not Applicable">Not Applicable</option>`)
-            response.forEach((subject)=>{
-                $('#super_specialization').append(`<option value="${subject.subject_list}">${subject.subject_list}</option>`)
-                $('#specialization').append(`<option value="${subject.subject_list}">${subject.subject_list}</option>`)
-                $('#specialization_subject').append(`<option value="${subject.subject_list}">${subject.subject_list}</option>`)
+            Object.keys(response).forEach((subject)=>{
+                $('#specialization_subject').append(`<option value="${subject}">${subject}</option>`)
             })
             $('#super_specialization').append(`<option value="Other">Other</option>`)
             $('#specialization').append(`<option value="Other">Other</option>`)
@@ -340,10 +337,24 @@ if(typeof step!=='undefined'){
 }
 
 $('#specialization_subject').change((e)=>{
+    $('#super_specialization').find('option').not(':first').remove();
+    $('#specialization').find('option').not(':first').remove();
+    $('#super_specialization').append(`<option value="Not Applicable">Not Applicable</option>`)
+    $('#specialization').append(`<option value="Not Applicable">Not Applicable</option>`)
+    $('#super_specialization').append(`<option value="Other">Other</option>`)
+    $('#specialization').append(`<option value="Other">Other</option>`)
     if(e.target.value==='Other'){
         $('#specify_specialization_subject').removeClass('d-none')
     }
-    else{
+    else{ 
+        if(e.target.value!==''){
+            specializationSubjects[e.target.value].forEach((subject)=>{
+                if(subject.specialization!=='Not Applicable'){
+                    $('#super_specialization').append(`<option value="${subject.specialization}">${subject.specialization}</option>`)
+                    $('#specialization').append(`<option value="${subject.specialization}">${subject.specialization}</option>`)
+                }
+            })
+        }     
         if(!$('#specify_specialization_subject').hasClass('d-none')){
             $('#specify_specialization_subject').addClass('d-none')
         }

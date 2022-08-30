@@ -65,6 +65,8 @@ Route::group(["middleware" => ["islogin"]], function(){
     Route::post('add/LanguageDetails', 'App\Http\Controllers\PreferenceController@addLanguageDetails');
     Route::get('delete/Language/{id}', 'App\Http\Controllers\PreferenceController@deleteLanguage');
     Route::post('add/Preference', 'App\Http\Controllers\PreferenceController@addPreference');
+    Route::get('getStates', 'App\Http\Controllers\FormController@getStates');
+
 });
 
 
@@ -81,6 +83,10 @@ Route::group(["middleware" => ["adminlogout"]], function(){
 
 Route::group(["middleware" => ["adminlogin"]], function(){
     Route::get('secure-admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
+    Route::get('secure-admin/getSubjects', 'App\Http\Controllers\AdminController@getSubjects');
+    Route::get('secure-admin/getStates', 'App\Http\Controllers\AdminController@getStates');
+    Route::get('secure-admin/profile', 'App\Http\Controllers\AdminController@profile')->name('admin-profile');
+    Route::post('secure-admin/change-password', 'App\Http\Controllers\AdminController@changePassword')->name('change-password');
     Route::get('secure-admin/getUsers', 'App\Http\Controllers\AdminController@getUsers')->name('getUsers');
     Route::get('secure-admin/getReportUsers', 'App\Http\Controllers\AdminController@getReportUsers')->name('getReportUsers');
     Route::get('secure-admin/logout', 'App\Http\Controllers\AdminController@logout')->name('admin-logout');

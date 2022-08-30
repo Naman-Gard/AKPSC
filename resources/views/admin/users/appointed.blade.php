@@ -45,7 +45,7 @@
                         @if(sizeOf($user->appoint))
                         @foreach($user->appoint as $appoint)
                         <?php 
-                        $str.='('.date("d/m/Y", strtotime($appoint->from)).'-'.date("d/m/Y", strtotime($appoint->to)).') , '
+                        $str.='('.$appoint->from.'-'.$appoint->to.') , '
                         ?>
                         @endforeach
                         <?php $str=trim($str," , "); ?>
