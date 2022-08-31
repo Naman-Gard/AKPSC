@@ -73,7 +73,7 @@
 
 @media (max-width: 991px) {
   .navbar .navbar-brand-wrapper {
-    width: 55px;
+    /* width: 55px; */
   }
 }
 
@@ -305,7 +305,7 @@
 .mdi-logout:before {
   font-size: 1.5rem;
 }
-.mdi-account:before {
+#account:before {
   font-size: 1.5rem;
 }
 
@@ -333,10 +333,10 @@
   }
 
   .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .navbar-dropdown {
-    left: 20px;
+    /* left: 20px;
     right: 20px;
     top: 70px;
-    width: calc(100% - 40px);
+    width: calc(100% - 40px); */
   }
 }
 
@@ -399,10 +399,129 @@
   font-size: 1.3rem;
 }
 
+@media screen and (min-width: 1200px) and (max-width: 1368px) {
+  .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown {
+    left: 86% !important;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown {
+    left: 84% !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .custom-add .action-button {
+    margin: 2.4rem 0 0 !important;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown {
+    left: 78% !important;
+  }
+  .custom-col {
+    padding: 0;
+  }
+  .custom-add .action-button {
+    margin: 2.2rem 0 0 !important;
+  }
+}
+@media screen and (max-width: 991px) {
+  #progressbar li strong {
+    font-size: 0.85rem;
+  }
+  .fs-title {
+    font-size: 1.2rem !important;
+  }
+  .form-group label {
+    font-size: 0.9rem !important;
+  }
+  .form-group .form-select {
+    font-size: 0.85rem !important;
+  }
+  .table thead th {
+    font-size: 0.9rem !important;
+  }
+  .table tbody td, th {
+    font-size: 0.8rem !important;
+  }
+  .heading h2.dark-green {
+    font-size: 1.3rem;
+  }
+  .heading .img-wrap img {
+    width: 80px !important;
+  }
+  .heading .content {
+    margin-left: 3rem !important;
+  }
+  .heading .content h2 {
+    font-size: 1rem;
+  }
+  .heading .content h5 {
+    font-size: 0.8rem;
+  }
+  .declaration p {
+    font-size: 0.85rem;
+  }
+  .preview .btn-custom {
+    font-size: 0.85rem;
+  }
+  #form-view {
+    font-size: 0.85rem;
+    padding: 3px 6px;
+  }
+  .preview .btn-custom img {
+    height: 20px !important;
+    margin-left: 0.2rem;
+  }
+  .download-btn {
+    font-size: 0.8rem;
+  }
+  .download-btn img {
+    height: 1.3rem !important;
+  }
+  #account:before {
+    font-size: 1rem;
+  }
+  .mdi-logout:before {
+    font-size: 1rem;
+  }
+  .custom-add .action-button {
+    font-size: 0.8rem !important;
+    /* margin: 0.4rem 0 0 !important; */
+  }
+  .table td .btn img {
+    height: 1.4rem !important;
+  }
+}
+
 @media (max-width: 767px) {
-  .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile .nav-link .nav-profile-text {
+  .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile .nav-link .nav-profile-text p {
     display: none;
   }
+  .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item {
+    font-size: 0.9rem !important;
+  }
+  .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile .nav-link .nav-profile-text i {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  
+}
+@media screen and (min-width: 541px) and (max-width: 767px) {
+  .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown {
+    left: 78% !important;
+  }
+}
+@media screen and (max-width: 540px) {
+  .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown {
+    left: 70% !important;
+  }
+}
+@media (min-width: 768px) {
+  .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile .nav-link .nav-profile-text i {
+    display: none;
+  }
+  
 }
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile .nav-link.dropdown-toggle:after {
@@ -429,7 +548,7 @@
   }
 
   .navbar .navbar-brand-wrapper {
-    width: 75px;
+    /* width: 75px; */
   }
 
   .navbar .navbar-brand-wrapper .navbar-brand.brand-logo {
@@ -450,7 +569,7 @@
 
 @media (max-width: 480px) {
   .navbar .navbar-brand-wrapper {
-    width: 55px;
+    /* width: 55px; */
   }
 
   .navbar .navbar-brand-wrapper .brand-logo-mini {
@@ -715,3 +834,9 @@
   margin-top: 7rem;
 }
 
+@media screen and (max-width: 767px) {
+  
+  .nav-welcome-text p {
+    font-size: 0.9rem;
+  }
+}

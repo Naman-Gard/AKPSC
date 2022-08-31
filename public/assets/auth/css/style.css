@@ -632,4 +632,14 @@ a.new-user {
     font-weight: 500;
     width: 100%;
     text-align: center;
+    display: block;
+}
+
+@media screen and (max-width: 767px) {
+    .form .left-side {
+        display: none;
+    }
+    .form .right-side {
+        border-radius: 20px !important;
+    }
 }

@@ -16,7 +16,7 @@
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="{{asset('assets/preview/css/style.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('assets/preview/css/style.css')}}"> -->
     <!-- <link rel="stylesheet" href="{{asset('assets/step-form/css/style.css')}}"> -->
     <!-- <link rel="stylesheet" href="{{asset('assets/step-form/css/form.css')}}"> -->
     <link rel="stylesheet" href="{{asset('assets/step-form/css/font.css')}}">
@@ -25,4 +25,5 @@
     <link rel="shortcut icon" href="{{asset('assets/step-form/images/favicon.ico')}}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/css/jquery.dataTables.min.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/custom.css')}}" />
 </head>
