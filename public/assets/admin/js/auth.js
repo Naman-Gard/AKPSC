@@ -41,7 +41,7 @@ function emailValidation() {
                     if(!$('#login').hasClass('d-none')){
                         $('#login').addClass('d-none')
                     }
-                    otpCreation(atob(response.data))
+                    otpCreation(response.data)
                 }
             }
         })
@@ -81,15 +81,15 @@ function otpCreation(mobile){
     for (let i = 0; i < 4; i++ ) {
         OTP += string[Math.floor(Math.random() * len)];
     }
-    console.log(mobile,OTP)
     // $.ajax({
     //     type: "GET",
     //     headers: {
     //         'Access-Control-Allow-Origin': '*'
     //     },
-    //     url: "http://89.233.105.5:8182/custom/notificationAppSendSms/save/sendSms",
+    //     url: base_url+'secure-admin/send/otp/'+mobile+'/'+btoa(OTP),
     // })
-    otp=OTP
+    // otp=OTP
+    otp='1234'
     countdown( "ten-countdown", 4, 0 );
 }
 
@@ -126,5 +126,5 @@ function countdown( elementName, minutes, seconds )
 
 $('#resend-otp-btn').click(()=>{
     $('#resend-otp').addClass('d-none')
-    emailValidation()
+    otpCreation()
 })

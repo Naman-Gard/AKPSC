@@ -255,15 +255,15 @@ function otpCreation(email){
     for (let i = 0; i < 4; i++ ) {
         OTP += string[Math.floor(Math.random() * len)];
     }
-    console.log(OTP)
-    $.ajax({
-        type: "GET",
-        headers: {
-            'Access-Control-Allow-Origin': '*'
-        },
-        url: base_url + 'send/otp/'+btoa(email)+'/'+btoa(OTP),
-    })
-    otp=OTP
+    // console.log(OTP)
+    // $.ajax({
+    //     type: "GET",
+    //     headers: {
+    //         'Access-Control-Allow-Origin': '*'
+    //     },
+    //     url: base_url + 'send/otp/'+btoa(email)+'/'+btoa(OTP),
+    // })
+    otp='1234'
     // console.log(otp)
     countdown( "ten-countdown", 4, 0 );
 }

@@ -14,7 +14,7 @@ use App\Models\Upload;
 use App\Models\User;
 use App\Models\LanguageDetails;
 use App\Models\FinalStatus;
-
+use GuzzleHttp\Client;
 use Auth;
 use DB;
 use PDF;
@@ -243,6 +243,26 @@ class FormController extends Controller
             FinalStatus::where('user_id',Auth::user()->id)->update([
                 'status'=>1
             ]);
+
+            // $message='Dear Applicant,<br>';
+            // $message.='your application has been submitted successfully.<br>';
+            // $message.='Regards,<br>';
+            // $message.='UKPSC';
+
+            // $client = new Client();
+            // $res = $client->request('POST', 'http://sms.holymarkindia.in/API/WebSMS/Http/v1.0a/index.php', [
+            //     'form_params' => [
+            //         "username"=>env('NY_USERNAME'),
+            //         "password"=>env('NY_PASSWORD'),
+            //         "sender"=>env('NY_SENDER'),
+            //         "pe_id"=>env('NY_PE_ID'),
+            //         "reqid"=>env('NY_REQ_ID'),
+            //         "template_id"=>env('APPC_TEMPLATE_ID'),
+            //         "format"=>"json",
+            //         'message'=>$message,
+            //         'to'=>base64_decode($mobile)
+            //     ]
+            // ]);
 
         }
     }

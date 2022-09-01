@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\OtpMail;
 use Hash;
 use Auth;
+use GuzzleHttp\Client;
 
 class AuthController extends Controller
 {
@@ -26,8 +27,18 @@ class AuthController extends Controller
         'password' => Hash::make(base64_decode($request->pass))
         ]);
 
-        $unique=uniquecodeGenerator();
+        
+        $flag=true;
 
+        do {
+            $unique=uniquecodeGenerator();
+            $uniqueExist = FinalStatus::where('register_id',$unique)->get();
+            if(!sizeOf($uniqueExist)){
+                $flag=false;
+            }
+        }
+        while ($flag);
+        
         FinalStatus::create([
             'user_id'=>$user->id,
             'register_id'=>$unique,
@@ -39,6 +50,26 @@ class AuthController extends Controller
 
         $credentials=['email'=>$request->reg_email,'password'=>base64_decode($request->pass)];
         Auth::attempt($credentials);
+
+        // $message='Dear Applicant,<br>';
+        // $message.='your registration is completed, kindly complete your application using your emailid or user id {#var#} and password.<br>';
+        // $message.='Regards,<br>';
+        // $message.='UKPSC';
+
+        // $client = new Client();
+        // $res = $client->request('POST', 'http://sms.holymarkindia.in/API/WebSMS/Http/v1.0a/index.php', [
+        //     'form_params' => [
+        //         "username"=>env('NY_USERNAME'),
+        //         "password"=>env('NY_PASSWORD'),
+        //         "sender"=>env('NY_SENDER'),
+        //         "pe_id"=>env('NY_PE_ID'),
+        //         "reqid"=>env('NY_REQ_ID'),
+        //         "template_id"=>env('REGC_TEMPLATE_ID'),
+        //         "format"=>"json",
+        //         'message'=>$message,
+        //         'to'=>base64_decode($mobile)
+        //     ]
+        // ]);
         return Redirect()->route('fill-details')->with('success','User Registered Successfully');
     }
 
@@ -111,6 +142,28 @@ class AuthController extends Controller
         // else{
         //     return response(1);
         // }
+
+        // $message='Dear Applicant,<br>';
+        // $message.='your One Time Password (OTP) for registration is 1234 (Valid for 5 mins).<br>';
+        // $message.='Regards,<br>';
+        // $message.='UKPSC';
+
+        // $client = new Client();
+        // $res = $client->request('POST', 'http://sms.holymarkindia.in/API/WebSMS/Http/v1.0a/index.php', [
+        //     'form_params' => [
+        //         "username"=>env('NY_USERNAME'),
+        //         "password"=>env('NY_PASSWORD'),
+        //         "sender"=>env('NY_SENDER'),
+        //         "pe_id"=>env('NY_PE_ID'),
+        //         "reqid"=>env('NY_REQ_ID'),
+        //         "template_id"=>env('REG_TEMPLATE_ID'),
+        //         "format"=>"json",
+        //         'message'=>$message,
+        //         'to'=>base64_decode($mobile)
+        //     ]
+        // ]);
+
+        // return ['success'=>'OTP send successfully'];
     }
 
     public function sendResetLink($email){
@@ -134,6 +187,26 @@ class AuthController extends Controller
             mail(decode5t($email), $subject, $body, $headers);
             // dd($link);
             // Mail::to($email)->send(new ResetLinkMail($link));
+
+            // $message='Dear Applicant,<br>';
+            // $message.='Kindly reset your password using the following link. {#var#}<br>';
+            // $message.='Regards,<br>';
+            // $message.='UKPSC';
+
+            // $client = new Client();
+            // $res = $client->request('POST', 'http://sms.holymarkindia.in/API/WebSMS/Http/v1.0a/index.php', [
+            //     'form_params' => [
+            //         "username"=>env('NY_USERNAME'),
+            //         "password"=>env('NY_PASSWORD'),
+            //         "sender"=>env('NY_SENDER'),
+            //         "pe_id"=>env('NY_PE_ID'),
+            //         "reqid"=>env('NY_REQ_ID'),
+            //         "template_id"=>env('RESET_TEMPLATE_ID'),
+            //         "format"=>"json",
+            //         'message'=>$message,
+            //         'to'=>base64_decode($mobile)
+            //     ]
+            // ]);
             
             return ['status'=>"Success"];
         }

@@ -167,6 +167,10 @@
                             <th scope="col">Register Id</th>
                             <th scope="col">Empanelment Id</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Father Name</th>
+                            <th scope="col">DOB</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Category</th>
                             <th scope="col">Email</th>
                             <th scope="col">Contact Number</th>
                             <th scope="col">Subjects</th>

@@ -213,7 +213,7 @@ $(document).ready(function(){
                                 $('#line_2').val(response[key][0].line_2)
                                 $('#pin_code').val(response[key][0].pincode)
                                 $('#state option[value="'+response[key][0].state+'"]').prop("selected",true).change()
-                                $('#district option[value="'+response[key][0].district+'"]').prop("selected",true).change()
+                                $('#district option[value="'+response[key][0].district+'"]').prop("selected",true).change()                               
                             }
                         }
 
@@ -227,22 +227,19 @@ $(document).ready(function(){
             })
     }
 
-    function setStates(){
-        $.ajax({
-                type: "GET",
-                url: base_url+'getStates',
-                success:function(response){
-                    states=response
-                    Object.keys(response).forEach((state)=>{
-                        $('#state').append(`<option value="${state}">${state}</option>`)
-                    })
-                }
-            })
-    }
-
     if(window.location.pathname==='/fill-details'){
-        setStates()
-        setFormData()
+        $.ajax({
+            type: "GET",
+            url: base_url+'getStates',
+            success:function(stateResponse){
+                states=stateResponse
+                Object.keys(stateResponse).forEach((state)=>{
+                    $('#state').append(`<option value="${state}">${state}</option>`)
+                })
+                setFormData()
+            }
+        }) 
+        
     }
 
     let delete_id=0,heading='';

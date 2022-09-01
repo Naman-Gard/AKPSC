@@ -213,16 +213,3 @@
 </div>
 
 @include('admin/includes/footer')
-
-<script>
-    $('#subject').change((e)=>{
-        $('#specialization').empty()
-        $('#super_specialization').empty()
-        $('#specialization').append(`<option value="">Select</option>`)
-        $('#super_specialization').append(`<option value="">Select</option>`)
-        subjects[e.target.value].forEach((specialization)=>{
-            $('#specialization').append(`<option value="${specialization.specialization}">${specialization.specialization}</option>`)
-            $('#super_specialization').append(`<option value="${specialization.specialization}">${specialization.specialization}</option>`)
-        })
-    })
-</script>
