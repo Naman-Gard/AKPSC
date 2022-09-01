@@ -12,11 +12,7 @@
 
 <script>
     let base_url = "{{env('BASE_URL')}}";
+    $('.table').dataTable()
 </script>
-
-
-<script src="{{ asset('assets/admin/js/script.js')}}"></script>
-
-
 
 </html>

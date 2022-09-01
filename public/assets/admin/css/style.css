@@ -492,3 +492,10 @@ td {
 .mdi-logout:before {
     font-size: 17px !important;
 }
+
+.resend-otp {
+    background: transparent;
+    border: none;
+    color: #fff;
+    text-decoration: underline;
+}

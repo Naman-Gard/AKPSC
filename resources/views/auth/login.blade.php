@@ -214,13 +214,13 @@
                     <div>
                         <h4 class="text-white">Verify OTP</h4>
                     </div>
-                    <div class="" id="otp_input">
+                    <div class="input-div" id="otp_input">
                         <label class="form-label">OTP</label>
                         <input type="text" name="otp" id="otp">
                         <p class="text-danger" id="valid_otp"></p>
-                        <div id="ten-countdown"></div>
+                        <div id="ten-countdown" class="text-white"></div>
                         <div class="d-none" id="resend-otp">
-                            <input class="next_button myBtn" type="button" id="resend-otp-btn" value="Resend OTP"/>
+                            <input class="next_button resend-otp" type="button" id="resend-otp-btn" value="Resend OTP"/>
                         </div>
                     </div>
 
