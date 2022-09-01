@@ -9,8 +9,17 @@ use App\Models\Empanelment;
 class EmpanelController extends Controller
 {
     public function addEmpanel(Request $request){
-        $unique=uniquecodeGenerator();
-        // dd($request);
+
+        $flag=true;
+        do {
+            $unique=uniquecodeGenerator();
+            $uniqueExist = Empanelment::where('empanelment_id',$unique)->get();
+            if(!sizeOf($uniqueExist)){
+                $flag=false;
+            }
+        }
+        while ($flag);
+
         Empanelment::create([
             'empanelment_id'=>$unique,
             'user_id'=>$request->user_id,

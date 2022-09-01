@@ -11,6 +11,7 @@
 // })
 let qualificationDetails,specializationSubjects;
 $('#degree').change((e)=>{
+    console.log('Hii')
     $('#subject').empty()
     $('#subject').append(`<option value="">Select</option>`)
     $('#sub1').empty()
@@ -141,7 +142,13 @@ function educationValidation(){
             success:function(response){
                 $("#education_fieldset .secondList_input").each(function(key,value){
                     $('#'+$(this).attr('id')).val('')
+                    if($(this).attr('id')!=='degree' && $(this).attr('id')!=='passing_year'){
+                        $('#'+$(this).attr('id')).find('option').not(':first').remove();
+                    }
                 })
+                $('#sub1').val('')
+                $('#sub2').val('')
+                
                 let innerhtml=''
                 response.forEach((item,index)=>{
                     if(item.error){
@@ -318,7 +325,9 @@ function getEducationDetails(){
             
         }
     })
+}
 
+function getQualificationDetails(){
     $.ajax({
         type: "GET",
         url: base_url+'getQualifications',
@@ -334,6 +343,7 @@ function getEducationDetails(){
 
 if(typeof step!=='undefined'){
     getEducationDetails()
+    getQualificationDetails()
 }
 
 $('#specialization_subject').change((e)=>{

@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('cache-clear',function(){
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    echo 'clear';
+});
+
+
 Route::group(["middleware" => ["islogout"]], function(){
     Route::get('/', function () {
         return view('auth/login');
@@ -79,6 +86,8 @@ Route::group(["middleware" => ["adminlogout"]], function(){
 
     Route::post('secure-admin/login', 'App\Http\Controllers\AdminController@login')->name('admin-login');
     Route::get('secure-admin/check/credentials/{data}', 'App\Http\Controllers\AdminController@checkCredentials')->name('admin-credentials');
+    Route::get('secure-admin/send/otp/{mobile}/{OTP}', 'App\Http\Controllers\AdminController@sendOTP')->name('admin-sendOTP');
+
 });
 
 Route::group(["middleware" => ["adminlogin"]], function(){

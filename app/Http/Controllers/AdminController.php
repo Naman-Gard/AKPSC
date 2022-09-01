@@ -13,6 +13,7 @@ use Auth;
 use Session;
 use DB;
 use App\Models\BlackListed;
+use GuzzleHttp\Client;
 
 class AdminController extends Controller
 {
@@ -386,5 +387,29 @@ class AdminController extends Controller
             'password' => Hash::make(base64_decode($request->password)),
         ]);
         return Redirect()->route('dashboard');
+    }
+
+    public function sendOTP($mobile,$OTP){
+        $message='Dear User <br>';
+        $message.='One Time Password(OTP) for login is 1234<br>';
+        $message.='Regards,<br>';
+        $message.='UKPSC';
+
+        $client = new Client();
+        $res = $client->request('POST', 'http://sms.holymarkindia.in/API/WebSMS/Http/v1.0a/index.php', [
+            'form_params' => [
+                "username"=>env('NY_USERNAME'),
+                "password"=>env('NY_PASSWORD'),
+                "sender"=>env('NY_SENDER'),
+                "pe_id"=>env('NY_PE_ID'),
+                "reqid"=>env('NY_REQ_ID'),
+                "template_id"=>env('LOGIN_TEMPLATE_ID'),
+                "format"=>"json",
+                'message'=>$message,
+                'to'=>base64_decode($mobile)
+            ]
+        ]);
+
+        return ['success'=>'OTP send successfully'];
     }
 }

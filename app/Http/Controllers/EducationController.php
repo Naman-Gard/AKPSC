@@ -13,8 +13,8 @@ class EducationController extends Controller
     public function addSpecialization(Request $request){
         $exist=Specialization::where('user_id',Auth::user()->id)->where('specialization',$request->specialization)->where('subject',$request->specialization_subject)->get();
         $is_exist_subject=DB::table('subject_master')->where('subject',$request->specialization_subject)->get();
-        $is_exist_specialization=DB::table('subject_master')->where('specialization',$request->specialization)->first();
-        $is_exist_super_specialization=DB::table('subject_master')->where('specialization',$request->super_specialization)->first();
+        $is_exist_specialization=DB::table('subject_master')->where('subject',$request->specialization_subject)->where('specialization',$request->specialization)->first();
+        $is_exist_super_specialization=DB::table('subject_master')->where('subject',$request->specialization_subject)->where('specialization',$request->super_specialization)->first();
         if(sizeOf($is_exist_subject)){
             if($request->specialization!==$request->super_specialization){
                 if(!$is_exist_specialization && $request->specialization!=='Not Applicable'){
@@ -41,20 +41,26 @@ class EducationController extends Controller
         }
         else{
             if($request->specialization!==$request->super_specialization){
-                DB::table('subject_master')->insert([
-                    'subject'=>$request->specialization_subject,
-                    'specialization'=>$request->specialization
-                ]);
-                DB::table('subject_master')->insert([
-                    'subject'=>$request->specialization_subject,
-                    'specialization'=>$request->super_specialization
-                ]);
+                if(!$is_exist_specialization && $request->specialization!=='Not Applicable'){
+                    DB::table('subject_master')->insert([
+                        'subject'=>$request->specialization_subject,
+                        'specialization'=>$request->specialization
+                    ]);
+                }
+                if(!$is_exist_super_specialization && $request->super_specialization!=='Not Applicable'){
+                    DB::table('subject_master')->insert([
+                        'subject'=>$request->specialization_subject,
+                        'specialization'=>$request->super_specialization
+                    ]);
+                }
             }
             else{
-                DB::table('subject_master')->insert([
-                    'subject'=>$request->specialization_subject,
-                    'specialization'=>$request->specialization
-                ]);
+                if(!$is_exist_specialization && $request->specialization!=='Not Applicable'){
+                    DB::table('subject_master')->insert([
+                        'subject'=>$request->specialization_subject,
+                        'specialization'=>$request->specialization
+                    ]);
+                }
             }
         }
         // if($request->specialization!==$request->specialization_subject){
