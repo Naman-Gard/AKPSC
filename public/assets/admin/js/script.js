@@ -1,7 +1,8 @@
 
 let table=$('.action-table').DataTable({
     // searching: false,
-
+    scrollX: true,
+    autoWidth: true,
     // dom: 'lBfrtip',
     // buttons: [
     // 'copy', 'csv', 'excel', 'print',
@@ -15,6 +16,8 @@ let table=$('.action-table').DataTable({
 
 $('.users-table').DataTable({
     dom: 'lBfrtip',
+    scrollX: true,
+    autoWidth: true,
     buttons: [
     'excel'
     ]
@@ -42,7 +45,17 @@ function getUsers(){
 
 getUsers()
 
-$('#subject').change(()=>{
+$('#subject').change((e)=>{
+    $('#specialization').empty()
+    $('#super_specialization').empty()
+    $('#specialization').append(`<option value="">Select</option>`)
+    $('#super_specialization').append(`<option value="">Select</option>`)
+    if($('#subject').val()!==''){
+        subjects[e.target.value].forEach((specialization)=>{
+            $('#specialization').append(`<option value="${specialization.specialization}">${specialization.specialization}</option>`)
+            $('#super_specialization').append(`<option value="${specialization.specialization}">${specialization.specialization}</option>`)
+        })
+    }
     setUsers()
 })
 $('#specialization').change(()=>{

@@ -230,6 +230,10 @@ function setReportUsers() {
                     ? report_users[user]["empanelment_id"]
                     : "-",
                 report_users[user]["name"],
+                report_users[user]["father_name"],
+                report_users[user]["dob"],
+                report_users[user]["gender"],
+                report_users[user]["category"],
                 report_users[user]["email"],
                 report_users[user]["mobile"],
                 report_users[user]["subject"].toString(),
