@@ -370,3 +370,12 @@ $( "#to" ).focus(()=>{
         }
     }).show();
 })
+
+// sidebar
+var togglebtn = document.querySelector(".toggle-btn");
+if ($(window).width() < 992) {
+    togglebtn.addEventListener("click", () => {
+        $(".sidebar").toggleClass("active");
+        
+    });
+}

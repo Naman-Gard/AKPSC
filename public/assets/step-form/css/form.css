@@ -476,7 +476,6 @@ span.text-danger {
 .custom-add .action-button {
     width: 100% !important;
     padding: 6px 5px !important;
-    margin: 2.4rem 0 0 !important;
 }
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown {
@@ -486,7 +485,7 @@ span.text-danger {
 }
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item {
-    font-size: 1.2rem !important;
+    /* font-size: 1.2rem !important; */
     color: #07838c;
 }
 

@@ -34,7 +34,7 @@
                                         </a>
                                     </p>
                                     @if(session('success'))
-                                    <span class="text-danger">{{session('success')}}</span>
+                                    <span class="text-danger mt-3">{{session('success')}}</span>
                                     @endif
                                     <form method="POST" action="{{route('login')}}" id="login-form">
                                         @csrf

@@ -298,11 +298,22 @@ table.dataTable tbody td {
 .nav-welcome-text p {
     font-size: 1.2rem;
     font-weight: 600;
+    line-height: 1;
+    letter-spacing: 1px;
 }
 
 .form-group label {
     margin-top: 0;
     font-size: 0.875rem;
+    margin-bottom: 0.2rem;
+}
+.form-group .form-select {
+    font-size: 0.83rem;
+    padding: 0.2rem 0.5rem;
+}
+.form-group .form-select:focus {
+    border-color: #06828c;
+    box-shadow: none;
 }
 
 .table,
@@ -315,6 +326,9 @@ td {
     background: #07838d;
     color: #fff;
     border-color: #07838d;
+}
+.table td .btn:focus {
+    box-shadow: none;
 }
 
 .panel-icon i {
@@ -364,6 +378,9 @@ td {
     .sidebar {
         position: absolute;
         left: -250px;
+    }
+    .sidebar.active {
+        left: 0;
     }
 
     #main {

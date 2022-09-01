@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-1 custom-col">
                     <div class="custom-add">
                         <input type="button" name="add-specialization" id="add-specialization" class="action-button" value="Add" />
                     </div>
@@ -70,7 +70,7 @@
 
             
 
-            <div>
+            <div class="table-responsive">
                 <table class="table step-table align-middle text-center">
                     <thead>
                         <tr>
@@ -159,7 +159,7 @@
                 <input type="button" name="add" id="add-details" class="action-button" value="Add" />
             </div>
 
-            <div>
+            <div class="table-responsive">
                 <table class="table step-table align-middle text-center">
                     <thead>
                         <tr>
