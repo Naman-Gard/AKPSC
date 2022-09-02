@@ -63,9 +63,9 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="panel blue">
+                <div class="panel red">
                     <a href="{{route('blacklisted-users')}}">
-                        <div class="panel-heading bg-blue">
+                        <div class="panel-heading bg-red">
                             <div class="row align-items-center">
                                 <div class="col-9 col-md-9">
                                     <!-- <img src="{{ asset('assets/admin/images/user-img.png') }}"  alt="icon" class="panel-icon" /> -->
@@ -82,7 +82,7 @@
                         <div class="panel-footer">
                             <div class="d-flex justify-content-between">
                                 <p class="mb-0">Number of Expert Backlisted </p>
-                                <img src="{{ asset('assets/admin/images/arrow_right_blue.svg') }}" alt="icon" />
+                                <img src="{{ asset('assets/admin/images/arrow_right_red.svg') }}" alt="icon" />
                             </div>
                         </div>
                     </a>

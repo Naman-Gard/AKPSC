@@ -152,7 +152,7 @@
                             <tbody>
                                 <tr>
                                     <th class="w-50">
-                                        Whether in serivce or retired?
+                                        Whether in service or retired?
 
                                     </th>
                                     <td class="w-50">

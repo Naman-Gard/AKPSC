@@ -43,6 +43,10 @@ a {
     background-color: #347ab7;
 }
 
+.bg-red {
+    background-color: #c30010;
+}
+
 .bg-green {
     background-color: #42b622;
 }
@@ -62,8 +66,16 @@ a {
     border-color: #1072c7;
 }
 
+.panel.red {
+    border-color: #c30010;
+}
+
 .panel.blue p {
     color: #0060b3;
+}
+
+.panel.red p {
+    color: #c30010;
 }
 
 .panel.green p {
