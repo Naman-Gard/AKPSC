@@ -29,8 +29,8 @@
                                 </div>
                                 <div class="input-text" id="login">
                                     <p>
-                                        <a type="button" data-bs-toggle="modal" data-bs-target="#registerModal" class="new-user">
-                                            New User Click Here!
+                                        <a type="button" data-bs-toggle="modal" data-bs-target="#registerModal" class="new-user animate-charcter">
+                                        <img src="{{asset('assets/images/left-hand-cursor.png')}}" class="left-thumb">  New User Click Here! <img src="{{asset('assets/images/right-hand-cursor.png')}}" class="right-thumb">
                                         </a>
                                     </p>
                                     @if(session('success'))
