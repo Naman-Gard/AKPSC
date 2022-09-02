@@ -61,11 +61,19 @@
 
     function passwordValidation(){
         if ($('input[name=password]').val() !== '') {
-            if ($('input[name=password]').val() === $('input[name=confirm_password]').val()) {
-                $('#valid_password').html("");
-                return true
-            } else {
-                $('#valid_password').html("Password & Confirm Password doesn't match");
+            let regex=
+            /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+            if($('input[name=password]').val().match(regex)){
+                if ($('input[name=password]').val() === $('input[name=confirm_password]').val()) {
+                    $('#valid_password').html("");
+                    return true
+                } else {
+                    $('#valid_password').html("Password & Confirm Password doesn't match");
+                    return false
+                }
+            }
+            else{
+                $('#valid_password').html("Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
                 return false
             }
         }

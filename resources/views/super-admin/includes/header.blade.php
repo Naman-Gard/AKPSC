@@ -21,6 +21,6 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/step-form/images/favicon.ico')}}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/css/jquery.dataTables.min.css')}}" />
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css')}}" />
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/custom.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/super-admin/css/style.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/super-admin/css/custom.css')}}" />
 </head>

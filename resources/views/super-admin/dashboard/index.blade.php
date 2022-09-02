@@ -101,4 +101,3 @@
 </div>
 
 @include('super-admin/includes/footer')
-<script src="{{ asset('assets/super-admin/js/dashboard.js')}}"></script>

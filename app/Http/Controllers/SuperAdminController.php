@@ -111,7 +111,7 @@ class SuperAdminController extends Controller
     public function addSection(Request $request){
 
         $user=User::insert([
-        'name' => $request->name,
+        'name' => ucwords($request->name),
         'father_name' => 'Admin',
         'gender' => 'Admin',
         'email' => $request->email,
@@ -136,9 +136,9 @@ class SuperAdminController extends Controller
     }
 
     public function saveSection(Request $request){
-        if($request->password!==''){
+        if(!is_null($request->password)){
             $user=User::where('id',$request->id)->update([
-            'name' => $request->name,
+            'name' => ucwords($request->name),
             'email' => $request->email,
             'mobile' => $request->mobile,
             'password' => Hash::make($request->password)
@@ -146,14 +146,40 @@ class SuperAdminController extends Controller
         }
         else{
             $user=User::where('id',$request->id)->update([
-            'name' => $request->name,
+            'name' => ucwords($request->name),
             'email' => $request->email,
             'mobile' => $request->mobile
             ]);
         }
 
-        return redirect()->route('superadmin-dashboard')->with('success','Section Edited Sucessfully');
+        return redirect()->route('superadmin-dashboard')->with('success','Section Updated Sucessfully');
     }
 
+    public function profile(){
+        return view('super-admin.profile.index');        
+    }
+
+    public function updateProfile(Request $request){
+        if(!is_null($request->password)){
+            $user=User::where('id',$request->id)->update([
+            'name' => ucwords($request->name),
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'password' => Hash::make($request->password)
+            ]);
+        }
+        else{
+            $user=User::where('id',$request->id)->update([
+            'name' => ucwords($request->name),
+            'email' => $request->email,
+            'mobile' => $request->mobile
+            ]);
+        }
+
+        $user=User::where('id',$request->id)->first();
+        Session::put('super-admin',$user);
+
+        return redirect()->route('superadmin-dashboard')->with('success','Profile Updated Sucessfully');
+    }
    
 }

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('cache-clear',function(){
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
+    Artisan::call('route:clear');
     echo 'clear';
 });
 
@@ -126,6 +127,7 @@ Route::group(["middleware" => ["superadminlogout"]], function(){
 Route::group(["middleware" => ["superadminlogin"]], function(){
     Route::get('secure-superadmin/dashboard', 'App\Http\Controllers\SuperAdminController@dashboard')->name('superadmin-dashboard');
     Route::get('secure-superadmin/profile', 'App\Http\Controllers\SuperAdminController@profile')->name('superadmin-profile');
+    Route::post('secure-superadmin/update-profile', 'App\Http\Controllers\SuperAdminController@updateProfile')->name('update-superadmin');
     Route::get('secure-superadmin/logout', 'App\Http\Controllers\SuperAdminController@logout')->name('superadmin-logout');
     Route::post('secure-superadmin/add-section', 'App\Http\Controllers\SuperAdminController@addSection')->name('add-section');
     Route::get('secure-superadmin/edit-section/{id}', 'App\Http\Controllers\SuperAdminController@editSection')->name('edit-section');

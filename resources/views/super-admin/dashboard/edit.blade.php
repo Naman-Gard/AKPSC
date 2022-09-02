@@ -37,7 +37,7 @@
                 </div>
                 <div class="mt-3 row">
                     <div class="col-md-6">
-                        <button class="btn btn-sm btn-primary">Save</button>
+                        <button class="btn btn-sm btn-primary">Update</button>
                     </div>
                 </div>
             </form>
@@ -47,4 +47,3 @@
 </body>
 
 @include('super-admin/includes/footer')
-<script src="{{ asset('assets/super-admin/js/dashboard.js')}}"></script>

@@ -54,7 +54,7 @@ class ExperienceController extends Controller
             Organization::create([
                 'user_id'=>Auth::user()->id,
                 "org_type"=>$request->org_type,
-                "org_name"=>$request->org_name,
+                "org_name"=>ucwords($request->org_name),
                 "org_year"=>$request->org_year,
                 'status'=>'0'
             ]);
@@ -80,7 +80,7 @@ class ExperienceController extends Controller
                 "designation"=>$request->designation,
                 "serving"=>$request->serving,
                 "isprior"=>$request->isprior,
-                "organization_name"=>$request->organization_name,
+                "organization_name"=>ucwords($request->organization_name),
                 'status'=>'1'
             ]);
         }
@@ -91,7 +91,7 @@ class ExperienceController extends Controller
                 "designation"=>$request->designation,
                 "serving"=>$request->serving,
                 "isprior"=>$request->isprior,
-                "organization_name"=>$request->organization_name,
+                "organization_name"=>ucwords($request->organization_name),
                 'status'=>'1'
             ]);
         }

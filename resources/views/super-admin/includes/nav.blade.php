@@ -35,6 +35,9 @@
                                 <!-- <a class="dropdown-item" href="#">
                                     <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a> -->
                                 <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{route('superadmin-dashboard')}}">
+                                    <i class="mdi mdi-view-dashboard me-2"></i> Dashboard
+                                </a>
                                 <a class="dropdown-item" href="{{route('superadmin-profile')}}">
                                     <i class="mdi mdi-account me-2"></i> Profile
                                 </a>
