@@ -31,7 +31,7 @@
                                     @if(session('success'))
                                     <span class="text-danger" id="status">{{session('success')}}</span>
                                     @endif
-                                    <form method="POST" action="{{route('admin-login')}}" id="login-form">
+                                    <form method="POST" action="{{route('superadmin-login')}}" id="login-form">
                                         @csrf
                                         <div id="login">
                                             <div class="input-div">
@@ -80,4 +80,4 @@
 </body>
 
 @include('includes.footer')
-<script src="{{ asset('assets/admin/js/auth.js')}}"></script>
+<script src="{{ asset('assets/super-admin/js/auth.js')}}"></script>

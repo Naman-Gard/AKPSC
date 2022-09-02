@@ -264,7 +264,7 @@
                             <tbody>
                                 <tr>
                                     <th class="" style="width: 50% !important;">
-                                        Whether in serivce or retired?
+                                        Whether in service or retired?
 
                                     </th>
                                     <td class="" style="width: 50% !important;">

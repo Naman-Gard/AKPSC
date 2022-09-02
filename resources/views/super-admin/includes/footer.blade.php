@@ -9,14 +9,10 @@
 <script src="{{ asset('assets/admin/js/datatablepdf/buttons.print.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
-
+<script src="{{ asset('assets/super-admin/js/dashboard.js')}}"></script>
 <script>
     let base_url = "{{env('BASE_URL')}}";
+    $('.table').dataTable()
 </script>
-
-
-<script src="{{ asset('assets/admin/js/script.js')}}"></script>
-
-
 
 </html>

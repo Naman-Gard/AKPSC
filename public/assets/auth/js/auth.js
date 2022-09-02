@@ -265,7 +265,7 @@ function otpCreation(email){
     // })
     otp='1234'
     // console.log(otp)
-    countdown( "ten-countdown", 4, 0 );
+    countdown( "ten-countdown", 5, 0 );
 }
 
 function countdown( elementName, minutes, seconds )
@@ -306,6 +306,7 @@ function countdown( elementName, minutes, seconds )
 
 $('#resend-otp-btn').click(()=>{
     $('#resend-otp').addClass('d-none')
+    $('#register-btn').removeClass('d-none')
     emailValidation()
 })
 

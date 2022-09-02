@@ -43,10 +43,6 @@ a {
     background-color: #347ab7;
 }
 
-.bg-red {
-    background-color: #c30010;
-}
-
 .bg-green {
     background-color: #42b622;
 }
@@ -66,16 +62,8 @@ a {
     border-color: #1072c7;
 }
 
-.panel.red {
-    border-color: #c30010;
-}
-
 .panel.blue p {
     color: #0060b3;
-}
-
-.panel.red p {
-    color: #c30010;
 }
 
 .panel.green p {
@@ -166,15 +154,16 @@ a {
 }
 
 #main {
-    width: calc(100% - 250px);
+    width: 100%;
     position: absolute;
     top: 70px;
     right: 0;
-    padding: 25px;
-    /* top: 0;
-    left: 250px;
-    background-color: #E4E9F7; */
-    transition: all 0.3s ease;
+    padding: 3rem 6rem;
+}
+
+.btn-danger {
+    background: #d30b0b !important;
+    border-color: #d30b0b !important;
 }
 
 .dashboard-tab-content #DataTables_Table_0_length label {
@@ -441,12 +430,37 @@ td {
     color: #fff;
 }
 
+.btn-primary:focus {
+    border-color: #07838d;
+    background: #06828c;
+    color: #fff;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group .form-control:focus {
+    box-shadow: none;
+    border-color: #06828c;
+}
+
 .btn:focus {
     box-shadow: none;
 }
 
 .btn-primary:active:focus {
     box-shadow: none;
+    border-color: #07838d;
+    background: #06828c;
+    color: #fff;
+}
+
+.btn-primary:active {
+    box-shadow: none;
+    border-color: #07838d;
+    background: #06828c;
+    color: #fff;
 }
 
 /* #reportSec .btn-reset:hover {

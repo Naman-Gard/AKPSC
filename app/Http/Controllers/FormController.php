@@ -79,7 +79,7 @@ class FormController extends Controller
                 $validator = Validator::make($request->all(),[
                     'image'=>'mimes:jpeg,jpg,png,svg,JPEG,JPG,PNG,SVG|max:500',
                     'signature'=>'mimes:jpeg,jpg,png,svg,JPEG,JPG,PNG,SVG|max:500',
-                    'cv'=>'mimes:pdf|max:500'
+                    'cv'=>'mimes:pdf|max:1000'
                 ]);
 
                 if ($validator->fails()) {

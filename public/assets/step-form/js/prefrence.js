@@ -130,6 +130,13 @@ function preferenceValidation(){
         return false
     }
 
+    if($('input[name=paper_setter]:checked').val()==='No' && $('input[name=interview]:checked').val()==='No'){
+        $('#valid_interview').html('Atleast one of the option is selected to yes')
+        $('input[name=interview]').focus()
+        flag.push(false)
+        return false
+    }
+
     $("#preference_fieldset .prefrence_input").each(function(key,value){
 
         if($(this).attr('id')==='brief'){

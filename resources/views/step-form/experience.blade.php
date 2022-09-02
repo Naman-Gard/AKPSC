@@ -7,7 +7,7 @@
             <div class="input-div">
                 <div class="row form-group">
                     <div class="col-md-6">
-                        <label for="exampleInputCity1" class="c-text">Whether in serivce or retired? <span class="text-danger">*</span></label>
+                        <label for="exampleInputCity1" class="c-text">Whether in service or retired? <span class="text-danger">*</span></label>
                     </div>
                     <div class="col-md-3">
                         <div class="form-check d-flex">

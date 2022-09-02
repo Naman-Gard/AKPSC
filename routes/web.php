@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('cache-clear',function(){
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
+    Artisan::call('route:clear');
     echo 'clear';
 });
 
@@ -109,4 +110,28 @@ Route::group(["middleware" => ["adminlogin"]], function(){
     Route::get('secure-admin/blacklisted/users', 'App\Http\Controllers\AdminController@getBlacklistedUser')->name('blacklisted-users');
     Route::get('secure-admin/appointed/users', 'App\Http\Controllers\AppointController@getUsers')->name('appointed-users');
     Route::get('secure-admin/report', 'App\Http\Controllers\AdminController@getReport')->name('report');
+});
+
+Route::group(["middleware" => ["superadminlogout"]], function(){
+
+    Route::get('secure-superadmin', function () {
+        return view('super-admin/auth/login');
+    })->name('secure-superadmin');
+
+    Route::post('secure-superadmin/login', 'App\Http\Controllers\SuperAdminController@login')->name('superadmin-login');
+    Route::get('secure-superadmin/check/credentials/{data}', 'App\Http\Controllers\SuperAdminController@checkCredentials')->name('superadmin-credentials');
+    Route::get('secure-superadmin/send/otp/{mobile}/{OTP}', 'App\Http\Controllers\SuperAdminController@sendOTP')->name('superadmin-sendOTP');
+
+});
+
+Route::group(["middleware" => ["superadminlogin"]], function(){
+    Route::get('secure-superadmin/dashboard', 'App\Http\Controllers\SuperAdminController@dashboard')->name('superadmin-dashboard');
+    Route::get('secure-superadmin/profile', 'App\Http\Controllers\SuperAdminController@profile')->name('superadmin-profile');
+    Route::post('secure-superadmin/update-profile', 'App\Http\Controllers\SuperAdminController@updateProfile')->name('update-superadmin');
+    Route::get('secure-superadmin/logout', 'App\Http\Controllers\SuperAdminController@logout')->name('superadmin-logout');
+    Route::post('secure-superadmin/add-section', 'App\Http\Controllers\SuperAdminController@addSection')->name('add-section');
+    Route::get('secure-superadmin/edit-section/{id}', 'App\Http\Controllers\SuperAdminController@editSection')->name('edit-section');
+    Route::post('secure-superadmin/save-section', 'App\Http\Controllers\SuperAdminController@saveSection')->name('save-section');
+    Route::get('secure-superadmin/remove-section/{id}', 'App\Http\Controllers\SuperAdminController@removeSection')->name('remove-section');
+    Route::get('secure-superadmin/check/isEmailRegistered/{data}', 'App\Http\Controllers\SuperAdminController@isEmailRegistered');
 });

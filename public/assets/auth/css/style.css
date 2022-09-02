@@ -627,6 +627,7 @@ p.text-danger {
     margin-left: 15rem;
     margin-bottom: 0;
 }
+
 a.new-user {
     color: #fff;
     font-weight: 700;
@@ -672,7 +673,15 @@ a.new-user .left-thumb {
     .form .left-side {
         display: none;
     }
+
     .form .right-side {
         border-radius: 20px !important;
     }
+}
+
+.resend-otp {
+    background: transparent;
+    border: none;
+    color: #fff;
+    text-decoration: underline;
 }
