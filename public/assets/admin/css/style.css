@@ -511,3 +511,49 @@ td {
     color: #fff;
     text-decoration: underline;
 }
+
+.gj-datepicker-md [role=right-icon] {
+    display: none;
+}
+
+.gj-icon.chevron-left {
+    font-size: 0 !important;
+    background-image: url('../../images/left-icon.svg');
+    background-repeat: no-repeat;
+    height: 42px;
+    width: 42px;
+}
+
+.gj-icon.chevron-right {
+    font-size: 0 !important;
+    background-image: url('../../images/right-icon.svg');
+    background-repeat: no-repeat;
+    height: 42px;
+    width: 42px;
+}
+
+input.gj-textbox-md {
+    border: 1px solid #ced4da !important;
+    padding: 0.2rem 0.5rem !important;
+    line-height: 21px !important;
+    border-radius: 0.25rem !important;
+    font-size: 0.875rem !important;
+}
+
+input.gj-textbox-md:focus {
+    border-color: #07828c !important;
+}
+
+.gj-picker table thead tr th {
+    color: #07828c;
+}
+
+.selected-filter {
+    background: #06828c;
+    color: #fff;
+}
+
+.selected-filter option {
+    background: #fff;
+    color: #000;
+}

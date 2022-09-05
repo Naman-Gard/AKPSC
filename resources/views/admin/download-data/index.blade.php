@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="form-group col-md-3">
                     <label for="">Type of Experts</label>
-                    <select class="form-select report-filters" name="report_experts" id="report_experts">
+                    <select class="form-select report-filters selected-filter" name="report_experts" id="report_experts">
                         <option value="">Registered</option>
                         <option value="Empanelled">Empanelled</option>
                         <option value="Blacklisted">Blacklisted</option>

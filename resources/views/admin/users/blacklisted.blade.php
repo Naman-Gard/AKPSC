@@ -18,6 +18,7 @@
                         <th scope="col">Contact Number</th>
                         <th scope="col">Subjects</th>
                         <th scope="col">Specialization</th>
+                        <th scope="col">Duration</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -31,6 +32,7 @@
                     <td>{{$user->mobile}}</td>
                     <td>{{implode(',' , $user->subject)}}</td>
                     <td>{{implode(',' , $user->specialization)}}</td>
+                    <td>{{$user->years!=='0'?'till '.$user->lifespan:$user->lifespan}}</td>
                     <td>
                         <button data-remove-link="{{route('remove-blacklistedUser',$user->user_id)}}" data-bs-toggle="modal" data-bs-target="#RemoveModal" class="btn btn-sm btn-danger p-2">Remove</button>
                     </td>

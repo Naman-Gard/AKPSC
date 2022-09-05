@@ -308,7 +308,6 @@ function getEducationDetails(){
     $('#super_specialization').find('option').not(':first').remove();
     $('#specialization').find('option').not(':first').remove();
     $('#specialization_subject').find('option').not(':first').remove();
-    $('#degree').find('option').not(':first').remove();
     $.ajax({
         type: "GET",
         url: base_url+'getSubjects',

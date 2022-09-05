@@ -233,6 +233,7 @@ class AdminController extends Controller
         ->join('empanelments','empanelments.user_id','=','users.id')
         ->join('specializations','specializations.user_id','=','users.id')
         ->join('uploads','uploads.user_id','=','users.id')
+        ->join('black_listeds','black_listeds.user_id','=','users.id')
         ->where('type','user')->where('final_statuses.blacklisted',1)->get()->groupBy('user_id');
 
         foreach($users as $user_key=>$user){
@@ -390,7 +391,7 @@ class AdminController extends Controller
     }
 
     public function sendOTP($mobile,$OTP){
-        $message='Dear User <br>';
+        $message='Dear User<br>';
         $message.='One Time Password(OTP) for login is 1234<br>';
         $message.='Regards,<br>';
         $message.='UKPSC';
