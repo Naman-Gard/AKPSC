@@ -393,8 +393,7 @@ function sendResetLink(email){
 $("#dob").datepicker({
     changeMonth: true,
     changeYear: true,
-    dateFormat: "dd/mm/yy",
-    yearRange: '1957:2022'
+    format: 'dd/mm/yyyy'
 });
 
 

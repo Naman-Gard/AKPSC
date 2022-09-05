@@ -685,3 +685,29 @@ a.new-user .left-thumb {
     color: #fff;
     text-decoration: underline;
 }
+
+.gj-datepicker-md [role=right-icon] {
+    display: none;
+}
+.gj-icon.chevron-left {
+    font-size: 0 !important;
+    background-image: url('../../images/left-icon.svg');
+    background-repeat: no-repeat;
+    height: 42px;
+    width: 42px;
+}
+.gj-icon.chevron-right {
+    font-size: 0 !important;
+    background-image: url('../../images/right-icon.svg');
+    background-repeat: no-repeat;
+    height: 42px;
+    width: 42px;
+}
+#dob {
+    background: #fff;
+    color: #000;
+    font-weight: 500;
+}
+#dob:focus {
+    border-bottom: none;
+}
