@@ -144,10 +144,10 @@ $('document').ready(()=>{
 $('#EmpanelModal').on('show.bs.modal', function(e) {
     $('#user_id').val($(e.relatedTarget).data('id'))
     $( "#doe" ).datepicker({   
-        changeMonth: true,
-        changeYear: true,
-        dateFormat: "dd/mm/yy",
-        yearRange: '1957:2025',
+        // changeMonth: true,
+        // changeYear: true,
+        format: "dd/mm/yyyy",
+        // yearRange: '1957:2025',
     });
 });
 
@@ -161,32 +161,56 @@ $('#AppointedModal').on('show.bs.modal', function(e) {
     $('#appoint_user_id').val($(e.relatedTarget).data('id'))
     appointed_dates=$('#dates-'+$(e.relatedTarget).data('id')).html()
 
-    $( "#from" ).datepicker({   
-        changeMonth: true,
-        changeYear: true,
-        dateFormat: "dd/mm/yy",
-        yearRange: '1957:2025',
-        maxDate:$('#to').val(),
-        onClose: function( selectedDate ) {  
-            $( "#to" ).datepicker( "option", "minDate", selectedDate );  
-            $( "#from" ).datepicker( "destroy" );  
-            $('#to').focus()
-        }  
+    $("#from").datepicker({
+        format: "dd/mm/yyyy",
+        change: function (e) {
+            $("#to").datepicker('destroy')
+            changeDates(e.target.value,'to','minDate','from','maxDate')
+        }
+        // yearRange: "1957:2025",
     });
-    $( "#to" ).datepicker({
-        changeMonth: true,
-        changeYear: true,
-        dateFormat: "dd/mm/yy",
-        yearRange: '1957:2025',
-        minDate:$('#from').val(),
-        onClose: function( selectedDate ) {
-            $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-            $( "#to" ).datepicker( "destroy" );
-            $('#from').focus()
+
+    $("#to").datepicker({
+        // changeMonth: true,
+        // changeYear: true,
+        format: "dd/mm/yyyy",
+        change: function (e) {
+            $("#from").datepicker().destroy()
+            changeDates(e.target.value,'from','maxDate','to','minDate')
         }
     });
     
 });
+// $('#AppointedModal').on('show.bs.modal', function(e) {
+//     $('#appoint_user_id').val($(e.relatedTarget).data('id'))
+//     appointed_dates=$('#dates-'+$(e.relatedTarget).data('id')).html()
+
+//     $( "#from" ).datepicker({   
+//         // changeMonth: true,
+//         // changeYear: true,
+//         format: "dd/mm/yyyy",
+//         yearRange: '1957:2025',
+//         maxDate:$('#to').val(),
+//         onClose: function( selectedDate ) {  
+//             $( "#to" ).datepicker( "option", "minDate", selectedDate );  
+//             $( "#from" ).datepicker( "destroy" );  
+//             $('#to').focus()
+//         }  
+//     });
+//     $( "#to" ).datepicker({
+//         // changeMonth: true,
+//         // changeYear: true,
+//         format: "dd/mm/yyyy",
+//         // yearRange: '1957:2025',
+//         minDate:$('#from').val(),
+//         onClose: function( selectedDate ) {
+//             $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+//             $( "#to" ).datepicker( "destroy" );
+//             $('#from').focus()
+//         }
+//     });
+    
+// });
 
 $('#add-empanel').on('submit', function (e) {
 
@@ -354,35 +378,35 @@ function dateIsValid(dateStr,valid){
     return true;
 }
 
-$( "#from" ).focus(()=>{
-    $( "#from" ).datepicker({   
-        changeMonth: true,
-        changeYear: true,
-        dateFormat: "dd/mm/yy",
-        yearRange: '1957:2025',
-        maxDate:$('#to').val(),
-        onClose: function( selectedDate ) {  
-            $( "#to" ).datepicker( "option", "minDate", selectedDate );  
-            $( "#from" ).datepicker( "destroy" );  
-            $('#to').focus()
-        }  
-    }).show();
-})
+// $( "#from" ).focus(()=>{
+//     $( "#from" ).datepicker({   
+//         changeMonth: true,
+//         changeYear: true,
+//         dateFormat: "dd/mm/yy",
+//         yearRange: '1957:2025',
+//         maxDate:$('#to').val(),
+//         onClose: function( selectedDate ) {  
+//             $( "#to" ).datepicker( "option", "minDate", selectedDate );  
+//             $( "#from" ).datepicker( "destroy" );  
+//             $('#to').focus()
+//         }  
+//     }).show();
+// })
 
-$( "#to" ).focus(()=>{ 
-    $( "#to" ).datepicker({
-        changeMonth: true,
-        changeYear: true,
-        dateFormat: "dd/mm/yy",
-        yearRange: '1957:2025',
-        minDate:$('#from').val(),
-        onClose: function( selectedDate ) {
-            $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-            $( "#to" ).datepicker( "destroy" );
-            $('#from').focus()
-        }
-    }).show();
-})
+// $( "#to" ).focus(()=>{ 
+//     $( "#to" ).datepicker({
+//         changeMonth: true,
+//         changeYear: true,
+//         dateFormat: "dd/mm/yy",
+//         yearRange: '1957:2025',
+//         minDate:$('#from').val(),
+//         onClose: function( selectedDate ) {
+//             $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+//             $( "#to" ).datepicker( "destroy" );
+//             $('#from').focus()
+//         }
+//     }).show();
+// })
 
 // sidebar
 var togglebtn = document.querySelector(".toggle-btn");
@@ -390,5 +414,17 @@ if ($(window).width() < 992) {
     togglebtn.addEventListener("click", () => {
         $(".sidebar").toggleClass("active");
         
+    });
+}
+
+function changeDates(value,type,date,type2,date2){
+    $("#"+type).datepicker({
+        format: "dd/mm/yyyy",
+        value:$('#'+type).val(),
+        [date]:value,
+        change:function(e){
+            $("#"+type2).datepicker().destroy()
+            changeDates(e.target.value,type2,date2,type,date)
+        }
     });
 }

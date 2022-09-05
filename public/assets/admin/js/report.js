@@ -33,6 +33,28 @@ getReportUsers();
 getStates();
 
 function reportFilters(temp_users) {
+
+    $('.gj-textbox-md').each((key,value)=>{
+        if(!$('#'+$(value).attr('id')).hasClass('report-filters')){
+            $('#'+$(value).attr('id')).addClass('report-filters')
+        }
+    })
+
+    $('.report-filters').each((key,item)=>{
+        // console.log($(item).attr('id'))
+        if($('#'+$(item).attr('id')).val()!==''){
+            if(!$('#'+$(item).attr('id')).hasClass('selected-filter')){
+                $('#'+$(item).attr('id')).addClass('selected-filter')
+            }
+        }
+        else{
+            if($(item).attr('id')!=='report_experts'){
+                $('#'+$(item).attr('id')).removeClass('selected-filter')
+            }
+        }
+        
+    })
+
     if ($("#report_experts").val() !== "") {
         if ($("#report_experts").val() === "Empanelled") {
             temp_users = temp_users.filter((user) => {
@@ -174,7 +196,7 @@ function reportFilters(temp_users) {
             });
         }
     }
-
+    // console.log($("#report-to").val())
     if ($("#report-to").val() !== "") {
         if ($("#report_experts").val() === "") {
             temp_users = temp_users.filter((user) => {
@@ -300,15 +322,15 @@ $("#report_qual").change(() => {
 });
 $("#report_experts").change((e) => {
     if (e.target.value === "Blacklisted") {
-        if (!$("#report-from").parent().hasClass("d-none")) {
-            $("#report-from").parent().addClass("d-none");
+        if (!$("#report-from").parent().parent().hasClass("d-none")) {
+            $("#report-from").parent().parent().addClass("d-none");
         }
-        if (!$("#report-to").parent().hasClass("d-none")) {
-            $("#report-to").parent().addClass("d-none");
+        if (!$("#report-to").parent().parent().hasClass("d-none")) {
+            $("#report-to").parent().parent().addClass("d-none");
         }
     } else {
-        $("#report-from").parent().removeClass("d-none");
-        $("#report-to").parent().removeClass("d-none");
+        $("#report-from").parent().parent().removeClass("d-none");
+        $("#report-to").parent().parent().removeClass("d-none");
         $("#report-from").val("");
         $("#report-to").val("");
     }
@@ -334,32 +356,48 @@ $("#state").change((e) => {
     }
 });
 
-$("#report-from").change(() => {
-    setReportUsers();
-});
+// $("#report-from").change(() => {
+//     setReportUsers();
+// });
 
-$("#report-to").change(() => {
-    setReportUsers();
-});
+// $("#report-to").change(() => {
+//     console.log($("#report-to").val())
+//     setReportUsers();
+// });
 
 $("#report-from").datepicker({
-    changeMonth: true,
-    changeYear: true,
-    dateFormat: "dd/mm/yy",
-    yearRange: "1957:2025",
-    onClose: function (selectedDate) {
-        $("#report-to").datepicker("option", "minDate", selectedDate);
-    },
+    // changeMonth: true,
+    // changeYear: true,
+    format: "dd/mm/yyyy",
+    change: function (e) {
+        $("#report-to").datepicker('destroy')
+        changeDates(e.target.value,'to','minDate','from','maxDate')
+    }
+    // yearRange: "1957:2025",
 });
+
 $("#report-to").datepicker({
-    changeMonth: true,
-    changeYear: true,
-    dateFormat: "dd/mm/yy",
-    yearRange: "1957:2025",
-    onClose: function (selectedDate) {
-        $("#report-from").datepicker("option", "maxDate", selectedDate);
-    },
+    // changeMonth: true,
+    // changeYear: true,
+    format: "dd/mm/yyyy",
+    change: function (e) {
+        $("#report-from").datepicker().destroy()
+        changeDates(e.target.value,'from','maxDate','to','minDate')
+    }
 });
+
+function changeDates(value,type,date,type2,date2){
+    $("#report-"+type).datepicker({
+        format: "dd/mm/yyyy",
+        value:$('#report-'+type).val(),
+        [date]:value,
+        change:function(e){
+            $("#report-"+type2).datepicker().destroy()
+            changeDates(e.target.value,type2,date2,type,date)
+        }
+    });
+    setReportUsers();
+}
 
 function dateFrom(from, check) {
     var fDate, cDate;
@@ -393,5 +431,32 @@ function resetFilters() {
     $("#report_super_specialization").append(
         `<option value="">Select</option>`
     );
+    $("#report-to").datepicker('destroy')
+    $("#report-from").datepicker('destroy')
+    changeDates($('#report-from').val(),'to','minDate','from','maxDate')
+    changeDates($('#report-to').val(),'from','maxDate','to','minDate')
     setReportUsers();
 }
+
+// $('#report-from').change(()=>{
+//     console.log('from')
+//     $("#report-from").datepicker().destroy()
+//     $("#report-to").datepicker({
+//         // changeMonth: true,
+//         // changeYear: true,
+//         format: "dd/mm/yyyy",
+//         minDate:$('#report-from').val()
+//         // yearRange: "1957:2025",
+//     });
+// })
+
+// $('#report-to').change(()=>{
+//     $("#report-from").datepicker().destroy()
+//     $("#report-from").datepicker({
+//         // changeMonth: true,
+//         // changeYear: true,
+//         format: "dd/mm/yyyy",
+//         maxDate:$('#report-to').val()
+//         // yearRange: "1957:2025",
+//     });
+// })

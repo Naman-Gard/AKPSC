@@ -21,6 +21,7 @@
                         <th scope="col">Empanelment Id</th>
                         <th scope="col">File Number</th>
                         <th scope="col">Secret Code</th>
+                        <th scope="col">Date of Empanelment</th>
                         <th scope="col">Name</th>
                         <th scope="col">Contact Number</th>
                         <th scope="col">Subjects</th>
@@ -37,6 +38,7 @@
                     <td>{{$user->empanelment_id}}</td>
                     <td>{{$user->file_number}}</td>
                     <td>{{$user->secret_code1}},<br>{{$user->secret_code2}}</td>
+                    <td>{{$user->date_of_empanel}}</td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->mobile}}</td>
                     <td>{{implode(',' , $user->subject)}}</td>

@@ -8,7 +8,7 @@
 <script src="{{ asset('assets/admin/js/datatablepdf/buttons.html5.min.js')}}"></script>
 <script src="{{ asset('assets/admin/js/datatablepdf/buttons.print.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('assets/auth/js/datepicker.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/js/datepicker.js')}}" type="text/javascript"></script>
 <!-- <script src="{{asset('assets/js/jquery-ui.min.js')}}"></script> -->
 
 
