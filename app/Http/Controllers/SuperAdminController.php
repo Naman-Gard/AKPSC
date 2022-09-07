@@ -13,44 +13,49 @@ class SuperAdminController extends Controller
 
     public function checkCredentials($data){
         $data=json_decode(base64_decode($data));
-        $email=$data->email;
-        $password=base64_decode($data->password);
-        $user=User::where('email',$email)->where('type','super-admin')->first();
-        if($user){
-            if(password_verify($password, $user->password)){
-                return ['status'=>'Valid Credentials','data'=>base64_encode($user->mobile)];       
+        if(isset($data->email) && isset($data->password)){
+            $email=$data->email;
+            $password=base64_decode($data->password);
+            $user=User::where('email',$email)->where('type','super-admin')->first();
+            if($user){
+                if(password_verify($password, $user->password)){
+                    return ['status'=>'Valid Credentials','data'=>base64_encode($user->mobile)];       
+                }
+                else{
+                    return ['status'=>'Invalid Credentials'];        
+                }
             }
             else{
                 return ['status'=>'Invalid Credentials'];        
             }
         }
-        else{
-            return ['status'=>'Invalid Credentials'];        
-        }
     }
 
-     public function sendOTP($mobile,$OTP){
-        $message='Dear User <br>';
-        $message.='One Time Password(OTP) for login is 1234<br>';
-        $message.='Regards,<br>';
-        $message.='UKPSC';
-
-        $client = new Client();
-        $res = $client->request('POST', 'http://sms.holymarkindia.in/API/WebSMS/Http/v1.0a/index.php', [
-            'form_params' => [
-                "username"=>env('NY_USERNAME'),
-                "password"=>env('NY_PASSWORD'),
-                "sender"=>env('NY_SENDER'),
-                "pe_id"=>env('NY_PE_ID'),
-                "reqid"=>env('NY_REQ_ID'),
-                "template_id"=>env('LOGIN_TEMPLATE_ID'),
-                "format"=>"json",
-                'message'=>$message,
-                'to'=>base64_decode($mobile)
-            ]
-        ]);
-
-        return ['success'=>'OTP send successfully'];
+    public function sendOTP($mobile,$OTP){
+        $exist=User::where('mobile',base64_decode($mobile))->where('type','super-admin')->get();
+        if(sizeof($exist)){
+            $message='Dear User%0a';
+            $message.='One Time Password(OTP) for login is '.base64_decode($OTP).'%0a';
+            $message.='Regards,%0a';
+            $message.='UKPSC';
+    
+            $client = new Client();
+            $res = $client->request('POST', 'http://sms.holymarkindia.in/API/WebSMS/Http/v1.0a/index.php', [
+                'form_params' => [
+                    "username"=>env('NY_USERNAME'),
+                    "password"=>env('NY_PASSWORD'),
+                    "sender"=>env('NY_SENDER'),
+                    "pe_id"=>env('NY_PE_ID'),
+                    "reqid"=>env('NY_REQ_ID'),
+                    "template_id"=>env('LOGIN_TEMPLATE_ID'),
+                    "format"=>"json",
+                    'message'=>$message,
+                    'to'=>base64_decode($mobile)
+                ]
+            ]);
+    
+            return ['success'=>'OTP send successfully'];
+        }
     }
 
     public function login(Request $request){

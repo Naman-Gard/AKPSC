@@ -167,9 +167,9 @@ a {
 
 #main {
     width: calc(100% - 250px);
-    position: absolute;
-    top: 70px;
-    right: 0;
+    position: relative;
+    margin-left: 250px;
+    margin-top: 70px;
     padding: 25px;
     /* top: 0;
     left: 250px;
@@ -336,6 +336,7 @@ td {
 @media (max-width: 991px) {
     #main {
         padding: 15px;
+        margin-left: 0;
     }
 
     .panel {

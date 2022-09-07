@@ -72,6 +72,7 @@
                                     <option value="Hindi">Hindi</option>
                                     <option value="English">English</option>
                                     <option value="Sanskrit">Sanskrit</option>
+                                    <option value="Other">Other</option>
                                 </select>
                                 <span class="text-danger" id="valid_language"></span>
                             </div>
@@ -91,6 +92,14 @@
                 <div class="col-md-1 custom-col">
                     <div class="custom-add">
                         <input type="button" name="add-language" id="add-language" class="action-button" value="Add" />
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="form-group col-md-6 d-none" id="specify_language">
+                        <input type="text" class="specify_language" placeholder="Please specify your Language">
+                        <p class="mb-3 note-txt2 text-danger">Note:Please specify complete name of Language</p>
+                        <span class="text-danger" id="valid_specify_language"></span>
                     </div>
                 </div>
                 

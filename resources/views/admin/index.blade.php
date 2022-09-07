@@ -99,7 +99,7 @@
             <div class="row  mb-2">
                 <div class="form-group col-md-4">
                     <label for="">Subject</label>
-                    <select class="form-select" name="subject" id="subject">
+                    <select class="form-select dashboard-filter" name="subject" id="subject">
                         <option value="">Select</option>
                         @foreach($subjects as $subject=>$specialization)
                         <option value="{{$subject}}">{{$subject}}</option>
@@ -108,13 +108,13 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">Specialization</label>
-                    <select class="form-select" name="subject" id="specialization">
+                    <select class="form-select dashboard-filter" name="subject" id="specialization">
                         <option value="">Select</option>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">Super Specialization</label>
-                    <select class="form-select" name="subject" id="super_specialization">
+                    <select class="form-select dashboard-filter" name="subject" id="super_specialization">
                         <option value="">Select</option>
                     </select>
                 </div>
@@ -206,6 +206,34 @@
 
                     </div>
                 </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="LoaderModal">
+    <div class="modal-dialog loader-dialog">
+        <div class="modal-content" id="loader">
+
+            <div class="modal-body p-0">
+
+                <!-- <div class="card-header">
+                    <h2>User Empanelment</h2>
+                </div> -->
+                <!-- <div class="card"> -->
+                <!-- <div class="card-header">Delete user
+                <button type="button" class="btn-close float-right" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> -->
+                <!-- <div class="card-body"> -->
+                <div class="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <!-- </div>
+                </div> -->
 
             </div>
         </div>

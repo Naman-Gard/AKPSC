@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\BlogWithTags;
-use App\Models\Permission;
+use App\Models\LastLogin;
 
 use Illuminate\Support\Facades\DB;
 
@@ -108,4 +108,20 @@ function IND_money_format($money){
 function uniquecodeGenerator(){
   $str = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
   return substr(str_shuffle($str), 0, 8);
+}
+
+function getLastLogin($id){
+  $last_login=LastLogin::where('user_id',$id)->first();
+  if($last_login){
+      Session::put('last-login',$last_login->last_login);
+  }
+  else{
+      date_default_timezone_set('Asia/Kolkata');
+      $date=Carbon::now()->isoFormat('DD/MM/YYYY HH:mm:ss');
+      LastLogin::create([
+          'user_id'=>$id,
+          'last_login'=>$date
+      ]);
+      Session::put('last-login',$date);
+  }
 }

@@ -88,6 +88,35 @@
     </div>
 </div>
 </body>
+
+<div class="modal fade" id="LoaderModal">
+    <div class="modal-dialog loader-dialog">
+        <div class="modal-content" id="loader">
+
+            <div class="modal-body p-0">
+
+                <!-- <div class="card-header">
+                    <h2>User Empanelment</h2>
+                </div> -->
+                <!-- <div class="card"> -->
+                <!-- <div class="card-header">Delete user
+                <button type="button" class="btn-close float-right" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> -->
+                <!-- <div class="card-body"> -->
+                <div class="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <!-- </div>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     let token = '{{csrf_token()}}'
     let step = '{{$step}}'

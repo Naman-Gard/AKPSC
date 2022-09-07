@@ -18,6 +18,18 @@ $('#state').change((e)=>{
     }
 })
 
+$('#language').change((e)=>{
+    $('.specify_language').val('')
+    if(e.target.value==='Other'){
+        $('#specify_language').removeClass('d-none')
+    }
+    else{
+        if(!$('#specify_language').hasClass('d-none')){
+            $('#specify_language').addClass('d-none')
+        }
+    }
+})
+
 $('input[name=pin_code]').keydown((e) => {
     var keyCode = (e.keyCode ? e.keyCode : e.which);
     if (e.currentTarget.value.length == 6 && keyCode!==8)
@@ -35,14 +47,26 @@ function languageValidation(){
     let data={
         "_token":token
     }
-    if($('#language').val() !== ''){
-        $('#valid_language').html('')
-        data['language']=$('#language').val()
-    }
-    else{
+    if($('#language').val() === ''){
         $('#valid_language').html('This field is required')
         $('#language').focus()
         return false
+        
+    }
+    else if($('#language').val() === 'Other'){
+        if($('.specify_language').val()===''){
+            $('.specify_language').focus()
+            $('#valid_specify_language').html('This field is required')
+            return false
+        }
+        else{
+            data['language']=$('.specify_language').val()
+            $('#valid_specify_language').html('')
+        }
+    }
+    else{
+        $('#valid_language').html('')
+        data['language']=$('#language').val()
     }
 
     if($('#proficiency').val()!==''){
@@ -64,6 +88,10 @@ function languageValidation(){
         success:function(response){
             $('#language').val('')
             $('#proficiency').val('')
+            $('.specify_language').val('')
+            if(!$('#specify_language').hasClass('d-none')){
+                $('#specify_language').addClass('d-none')
+            }
             let innerhtml=''
             response.forEach((item,index)=>{
                 if(item.error){

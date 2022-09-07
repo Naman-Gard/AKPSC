@@ -27,10 +27,10 @@ Route::group(["middleware" => ["islogout"]], function(){
     })->name('/');
 
     Route::get('check/isEmailRegistered/{data}', 'App\Http\Controllers\AuthController@isEmailRegistered');
-    Route::get('send/otp/{email}/{otp}', 'App\Http\Controllers\AuthController@sendOtp');
+    Route::post('send/otp', 'App\Http\Controllers\AuthController@sendOtp');
     Route::post('register', 'App\Http\Controllers\AuthController@register')->name('register');
     Route::post('login', 'App\Http\Controllers\AuthController@login')->name('login');
-    Route::get('send/reset/link/{email}', 'App\Http\Controllers\AuthController@sendResetLink');
+    Route::post('send/reset/link/{email}', 'App\Http\Controllers\AuthController@sendResetLink');
     Route::get('/token={email}/{date}/{time}', 'App\Http\Controllers\AuthController@viewReset')->name('view-reset');
     Route::post('/succeed/{email}/{date}/{time}', 'App\Http\Controllers\AuthController@successful')->name('succeed');
 });

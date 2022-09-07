@@ -15,7 +15,7 @@ class PreferenceController extends Controller
         if(!sizeOf($exist)){
             LanguageDetails::create([
                 'user_id'=>Auth::user()->id,
-                'language'=>$request->language,
+                'language'=>ucwords($request->language),
                 'proficiency'=>$request->proficiency,
                 'status'=>'0'
             ]);

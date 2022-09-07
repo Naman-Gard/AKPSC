@@ -61,6 +61,11 @@ function doValidation() {
 
     if ($('input[name=dob]').val() !== '') {
         flag.push(dateIsValid($('input[name=dob]').val()))
+        let age=userAge($('input[name=dob]').val())
+        if(age>70 || age<21){
+            flag.push(false)
+            $('#valid_dob').html("Please enter valid age");
+        }
     }
     else{
         flag.push(false)
@@ -255,16 +260,22 @@ function otpCreation(email){
     for (let i = 0; i < 4; i++ ) {
         OTP += string[Math.floor(Math.random() * len)];
     }
+
+    let data={
+        'email':email,
+        'mobile':$('input[name=mobile]').val(),
+        'otp':OTP,
+    }
     // console.log(OTP)
-    // $.ajax({
-    //     type: "GET",
-    //     headers: {
-    //         'Access-Control-Allow-Origin': '*'
-    //     },
-    //     url: base_url + 'send/otp/'+btoa(email)+'/'+btoa(OTP),
-    // })
-    otp='1234'
-    // console.log(otp)
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        dataType: "json",
+        data:JSON.stringify({"_token":token,data:btoa(JSON.stringify(data))}),
+        url: base_url + 'send/otp',
+    })
+    otp=OTP
+    // otp='1234'
     countdown( "ten-countdown", 5, 0 );
 }
 
@@ -315,6 +326,7 @@ function otpValidation(){
     if(generatedOTP.length===4){
         if(generatedOTP===otp){
             $('#valid_otp').html("");
+            $('input[name=verified]').val(btoa('true_'+otp))
             return true
         }
         else{
@@ -349,13 +361,16 @@ function doForgetValidation(){
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (email.toLowerCase().match(valid)) {
-        
+        let data={
+            'email':email,
+            'type':'forget_pass'
+        }
         $.ajax({
             type: "GET",
             headers: {
                 'Access-Control-Allow-Origin': '*'
             },
-            url: base_url + 'check/isEmailRegistered/'+btoa(email),
+            url: base_url + 'check/isEmailRegistered/'+btoa(JSON.stringify(data)),
             success:function(response){
                 if(response.status==='Already Exist'){
                     sendResetLink(email)
@@ -373,14 +388,14 @@ function doForgetValidation(){
 
 function sendResetLink(email){
     $.ajax({
-        type: "GET",
-        headers: {
-            'Access-Control-Allow-Origin': '*'
-        },
+        type: "POST",
+        contentType: "application/json",
+        dataType: "json",
+        data:JSON.stringify({"_token":token}),
         url: base_url + 'send/reset/link/'+btoa(email),
         success:function(response){
             if(response.status==='Success'){
-                $('#valid_forget_email').html("Password Reset Link is sent to registered Email");
+                $('#valid_forget_email').html("Password Reset Link is sent to registered Email & Mobile");
             }
             else{
                 $('#valid_forget_email').html("Unauthorized User");
@@ -438,10 +453,22 @@ function dateIsValid(dateStr){
         return false;
     }
 
-    if (parseInt(year)>=2022) {
-        $('#valid_dob').html('Please enter valid date')
-        return false;
-    }
+    // if (parseInt(year)>=2022) {
+    //     $('#valid_dob').html('Please enter valid date')
+    //     return false;
+    // }
     $('#valid_dob').html('')
     return true;
+}
+
+function userAge(dob) {
+    var from = dob.split("/");
+    var birthdateTimeStamp = new Date(from[2], from[1] - 1, from[0]);
+    var cur = new Date();
+    var diff = cur - birthdateTimeStamp;
+    // This is the difference in milliseconds
+    var currentAge = Math.floor(diff / 31557600000);
+    // Divide by 1000*60*60*24*365.25
+
+    return currentAge;
 }

@@ -118,7 +118,7 @@
         <div class="modal-body">
             <form action="{{route('register')}}" id="register-form" method="POST">
                 @csrf
-
+                <input type="hidden" name="verified">
                 <div class="register-data">
                     <div class="input-div">
                         <label for="name" class="form-label">Name (नाम) <span class="red-feild">*</span> </label>
