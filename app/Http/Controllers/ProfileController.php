@@ -51,8 +51,13 @@ class ProfileController extends Controller
             $step='education';
         }
         $exist=FinalStatus::where('user_id',Auth::user()->id)->where('status','1')->get();
-        if(!sizeOf($exist) || $step!==''){
-            return redirect()->route('preview');
+        // if(!sizeOf($exist) || $step!==''){
+        if(!sizeOf($exist)){
+            $user=User::join('final_statuses','final_statuses.user_id','=','users.id')
+            ->where('users.id',Auth::user()->id)
+            ->first();
+            return view('profile.index',compact('user'));
+            // return redirect()->route('preview');
         }
         else{
             $user=User::join('final_statuses','final_statuses.user_id','=','users.id')

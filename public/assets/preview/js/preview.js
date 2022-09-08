@@ -15,7 +15,7 @@ $('#final-submit').click(()=>{
             type: "GET",
             url: base_url+'final/submit',
             success:function(){
-                alert('Your Form is submitted successfully')
+                alert('Your online application has been submitted successfully.')
                 location.href='profile'
             }
         })

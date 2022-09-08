@@ -168,7 +168,7 @@ function preferenceValidation(){
     $("#preference_fieldset .prefrence_input").each(function(key,value){
 
         if($(this).attr('id')==='brief'){
-            if($('#brief').parent().hasClass('d-none')){
+            if($('#brief').parent().hasClass('d-none') || $('input[name=interview]:checked').val()==='No'){
                 flag.push(true)
             }else{
                 if($('#brief').val()===''){

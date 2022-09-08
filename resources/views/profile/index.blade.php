@@ -20,27 +20,46 @@
                             <th scope="col">Email</th>
                             <th scope="col">Mobile Number</th>
                             <th scope="col">Date of Birth</th>
+                            <th scope="col">Category</th>
                             <th scope="col">Gender</th>
+                            @if($user->status==='1')
                             <th scope="col">Form</th>
+                            @else
+                            <th scope="col">Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
+                            @if($user->status==='1')
                             <td><a href="{{asset('assets/uploads/cv/'.$user->cv)}}" download="{{$user->name}}" target="_blank">{{$user->register_id}}</a></td>
+                            @else
+                            <td>{{$user->register_id}}</td>
+                            @endif
                             <td>{{$user->name}}</td>
                             <td>{{$user->father_name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->mobile}}</td>
                             <td>{{$user->dob}}</td>
+                            <td>{{$user->category}}</td>
                             <td>{{$user->gender}}</td>
+                            @if($user->status==='1')
                             <td>
                                 <a href="{{route('form-view')}}" id="form-view" class="btn btn-sm">View</a>
                             </td>
+                            @else
+                            <td>
+                                <a href="{{route('fill-details')}}" id="form-view" class="btn btn-sm">Continue</a>
+                            </td>
+                            @endif
                         </tr>
                     </tbody>
                 </table>
-
-                <marquee> <p class="dark-green fw-100">Your form is submitted successfully</p></marquee>
+                @if($user->status==='1')
+                <marquee> <p class="dark-green fw-100">Your online application has been submitted successfully.</p></marquee>
+                @else
+                <p class="text-danger fw-100">Note: Dear Applicant, Kindly complete your online application by clicking on above continue button.</p>
+                @endif
             </div>
         </div>
     </div>
