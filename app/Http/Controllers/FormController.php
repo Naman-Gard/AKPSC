@@ -219,52 +219,66 @@ class FormController extends Controller
     }
 
     public function editForm(){
-        Education::where('user_id',Auth::user()->id)->update([
-            'status'=>'0'
-        ]);
-        Experience::where('user_id',Auth::user()->id)->update([
-            'status'=>'0'
-        ]);
-        Preference::where('user_id',Auth::user()->id)->update([
-            'status'=>'0'
-        ]);
-        Organization::where('user_id',Auth::user()->id)->update([
-            'status'=>'0'
-        ]);
-        Upload::where('user_id',Auth::user()->id)->update([
-            'status'=>'0'
-        ]);
+        $step=$this->checkStep();
+        if($step!=''){
+            return redirect()->route('fill-details');
+        }
+        else{
+            Education::where('user_id',Auth::user()->id)->update([
+                'status'=>'0'
+            ]);
+            Experience::where('user_id',Auth::user()->id)->update([
+                'status'=>'0'
+            ]);
+            Preference::where('user_id',Auth::user()->id)->update([
+                'status'=>'0'
+            ]);
+            Organization::where('user_id',Auth::user()->id)->update([
+                'status'=>'0'
+            ]);
+            Upload::where('user_id',Auth::user()->id)->update([
+                'status'=>'0'
+            ]);
+        }
     }
 
     public function finalSubmit(){
-        $exist=FinalStatus::where('user_id',Auth::user()->id)->where('status',1)->get();
-        if(!sizeOf($exist)){
-
-            FinalStatus::where('user_id',Auth::user()->id)->update([
-                'status'=>1
-            ]);
-
-            // $message='Dear Applicant,<br>';
-            // $message.='your application has been submitted successfully.<br>';
-            // $message.='Regards,<br>';
-            // $message.='UKPSC';
-
-            // $client = new Client();
-            // $res = $client->request('POST', 'http://sms.holymarkindia.in/API/WebSMS/Http/v1.0a/index.php', [
-            //     'form_params' => [
-            //         "username"=>env('NY_USERNAME'),
-            //         "password"=>env('NY_PASSWORD'),
-            //         "sender"=>env('NY_SENDER'),
-            //         "pe_id"=>env('NY_PE_ID'),
-            //         "reqid"=>env('NY_REQ_ID'),
-            //         "template_id"=>env('APPC_TEMPLATE_ID'),
-            //         "format"=>"json",
-            //         'message'=>$message,
-            //         'to'=>base64_decode($mobile)
-            //     ]
-            // ]);
-
+        $step=$this->checkStep();
+        if($step!=''){
+            return redirect()->route('fill-details');
         }
+        else{
+            $exist=FinalStatus::where('user_id',Auth::user()->id)->where('status',1)->get();
+            if(!sizeOf($exist)){
+                $date=date('d/m/Y');
+                date_default_timezone_set('Asia/Kolkata');
+                FinalStatus::where('user_id',Auth::user()->id)->update([
+                    'status'=>1,
+                    'dor'=>$date
+                ]);
+    
+                $message='Dear Applicant,%0a';
+                $message.='your application has been submitted successfully.%0a';
+                $message.='Regards,%0a';
+                $message.='UKPSC';
+    
+                $client = new Client();
+                $res = $client->request('POST', 'http://sms.holymarkindia.in/API/WebSMS/Http/v1.0a/index.php', [
+                    'form_params' => [
+                        "username"=>env('NY_USERNAME'),
+                        "password"=>env('NY_PASSWORD'),
+                        "sender"=>env('NY_SENDER'),
+                        "pe_id"=>env('NY_PE_ID'),
+                        "reqid"=>env('NY_REQ_ID'),
+                        "template_id"=>env('APPC_TEMPLATE_ID'),
+                        "format"=>"json",
+                        'message'=>$message,
+                        'to'=>Auth::user()->mobile
+                    ]
+                ]);
+            }
+        }
+        
     }
 
     public function finalView(){

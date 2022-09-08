@@ -22,7 +22,7 @@ class ExperienceController extends Controller
                 'user_id'=>Auth::user()->id,
                 "type"=>$request->type,
                 "year"=>$request->year,
-                "specify"=>$request->specify?$request->specify:'-',
+                "specify"=>$request->specify?ucwords($request->specify):'-',
                 'status'=>'0'
             ]);
         }
@@ -77,8 +77,8 @@ class ExperienceController extends Controller
         if(sizeOf($exist)){
              IsWorking::where('user_id',Auth::user()->id)->update([
                 "isworking"=>$request->isworking,
-                "designation"=>$request->designation,
-                "serving"=>$request->serving,
+                "designation"=>ucwords($request->designation),
+                "serving"=>ucwords($request->serving),
                 "isprior"=>$request->isprior,
                 "organization_name"=>ucwords($request->organization_name),
                 'status'=>'1'

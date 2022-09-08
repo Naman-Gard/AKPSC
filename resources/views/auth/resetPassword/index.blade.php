@@ -1,7 +1,7 @@
 @include('auth.includes.header')
 
 <div class="container mt-5 mb-5">
-    <?php $email=encode5t($email);$date=encode5t($date);$time=encode5t($time)?>
+    <?php $email=base64_encode($email);$date=base64_encode($date);$time=base64_encode($time)?>
     <form class="pt-3" action="{{route('succeed',[$email,$date,$time])}}" method="POST">
         @csrf
         <div class="img-wrap text-center mb-4">

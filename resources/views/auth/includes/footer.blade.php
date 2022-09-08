@@ -5,6 +5,7 @@
 <script src="{{asset('assets/auth/js/auth.js')}}"></script>
 <script>
 let base_url = "{{env('BASE_URL')}}"
+let token = '{{csrf_token()}}'
 </script>
 
 </html>

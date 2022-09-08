@@ -82,15 +82,15 @@ function otpCreation(mobile){
     for (let i = 0; i < 4; i++ ) {
         OTP += string[Math.floor(Math.random() * len)];
     }
-    // $.ajax({
-    //     type: "GET",
-    //     headers: {
-    //         'Access-Control-Allow-Origin': '*'
-    //     },
-    //     url: base_url+'secure-admin/send/otp/'+mobile+'/'+btoa(OTP),
-    // })
-    // otp=OTP
-    otp='1234'
+    $.ajax({
+        type: "GET",
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        },
+        url: base_url+'secure-admin/send/otp/'+mobile+'/'+btoa(OTP),
+    })
+    otp=OTP
+    // otp='1234'
     countdown( "ten-countdown", 4, 0 );
 }
 

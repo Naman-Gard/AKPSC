@@ -18,9 +18,9 @@ return new class extends Migration
             $table->integer('user_id');
             $table->string('isworking');
             $table->string('isprior');
-            $table->string('designation')->nullable();
-            $table->string('serving')->nullable();
-            $table->string('organization_name')->nullable();
+            $table->string('designation');
+            $table->string('serving');
+            $table->string('organization_name');
             $table->string('status');
             $table->timestamps();
         });

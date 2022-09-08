@@ -14,6 +14,7 @@ class FinalStatus extends Model
         'status',
         'empanelled',
         'blacklisted',
-        'appointed'
+        'appointed',
+        'dor'
     ];
 }

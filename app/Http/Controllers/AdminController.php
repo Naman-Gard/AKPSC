@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\LastLogin;
 use App\Models\FinalStatus;
 use App\Models\Experience;
 use App\Models\LanguageDetails;
@@ -12,6 +13,7 @@ use App\Models\Education;
 use Auth;
 use Session;
 use DB;
+use Carbon\Carbon;
 use App\Models\BlackListed;
 use GuzzleHttp\Client;
 
@@ -38,7 +40,7 @@ class AdminController extends Controller
             "blacklist"=>$blacklist
         );
         $subjects=DB::table('subject_master')->orderBy('subject')->get()->groupBy('subject');
-
+        
         return view('admin.index',compact('count','subjects'));
     }
 
@@ -53,7 +55,23 @@ class AdminController extends Controller
     }
 
     public function logout(){
+        date_default_timezone_set('Asia/Kolkata');
+        $date=Carbon::now()->isoFormat('DD/MM/YYYY HH:mm:ss');
+        $exist=LastLogin::where('user_id',Session::get('admin-user')->id)->get();
+        if(sizeOf($exist)){
+            LastLogin::where('user_id',Session::get('admin-user')->id)->update([
+                'last_login'=>$date
+            ]);
+        }
+        else{
+            LastLogin::create([
+                'user_id'=>Session::get('admin-user')->id,
+                'last_login'=>$date
+            ]);
+        }
+        
         Session::forget('admin-user');
+        Session::forget('last-login');
         return redirect()->route('secure-admin')->with('success','Logout Sucessfully');
     }
 
@@ -77,19 +95,21 @@ class AdminController extends Controller
 
     public function checkCredentials($data){
         $data=json_decode(base64_decode($data));
-        $email=$data->email;
-        $password=base64_decode($data->password);
-        $user=User::where('email',$email)->where('type','admin')->first();
-        if($user){
-            if(password_verify($password, $user->password)){
-                return ['status'=>'Valid Credentials','data'=>base64_encode($user->mobile)];       
+        if(isset($data->email) && isset($data->password)){
+            $email=$data->email;
+            $password=base64_decode($data->password);
+            $user=User::where('email',$email)->where('type','admin')->first();
+            if($user){
+                if(password_verify($password, $user->password)){
+                    return ['status'=>'Valid Credentials','data'=>base64_encode($user->mobile)];       
+                }
+                else{
+                    return ['status'=>'Invalid Credentials'];        
+                }
             }
             else{
                 return ['status'=>'Invalid Credentials'];        
             }
-        }
-        else{
-            return ['status'=>'Invalid Credentials'];        
         }
     }
 
@@ -286,7 +306,6 @@ class AdminController extends Controller
         ->where('final_statuses.status','1')
         ->where('final_statuses.empanelled','1')
         ->where('final_statuses.blacklisted','0')
-        ->select('users.*','users.created_at as from','empanelments.*','final_statuses.*','specializations.*','preferences.*','is_workings.*','uploads.*')
         ->get()->groupBy('user_id');
 
         $registered_users=User::where('type','user')->join('final_statuses','final_statuses.user_id','=','users.id')
@@ -383,7 +402,7 @@ class AdminController extends Controller
     }
 
     public function changePassword(Request $request){
-        dd(Session::get('admin-user')->id);
+        // dd(Session::get('admin-user')->id);
         User::where('id',Session::get('admin-user')->id)->update([
             'password' => Hash::make(base64_decode($request->password)),
         ]);
@@ -391,26 +410,29 @@ class AdminController extends Controller
     }
 
     public function sendOTP($mobile,$OTP){
-        $message='Dear User<br>';
-        $message.='One Time Password(OTP) for login is 1234<br>';
-        $message.='Regards,<br>';
-        $message.='UKPSC';
-
-        $client = new Client();
-        $res = $client->request('POST', 'http://sms.holymarkindia.in/API/WebSMS/Http/v1.0a/index.php', [
-            'form_params' => [
-                "username"=>env('NY_USERNAME'),
-                "password"=>env('NY_PASSWORD'),
-                "sender"=>env('NY_SENDER'),
-                "pe_id"=>env('NY_PE_ID'),
-                "reqid"=>env('NY_REQ_ID'),
-                "template_id"=>env('LOGIN_TEMPLATE_ID'),
-                "format"=>"json",
-                'message'=>$message,
-                'to'=>base64_decode($mobile)
-            ]
-        ]);
-
-        return ['success'=>'OTP send successfully'];
+        $exist=User::where('mobile',base64_decode($mobile))->where('type','admin')->get();
+        if(sizeof($exist)){
+            $message='Dear User%0a';
+            $message.='One Time Password(OTP) for login is '.base64_decode($OTP).'%0a';
+            $message.='Regards,%0a';
+            $message.='UKPSC';
+    
+            $client = new Client();
+            $res = $client->request('POST', 'http://sms.holymarkindia.in/API/WebSMS/Http/v1.0a/index.php', [
+                'form_params' => [
+                    "username"=>env('NY_USERNAME'),
+                    "password"=>env('NY_PASSWORD'),
+                    "sender"=>env('NY_SENDER'),
+                    "pe_id"=>env('NY_PE_ID'),
+                    "reqid"=>env('NY_REQ_ID'),
+                    "template_id"=>env('LOGIN_TEMPLATE_ID'),
+                    "format"=>"json",
+                    'message'=>$message,
+                    'to'=>base64_decode($mobile)
+                ]
+            ]);
+    
+            return ['success'=>'OTP send successfully'];
+        }
     }
 }

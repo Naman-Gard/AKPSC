@@ -189,8 +189,21 @@ $(document).ready(function(){
                                 // }
                                 // else{
                                     $('#organization_name').val(response[key][0].organization_name)
-                                    $('#designation option[value="'+response[key][0].designation+'"]').prop("selected",true).change()
-                                    $('#serving option[value="'+response[key][0].serving+'"]').prop("selected",true).change()
+                                    if($("#designation option[value='"+response[key][0].designation+"']").length > 0){
+                                        $('#designation option[value="'+response[key][0].designation+'"]').prop("selected",true).change()
+                                    }
+                                    else{
+                                        $('#designation option[value="Other"]').prop("selected",true).change()
+                                        $('.specify_designation').val(response[key][0].designation)
+                                    }
+
+                                    if($("#serving option[value='"+response[key][0].serving+"']").length > 0){
+                                        $('#serving option[value="'+response[key][0].serving+'"]').prop("selected",true).change()
+                                    }
+                                    else{
+                                        $('#serving option[value="Other"]').prop("selected",true).change()
+                                        $('.specify_serving').val(response[key][0].serving)
+                                    }
                                 //     $('#designation_row').removeClass('d-none')
                                 // }
                             }

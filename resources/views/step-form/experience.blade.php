@@ -33,6 +33,7 @@
                         <option value="Professor">Professor</option>
                         <option value="Associate Professor">Associate Professor</option>
                         <option value="Assistant Professor">Assistant Professor</option>
+                        <option value="Other">Other</option>
                     </select>
                     <span class="text-danger" id="valid_designation"></span>
                 </div>
@@ -47,8 +48,23 @@
                         <option value="Private Organisation">Private Organisation</option>
                         <option value="State Government Undertaking">State Government Undertaking</option>
                         <option value="Central Government Undertaking">Central Government Undertaking</option>
+                        <option value="Other">Other</option>
                     </select>
                     <span class="text-danger" id="valid_serving"></span>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="form-group col-md-6 d-none" id="specify_designation">
+                    <input type="text" class="specify_designation" placeholder="Please specify your Designation">
+                    <p class="mb-3 note-txt2 text-danger">Note:Please specify complete name of Designation</p>
+                    <span class="text-danger" id="valid_specify_designation"></span>
+                </div>
+
+                <div class="form-group col-md-6 d-none" id="specify_serving">
+                    <input type="text" class="specify_serving" placeholder="Please specify your Serving Under">
+                    <p class="mb-3 note-txt2 text-danger">Note:Please specify complete name of Serving Under</p>
+                    <span class="text-danger" id="valid_specify_serving"></span>
                 </div>
             </div>
 

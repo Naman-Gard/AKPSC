@@ -20,6 +20,30 @@ $('input[name=org_name]').keydown((e) => {
     }
 })
 
+$('#designation').change((e)=>{
+    $('.specify_designation').val('')
+    if(e.target.value==='Other'){
+        $('#specify_designation').removeClass('d-none')
+    }
+    else{
+        if(!$('#specify_designation').hasClass('d-none')){
+            $('#specify_designation').addClass('d-none')
+        }
+    }
+})
+
+$('#serving').change((e)=>{
+    $('.specify_serving').val('')
+    if(e.target.value==='Other'){
+        $('#specify_serving').removeClass('d-none')
+    }
+    else{
+        if(!$('#specify_serving').hasClass('d-none')){
+            $('#specify_serving').addClass('d-none')
+        }
+    }
+})
+
 // $('input[name=isworking]').change((e)=>{
 //     if(e.target.value==='service'){
 //         $('#designation_row').removeClass('d-none')
@@ -239,22 +263,34 @@ function isWorkingValidation(){
     }
 
     $("#experience_fieldset .serving_input").each(function(key,value){
-        if(!$('#designation_row').hasClass('d-none')){
+        // if(!$('#designation_row').hasClass('d-none')){
             if($(this).val()===''){
                 flag.push(false)
                 $('#'+$(this).attr('id')).focus()
                 $('#valid_'+$(this).attr('id')).html('This field is required')
                 return false
             }
+            else if($(this).val()==='Other' && $(this).attr('id')!=='organization_name'){
+
+                if($('.specify_'+$(this).attr('id')).val()===''){
+                    flag.push(false)
+                    $('.specify_'+$(this).attr('id')).focus()
+                    $('#valid_specify_'+$(this).attr('id')).html('This field is required')
+                    return false
+                }
+                else{
+                    data[$(this).attr('id')]=$('.specify_'+$(this).attr('id')).val()
+                    $('#valid_specify_'+$(this).attr('id')).html('')
+                }
+            }
             else{
                 $('#valid_'+$(this).attr('id')).html('')
+                data[$(this).attr('id')]=$(this).val()
             }
-            data[$(this).attr('id')]=$(this).val()
-        }
-        else{
-            $('#valid_'+$(this).attr('id')).html('')
-        }
-        
+        // }
+        // else{
+        //     $('#valid_'+$(this).attr('id')).html('')
+        // }
         
     });
 

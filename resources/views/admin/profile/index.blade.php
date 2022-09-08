@@ -23,7 +23,7 @@
                             <span id="valid_confirm_password" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-md-12">
                            <button class="btn btn-primary btn-sm">Proceed</button>
                         </div>

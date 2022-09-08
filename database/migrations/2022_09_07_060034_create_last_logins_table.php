@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('final_statuses', function (Blueprint $table) {
+        Schema::create('last_logins', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('register_id')->unique();
-            $table->string('empanelled')->nullable();
-            $table->string('blacklisted')->nullable();
-            $table->string('appointed')->nullable();
-            $table->integer('status');
-            $table->string('dor');
+            $table->string('last_login');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('final_statuses');
+        Schema::dropIfExists('last_logins');
     }
 };

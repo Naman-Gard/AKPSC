@@ -14,6 +14,7 @@
 
 <script>
     let base_url = "{{env('BASE_URL')}}";
+    let users=[],subjects;
 </script>
 
 
