@@ -62,7 +62,7 @@ function doValidation() {
     if ($('input[name=dob]').val() !== '') {
         flag.push(dateIsValid($('input[name=dob]').val()))
         let age=userAge($('input[name=dob]').val())
-        if(age>70 || age<21){
+        if(age>70 || age<35){
             flag.push(false)
             $('#valid_dob').html("Please enter valid age");
         }
