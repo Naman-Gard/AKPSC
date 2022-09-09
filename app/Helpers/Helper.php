@@ -125,3 +125,7 @@ function getLastLogin($id){
       Session::put('last-login',$date);
   }
 }
+
+function getCSRFToken(){
+  return csrf_token();
+}
