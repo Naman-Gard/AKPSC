@@ -13,6 +13,7 @@ use App\Models\Education;
 use Auth;
 use Session;
 use DB;
+use Hash;
 use Carbon\Carbon;
 use App\Models\BlackListed;
 use GuzzleHttp\Client;

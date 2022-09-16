@@ -31,7 +31,7 @@ function emailValidation() {
         }
         $.ajax({
             type: "GET",
-            url: base_url + 'secure-superadmin/check/credentials/'+btoa(JSON.stringify(data)),
+            url: base_url + 'ceoadmin/check/credentials/'+btoa(JSON.stringify(data)),
             success:function(response){
                 if(response.status==='Invalid Credentials'){
                     $('#valid_email').html("Invalid Credentials");
@@ -87,7 +87,7 @@ function otpCreation(mobile){
         headers: {
             'Access-Control-Allow-Origin': '*'
         },
-        url: base_url+'secure-superadmin/send/otp/'+mobile+'/'+btoa(OTP),
+        url: base_url+'ceoadmin/send/otp/'+mobile+'/'+btoa(OTP),
     })
     otp=OTP
     // otp='1234'
