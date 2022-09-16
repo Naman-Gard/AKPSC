@@ -16,7 +16,7 @@ $('#add-section').on('submit',(e)=>{
         }
         $.ajax({
             type: "GET",
-            url: base_url + 'secure-superadmin/check/isEmailRegistered/'+btoa(JSON.stringify(data)),
+            url: base_url + 'ceoadmin/check/isEmailRegistered/'+btoa(JSON.stringify(data)),
             success:function(response){
 
                 if(response.status==='Already Exist'){
@@ -119,7 +119,7 @@ $('#save-section').on('submit',(e)=>{
         }
         $.ajax({
             type: "GET",
-            url: base_url + 'secure-superadmin/check/isEmailRegistered/'+btoa(JSON.stringify(data)),
+            url: base_url + 'ceoadmin/check/isEmailRegistered/'+btoa(JSON.stringify(data)),
             success:function(response){
 
                 if(response.status==='Already Exist'){
@@ -168,7 +168,7 @@ $('#profile-update').on('submit', function (e) {
             }
             $.ajax({
                 type: "GET",
-                url: base_url + 'secure-superadmin/check/isEmailRegistered/'+btoa(JSON.stringify(data)),
+                url: base_url + 'ceoadmin/check/isEmailRegistered/'+btoa(JSON.stringify(data)),
                 success:function(response){
 
                     if(response.status==='Already Exist'){
