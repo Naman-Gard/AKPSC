@@ -36,6 +36,8 @@
                                     @if(session('success'))
                                     <span class="text-danger mt-3">{{session('success')}}</span>
                                     @endif
+
+                                    <input type="hidden" name="token" id="token" value={{csrf_token()}}>
                                     <form method="POST" action="{{route('login')}}" id="login-form">
                                         @csrf
                                         <div class="input-div">
