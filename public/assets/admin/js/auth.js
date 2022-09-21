@@ -30,8 +30,11 @@ function emailValidation() {
             'password':btoa($('input[name=password]').val())
         }
         $.ajax({
-            type: "GET",
-            url: base_url + 'secure-admin/check/credentials/'+btoa(JSON.stringify(data)),
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data:JSON.stringify({"_token":token,data:btoa(JSON.stringify(data))}),
+            url: base_url + 'secure-admin/check/credentials',
             success:function(response){
                 if(response.status==='Invalid Credentials'){
                     $('#valid_email').html("Invalid Credentials");
@@ -74,22 +77,22 @@ function otpValidation(){
     }
 }
 
-function otpCreation(mobile){
-    let string = '0123456789';
-    let len = string.length;
-    let OTP = ""
+function otpCreation(data){
+    // let string = '0123456789';
+    // let len = string.length;
+    // let OTP = ""
 
-    for (let i = 0; i < 4; i++ ) {
-        OTP += string[Math.floor(Math.random() * len)];
-    }
-    $.ajax({
-        type: "GET",
-        headers: {
-            'Access-Control-Allow-Origin': '*'
-        },
-        url: base_url+'secure-admin/send/otp/'+mobile+'/'+btoa(OTP),
-    })
-    otp=OTP
+    // for (let i = 0; i < 4; i++ ) {
+    //     OTP += string[Math.floor(Math.random() * len)];
+    // }
+    // $.ajax({
+    //     type: "GET",
+    //     headers: {
+    //         'Access-Control-Allow-Origin': '*'
+    //     },
+    //     url: base_url+'secure-admin/send/otp/'+mobile+'/'+btoa(OTP),
+    // })
+    otp=atob(atob(data))
     // otp='1234'
     countdown( "ten-countdown", 4, 0 );
 }
@@ -129,5 +132,5 @@ $('#resend-otp-btn').click(()=>{
     $('#resend-otp').addClass('d-none')
     $('#valid_otp').html('')
     $('#otp').val('')
-    otpCreation()
+    emailValidation()
 })

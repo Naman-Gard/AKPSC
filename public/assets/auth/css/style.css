@@ -530,6 +530,10 @@ select {
         height: scroll;
     }
 
+    .captcha-wrap {
+        margin-bottom: 25px;
+    }
+
     .container .card {
         max-width: 350px;
         height: auto !important;
@@ -567,7 +571,7 @@ select {
 
 .left-side {
     background: url("../../images/side_bg4.jpg") no-repeat;
-    max-height: 614px !important;
+    max-height: 688px !important;
     width: 700px !important;
 }
 
@@ -640,33 +644,31 @@ a.new-user {
 a.new-user img {
     /* height: 14px; */
 }
+
 a.new-user .left-thumb {
     /* transform: rotate(90deg); */
 }
 
-.animate-charcter
-{
-   text-transform: uppercase;
-  background-image: linear-gradient(
-    -225deg,
-    #fff 0%,
-    #fff 29%,
-    #ff1361 67%,
-    #44107a 100%
-  );
-  background-clip: border-box;
-  background-size: 200% auto;
-  background-clip: text;
-  text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textclip 2s linear infinite;
+.animate-charcter {
+    text-transform: uppercase;
+    background-image: linear-gradient(-225deg,
+            #fff 0%,
+            #fff 29%,
+            #ff1361 67%,
+            #44107a 100%);
+    background-clip: border-box;
+    background-size: 200% auto;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
 }
 
 @keyframes textclip {
-  to {
-    background-position: 200% center;
-  }
+    to {
+        background-position: 200% center;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -689,6 +691,7 @@ a.new-user .left-thumb {
 .gj-datepicker-md [role=right-icon] {
     display: none;
 }
+
 .gj-icon.chevron-left {
     font-size: 0 !important;
     background-image: url('../../images/left-icon.svg');
@@ -696,6 +699,7 @@ a.new-user .left-thumb {
     height: 42px;
     width: 42px;
 }
+
 .gj-icon.chevron-right {
     font-size: 0 !important;
     background-image: url('../../images/right-icon.svg');
@@ -703,11 +707,28 @@ a.new-user .left-thumb {
     height: 42px;
     width: 42px;
 }
+
 #dob {
     background: #fff;
     color: #000;
     font-weight: 500;
 }
+
 #dob:focus {
     border-bottom: none;
+}
+
+.captcha-code {
+    margin: 0 !important;
+    background: #edebeb;
+    color: #0a858e !important;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 991px) {
+    .left-side {
+        display: none;
+    }
 }

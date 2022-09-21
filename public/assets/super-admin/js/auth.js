@@ -6,7 +6,7 @@ $('#login-form').on('submit', function (e) {
     let flag=otpValidation()
     $.each(this, function (i, element) {
         if (element.name == "password") {
-            element.value = btoa(element.value);
+            element.value = btoa(btoa(element.value));
         }
     })
     if(flag){
@@ -27,11 +27,14 @@ function emailValidation() {
     if (email.toLowerCase().match(valid)) {
         let data={
             'email':email,
-            'password':btoa($('input[name=password]').val())
+            'password':btoa(btoa($('input[name=password]').val()))
         }
         $.ajax({
-            type: "GET",
-            url: base_url + 'ceoadmin/check/credentials/'+btoa(JSON.stringify(data)),
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data:JSON.stringify({"_token":token,data:btoa(JSON.stringify(data))}),
+            url: base_url + 'ceoadmin/check/credentials',
             success:function(response){
                 if(response.status==='Invalid Credentials'){
                     $('#valid_email').html("Invalid Credentials");
@@ -74,22 +77,22 @@ function otpValidation(){
     }
 }
 
-function otpCreation(mobile){
-    let string = '0123456789';
-    let len = string.length;
-    let OTP = ""
+function otpCreation(data){
+    // let string = '0123456789';
+    // let len = string.length;
+    // let OTP = ""
 
-    for (let i = 0; i < 4; i++ ) {
-        OTP += string[Math.floor(Math.random() * len)];
-    }
-    $.ajax({
-        type: "GET",
-        headers: {
-            'Access-Control-Allow-Origin': '*'
-        },
-        url: base_url+'ceoadmin/send/otp/'+mobile+'/'+btoa(OTP),
-    })
-    otp=OTP
+    // for (let i = 0; i < 4; i++ ) {
+    //     OTP += string[Math.floor(Math.random() * len)];
+    // }
+    // $.ajax({
+    //     type: "GET",
+    //     headers: {
+    //         'Access-Control-Allow-Origin': '*'
+    //     },
+    //     url: base_url+'ceoadmin/send/otp/'+mobile+'/'+btoa(OTP),
+    // })
+    otp=atob(atob(data))
     // otp='1234'
     countdown( "ten-countdown", 4, 0 );
 }
@@ -129,5 +132,5 @@ $('#resend-otp-btn').click(()=>{
     $('#resend-otp').addClass('d-none')
     $('#valid_otp').html('')
     $('#otp').val('')
-    otpCreation()
+    emailValidation()
 })
