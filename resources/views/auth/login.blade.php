@@ -64,7 +64,7 @@
 
                                             <div class="col-lg-12 col-xl-7 col-md-7">
                                                 <div class="captcha-input">
-                                                    <input type="text" class="form-control" placeholder="Captcha" name="captcha_code" autocomplete="off">
+                                                    <input type="text" class="form-control" placeholder="Captcha" name="captcha_code" autocomplete="off" required>
                                                     <input type="hidden" name="captcha" id="captcha">
                                                 </div>
                                             </div>
