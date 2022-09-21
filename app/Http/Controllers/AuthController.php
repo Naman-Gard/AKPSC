@@ -82,10 +82,13 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
+        if ($request->captcha_code !== $request->captcha) {
+            return redirect()->route('/')->with('success', 'Captcha is not correct');
+        }
         $credentials = $request->only('email', 'password');
         foreach($credentials as $key=>$item){
             if($key=="password"){
-                $credentials[$key]=base64_decode($item);
+                $credentials[$key]=base64_decode(base64_decode(base64_decode($item)));
             }
         }
         $credentials['type']='user';

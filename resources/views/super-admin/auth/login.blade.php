@@ -79,5 +79,5 @@
 
 </body>
 
-@include('includes.footer')
+@include('super-admin.includes.footer')
 <script src="{{ asset('assets/super-admin/js/auth.js')}}"></script>

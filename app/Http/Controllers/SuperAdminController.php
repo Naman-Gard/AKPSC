@@ -11,15 +11,20 @@ use Hash;
 class SuperAdminController extends Controller
 {
 
-    public function checkCredentials($data){
-        $data=json_decode(base64_decode($data));
+    public function checkCredentials(Request $request){
+        $data=json_decode(base64_decode($request->data));
         if(isset($data->email) && isset($data->password)){
             $email=$data->email;
-            $password=base64_decode($data->password);
+            $password=base64_decode(base64_decode($data->password));
             $user=User::where('email',$email)->where('type','super-admin')->first();
             if($user){
                 if(password_verify($password, $user->password)){
-                    return ['status'=>'Valid Credentials','data'=>base64_encode($user->mobile)];       
+                    $OTP='';
+                    for ($i = 0; $i < 4; $i++ ) {
+                        $OTP .= rand(0,9);
+                    }
+                    $status=$this->sendOTP(base64_encode($user->mobile),base64_encode($OTP));
+                    return ['status'=>'Valid Credentials','data'=>base64_encode(base64_encode($OTP))];       
                 }
                 else{
                     return ['status'=>'Invalid Credentials'];        
@@ -60,11 +65,16 @@ class SuperAdminController extends Controller
 
     public function login(Request $request){
         $email=$request->email;
-        $password=base64_decode($request->password);
+        $password=base64_decode(base64_decode($request->password));
         $user=User::where('email',$email)->where('type','super-admin')->first();
         if($user){
             if(password_verify($password, $user->password)){
+                Session::getHandler()->destroy($user->remember_token);
                 Session::put('super-admin',$user);
+                User::where('email',$email)->where('type','super-admin')->update([
+                    'remember_token'=>Session::getId()
+                ]);
+                // dd(Session::getId());
                 return Redirect()->route('superadmin-dashboard');       
             }
             else{

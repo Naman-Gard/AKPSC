@@ -23,7 +23,7 @@
                         <div class="right-side">
                             <div class="main active">
                                 <div class="img-wrap text-center">
-                                    <img src="{{asset('assets/images/ukpsc_logo.png')}}" width="150">
+                                    <img src="{{asset('assets/images/ukpsc_logo.png')}}" width="120">
                                 </div>
                                 <div class="text">
                                 </div>
@@ -37,7 +37,7 @@
                                     <span class="text-danger mt-3">{{session('success')}}</span>
                                     @endif
 
-                                    <input type="hidden" name="token" id="token" value={{csrf_token()}}>
+                                    <!-- <input type="hidden" name="token" id="token" value={{csrf_token()}}> -->
                                     <form method="POST" action="{{route('login')}}" id="login-form">
                                         @csrf
                                         <div class="input-div">
@@ -51,6 +51,25 @@
                                             <input type="password" name="password" required autocomplete="off">
                                             <!-- <span>Password (पासवर्ड)</span> -->
                                         </div>
+
+                                        <div class="form-group row mb-4">
+                                            <div class="col-lg-12 col-xl-5 col-md-5">
+                                                <div class="captcha-wrap d-flex align-items-center">
+                                                    <p class="captcha-code" id="html_captcha_code"></p>
+                                                    <a class="ms-2" onclick="captchaGenerate()">
+                                                        <img src="{{asset('assets/images/refresh-icon.svg')}}" alt="icon" />
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 col-xl-7 col-md-7">
+                                                <div class="captcha-input">
+                                                    <input type="text" class="form-control" placeholder="Captcha" name="captcha_code" autocomplete="off">
+                                                    <input type="hidden" name="captcha" id="captcha">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="buttons">
                                             <button class="next_button">Submit</button>
                                         </div>

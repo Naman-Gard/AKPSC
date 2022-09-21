@@ -86,8 +86,8 @@ Route::group(["middleware" => ["adminlogout"]], function(){
     })->name('secure-admin');
 
     Route::post('secure-admin/login', 'App\Http\Controllers\AdminController@login')->name('admin-login');
-    Route::get('secure-admin/check/credentials/{data}', 'App\Http\Controllers\AdminController@checkCredentials')->name('admin-credentials');
-    Route::get('secure-admin/send/otp/{mobile}/{OTP}', 'App\Http\Controllers\AdminController@sendOTP')->name('admin-sendOTP');
+    Route::post('secure-admin/check/credentials', 'App\Http\Controllers\AdminController@checkCredentials')->name('admin-credentials');
+    // Route::get('secure-admin/send/otp/{mobile}/{OTP}', 'App\Http\Controllers\AdminController@sendOTP')->name('admin-sendOTP');
 
 });
 
@@ -119,8 +119,8 @@ Route::group(["middleware" => ["superadminlogout"]], function(){
     })->name('secure-superadmin');
 
     Route::post('ceoadmin/login', 'App\Http\Controllers\SuperAdminController@login')->name('superadmin-login');
-    Route::get('ceoadmin/check/credentials/{data}', 'App\Http\Controllers\SuperAdminController@checkCredentials')->name('superadmin-credentials');
-    Route::get('ceoadmin/send/otp/{mobile}/{OTP}', 'App\Http\Controllers\SuperAdminController@sendOTP')->name('superadmin-sendOTP');
+    Route::post('ceoadmin/check/credentials', 'App\Http\Controllers\SuperAdminController@checkCredentials')->name('superadmin-credentials');
+    // Route::get('ceoadmin/send/otp/{mobile}/{OTP}', 'App\Http\Controllers\SuperAdminController@sendOTP')->name('superadmin-sendOTP');
 
 });
 

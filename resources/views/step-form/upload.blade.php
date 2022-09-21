@@ -43,7 +43,7 @@
         <div class="input-div row">
             <div class="form-group mb-4 col-md-6">
                 <label class="upload_input" for="flexRadioDefault1">CV <span class="text-danger">*</span></label>
-                <input type="file" name="cv" id="cv">
+                <input type="file" name="cv" id="cv" accept="application/pdf">
                 <p class="mb-0 note-txt">Note: Allow only pdf file</p>
                 @error('cv')
                 <span class="text-danger">{{$message}}</span>

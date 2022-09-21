@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="card-body">
                             <!-- <h2 class="card-title">Education Details</h2> -->
-                            <input type="hidden" name="token" id="token" value={{csrf_token()}}>
+                            <!-- <input type="hidden" name="token" id="token" value={{csrf_token()}}> -->
                             <form action="{{route('submit')}}" id="msform" class="forms-sample" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
@@ -120,6 +120,7 @@
 
 @include('includes/footer')
 <script>
-    let token = $('#token').val()
+    // let token = $('#token').val()
+    // let token = "{{csrf_token()}}"
     let step = '{{$step}}'
 </script>

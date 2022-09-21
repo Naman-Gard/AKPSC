@@ -12,6 +12,7 @@
 <script src="{{ asset('assets/super-admin/js/dashboard.js')}}"></script>
 <script>
     let base_url = "{{env('BASE_URL')}}";
+    let token = "{{csrf_token()}}";
     $('.table').dataTable()
 </script>
 

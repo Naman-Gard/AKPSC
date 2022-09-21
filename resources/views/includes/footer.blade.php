@@ -5,6 +5,7 @@
 <script src="{{ asset('assets/js/jquery.dataTables.min.js')}}"></script>
 <script>
 let base_url = "{{env('BASE_URL')}}";
+let token = "{{csrf_token()}}";
 let educationDataStatus = 0,
     SpecializationStatus = 0,
     experienceDataStatus = 0,

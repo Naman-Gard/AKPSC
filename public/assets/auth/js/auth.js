@@ -1,10 +1,26 @@
 let otp=0;
+
+$(document).ready(function() {
+  captchaGenerate()
+})
+
+function captchaGenerate(){
+  var string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var len = string.length;
+  let captcha=""
+  for (let i = 0; i < 6; i++ ) {
+      captcha += string[Math.floor(Math.random() * len)];
+  }
+  $('#html_captcha_code').html(captcha);
+  $('#captcha').val(captcha);
+}
+
 $('#login-form').on('submit', function (e) {
 
     e.preventDefault();
     $.each(this, function (i, element) {
         if (element.name == "password") {
-            element.value = btoa(element.value);
+            element.value = btoa(btoa(btoa(element.value)));
         }
     })
     e.currentTarget.submit();
