@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\LastLogin;
 use App\Models\FinalStatus;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
@@ -82,6 +83,14 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
+        $user=User::join('last_logins','last_logins.user_id','=','users.id')
+            ->where('users.email',$request->email)
+            ->first();
+        if($user){
+            if($user->last_login===$request->captcha){
+                return redirect()->route('/')->with('success','Invalid Credentials');
+            }
+        }
         if ($request->captcha_code !== $request->captcha) {
             return redirect()->route('/')->with('success', 'Captcha is not correct');
         }
@@ -94,6 +103,17 @@ class AuthController extends Controller
         $credentials['type']='user';
         // dd($credentials);
         if (Auth::attempt($credentials)) {
+            if($user){
+                LastLogin::where('user_id',Auth::user()->id)->update([
+                    'last_login'=>$request->captcha
+                ]);
+            }
+            else{
+                LastLogin::create([
+                    'user_id'=>Auth::user()->id,
+                    'last_login'=>$request->captcha
+                ]);
+            }
             return Redirect()->route('fill-details')->with('success','Login Successfully');
         }
         return redirect()->route('/')->with('success','Invalid Credentials');
