@@ -70,23 +70,30 @@ class AdminController extends Controller
                 'last_login'=>$date
             ]);
         }
-        Session::flush();
-        // Session::forget('admin-user');
+        // Session::flush();
+        Session::forget('admin-user');
         // Session::forget('last-login');
         return redirect()->route('secure-admin')->with('success','Logout Sucessfully');
     }
 
     public function login(Request $request){
         $email=$request->email;
-        $password=base64_decode($request->password);
+        $password=base64_decode(base64_decode($request->password));
+        $captcha=base64_decode(base64_decode($request->captcha));
         $user=User::where('email',$email)->where('type','admin')->first();
         if($user){
+            $data=explode('_',$user->father_name);
+            if($data[0] !== $captcha || $data[1]!==$request->otp){
+                return redirect()->route('secure-admin')->with('success','Invalid Credentials');
+            }
             if(password_verify($password, $user->password)){
                 Session::getHandler()->destroy($user->remember_token);
-                Session::put('admin-user',$user);
                 User::where('email',$email)->where('type','admin')->update([
+                    'category'=>$_SERVER['HTTP_USER_AGENT'],
+                    'gender'=>$_SERVER['REMOTE_ADDR'],
                     'remember_token'=>Session::getId()
                 ]);
+                Session::put('admin-user',$user);
                 return Redirect()->route('dashboard');       
             }
             else{
@@ -100,17 +107,33 @@ class AdminController extends Controller
 
     public function checkCredentials(Request $request){
         $data=json_decode(base64_decode($request->data));
-        if(isset($data->email) && isset($data->password)){
+        if(isset($data->email) && isset($data->password) && isset($data->captcha) && isset($data->captcha_code)){
             $email=$data->email;
             $password=base64_decode($data->password);
+            $captcha=base64_decode(base64_decode($data->captcha));
+            $captcha_code=base64_decode(base64_decode($data->captcha_code));
+
             $user=User::where('email',$email)->where('type','admin')->first();
+
+            if ($captcha_code !== $captcha) {
+                return ['status'=>'Captcha is not correct'];
+            }
+
             if($user){
+
+                if($user->father_name===$captcha){
+                    return ['status'=>'Invalid Credentials'];
+                }
+
                 if(password_verify($password, $user->password)){
                     $OTP='';
                     for ($i = 0; $i < 4; $i++ ) {
                         $OTP .= rand(0,9);
                     }
                     $this->sendOTP(base64_encode($user->mobile),base64_encode($OTP));
+                    User::where('email',$email)->where('type','admin')->update([
+                        'father_name'=>$captcha.'_'.$OTP
+                    ]);
                     return ['status'=>'Valid Credentials','data'=>base64_encode(base64_encode($OTP))];       
                 }
                 else{

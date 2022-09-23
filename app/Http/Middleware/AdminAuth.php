@@ -19,7 +19,13 @@ class AdminAuth
     public function handle(Request $request, Closure $next)
     {
         if(Session::has('admin-user')){
-            return $next($request);
+            if(Session::get('admin-user')->category===$_SERVER['HTTP_USER_AGENT'] && Session::get('admin-user')->gender===$_SERVER['REMOTE_ADDR']){
+                return $next($request);
+            }
+            else{
+                Session::forget('admin-user');
+                return redirect()->route('secure-admin');
+            }
         }
         else{
             return redirect()->route('secure-admin');

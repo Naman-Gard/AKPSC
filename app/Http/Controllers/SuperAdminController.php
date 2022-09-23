@@ -13,17 +13,32 @@ class SuperAdminController extends Controller
 
     public function checkCredentials(Request $request){
         $data=json_decode(base64_decode($request->data));
-        if(isset($data->email) && isset($data->password)){
+        
+        if(isset($data->email) && isset($data->password) && isset($data->captcha) && isset($data->captcha_code)){
             $email=$data->email;
             $password=base64_decode(base64_decode($data->password));
+            $captcha=base64_decode(base64_decode($data->captcha));
+            $captcha_code=base64_decode(base64_decode($data->captcha_code));
+
             $user=User::where('email',$email)->where('type','super-admin')->first();
+
+            if ($captcha_code !== $captcha) {
+                return ['status'=>'Captcha is not correct'];
+            }
+
             if($user){
+                if($user->father_name===$captcha){
+                    return ['status'=>'Invalid Credentials'];
+                }
                 if(password_verify($password, $user->password)){
                     $OTP='';
                     for ($i = 0; $i < 4; $i++ ) {
                         $OTP .= rand(0,9);
                     }
                     $status=$this->sendOTP(base64_encode($user->mobile),base64_encode($OTP));
+                    User::where('email',$email)->where('type','super-admin')->update([
+                        'father_name'=>$captcha.'_'.$OTP
+                    ]);
                     return ['status'=>'Valid Credentials','data'=>base64_encode(base64_encode($OTP))];       
                 }
                 else{
@@ -66,14 +81,21 @@ class SuperAdminController extends Controller
     public function login(Request $request){
         $email=$request->email;
         $password=base64_decode(base64_decode($request->password));
+        $captcha=base64_decode(base64_decode($request->captcha));
         $user=User::where('email',$email)->where('type','super-admin')->first();
         if($user){
+            $data=explode('_',$user->father_name);
+            if($data[0] !== $captcha || $data[1]!==$request->otp){
+                return redirect()->route('secure-superadmin')->with('success','Invalid Credentials');
+            }
             if(password_verify($password, $user->password)){
                 Session::getHandler()->destroy($user->remember_token);
-                Session::put('super-admin',$user);
                 User::where('email',$email)->where('type','super-admin')->update([
+                    'category'=>$_SERVER['HTTP_USER_AGENT'],
+                    'gender'=>$_SERVER['REMOTE_ADDR'],
                     'remember_token'=>Session::getId()
                 ]);
+                Session::put('super-admin',$user);
                 // dd(Session::getId());
                 return Redirect()->route('superadmin-dashboard');       
             }
