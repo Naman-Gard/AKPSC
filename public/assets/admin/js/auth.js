@@ -1,12 +1,28 @@
 let otp=0;
+
+$(document).ready(function() {
+  captchaGenerate()
+})
+
+function captchaGenerate(){
+  var string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var len = string.length;
+  let captcha=""
+  for (let i = 0; i < 6; i++ ) {
+      captcha += string[Math.floor(Math.random() * len)];
+  }
+  $('#html_captcha_code').html(captcha);
+  $('#captcha').val(captcha);
+}
+
 $('#login-form').on('submit', function (e) {
 
     e.preventDefault();
 
     let flag=otpValidation()
     $.each(this, function (i, element) {
-        if (element.name == "password") {
-            element.value = btoa(element.value);
+        if (element.name == "password"  || element.name == "captcha" ||element.name == "captcha_code") {
+            element.value = btoa(btoa(element.value));
         }
     })
     if(flag){
@@ -24,10 +40,14 @@ function emailValidation() {
     let email = $('input[name=email]').val()
     let valid =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (email.toLowerCase().match(valid)) {
+    if (email.toLowerCase().match(valid) && $('input[name=captcha_code]').val()!=='') {
+        $('#valid_captcha').html("");
+        $('#valid_email').html("");
         let data={
             'email':email,
-            'password':btoa($('input[name=password]').val())
+            'password':btoa($('input[name=password]').val()),
+            'captcha_code':btoa(btoa($('input[name=captcha_code]').val())),
+            'captcha':btoa(btoa($('input[name=captcha]').val()))
         }
         $.ajax({
             type: "POST",
@@ -38,6 +58,11 @@ function emailValidation() {
             success:function(response){
                 if(response.status==='Invalid Credentials'){
                     $('#valid_email').html("Invalid Credentials");
+                    captchaGenerate()
+                }
+                else if(response.status==='Captcha is not correct'){
+                    $('#valid_captcha').html(response.status)
+                    captchaGenerate()
                 }
                 else{
                     $('#valid_email').html("");
@@ -55,6 +80,10 @@ function emailValidation() {
         }
         else{
             $('#valid_email').html("Please enter valid email");
+        }
+
+        if($('input[name=captcha_code]').val()===''){
+            $('#valid_captcha').html("This field is required");
         }
     }
 }
