@@ -95,6 +95,7 @@ class SuperAdminController extends Controller
                     'gender'=>$_SERVER['REMOTE_ADDR'],
                     'remember_token'=>Session::getId()
                 ]);
+                $user=User::where('email',$email)->where('type','super-admin')->first();
                 Session::put('super-admin',$user);
                 // dd(Session::getId());
                 return Redirect()->route('superadmin-dashboard');       

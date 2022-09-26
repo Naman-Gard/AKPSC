@@ -93,6 +93,7 @@ class AdminController extends Controller
                     'gender'=>$_SERVER['REMOTE_ADDR'],
                     'remember_token'=>Session::getId()
                 ]);
+                $user=User::where('email',$email)->where('type','admin')->first();
                 Session::put('admin-user',$user);
                 return Redirect()->route('dashboard');       
             }
