@@ -77,7 +77,7 @@
 
 @include('admin/includes/footer')
 
-<script>
+<script nonce="{{Session::get('csp-code')}}">
 
     $('#RemoveModal').on('show.bs.modal', function(e) {
         console.log($(e.relatedTarget).data('remove-link'))

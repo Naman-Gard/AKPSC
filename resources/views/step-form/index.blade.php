@@ -119,7 +119,7 @@
 </div>
 
 @include('includes/footer')
-<script>
+<script nonce="{{Session::get('csp-code')}}">
     // let token = $('#token').val()
     // let token = "{{csrf_token()}}"
     let step = '{{$step}}'

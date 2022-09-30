@@ -228,8 +228,4 @@
 </div>
 
 @include('admin/includes/footer')
-<script src="{{ asset('assets/admin/js/report.js')}}"></script>
-<script>
-    
-
-</script>
+<script nonce="{{Session::get('csp-code')}}" src="{{ asset('assets/admin/js/report.js')}}"></script>

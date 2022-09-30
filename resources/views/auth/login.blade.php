@@ -56,7 +56,7 @@
                                             <div class="col-lg-12 col-xl-5 col-md-5">
                                                 <div class="captcha-wrap d-flex align-items-center">
                                                     <p class="captcha-code" id="html_captcha_code"></p>
-                                                    <a class="ms-2" onclick="captchaGenerate()">
+                                                    <a class="ms-2 refreshCaptcha">
                                                         <img src="{{asset('assets/images/refresh-icon.svg')}}" alt="icon" />
                                                     </a>
                                                 </div>

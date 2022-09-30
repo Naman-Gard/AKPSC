@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Session;
 
 class FrameHeader
 {
@@ -22,11 +23,12 @@ class FrameHeader
      */
     public function handle(Request $request, Closure $next)
     {
+        generateCSPCode();
         $response = $next($request);
         $response->header('X-Frame-Options','deny'); // Anti clickjacking
         $response->header('X-XSS-Protection', '1; mode=block'); // Anti cross site scripting (XSS)
         $response->header('X-Content-Type-Options', 'nosniff'); // Reduce exposure to drive-by dl attacks
-        $response->header('Content-Security-Policy', "base-uri 'self';form-action 'self';font-src 'self' 'unsafe-inline' 'unsafe-eval'"); // Reduce risk of XSS, clickjacking, and other stuff
+        $response->header('Content-Security-Policy', "object-src 'none';script-src 'self' 'nonce-".Session::get('csp-code')."' 'unsafe-eval';base-uri 'self';form-action 'self';font-src 'self' 'unsafe-inline' 'unsafe-eval'"); // Reduce risk of XSS, clickjacking, and other stuff
         $response->header('Strict-Transport-Security', 'max-age=31536000; includeSubdomains');
         $this->removeUnwantedHeaders($this->unwantedHeaderList);
         return $response;
