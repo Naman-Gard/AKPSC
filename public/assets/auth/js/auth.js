@@ -12,8 +12,16 @@ function captchaGenerate(){
       captcha += string[Math.floor(Math.random() * len)];
   }
   $('#html_captcha_code').html(captcha);
+  $('#html_captcha_code').bind("copy cut paste contextmenu", function(e) {
+    e.preventDefault();
+    return false;
+  });
   $('#captcha').val(captcha);
 }
+
+$('.refreshCaptcha').click(()=>{
+    captchaGenerate()
+})
 
 $('#login-form').on('submit', function (e) {
 

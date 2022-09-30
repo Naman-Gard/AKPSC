@@ -38,7 +38,7 @@
 
 @include('admin/includes/footer')
 
-<script>
+<script nonce="{{Session::get('csp-code')}}">
     $('#change-password').on('submit', function (e) {
 
         e.preventDefault();

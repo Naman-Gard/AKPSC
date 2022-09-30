@@ -78,8 +78,8 @@ class AdminController extends Controller
 
     public function login(Request $request){
         $email=$request->email;
-        $password=base64_decode(base64_decode($request->password));
-        $captcha=base64_decode(base64_decode($request->captcha));
+        $password=strongDecode($request->password);
+        $captcha=strongDecode($request->captcha);
         $user=User::where('email',$email)->where('type','admin')->first();
         if($user){
             $data=explode('_',$user->father_name);
@@ -107,7 +107,7 @@ class AdminController extends Controller
     }
 
     public function checkCredentials(Request $request){
-        $data=json_decode(base64_decode($request->data));
+        $data=json_decode(strongDecode($request->data));
         if(isset($data->email) && isset($data->password) && isset($data->captcha) && isset($data->captcha_code)){
             $email=$data->email;
             $password=base64_decode($data->password);
@@ -122,7 +122,8 @@ class AdminController extends Controller
 
             if($user){
 
-                if($user->father_name===$captcha){
+                $data=explode('_',$user->father_name);
+                if($data[0]===$captcha){
                     return ['status'=>'Invalid Credentials'];
                 }
 

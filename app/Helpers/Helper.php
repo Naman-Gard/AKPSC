@@ -37,6 +37,14 @@ function encode5t($str)
 
 }
 
+function strongDecode($encoded) {
+  $encoded = base64_decode($encoded);
+  $encoded=str_replace('UKP','',$encoded);
+  $encoded = base64_decode($encoded);
+  $encoded=str_replace('UKP','',$encoded);
+  return base64_decode($encoded);
+}
+
 function decode5t($str)
 
 {
@@ -124,6 +132,13 @@ function getLastLogin($id){
       ]);
       Session::put('last-login',$date);
   }
+}
+
+function generateCSPCode(){
+  $str = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+  $code=substr(str_shuffle($str), 0, 20);
+  Session::put('csp-code',$code);
+  return $code;
 }
 
 function getCSRFToken(){

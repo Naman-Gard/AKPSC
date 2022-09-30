@@ -12,8 +12,16 @@ function captchaGenerate(){
       captcha += string[Math.floor(Math.random() * len)];
   }
   $('#html_captcha_code').html(captcha);
+  $('#html_captcha_code').bind("copy cut paste contextmenu", function(e) {
+    e.preventDefault();
+    return false;
+  });
   $('#captcha').val(captcha);
 }
+
+$('.refreshCaptcha').click(()=>{
+    captchaGenerate()
+})
 
 $('#login-form').on('submit', function (e) {
 
@@ -22,7 +30,7 @@ $('#login-form').on('submit', function (e) {
     let flag=otpValidation()
     $.each(this, function (i, element) {
         if (element.name == "password"  || element.name == "captcha" ||element.name == "captcha_code") {
-            element.value = btoa(btoa(element.value));
+            element.value = encode(element.value);
         }
     })
     if(flag){
@@ -53,7 +61,7 @@ function emailValidation() {
             type: "POST",
             contentType: "application/json",
             dataType: "json",
-            data:JSON.stringify({"_token":token,data:btoa(JSON.stringify(data))}),
+            data:JSON.stringify({"_token":token,data:encode(JSON.stringify(data))}),
             url: base_url + 'secure-admin/check/credentials',
             success:function(response){
                 if(response.status==='Invalid Credentials'){
