@@ -60,14 +60,14 @@ $('document').ready(()=>{
         $('#LoaderModal').modal('show')
         $.ajax({
             type: "GET",
-            url: base_url+'secure-admin/getSubjects',
+            url: base_url+'secureadmin/getSubjects',
             success:function(response){
                 subjects=response
             }
         })
         $.ajax({
             type: "GET",
-            url: base_url+'secure-admin/getUsers',
+            url: base_url+'secureadmin/getUsers',
             success:function(response){
                 users=response
                 setUsers()

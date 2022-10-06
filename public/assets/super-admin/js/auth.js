@@ -63,7 +63,7 @@ function emailValidation() {
             contentType: "application/json",
             dataType: "json",
             data:JSON.stringify({"_token":token,data:encode(JSON.stringify(data))}),
-            url: base_url + 'ceoadmin/check/credentials',
+            url: base_url + 'coeadmin/check/credentials',
             success:function(response){
                 if(response.status==='Invalid Credentials'){
                     $('#valid_email').html("Invalid Credentials");

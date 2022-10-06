@@ -81,57 +81,57 @@ Route::group(["middleware" => ["islogin"]], function(){
 // Admin Panel Routes
 Route::group(["middleware" => ["adminlogout"]], function(){
 
-    Route::get('secure-admin', function () {
+    Route::get('secureadmin', function () {
         return view('admin/auth/login');
     })->name('secure-admin');
 
-    Route::post('secure-admin/login', 'App\Http\Controllers\AdminController@login')->name('admin-login');
-    Route::post('secure-admin/check/credentials', 'App\Http\Controllers\AdminController@checkCredentials')->name('admin-credentials');
-    // Route::get('secure-admin/send/otp/{mobile}/{OTP}', 'App\Http\Controllers\AdminController@sendOTP')->name('admin-sendOTP');
+    Route::post('secureadmin/login', 'App\Http\Controllers\AdminController@login')->name('admin-login');
+    Route::post('secureadmin/check/credentials', 'App\Http\Controllers\AdminController@checkCredentials')->name('admin-credentials');
+    // Route::get('secureadmin/send/otp/{mobile}/{OTP}', 'App\Http\Controllers\AdminController@sendOTP')->name('admin-sendOTP');
 
 });
 
 Route::group(["middleware" => ["adminlogin"]], function(){
-    Route::get('secure-admin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
-    Route::get('secure-admin/getSubjects', 'App\Http\Controllers\AdminController@getSubjects');
-    Route::get('secure-admin/getStates', 'App\Http\Controllers\AdminController@getStates');
-    Route::get('secure-admin/profile', 'App\Http\Controllers\AdminController@profile')->name('admin-profile');
-    Route::post('secure-admin/change-password', 'App\Http\Controllers\AdminController@changePassword')->name('change-password');
-    Route::get('secure-admin/getUsers', 'App\Http\Controllers\AdminController@getUsers')->name('getUsers');
-    Route::get('secure-admin/getReportUsers', 'App\Http\Controllers\AdminController@getReportUsers')->name('getReportUsers');
-    Route::get('secure-admin/logout', 'App\Http\Controllers\AdminController@logout')->name('admin-logout');
-    Route::post('secure-admin/add/empanel', 'App\Http\Controllers\EmpanelController@addEmpanel')->name('add-empanel');
-    Route::post('secure-admin/blacklisted', 'App\Http\Controllers\BlackListController@index')->name('blacklisted');
+    Route::get('secureadmin/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
+    Route::get('secureadmin/getSubjects', 'App\Http\Controllers\AdminController@getSubjects');
+    Route::get('secureadmin/getStates', 'App\Http\Controllers\AdminController@getStates');
+    Route::get('secureadmin/profile', 'App\Http\Controllers\AdminController@profile')->name('admin-profile');
+    Route::post('secureadmin/change-password', 'App\Http\Controllers\AdminController@changePassword')->name('change-password');
+    Route::get('secureadmin/getUsers', 'App\Http\Controllers\AdminController@getUsers')->name('getUsers');
+    Route::get('secureadmin/getReportUsers', 'App\Http\Controllers\AdminController@getReportUsers')->name('getReportUsers');
+    Route::get('secureadmin/logout', 'App\Http\Controllers\AdminController@logout')->name('admin-logout');
+    Route::post('secureadmin/add/empanel', 'App\Http\Controllers\EmpanelController@addEmpanel')->name('add-empanel');
+    Route::post('secureadmin/blacklisted', 'App\Http\Controllers\BlackListController@index')->name('blacklisted');
     Route::get('remove/blacklistedUser/{id}', 'App\Http\Controllers\BlackListController@removeUser')->name('remove-blacklistedUser');
-    Route::post('secure-admin/appointed', 'App\Http\Controllers\AppointController@index')->name('appointed');
+    Route::post('secureadmin/appointed', 'App\Http\Controllers\AppointController@index')->name('appointed');
 
-    Route::get('secure-admin/registered/users', 'App\Http\Controllers\AdminController@getRegisteredUser')->name('registered-users');
-    Route::get('secure-admin/empanelled/users', 'App\Http\Controllers\AdminController@getEmpanelledUser')->name('empanelled-users');
-    Route::get('secure-admin/blacklisted/users', 'App\Http\Controllers\AdminController@getBlacklistedUser')->name('blacklisted-users');
-    Route::get('secure-admin/appointed/users', 'App\Http\Controllers\AppointController@getUsers')->name('appointed-users');
-    Route::get('secure-admin/report', 'App\Http\Controllers\AdminController@getReport')->name('report');
+    Route::get('secureadmin/registered/users', 'App\Http\Controllers\AdminController@getRegisteredUser')->name('registered-users');
+    Route::get('secureadmin/empanelled/users', 'App\Http\Controllers\AdminController@getEmpanelledUser')->name('empanelled-users');
+    Route::get('secureadmin/blacklisted/users', 'App\Http\Controllers\AdminController@getBlacklistedUser')->name('blacklisted-users');
+    Route::get('secureadmin/appointed/users', 'App\Http\Controllers\AppointController@getUsers')->name('appointed-users');
+    Route::get('secureadmin/report', 'App\Http\Controllers\AdminController@getReport')->name('report');
 });
 
 Route::group(["middleware" => ["superadminlogout"]], function(){
 
-    Route::get('ceoadmin', function () {
+    Route::get('coeadmin', function () {
         return view('super-admin/auth/login');
     })->name('secure-superadmin');
 
-    Route::post('ceoadmin/login', 'App\Http\Controllers\SuperAdminController@login')->name('superadmin-login');
-    Route::post('ceoadmin/check/credentials', 'App\Http\Controllers\SuperAdminController@checkCredentials')->name('superadmin-credentials');
-    // Route::get('ceoadmin/send/otp/{mobile}/{OTP}', 'App\Http\Controllers\SuperAdminController@sendOTP')->name('superadmin-sendOTP');
+    Route::post('coeadmin/login', 'App\Http\Controllers\SuperAdminController@login')->name('superadmin-login');
+    Route::post('coeadmin/check/credentials', 'App\Http\Controllers\SuperAdminController@checkCredentials')->name('superadmin-credentials');
+    // Route::get('coeadmin/send/otp/{mobile}/{OTP}', 'App\Http\Controllers\SuperAdminController@sendOTP')->name('superadmin-sendOTP');
 
 });
 
 Route::group(["middleware" => ["superadminlogin"]], function(){
-    Route::get('ceoadmin/dashboard', 'App\Http\Controllers\SuperAdminController@dashboard')->name('superadmin-dashboard');
-    Route::get('ceoadmin/profile', 'App\Http\Controllers\SuperAdminController@profile')->name('superadmin-profile');
-    Route::post('ceoadmin/update-profile', 'App\Http\Controllers\SuperAdminController@updateProfile')->name('update-superadmin');
-    Route::get('ceoadmin/logout', 'App\Http\Controllers\SuperAdminController@logout')->name('superadmin-logout');
-    Route::post('ceoadmin/add-section', 'App\Http\Controllers\SuperAdminController@addSection')->name('add-section');
-    Route::get('ceoadmin/edit-section/{id}', 'App\Http\Controllers\SuperAdminController@editSection')->name('edit-section');
-    Route::post('ceoadmin/save-section', 'App\Http\Controllers\SuperAdminController@saveSection')->name('save-section');
-    Route::get('ceoadmin/remove-section/{id}', 'App\Http\Controllers\SuperAdminController@removeSection')->name('remove-section');
-    Route::get('ceoadmin/check/isEmailRegistered/{data}', 'App\Http\Controllers\SuperAdminController@isEmailRegistered');
+    Route::get('coeadmin/dashboard', 'App\Http\Controllers\SuperAdminController@dashboard')->name('superadmin-dashboard');
+    Route::get('coeadmin/profile', 'App\Http\Controllers\SuperAdminController@profile')->name('superadmin-profile');
+    Route::post('coeadmin/update-profile', 'App\Http\Controllers\SuperAdminController@updateProfile')->name('update-superadmin');
+    Route::get('coeadmin/logout', 'App\Http\Controllers\SuperAdminController@logout')->name('superadmin-logout');
+    Route::post('coeadmin/add-section', 'App\Http\Controllers\SuperAdminController@addSection')->name('add-section');
+    Route::get('coeadmin/edit-section/{id}', 'App\Http\Controllers\SuperAdminController@editSection')->name('edit-section');
+    Route::post('coeadmin/save-section', 'App\Http\Controllers\SuperAdminController@saveSection')->name('save-section');
+    Route::get('coeadmin/remove-section/{id}', 'App\Http\Controllers\SuperAdminController@removeSection')->name('remove-section');
+    Route::get('coeadmin/check/isEmailRegistered/{data}', 'App\Http\Controllers\SuperAdminController@isEmailRegistered');
 });

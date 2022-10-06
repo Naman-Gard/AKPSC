@@ -72,7 +72,7 @@
                                         <div class="d-none" id="verify-otp">
                                             <div class="input-div">
                                                 <label for="otp" class="form-label">OTP</label>
-                                                <input type="text" name="otp" id="otp" required autocomplete="off">
+                                                <input type="text" name="otp" id="otp" autocomplete="off">
                                                 <p class="text-danger" id="valid_otp"></p>
                                                 <div id="ten-countdown" class="text-white"></div>
                                                 <div class="d-none" id="resend-otp">
