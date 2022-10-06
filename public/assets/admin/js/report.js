@@ -33,7 +33,7 @@ $('document').ready(() => {
         $('#LoaderModal').modal('show')
         $.ajax({
             type: "GET",
-            url: base_url + "secure-admin/getReportUsers",
+            url: base_url + "secureadmin/getReportUsers",
             success: function (response) {
                 report_users = response;
                 setReportUsers();
@@ -44,7 +44,7 @@ $('document').ready(() => {
     function getStates() {
         $.ajax({
             type: "GET",
-            url: base_url + "secure-admin/getStates",
+            url: base_url + "secureadmin/getStates",
             success: function (response) {
                 states = response;
             },
