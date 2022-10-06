@@ -25,7 +25,8 @@
                                 <div class="img-wrap text-center">
                                     <img src="{{asset('assets/images/ukpsc_logo.png')}}" width="120">
                                 </div>
-                                <div class="text">
+                                <div class="text e-head">
+                                    <span>Expert Management System</span>
                                 </div>
                                 <div class="input-text" id="login">
                                     <p>

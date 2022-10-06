@@ -727,8 +727,23 @@ a.new-user .left-thumb {
     border-radius: 5px;
 }
 
+@media screen and (min-width: 992px) {
+    .e-head {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 991px) {
     .left-side {
         display: none;
+    }
+
+    .e-head {
+        text-align: center;
+        color: #fffefe;
+        font-weight: 600;
+        font-size: 16px;
+        text-decoration: underline;
+        text-transform: uppercase;
     }
 }
