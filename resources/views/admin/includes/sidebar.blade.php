@@ -7,6 +7,7 @@
             <a class="nav-link {{ Request::is('secureadmin/empanelled/users') ? 'active' : '' }}" href="{{route('empanelled-users')}}"><i class="mdi mdi-account-check"></i> Empanelled Experts</a>
             <a class="nav-link {{ Request::is('secureadmin/appointed/users') ? 'active' : '' }}" href="{{route('appointed-users')}}"><i class="mdi mdi-account-clock"></i> Appointed Experts</a>
             <a class="nav-link {{ Request::is('secureadmin/blacklisted/users') ? 'active' : '' }}" href="{{route('blacklisted-users')}}"><i class="mdi mdi-account-off"></i> Blacklisted Experts</a>
+            <a class="nav-link {{ Request::is('secureadmin/qualification') ? 'active' : '' }}" href="{{route('qualification')}}"><i class="mdi mdi-school"></i> Manage Qualifications</a>
             <a class="nav-link {{ Request::is('secureadmin/report') ? 'active' : '' }}" href="{{route('report')}}"><i class="mdi mdi-file-pdf"></i> Report</a>
             <div class="nav-link active">Last Login: {{Session::get('last-login')}}</div>
             <!-- <div class="nav-item dropdown">

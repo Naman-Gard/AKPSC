@@ -109,6 +109,12 @@ Route::group(["middleware" => ["adminlogin"]], function(){
     Route::get('secureadmin/empanelled/users', 'App\Http\Controllers\AdminController@getEmpanelledUser')->name('empanelled-users');
     Route::get('secureadmin/blacklisted/users', 'App\Http\Controllers\AdminController@getBlacklistedUser')->name('blacklisted-users');
     Route::get('secureadmin/appointed/users', 'App\Http\Controllers\AppointController@getUsers')->name('appointed-users');
+    Route::get('secureadmin/qualification', 'App\Http\Controllers\ManageMasters@getQualification')->name('qualification');
+    Route::post('secureadmin/addDegreeType', 'App\Http\Controllers\ManageMasters@addDegreeType')->name('addDegreeType');
+    Route::post('secureadmin/addDegreeName', 'App\Http\Controllers\ManageMasters@addDegreeName')->name('addDegreeName');
+    Route::post('secureadmin/addSubject', 'App\Http\Controllers\ManageMasters@addSubject')->name('addSubject');
+    Route::get('secureadmin/deleteQualification/{id}', 'App\Http\Controllers\ManageMasters@deleteQualification')->name('deleteQualification');
+    Route::get('secureadmin/getQualificationsubject', 'App\Http\Controllers\ManageMasters@getQualificationsubject')->name('getQualificationsubject');
     Route::get('secureadmin/report', 'App\Http\Controllers\AdminController@getReport')->name('report');
 });
 
